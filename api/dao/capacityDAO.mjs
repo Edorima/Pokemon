@@ -9,31 +9,47 @@ const dbUrl = 'mongodb://localhost:27017'
 
 const capacityDAO = {
 
-    findCapacity: async (type) => {
-    const client = new MongoClient(dbUrl)
-    const db = client.db("s4b14")
-    const cpCollection = db.collection('capacite')
+    /**
+     * @param nameOrId {string | number}
+     * @returns {Promise<Capacite | null>}
+     */
+    findMoveByNameOrId: async (nameOrId) => {
+        const client = new MongoClient(dbUrl)
+        const db = client.db("s4b14")
+        const cpctCollection = db.collection('capacite')
+        const id = Number.parseInt(nameOrId)
+        const data = await cpctCollection.findOne(
+            Number.isInteger(id) ? {id: id} : {nom: nameOrId},
+            {projection: {_id: 0}}
+        )
+        return data ? new Capacite(data) : null
+    },
+
+    /**
+     * @param type {string}
+     * @returns {Promise<Capacite[]>}
+     */
+    findMovesByType: async (type) => {
+        const client = new MongoClient(dbUrl)
+        const db = client.db("s4b14")
+        const cpCollection = db.collection('capacite')
 
 
-    const data = await cpCollection.findOne(
-        {"types.type.name": type},
-        {projection: {_id: 0}}
-    )
+        const data = await cpCollection.findOne(
+            {"types.type.name": type},
+            {projection: {_id: 0}}
+        )
         return (await data.toArray()).map(e => new Capacite(e))
-},
+    },
 
-    findCapacityByPokemon: async (nameOrId) => {
+    /**
+     *
+     * @param nameOrId {string | number}
+     * @returns {Promise<Capacite[]>}
+     */
+    findPokemonMovesByNamOrId: async (nameOrId) => {
         let pokemon = pokemonDAO.findPokemonByNameOrId(nameOrId)
     }
-
-
 }
-
-
-
-
-
-
-
 
 export default capacityDAO

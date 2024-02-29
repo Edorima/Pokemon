@@ -26,7 +26,7 @@ const pokemonDAO = {
 
     /**
      * @param nameOrId {string | number}
-     * @returns {Pokemon | null}
+     * @returns {Promise<Pokemon | null>}
      */
     findPokemonByNameOrId: async (nameOrId) => {
         const client = new MongoClient(dbUrl)
