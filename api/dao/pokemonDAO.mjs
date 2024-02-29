@@ -36,7 +36,7 @@ const pokemonDAO = {
         const pkmCollection = db.collection('pokemon')
         const data = await pkmCollection.find(
             {"types.type.name": type},
-            pokemonDAO.getProjection(limit, offset)
+            {projection: {_id: 0}, skip: offset || 0, limit: limit === 0 ? 1 : limit || 20}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -65,20 +65,9 @@ const pokemonDAO = {
                     {types: { $elemMatch: { slot: 1, "type.name": type2}}},
                     {types: { $elemMatch: { slot: 2, "type.name": type1}}}
                 ]}
-        ]}, pokemonDAO.getProjection(limit, offset))
+        ]}, {projection: {_id: 0}, skip: offset || 0, limit: limit === 0 ? 1 : limit || 20})
 
         return (await data.toArray()).map(e => new Pokemon(e))
-    },
-
-    /**
-     * @param limit {number}
-     * @param offset {number}
-     * @returns {{skip: number, projection: {_id: number}}}
-     */
-    getProjection: (limit, offset) => {
-        const prj = {projection: {_id: 0}, skip: offset || 0}
-        if (limit >= 0) prj.limit = limit === 0 ? 1 : limit
-        return prj
     }
 }
 
