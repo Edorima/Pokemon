@@ -13,7 +13,15 @@ const pokemonDAO = {
      * @returns {Promise<Pokemon[]>}
      */
     getPokemons: async (limit, offset) => {
+        const client = new MongoClient(dbUrl)
+        const db = client.db("s4b14")
+        const pkmCollection = db.collection('pokemon')
+        const data = await pkmCollection.find(
+            {},
+            {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
+        )
 
+        return (await data.toArray()).map(e => new Pokemon(e))
     },
 
     /**
@@ -46,7 +54,7 @@ const pokemonDAO = {
         const pkmCollection = db.collection('pokemon')
         const data = await pkmCollection.find(
             {"types.type.name": type},
-            {projection: {_id: 0}, skip: offset || 0, limit: limit === 0 ? 1 : limit || 20}
+            {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -61,7 +69,6 @@ const pokemonDAO = {
     findPokemonsByDoubleType: async (type1, type2, limit, offset) => {
         if (offset <= -1) return []
 
-
         const client = new MongoClient(dbUrl)
         const db = client.db("s4b14")
         const pkmCollection = db.collection('pokemon')
@@ -75,7 +82,7 @@ const pokemonDAO = {
                     {types: { $elemMatch: { slot: 1, "type.name": type2}}},
                     {types: { $elemMatch: { slot: 2, "type.name": type1}}}
                 ]}
-        ]}, {projection: {_id: 0}, skip: offset || 0, limit: limit === 0 ? 1 : limit || 20})
+        ]}, {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0})
 
         return (await data.toArray()).map(e => new Pokemon(e))
     }

@@ -65,8 +65,7 @@ console.log("Downloading data...")
 const progressBar = new ConsoleProgressBar({
     maxValue: 1724,
     startChars: '[', endChars: ']',
-    filledPartChars: '=',
-    notFilledPartChars: ' '
+    filledPartChars: '=', notFilledPartChars: ' '
 })
 
 const moves = []
@@ -119,7 +118,10 @@ for (const pokemon of allPokemons.results) {
             d => d.language.name === 'fr'
         )[0].flavor_text,
         types: pokemonData.types,
-        sprites: pokemonData.types,
+        sprites: {
+            front_default: pokemonData.sprites.front_default,
+            front_shiny: pokemonData.sprites.front_shiny
+        },
         cris: pokemonData.cries,
         stats: pokemonData.stats,
         taille: pokemonData.height,
@@ -134,6 +136,8 @@ for (const pokemon of allPokemons.results) {
         {upsert: true}
     )
 }
+
+console.log("Data downloaded.")
 
 await client.close()
 if (server) server.close()

@@ -7,7 +7,15 @@ const router = express.Router()
 router
     .route('/')
         .get(async (req, res) => {
-            res.status(200).send("Hello World !")
+            res.status(200).send("<h1>Welcome on PokéManager API !</h1>")
+        })
+
+router
+    .route('/pokemon')
+        .get(async (req, res) => {
+            const limit = Number.parseInt(req.query.limit)
+            const offset = Number.parseInt(req.query.offset)
+            res.status(200).send(await pokemonDAO.getPokemons(limit, offset))
         })
 
 router
