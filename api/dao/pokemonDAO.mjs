@@ -1,6 +1,6 @@
 "use strict"
 
-import {MongoClient, FindOptions} from "mongodb";
+import {MongoClient} from "mongodb";
 import Pokemon from "../model/Pokemon.mjs";
 
 const dbUrl = 'mongodb://localhost:27017'
@@ -73,7 +73,7 @@ const pokemonDAO = {
     /**
      * @param limit {number}
      * @param offset {number}
-     * @returns {FindOptions}
+     * @returns {{skip: number, projection: {_id: number}}}
      */
     getProjection: (limit, offset) => {
         const prj = {projection: {_id: 0}, skip: offset || 0}
