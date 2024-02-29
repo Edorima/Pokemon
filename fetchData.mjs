@@ -75,7 +75,7 @@ for (const move of allMoves.results) {
     progressBar.addValue(1)
     const moveData = await fetchData(move.url)
 
-    const moveObject = {
+    const moveObject = new Capacite({
         id: moveData.id,
         nom: moveData.names.find(
             name => name.language.name === 'fr'
@@ -89,12 +89,12 @@ for (const move of allMoves.results) {
         precision: moveData.accuracy,
         pp: moveData.pp,
         type: moveData.type
-    }
+    })
 
     moves.push(moveObject)
     await capaciteCollection.updateOne(
         {id: moveData.id},
-        {$set: new Capacite(moveObject)},
+        {$set: moveObject},
         {upsert: true}
     )
 }
@@ -114,6 +114,7 @@ for (const pokemon of allPokemons.results) {
         nom: pokemonSpecies.names.filter(
             name => name.language.name === 'fr'
         )[0].name,
+        nomAnglais: pokemonData.data,
         description: pokemonSpecies.flavor_text_entries.filter(
             d => d.language.name === 'fr'
         )[0].flavor_text,

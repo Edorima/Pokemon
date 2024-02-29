@@ -1,6 +1,7 @@
 export default class Pokemon {
     id
     nom
+    nomAnglais
     description
     types
     sprites

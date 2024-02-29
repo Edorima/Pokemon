@@ -1,6 +1,7 @@
 export default class Capacite {
     id
     nom
+    nomAnglais
     description
     categorie
     puissance

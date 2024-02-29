@@ -7,6 +7,16 @@ const dbUrl = 'mongodb://localhost:27017'
 
 const pokemonDAO = {
     /**
+     *
+     * @param limit {number}
+     * @param offset {number}
+     * @returns {Promise<Pokemon[]>}
+     */
+    getPokemons: async (limit, offset) => {
+
+    },
+
+    /**
      * @param nameOrId {string | number}
      * @returns {Pokemon | null}
      */
