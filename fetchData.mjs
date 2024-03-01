@@ -8,6 +8,7 @@ import Pokemon from "./api/model/Pokemon.mjs"
 import ConsoleProgressBar from 'console-progress-bar'
 import dotenv from 'dotenv'
 import Capacite from "./api/model/Capacite.mjs";
+import { typeMap } from "./api/model/Type.mjs";
 dotenv.config()
 
 const proxy = process.env.https_proxy
@@ -25,9 +26,9 @@ async function fetchData(url) {
     return await response.json()
 }
 
-let dbUrl;
-let server;
-if (!agent && process.env.ENV === 'PROD') {
+let dbUrl = 'mongodb://localhost:27017';
+let server = null;
+if (process.env.ENV === 'PROD') {
     [server, ] = await createTunnel(
         {autoClose: true},
         {port: null}, // Port automatiquement assigné par l'OS
@@ -46,8 +47,6 @@ if (!agent && process.env.ENV === 'PROD') {
     const port = address.port
     console.log(`ssh tunnel listening on ${port}`)
     dbUrl = `mongodb://s4b14:s4b14@localhost:${port}/s4b14`
-} else {
-    dbUrl = 'mongodb://localhost:27017'
 }
 
 const client = new MongoClient(dbUrl)
@@ -55,25 +54,30 @@ const db = client.db("s4b14")
 
 const pokemonCollection = db.collection('pokemon')
 const capaciteCollection = db.collection('capacite')
-
-const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
-const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
-const allPokemons = await fetchData(pokemonsURL)
-const allMoves = await fetchData(capaciteURL)
+const typeCollection = db.collection('type')
 
 console.log("Downloading data...")
 const progressBar = new ConsoleProgressBar({
-    maxValue: 1724,
+    maxValue: 1742,
     startChars: '[', endChars: ']',
     filledPartChars: '=', notFilledPartChars: ' '
 })
 
-const moves = []
+/** @type {Map<string, string>} */
+const categorieMap = new Map([
+    ['physical', 'Physique'],
+    ['special', 'Spéciale'],
+    ['status', 'Statut']
+])
 
+const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
+const allMoves = await fetchData(capaciteURL)
+/** @type {Map<string, Capacite>} */
+const movesMap = new Map()
 for (const move of allMoves.results) {
     progressBar.addValue(1)
     const moveData = await fetchData(move.url)
-
+    const type = typeMap.get(moveData.type.name)
     const moveObject = new Capacite({
         id: moveData.id,
         nom: moveData.names.find(
@@ -83,14 +87,14 @@ for (const move of allMoves.results) {
         description: moveData.flavor_text_entries.find(
             d => d.language.name === 'fr'
         ).flavor_text,
-        categorie: moveData.damage_class,
+        categorie: categorieMap.get(moveData.damage_class.name),
         puissance: moveData.power,
         precision: moveData.accuracy,
         pp: moveData.pp,
-        type: moveData.type
+        type: type.nom
     })
-
-    moves.push(moveObject)
+    type.capacites.push(moveObject.nom)
+    movesMap.set(moveData.name, moveObject)
     await capaciteCollection.updateOne(
         {id: moveData.id},
         {$set: moveObject},
@@ -98,41 +102,57 @@ for (const move of allMoves.results) {
     )
 }
 
+
+const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
+const allPokemons = await fetchData(pokemonsURL)
 for (const pokemon of allPokemons.results) {
     progressBar.addValue(1)
     const pokemonData = await fetchData(pokemon.url)
     const pokemonSpecies = await fetchData(pokemonData.species.url)
 
     let pkmMoves = pokemonData.moves
-        .map(pkmMove => moves.find(move => move.nomAnglais === pkmMove.move.name))
+        .map(pkmMove => movesMap.get(pkmMove.move.name))
         .filter(e => e !== undefined)
         .map(move => move.id)
-
     const pokemonObject = new Pokemon({
         id: pokemonData.id,
         nom: pokemonSpecies.names.filter(
             name => name.language.name === 'fr'
         )[0].name,
-        nomAnglais: pokemonData.data,
+        nomAnglais: pokemonData.name,
         description: pokemonSpecies.flavor_text_entries.filter(
             d => d.language.name === 'fr'
         )[0].flavor_text,
-        types: pokemonData.types,
         sprites: {
             front_default: pokemonData.sprites.front_default,
             front_shiny: pokemonData.sprites.front_shiny
         },
         cris: pokemonData.cries,
         stats: pokemonData.stats,
-        taille: pokemonData.height,
-        poids: pokemonData.weight,
+        taille: Number.parseFloat(pokemonData.height) / 10,
+        poids: Number.parseFloat(pokemonData.weight) / 10,
         capacites: pkmMoves,
         talents: pokemonData.abilities
     })
-
+    const types = []
+    for (const type of pokemonData.types) {
+        const typeObject = typeMap.get(type.type.name)
+        typeObject.pokemons.push(pokemonObject.nom)
+        types.push({slot: type.slot, type: typeObject.nom})
+    }
+    pokemonObject.types = types
     await pokemonCollection.updateOne(
         {id: pokemonData.id},
         {$set: pokemonObject},
+        {upsert: true}
+    )
+}
+
+for (const type of typeMap.values()) {
+    progressBar.addValue(1)
+    await typeCollection.updateOne(
+        {id: type.id},
+        {$set: type},
         {upsert: true}
     )
 }
