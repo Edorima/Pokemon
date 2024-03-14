@@ -1,7 +1,6 @@
 "use strict"
 
 import dotenv from 'dotenv'
-
 dotenv.config()
 
 const serverPort = process.env.PORT || 8080

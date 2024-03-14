@@ -6,10 +6,8 @@ import fetch from 'node-fetch'
 import {HttpsProxyAgent} from 'https-proxy-agent'
 import Pokemon from "./api/model/Pokemon.mjs"
 import ConsoleProgressBar from 'console-progress-bar'
-import dotenv from 'dotenv'
 import Capacite from "./api/model/Capacite.mjs";
 import { typeMap } from "./api/model/Type.mjs";
-dotenv.config()
 
 const proxy = process.env.https_proxy
 let agent = null
@@ -17,9 +15,8 @@ if (proxy !== undefined)
     agent = new HttpsProxyAgent(proxy)
 
 /**
- *
  * @param url { string }
- * @returns {Promise<object>}
+ * @returns {Promise<Object>}
  */
 async function fetchData(url) {
     let response = agent != null ? await fetch(url, { agent: agent }) : await fetch(url);
@@ -50,7 +47,7 @@ if (process.env.ENV === 'PROD') {
 }
 
 const client = new MongoClient(dbUrl)
-const db = client.db("s4b14")
+const db = client.db("pokemanager")
 
 const pokemonCollection = db.collection('pokemon')
 const capaciteCollection = db.collection('capacite')
@@ -75,7 +72,7 @@ const allMoves = await fetchData(capaciteURL)
 /** @type {Map<string, Capacite>} */
 const movesMap = new Map()
 for (const move of allMoves.results) {
-    progressBar.addValue(1)
+    progressBar.addValue()
     const moveData = await fetchData(move.url)
     const type = typeMap.get(moveData.type.name)
     const moveObject = new Capacite({
@@ -106,7 +103,7 @@ for (const move of allMoves.results) {
 const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
 const allPokemons = await fetchData(pokemonsURL)
 for (const pokemon of allPokemons.results) {
-    progressBar.addValue(1)
+    progressBar.addValue()
     const pokemonData = await fetchData(pokemon.url)
     const pokemonSpecies = await fetchData(pokemonData.species.url)
 
@@ -116,13 +113,13 @@ for (const pokemon of allPokemons.results) {
         .map(move => move.id)
     const pokemonObject = new Pokemon({
         id: pokemonData.id,
-        nom: pokemonSpecies.names.filter(
+        nom: pokemonSpecies.names.find(
             name => name.language.name === 'fr'
-        )[0].name,
+        ).name,
         nomAnglais: pokemonData.name,
-        description: pokemonSpecies.flavor_text_entries.filter(
+        description: pokemonSpecies.flavor_text_entries.find(
             d => d.language.name === 'fr'
-        )[0].flavor_text,
+        ).flavor_text,
         sprites: {
             front_default: pokemonData.sprites.front_default,
             front_shiny: pokemonData.sprites.front_shiny
@@ -149,7 +146,7 @@ for (const pokemon of allPokemons.results) {
 }
 
 for (const type of typeMap.values()) {
-    progressBar.addValue(1)
+    progressBar.addValue()
     await typeCollection.updateOne(
         {id: type.id},
         {$set: type},

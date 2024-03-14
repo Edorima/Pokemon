@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PokéManager</title>
+    <script src="/scripts/checkLogin.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
+    <link rel="stylesheet" href="/css/commonStyle.css">
+    <link rel="stylesheet" href="/css/security.css">
+
+    <script src="/scripts/loadHeader.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+    <div id="error-message" class="hidden"></div>
+    <label>
+        Nom d'utilisateur :
+        <input id="username">
+    </label>
+
+    <label>
+        Mot de passe
+        <input id="password" type="password">
+    </label>
+
+    <label>
+        Vous avez déjà un compte ?
+        <a type="button" href="/login">Je me connecte</a>
+    </label>
+
+    <button id="registerButton">Créer un compte</button>
+</div>
+
+<script src="/scripts/register.js"></script>
+
+</body>
+</html>

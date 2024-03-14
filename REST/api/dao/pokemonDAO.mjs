@@ -1,26 +1,27 @@
 "use strict"
 
-import {MongoClient} from "mongodb";
-import Pokemon from "../model/Pokemon.mjs";
+import {MongoClient} from "mongodb"
+import Pokemon from "../model/Pokemon.mjs"
 
-const dbUrl = 'mongodb://localhost:27017'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
 
 const pokemonDAO = {
+    get collection() {
+        const client = new MongoClient(dbUrl)
+        const db = client.db("pokemanager")
+        return db.collection('pokemon')
+    },
+
     /**
-     *
      * @param limit {number}
      * @param offset {number}
-     * @returns {Promise<Pokemon[]>}
+     @returns {Promise<Pokemon[]>}
      */
     getPokemons: async (limit, offset) => {
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const pkmCollection = db.collection('pokemon')
-        const data = await pkmCollection.find(
+        const data = await pokemonDAO.collection.find(
             {},
             {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
         )
-
         return (await data.toArray()).map(e => new Pokemon(e))
     },
 
@@ -29,11 +30,8 @@ const pokemonDAO = {
      * @returns {Promise<Pokemon | null>}
      */
     findPokemonByNameOrId: async (nameOrId) => {
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const pkmCollection = db.collection('pokemon')
         const id = Number.parseInt(nameOrId)
-        const data = await pkmCollection.findOne(
+        const data = await pokemonDAO.collection.findOne(
             Number.isInteger(id) ? {id: id} : {nom: nameOrId},
             {projection: {_id: 0}}
         )
@@ -44,15 +42,12 @@ const pokemonDAO = {
      * @param type {string}
      * @param limit {number}
      * @param offset {number}
-     * @returns {Promise<Pokemon[]>}
+     @returns {Promise<Pokemon[]>}
      */
     findPokemonsByType: async (type, limit, offset) => {
         if (offset <= -1) return []
 
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const pkmCollection = db.collection('pokemon')
-        const data = await pkmCollection.find(
+        const data = await pokemonDAO.collection.find(
             {"types.type.name": type},
             {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
         )
@@ -64,15 +59,12 @@ const pokemonDAO = {
      * @param type2 {string}
      * @param limit {number}
      * @param offset {number}
-     * @returns {Promise<Pokemon[]>}
+     @returns {Promise<Pokemon[]>}
      */
     findPokemonsByDoubleType: async (type1, type2, limit, offset) => {
         if (offset <= -1) return []
 
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const pkmCollection = db.collection('pokemon')
-        const data = pkmCollection.find({
+        const data = pokemonDAO.collection.find({
             $or: [
                 {$and: [
                     {types: { $elemMatch: { slot: 1, "type.name": type1}}},

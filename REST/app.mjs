@@ -1,8 +1,6 @@
 "use strict"
 
 import express from "express";
-import dotenv from 'dotenv'
-dotenv.config()
 
 const APIPATH = process.env.API_PATH || '/'
 
@@ -24,7 +22,7 @@ const {default: routes}  = await import ('./api/route.mjs')
 app.use(APIPATH === '/' ? '' : APIPATH+'/', routes)
 
 //message par defaut
-app.use((error,req,res,next)=>{
+app.use((error,req,res, next)=>{
     console.log(error)
     const status = error.statusCode || 500
     const message = error.message

@@ -26,3 +26,18 @@ app.get('/', (req, res) => {
     return res.sendFile(getPage("home"))
 })
 
+app.get('/login', (req, res) => {
+    return res.sendFile(getPage("login"))
+})
+
+app.get('/register', (req, res) => {
+    return res.sendFile(getPage("register"))
+})
+
+app.get('/logout', (req, res) => {
+    return res.sendFile(getPage("logout"))
+})
+
+app.get('/profile', (req, res) => {
+    return res.sendFile(getPage("profile"))
+})

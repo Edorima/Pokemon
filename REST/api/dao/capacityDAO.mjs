@@ -2,23 +2,25 @@
 
 import {MongoClient} from "mongodb";
 import Capacite from "../model/Capacite.mjs";
-import Pokemon from "../model/Pokemon.mjs";
 import pokemonDAO from "./pokemonDAO.mjs";
 
-const dbUrl = 'mongodb://localhost:27017'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
 
 const capacityDAO = {
+    get collection() {
+        const client = new MongoClient(dbUrl)
+        const db = client.db('pokemanager')
+        return db.collection('capacite')
+    },
+
 
     /**
      * @param nameOrId {string | number}
      * @returns {Promise<Capacite | null>}
      */
     findMoveByNameOrId: async (nameOrId) => {
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const cpctCollection = db.collection('capacite')
         const id = Number.parseInt(nameOrId)
-        const data = await cpctCollection.findOne(
+        const data = await capacityDAO.collection.findOne(
             Number.isInteger(id) ? {id: id} : {nom: nameOrId},
             {projection: {_id: 0}}
         )
@@ -30,12 +32,7 @@ const capacityDAO = {
      * @returns {Promise<Capacite[]>}
      */
     findMovesByType: async (type) => {
-        const client = new MongoClient(dbUrl)
-        const db = client.db("s4b14")
-        const cpCollection = db.collection('capacite')
-
-
-        const data = await cpCollection.findOne(
+        const data = await capacityDAO.collection.findOne(
             {"types.type.name": type},
             {projection: {_id: 0}}
         )
@@ -43,7 +40,6 @@ const capacityDAO = {
     },
 
     /**
-     *
      * @param nameOrId {string | number}
      * @returns {Promise<Capacite[]>}
      */
