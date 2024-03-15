@@ -1,8 +1,8 @@
 # PokéManager
 
-Temps passé par Alexis : 16h00
+Temps passé par Alexis : 20h20
 <br>
-Dernière mesure le 15 mars à 12h20
+Dernière mesure le 15 mars à 22h
 
 Temps passé par Maxence : 8h00
 <br>

@@ -106,7 +106,7 @@ router.route('/login').post(async (req, res) => {
     res.json({ success: true, token: token });
 })
 
-router.route('/profile').get(async (req, res) => {
+router.route('/profil').get(async (req, res) => {
     try {
         // Valider le token de l'utilisateur
         const userPayload = validateToken(req);
