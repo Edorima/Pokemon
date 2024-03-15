@@ -31,8 +31,15 @@ const pokemonDAO = {
      */
     findPokemonByNameOrId: async (nameOrId) => {
         const id = Number.parseInt(nameOrId)
+        let filter
+        if (Number.isInteger(id)) {
+            filter = {id: id}
+        } else {
+            const firstLetter = nameOrId.charAt(0).toUpperCase()
+            filter = {nom: firstLetter + nameOrId.slice(1)}
+        }
         const data = await pokemonDAO.collection.findOne(
-            Number.isInteger(id) ? {id: id} : {nom: nameOrId},
+            filter,
             {projection: {_id: 0}}
         )
         return data ? new Pokemon(data) : null

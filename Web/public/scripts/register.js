@@ -9,19 +9,36 @@ passwordField.addEventListener('keypress', (e) => {
     }
 })
 
+function validateInputs(username, password) {
+    if (!username || !password)
+        return "Veuillez remplir tous les champs."
+
+    if (username.length < 3 || username.length > 20)
+        return "Votre pseudo doit faire entre 3 et 20 caractères."
+
+    if (password.length < 7)
+        return "Votre mot de passe doit faire minimum 7 caractères."
+
+    if (password.length > 250)
+        return "Veuillez réduire la longueur de votre mot de passe."
+
+    return null
+}
+
+function setError(message) {
+    errorMessage.classList.remove("hidden")
+    errorMessage.textContent = message
+}
+
 registerButton.addEventListener('click', () => {
     const username = usernameField.value
     const password = passwordField.value
 
-    // Vérifier que les champs ne sont pas vides
-    if (!username || !password) {
-        errorMessage.classList.remove('hidden')
-        errorMessage.textContent = "Veuillez remplir tous les champs."
+    const error = validateInputs(username, password)
+    if (error) {
+        setError(error)
         return
     }
-
-    // Effacer le message d'erreur précédent
-    errorMessage.textContent = ''
 
     // Envoi de la requête au serveur
     fetch('http://localhost:8081/api/v1/register', {
@@ -34,17 +51,18 @@ registerButton.addEventListener('click', () => {
         .then(response => response.json())
         .then(data => {
             if (data.success && data.token) {
-                // Stocker le token JWT pour une utilisation ultérieure
+                // Stockage du token JWT
                 localStorage.setItem('token', data.token)
-                console.log(`Compte crée et token reçu: ${data.token}`)
+                console.log("Compte crée et token reçu.")
                 window.location.href = "/profile"
             } else {
-                errorMessage.classList.remove('hidden')
+                errorMessage.classList.add("hidden")
+                errorMessage.textContent = ""
                 errorMessage.textContent = data.message || "Échec de la création du compte."
             }
         })
         .catch(error => {
             console.error('Erreur lors de la création du compte:', error)
-            errorMessage.textContent = "Erreur lors de la création du compte. Veuillez réessayer."
+            setError("Erreur lors de la création du compte. Veuillez réessayer.")
         })
 })

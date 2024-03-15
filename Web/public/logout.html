@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="0;url=/login">
     <title>PokéManager</title>
-    <script src="/scripts/logout.js"></script>
+    <script>
+        // Supprimer le token du localStorage
+        localStorage.removeItem('token')
+        // Rediriger l'utilisateur vers la page de connexion
+        window.location.href = '/login'
+    </script>
 </head>
-<body>
-
-</body>
+<body></body>
 </html>

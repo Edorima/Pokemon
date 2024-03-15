@@ -24,15 +24,54 @@
     background-color: #EE1515;
 }
 
-#mesEquipes {
+#mesEquipesWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #DBDBDB;
     border-radius: 50px;
     padding: 32px;
+    gap: 16px;
     min-width: 1230px;
     min-height: 500px;
+}
+
+#mesEquipes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.equipe {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.headerEquipe {
+    display: flex;
+    padding: 16px 0;
+}
+
+.pokemons {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.pokemon {
+    background-color: #F0F0F0;
+    border-radius: 20px;
+    border: 4px solid #EE1515;
+    padding: 10px;
+}
+
+#creerEquipeWrapper {
+    display: grid;
+    gap: 12px;
 }
 
 #nomEquipe {
