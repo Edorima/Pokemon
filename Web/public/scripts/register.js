@@ -56,8 +56,7 @@ registerButton.addEventListener('click', () => {
                 console.log("Compte crée et token reçu.")
                 window.location.href = "/profile"
             } else {
-                errorMessage.classList.add("hidden")
-                errorMessage.textContent = ""
+                setError(data.message)
                 errorMessage.textContent = data.message || "Échec de la création du compte."
             }
         })

@@ -40,8 +40,7 @@ loginButton.addEventListener('click', () => {
                 console.log("Connexion réussie et token reçu.")
                 window.location.href = "/profile"
             } else {
-                errorMessage.classList.add("hidden")
-                errorMessage.textContent = ""
+                setError(data.message)
                 errorMessage.textContent = data.message || "Échec de la connexion."
             }
         })

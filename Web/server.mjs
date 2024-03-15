@@ -39,7 +39,7 @@ app.get('/logout', (req, res) => {
 })
 
 app.get('/profile', (req, res) => {
-    return res.sendFile(getPage("profile"))
+    return res.sendFile(getPage("profil"))
 })
 
 app.get('/pokedex', (req, res) => {
