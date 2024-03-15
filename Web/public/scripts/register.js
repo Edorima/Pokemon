@@ -5,7 +5,7 @@ const registerButton = document.querySelector("#registerButton")
 
 passwordField.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        loginButton.click()
+        registerButton.click()
     }
 })
 

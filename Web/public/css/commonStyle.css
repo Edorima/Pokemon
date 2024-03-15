@@ -31,10 +31,6 @@ header {
     color: white;
 }
 
-#boutonAccueil:hover img {
-    animation: spin 0.8s ease-out;
-}
-
 header nav {
     display: flex;
     gap: 32px;
@@ -42,6 +38,7 @@ header nav {
 
 a[type=button], button {
     text-decoration: none;
+    outline: none;
     transition: all 0.5s ease;
 }
 
@@ -67,6 +64,10 @@ a[type=button]:hover, button {
 
 .hidden {
     display: none;
+}
+
+.spinning {
+    animation: spin 0.5s ease;
 }
 
 @keyframes spin {
