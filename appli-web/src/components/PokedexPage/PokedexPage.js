@@ -1,21 +1,28 @@
 import React, {useEffect, useState} from 'react'
+import PokemonCard from "./PokemonCard"
 import './PokedexPage.css'
 import ApiManager from "../ApiManager/ApiManager"
+
+const ELEMENT_PER_PAGE = 20
 
 function PokedexPage() {
     const [pokemonList, setPokemonList] = useState([])
     const [page, setPage] = useState(1)
+    const [hasMore, setHasMore] = useState(true)
 
     useEffect(() => {
-        ApiManager.getPokemons(page)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                // Ici, ajoutez les données de l'API à la liste existante
-                setPokemonList(data)
-                // Vous pouvez également gérer la fin de la liste si l'API indique qu'il n'y a plus de données
-            })
-    }, [page])
+        if (hasMore) {
+            ApiManager.getPokemons(page)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    setPokemonList(prevPokemonList => [...prevPokemonList, ...data])
+                    if (data.length !== ELEMENT_PER_PAGE) {
+                        setHasMore(false)
+                    }
+                })
+        }
+    }, [hasMore, page])
 
     function handleAttacksClick(nameOrId) {
         // Logique pour afficher la liste des attaques
@@ -54,42 +61,23 @@ function PokedexPage() {
             </div>
 
             {/*Affichage des Pokémon selon la catégorie choisie*/}
-            <div className="conteneur">
+            <div className="pokemons">
                 {/*Affichage de liste des Pokémon*/}
-                <div className="pokemonConteneur">
-                    {pokemonList.map(pokemon => (
-                        <PokemonCard
-                            key={pokemon.id}
-                            id={pokemon.id}
-                            nom={pokemon.nom}
-                            image={pokemon.image}
-                            types={pokemon.types}
-                            description={pokemon.description}
-                            onAttacksClick={() => handleAttacksClick(pokemon.id)}
-                        />
-                    ))}
-                    <button onClick={() => setPage(prevPage => prevPage + 1)}>Charger plus</button>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function PokemonCard({ id, nom, image, types, description, onAttacksClick }) {
-    return (
-        <div className="pokemon-card">
-            <div className="pokemon-number">#{id.toString().padStart(3, '0')}</div>
-            <img src={image} alt={nom} />
-            <h2>{nom}</h2>
-            <div className="pokemon-types">
-                {types.map(slot => (
-                    <img src={`/assets/types/${slot.type}.jpg`} alt={slot.type}></img>
+                {pokemonList.map(pokemon => (
+                    <PokemonCard
+                        key={pokemon.id}
+                        id={pokemon.id}
+                        nom={pokemon.nom}
+                        image={pokemon.image}
+                        types={pokemon.types}
+                        description={pokemon.description}
+                        onAttacksClick={() => handleAttacksClick(pokemon.id)}
+                    />
                 ))}
+                {hasMore && <button onClick={() => setPage(prevPage => prevPage + 1)}>Charger plus</button>}
             </div>
-            <p>{description}</p>
-            <button onClick={onAttacksClick}>Liste des attaques</button>
         </div>
     )
 }
 
-export default PokedexPage;
+export default PokedexPage
