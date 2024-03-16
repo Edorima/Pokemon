@@ -20,7 +20,7 @@ const pokemonDAO = {
     getPokemons: async (limit, offset) => {
         const data = await pokemonDAO.collection.find(
             {},
-            {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
+            {projection: {_id: 0}, limit: limit || 0, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -56,7 +56,7 @@ const pokemonDAO = {
 
         const data = await pokemonDAO.collection.find(
             {"types.type.name": type},
-            {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0}
+            {projection: {_id: 0}, limit: limit || 0, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -81,8 +81,21 @@ const pokemonDAO = {
                     {types: { $elemMatch: { slot: 1, "type.name": type2}}},
                     {types: { $elemMatch: { slot: 2, "type.name": type1}}}
                 ]}
-        ]}, {projection: {_id: 0}, limit: limit === 0 ? 1 : limit || 20, skip: offset || 0})
+        ]}, {projection: {_id: 0}, limit: limit || 0, skip: offset || 0})
 
+        return (await data.toArray()).map(e => new Pokemon(e))
+    },
+
+    /**
+     * @param generation {number}
+     * @param limit {number}
+     * @param offset {number}
+     * @returns {Promise<Pokemon[]>}
+     */
+    findPokemonsByGen: async (generation, limit, offset) => {
+        const data = pokemonDAO.collection.find({
+            generation: generation || 0
+        }, {projection: {_id: 0, limit: limit || 0, offset: offset || 0}})
         return (await data.toArray()).map(e => new Pokemon(e))
     }
 }

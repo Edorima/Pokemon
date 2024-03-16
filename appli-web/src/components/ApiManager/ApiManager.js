@@ -2,13 +2,18 @@ import ENDPOINTS from "./EndPoints";
 const BASE_URL = 'http://localhost:8081/api/v1'
 
 export default class ApiManager {
-    /**
-     * @param page {number}
-     * @returns {Promise<Response>}
-     */
-    static getPokemons = (page) => {
-        const offset = (page - 1) * 20
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(offset)
+    static getPokemons = () => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS()
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    }
+
+    static getPokemonsByGen = (gen) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_GEN(gen)
         return fetch(url, {
             method: 'GET',
             headers: {

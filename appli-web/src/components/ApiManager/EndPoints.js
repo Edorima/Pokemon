@@ -1,5 +1,5 @@
 const ENDPOINTS = {
-    GET_POKEMONS: (offset) => `/pokemon?offset=${offset}`,
+    GET_POKEMONS: () => `/pokemon`,
 
     /** @param nameOrId {string | number} */
     GET_POKEMON: (nameOrId) => `/pokemon/${nameOrId}`,
@@ -8,6 +8,8 @@ const ENDPOINTS = {
 
     GET_POKEMONS_BY_TYPES: (type1, type2) =>
         `/pokemon/type/${type1}/${type2}`,
+
+    GET_POKEMONS_BY_GEN: (gen) => `/pokemon/gen/${gen}`,
 
     /** @param nameOrId {string | number} */
     GET_CAPACITE: (nameOrId) => `/capacite/${nameOrId}`,

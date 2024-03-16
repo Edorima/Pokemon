@@ -67,6 +67,13 @@ const categorieMap = new Map([
     ['status', 'Statut']
 ])
 
+const generationMap = new Map([
+    ['generation-i', 1], ['generation-ii', 2],
+    ['generation-iii', 3], ['generation-iv', 4],
+    ['generation-v', 5], ['generation-vi', 6],
+    ['generation-vii', 7], ['generation-viii', 8],
+])
+
 const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
 const allMoves = await fetchData(capaciteURL)
 /** @type {Map<string, Capacite>} */
@@ -99,9 +106,16 @@ for (const move of allMoves.results) {
     )
 }
 
+function normalizeString(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+}
 
 const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
 const allPokemons = await fetchData(pokemonsURL)
+
 for (const pokemon of allPokemons.results) {
     progressBar.addValue()
     const pokemonData = await fetchData(pokemon.url)
@@ -111,20 +125,20 @@ for (const pokemon of allPokemons.results) {
         .map(pkmMove => movesMap.get(pkmMove.move.name))
         .filter(e => e !== undefined)
         .map(move => move.id)
+
+    const nom = pokemonSpecies.names.find(
+        name => name.language.name === 'fr'
+    ).name
+
     const pokemonObject = new Pokemon({
         id: pokemonData.id,
-        nom: pokemonSpecies.names.find(
-            name => name.language.name === 'fr'
-        ).name,
+        nom: nom,
+        nomNormalise: normalizeString(nom),
         nomAnglais: pokemonData.name,
         description: pokemonSpecies.flavor_text_entries.find(
             d => d.language.name === 'fr'
         ).flavor_text,
-        sprites: {
-            front_default: pokemonData.sprites.front_default,
-            front_shiny: pokemonData.sprites.front_shiny
-        },
-        cris: pokemonData.cries,
+        generation: generationMap.get(pokemonSpecies.generation.name),
         stats: pokemonData.stats,
         taille: Number.parseFloat(pokemonData.height) / 10,
         poids: Number.parseFloat(pokemonData.weight) / 10,

@@ -1,11 +1,11 @@
 export default class Pokemon {
     id
     nom
+    nomNormalise
     nomAnglais
     description
     types
-    sprites
-    cris
+    generation
     stats
     taille
     poids

@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
-import '../SecurityPage.css'
-import './RegisterPage.css'
-import {useNavigate} from "react-router-dom";
-import ApiManager from "../../ApiManager/ApiManager";
+import {useNavigate} from "react-router-dom"
+import ApiManager from "../ApiManager/ApiManager"
 
 function RegisterPage() {
     const navigate = useNavigate()
@@ -52,24 +50,40 @@ function RegisterPage() {
     }
 
     return (
-        <div id="wrapper">
-            <div id="error-message" className={errorMessage ? "" : "hidden"}>{errorMessage}</div>
-            <label>
-                Nom d'utilisateur :
-                <input id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            </label>
+        <div id="securityWrapper">
+            <h1>Création du compte</h1>
+            <div id="formWrapper">
+                <h2>Vos identifiants</h2>
+                <hr></hr>
+                <div id="error-message" className={errorMessage ? "" : "hidden"}>{errorMessage}</div>
 
-            <label>
-                Mot de passe
-                <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            </label>
+                <form method="POST"
+                      onSubmit={e => {
+                          e.preventDefault()
+                          handleRegister()
+                      }}>
+                    <input
+                        id="username"
+                        value={username}
+                        placeholder="Pseudo"
+                        onChange={e => setUsername(e.target.value)}
+                    />
 
-            <label>
-                Vous avez déjà un compte ?
-                <a type="button" href="/login">Je me connecte</a>
-            </label>
+                    <input
+                        id="password"
+                        value={password}
+                        type="password"
+                        placeholder="Mot de passe"
+                        onChange={e => setPassword(e.target.value)}
+                    />
 
-            <button id="registerButton" onClick={handleRegister}>Créer un compte</button>
+                    <button type="submit" id="registerButton">Créer un compte</button>
+                </form>
+
+                <h2>Vous êtes déjà dresseur ?</h2>
+                <hr></hr>
+                <a type="button" id="loginButton" href="/login">Connexion</a>
+            </div>
         </div>
     )
 }

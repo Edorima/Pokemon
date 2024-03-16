@@ -56,6 +56,17 @@ router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
     )
 })
 
+router.route('/pokemon/gen/:gen').get(async (req, res) => {
+    const generation = Number.parseInt(req.params.gen)
+    const limit = Number.parseInt(req.query.limit)
+    const offset = Number.parseInt(req.query.offset)
+    res.status(200).send(
+        await pokemonDAO.findPokemonsByGen(
+            generation, limit, offset
+        )
+    )
+})
+
 router.route('/capacite/:nameOrId').get(async (req, res) => {
     const nameOrId = req.params.nameOrId
     const result = await capacityDAO.findMoveByNameOrId(nameOrId)

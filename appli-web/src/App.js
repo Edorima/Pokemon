@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Header from "./components/Header/Header";
 import HomePage from './components/HomePage/HomePage';
-import LoginPage from "./components/SecurityPage/LoginPage/LoginPage";
-import RegisterPage from "./components/SecurityPage/RegisterPage/RegisterPage";
+import LoginPage from "./components/SecurityPage/LoginPage";
+import RegisterPage from "./components/SecurityPage/RegisterPage";
 import Logout from "./components/SecurityPage/Logout";
 import ProfilPage from "./components/ProfilPage/ProfilPage";
 import PokedexPage from "./components/PokedexPage/PokedexPage";
-import ItemsPage from "./components/ItemsPage/ItemsPage";
+import ObjetPage from "./components/ObjetsPage/ObjetPage";
 import CapacitesPage from "./components/CapacitesPage/CapacitesPage";
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               <Route path="/logout" element={<Logout />}/>
               <Route path="/profil" element={<ProfilPage />} />
               <Route path="/pokedex" element={<PokedexPage />} />
-              <Route path="/items" element={<ItemsPage />} />
+              <Route path="/objets" element={<ObjetPage />} />
               <Route path="/capacites" element={<CapacitesPage />} />
           </Routes>
       </Router>

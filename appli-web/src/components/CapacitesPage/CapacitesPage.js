@@ -4,7 +4,7 @@ import './CapacitesPage.css'
 function CapacitesPage() {
     return (
         <div id="wrapper">
-            <h1>Bienvenue sur PokéManager !</h1>
+            <h1>Voici la liste des Capacités !</h1>
         </div>
     )
 }
