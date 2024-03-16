@@ -1,0 +1,71 @@
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+}
+
+#title {
+    font-weight: normal;
+    font-size: 40px;
+    margin: 16px 0 0;
+}
+
+.conteneur {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #DBDBDB;
+    border-radius: 50px;
+    padding: 30px;
+    margin: 32px;
+}
+
+/* Partie recherche */
+
+.rechercheConteneur {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+#champRecherche {
+    outline: none;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 20px;
+}
+
+.barreRecherche {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding-right: 12px;
+}
+
+.boutonRecherche {
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.choixGen {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+
+    padding: 12px 16px;
+}
+
+/* Liste des Pokémon */
+
+.pokemonConteneur {
+
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+}
