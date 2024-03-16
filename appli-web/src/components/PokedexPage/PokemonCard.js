@@ -9,7 +9,12 @@ function PokemonCard({ id, nom, image, types, description, onAttacksClick }) {
                 <span className="pokemon-name">{nom}</span>
                 <div className="pokemon-types">
                     {types.map(slot => (
-                        <img key={slot.type} src={`/assets/types/${slot.type}.jpg`} alt={slot.type} loading="lazy"></img>
+                        <img
+                            key={slot.type}
+                            src={`/assets/types/${slot.type}.jpg`}
+                            alt={slot.type}
+                            loading="lazy">
+                        </img>
                     ))}
                 </div>
             </div>

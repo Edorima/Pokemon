@@ -21,8 +21,13 @@ function PokedexPage() {
                         setHasMore(false)
                     }
                 })
+                .catch(error => {
+                    console.log("Erreur lors de la connexion. Veuillez réessayer.")
+                })
         }
     }, [hasMore, page])
+
+    const nextPage = () => setPage(prevPage => prevPage + 1)
 
     function handleAttacksClick(nameOrId) {
         // Logique pour afficher la liste des attaques
@@ -74,7 +79,7 @@ function PokedexPage() {
                         onAttacksClick={() => handleAttacksClick(pokemon.id)}
                     />
                 ))}
-                {hasMore && <button onClick={() => setPage(prevPage => prevPage + 1)}>Charger plus</button>}
+                {hasMore && <button onClick={nextPage}>Charger plus</button>}
             </div>
         </div>
     )
