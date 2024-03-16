@@ -7,7 +7,7 @@ import RegisterPage from "./components/SecurityPage/RegisterPage/RegisterPage";
 import Logout from "./components/SecurityPage/Logout";
 import ProfilPage from "./components/ProfilPage/ProfilPage";
 import PokedexPage from "./components/PokedexPage/PokedexPage";
-import ObjetsPage from "./components/ObjetsPage/ObjetsPage";
+import ItemsPage from "./components/ItemsPage/ItemsPage";
 import CapacitesPage from "./components/CapacitesPage/CapacitesPage";
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               <Route path="/logout" element={<Logout />}/>
               <Route path="/profil" element={<ProfilPage />} />
               <Route path="/pokedex" element={<PokedexPage />} />
-              <Route path="/objets" element={<ObjetsPage />} />
+              <Route path="/items" element={<ItemsPage />} />
               <Route path="/capacites" element={<CapacitesPage />} />
           </Routes>
       </Router>

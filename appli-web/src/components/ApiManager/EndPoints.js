@@ -12,6 +12,8 @@ const ENDPOINTS = {
     /** @param nameOrId {string | number} */
     GET_CAPACITE: (nameOrId) => `/capacite/${nameOrId}`,
 
+    GET_ITEM: (name) => `/item/${name}`,
+
     LOGIN: () => '/login',
 
     REGISTER: () => '/register',
