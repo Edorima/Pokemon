@@ -9,6 +9,10 @@ import ProfilPage from "./components/ProfilPage/ProfilPage";
 import PokedexPage from "./components/PokedexPage/PokedexPage";
 import ObjetPage from "./components/ObjetsPage/ObjetPage";
 import CapacitesPage from "./components/CapacitesPage/CapacitesPage";
+
+import './index.css';
+import './components/SecurityPage/SecurityPage.css'
+
 function App() {
   return (
       <Router>

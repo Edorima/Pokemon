@@ -50,6 +50,7 @@ function LoginPage() {
                         placeholder="Pseudo"
                         size="32"
                         onChange={e => setUsername(e.target.value)}
+                        required
                     />
 
                     <input
@@ -59,6 +60,7 @@ function LoginPage() {
                         placeholder="Mot de passe"
                         size="32"
                         onChange={e => setPassword(e.target.value)}
+                        required
                     />
 
                     <button type="submit" id="loginButton">Connexion</button>

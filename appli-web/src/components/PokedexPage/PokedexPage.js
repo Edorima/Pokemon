@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import PokemonCard from "./PokemonCard"
 import ApiManager from "../ApiManager/ApiManager"
+import "./PokedexPage.css"
 
 function normalizeString(str) {
     return str
@@ -47,7 +48,12 @@ function PokedexPage() {
     const handleButtonClick = () => setSearchTerm(nom)
     const handleEnterPressed = (event) =>
         event.key === 'Enter' && setSearchTerm(nom)
-    const handleInputChange = (event) => setNom(event.target.value)
+
+    function handleInputChange(event) {
+        const value = event.target.value
+        if (value === '') setSearchTerm('')
+        setNom(value)
+    }
 
     return (
         <div id="pokedexWrapper">
@@ -86,7 +92,9 @@ function PokedexPage() {
 
                     <select id="choixTri">
                         <option>Numéro de pokédex</option>
+                        <option>Ordre alphabétique</option>
                     </select>
+
                 </div>
             </div>
 

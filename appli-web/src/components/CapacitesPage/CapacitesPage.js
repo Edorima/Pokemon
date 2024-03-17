@@ -3,7 +3,7 @@ import './CapacitesPage.css'
 
 function CapacitesPage() {
     return (
-        <div id="wrapper">
+        <div id="capaciteWrapper">
             <h1>Voici la liste des Capacités !</h1>
         </div>
     )

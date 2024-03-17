@@ -67,6 +67,7 @@ function RegisterPage() {
                         value={username}
                         placeholder="Pseudo"
                         onChange={e => setUsername(e.target.value)}
+                        required
                     />
 
                     <input
@@ -75,6 +76,7 @@ function RegisterPage() {
                         type="password"
                         placeholder="Mot de passe"
                         onChange={e => setPassword(e.target.value)}
+                        required
                     />
 
                     <button type="submit" id="registerButton">Créer un compte</button>

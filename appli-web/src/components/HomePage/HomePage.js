@@ -3,7 +3,7 @@ import './HomePage.css'
 
 function HomePage() {
     return (
-        <div id="wrapper">
+        <div id="homeWrapper">
             <h1>Bienvenue sur PokéManager !</h1>
         </div>
     )

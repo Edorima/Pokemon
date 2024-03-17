@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import "./Header.css"
 
 function NavigationButton({ href, imgSrc, altText, label }) {
     return (

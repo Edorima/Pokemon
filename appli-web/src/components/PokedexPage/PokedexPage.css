@@ -1,0 +1,130 @@
+#pokedexWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+
+    h1 {
+        font-weight: normal;
+        font-size: 40px;
+        margin: 16px 0 0;
+    }
+
+    #conteneurRecherche {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #DBDBDB;
+        border-radius: 50px;
+        padding: 30px;
+        margin: 32px;
+    }
+
+    /* Partie recherche */
+
+    #recherche {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+
+    #champRecherche {
+        outline: none;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 20px;
+    }
+
+    .barreRecherche {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        padding-right: 12px;
+    }
+
+    .boutonRecherche {
+        border: none;
+        background-color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #choixGen, #choixTri {
+        background-color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 12px 16px;
+        outline: none;
+    }
+
+    /* Liste des Pokémon */
+
+    .pokemons {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        background-color: #DBDBDB;
+        border-radius: 20px;
+        gap: 32px;
+    }
+
+    .pokemon-card {
+        display: flex;
+        background-color: white;
+        border-radius: 20px;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        width: 1000px;
+    }
+
+    .pokemon-card button {
+        color: white;
+        background-color: #C20808;
+        white-space: nowrap;
+        border-radius: 20px;
+        padding: 8px;
+        border: none;
+        font-size: 18px;
+    }
+
+
+    .pokemon-card button:hover {
+        background-color: #EE1515;
+    }
+
+    .pokemon-number {
+        font-size: 24px;
+    }
+
+    .pokemon-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        flex-grow: 1;
+    }
+
+    .pokemon-types {
+        display: flex;
+        gap: 12px;
+    }
+
+    .pokemon-name {
+        font-size: 24px;
+        white-space: nowrap;
+    }
+
+    .pokemon-description {
+        flex-basis: 445px;
+    }
+
+    .pokemon-sprite {
+        border: 1px solid black;
+        min-width: 120px;
+        min-height: 120px;
+    }
+}

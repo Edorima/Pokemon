@@ -135,5 +135,4 @@ router.route('/profil').get(async (req, res) => {
     }
 })
 
-
 export default router
