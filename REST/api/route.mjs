@@ -6,6 +6,7 @@ import capacityDAO from "./dao/capacityDAO.mjs";
 import utilisateurDAO from "./dao/utilisateurDAO.mjs";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import itemDAO from "./dao/itemDAO.mjs";
 const router = express.Router()
 
 function validateToken(req) {
@@ -74,6 +75,12 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
         res.status(200).send(result)
     else
         res.status(404).send("Not Found")
+})
+
+router.route('/item').get(async (req, res) => {
+    const limit = Number.parseInt(req.query.limit)
+    const offset = Number.parseInt(req.query.offset)
+    res.status(200).send(await itemDAO.getItems(limit, offset))
 })
 
 router.route('/register').post(async (req, res) => {

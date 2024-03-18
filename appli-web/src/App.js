@@ -7,7 +7,7 @@ import RegisterPage from "./components/SecurityPage/RegisterPage";
 import Logout from "./components/SecurityPage/Logout";
 import ProfilPage from "./components/ProfilPage/ProfilPage";
 import PokedexPage from "./components/PokedexPage/PokedexPage";
-import ObjetPage from "./components/ObjetsPage/ObjetPage";
+import ItemsPage from "./components/ItemsPage/ItemsPage";
 import CapacitesPage from "./components/CapacitesPage/CapacitesPage";
 
 import './index.css';
@@ -24,7 +24,7 @@ function App() {
               <Route path="/logout" element={<Logout />}/>
               <Route path="/profil" element={<ProfilPage />} />
               <Route path="/pokedex" element={<PokedexPage />} />
-              <Route path="/objets" element={<ObjetPage />} />
+              <Route path="/objets" element={<ItemsPage />} />
               <Route path="/capacites" element={<CapacitesPage />} />
           </Routes>
       </Router>
