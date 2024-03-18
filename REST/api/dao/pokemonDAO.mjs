@@ -4,6 +4,14 @@ import {MongoClient} from "mongodb"
 import Pokemon from "../model/Pokemon.mjs"
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
+const LIMIT = 20
+
+function normalizeString(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+}
 
 const pokemonDAO = {
     get collection() {
@@ -20,7 +28,7 @@ const pokemonDAO = {
     getPokemons: async (limit, offset) => {
         const data = await pokemonDAO.collection.find(
             {},
-            {projection: {_id: 0}, limit: limit || 0, skip: offset || 0}
+            {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -31,18 +39,27 @@ const pokemonDAO = {
      */
     findPokemonByNameOrId: async (nameOrId) => {
         const id = Number.parseInt(nameOrId)
-        let filter
-        if (Number.isInteger(id)) {
-            filter = {id: id}
-        } else {
-            const firstLetter = nameOrId.charAt(0).toUpperCase()
-            filter = {nom: firstLetter + nameOrId.slice(1)}
-        }
         const data = await pokemonDAO.collection.findOne(
-            filter,
+            Number.isInteger(id) ?
+                {id: id} :
+                {nomNormalise: normalizeString(nameOrId)},
             {projection: {_id: 0}}
         )
         return data ? new Pokemon(data) : null
+    },
+
+    /**
+     * @param searchTerm {string}
+     * @param limit {number}
+     * @param offset {number}
+     * @returns {Promise<Pokemon[]>}
+     */
+    findPokemonsThatStartsWith: async (searchTerm, limit, offset) => {
+        const data = await pokemonDAO.collection.find(
+            {nomNormalise: new RegExp('^' + normalizeString(searchTerm))},
+            {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0, sort: {id: 1}}
+        )
+        return (await data.toArray()).map(e => new Pokemon(e))
     },
 
     /**
@@ -55,8 +72,8 @@ const pokemonDAO = {
         if (offset <= -1) return []
 
         const data = await pokemonDAO.collection.find(
-            {"types.type.name": type},
-            {projection: {_id: 0}, limit: limit || 0, skip: offset || 0}
+            {"types.type": type},
+            {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -74,14 +91,14 @@ const pokemonDAO = {
         const data = pokemonDAO.collection.find({
             $or: [
                 {$and: [
-                    {types: { $elemMatch: { slot: 1, "type.name": type1}}},
-                    {types: { $elemMatch: { slot: 2, "type.name": type2}}}
+                    {types: { $elemMatch: { slot: 1, "type": type1}}},
+                    {types: { $elemMatch: { slot: 2, "type": type2}}}
                 ]},
                 {$and: [
-                    {types: { $elemMatch: { slot: 1, "type.name": type2}}},
-                    {types: { $elemMatch: { slot: 2, "type.name": type1}}}
+                    {types: { $elemMatch: { slot: 1, "type": type2}}},
+                    {types: { $elemMatch: { slot: 2, "type": type1}}}
                 ]}
-        ]}, {projection: {_id: 0}, limit: limit || 0, skip: offset || 0})
+        ]}, {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0})
 
         return (await data.toArray()).map(e => new Pokemon(e))
     },
@@ -95,7 +112,7 @@ const pokemonDAO = {
     findPokemonsByGen: async (generation, limit, offset) => {
         const data = pokemonDAO.collection.find({
             generation: generation || 0
-        }, {projection: {_id: 0, limit: limit || 0, offset: offset || 0}})
+        }, {projection: {_id: 0, limit: limit || LIMIT, offset: offset || 0}})
         return (await data.toArray()).map(e => new Pokemon(e))
     }
 }

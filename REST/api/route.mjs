@@ -34,6 +34,19 @@ router.route('/pokemon/:nameOrId').get(async (req, res) => {
         res.status(404).send("Not Found")
 })
 
+router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
+    const searchTerm = req.params.searchTerm
+    const limit = Number.parseInt(req.query.limit)
+    const offset = Number.parseInt(req.query.offset)
+    const result = await pokemonDAO.findPokemonsThatStartsWith(
+        searchTerm, limit, offset
+    )
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
+})
+
 router.route('/pokemon/type/:type').get(async (req, res) => {
     const type = req.params.type
     const limit = Number.parseInt(req.query.limit)

@@ -1,6 +1,6 @@
 import React from "react";
 
-function PokemonCard({ id, nom, image, types, description, onAttacksClick }) {
+function PokemonCard({ id, nom, image, types, description }) {
     return (
         <div className="pokemon-card">
             <span className="pokemon-number">#{id.toString().padStart(3, '0')}</span>
@@ -19,7 +19,7 @@ function PokemonCard({ id, nom, image, types, description, onAttacksClick }) {
                 </div>
             </div>
             <p className="pokemon-description">{description}</p>
-            <button onClick={onAttacksClick}>Liste des attaques</button>
+            <button>Liste des attaques</button>
         </div>
     )
 }

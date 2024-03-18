@@ -23,6 +23,13 @@ async function fetchData(url) {
     return await response.json()
 }
 
+function normalizeString(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+}
+
 let dbUrl = 'mongodb://localhost:27017';
 let server = null;
 if (process.env.ENV === 'PROD') {
@@ -78,6 +85,7 @@ const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
 const allMoves = await fetchData(capaciteURL)
 /** @type {Map<string, Capacite>} */
 const movesMap = new Map()
+
 for (const move of allMoves.results) {
     progressBar.addValue()
     const moveData = await fetchData(move.url)
@@ -104,13 +112,6 @@ for (const move of allMoves.results) {
         {$set: moveObject},
         {upsert: true}
     )
-}
-
-function normalizeString(str) {
-    return str
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
 }
 
 const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
@@ -158,6 +159,7 @@ for (const pokemon of allPokemons.results) {
         {upsert: true}
     )
 }
+await pokemonCollection.createIndex({nomNormalise: 1})
 
 for (const type of typeMap.values()) {
     progressBar.addValue()
