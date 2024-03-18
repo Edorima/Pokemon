@@ -1,16 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import PokemonCard from "./PokemonCard"
+import React, {useCallback, useEffect, useState} from 'react'
 import ApiManager from "../ApiManager/ApiManager"
 import "./PokedexPage.css"
-import InfiniteScroll from "react-infinite-scroll-component";
+import BarreRecherche from "./BarreRecherche"
+import PokemonsList from "./PokemonsList"
 
 const ELEMENT_PER_PAGE = 20
-function normalizeString(str) {
-    return str
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-}
 
 function PokedexPage() {
     const [dataList, setDataList] = useState([])
@@ -18,8 +12,8 @@ function PokedexPage() {
     const [pokemonList, setPokemonList] = useState([])
     const [pokemonListPage, setPokemonListPage] = useState(1)
 
-    const [searchList, setSearchList] = useState([])
-    const [searchListPage, setSearchListPage] = useState(1)
+    const [filterList, setFilterList] = useState([])
+    const [filterListPage, setFilterListPage] = useState(1)
     const [searchTerm, setSearchTerm] = useState('')
 
     const [hasMore, setHasMore] = useState(true)
@@ -39,31 +33,34 @@ function PokedexPage() {
             )
     }
 
-    function fetchPkms() {
+    const fetchPkms = useCallback(() => {
+
         const handlePokemonList = (data) => {
-            setPokemonList(pokemonList.concat(data))
-            setDataList(dataList.concat(data))
-            setPokemonListPage(pokemonListPage + 1)
+            setPokemonList(prevList => prevList.concat(data))
+            setDataList(prevList => prevList.concat(data))
+            setPokemonListPage(prevPage => prevPage + 1)
         }
 
         fetchData(
             ApiManager.getPkms((pokemonListPage-1)*ELEMENT_PER_PAGE),
             handlePokemonList
         )
-    }
+    }, [pokemonListPage])
 
     function fetchSearchedPkms() {
         const handleSearchList = (data) => {
-            const newData = searchList.concat(data)
-            setSearchList(newData)
+            const newData = filterList.concat(data)
+            setFilterList(newData)
             setDataList(newData)
-            setSearchListPage(searchListPage + 1)
+            setFilterListPage(filterListPage + 1)
         }
 
         fetchData(
             ApiManager.getPkmsThatStartsWith(
-                normalizeString(searchTerm),
-                (searchListPage-1)*ELEMENT_PER_PAGE
+                searchTerm.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase(),
+                (filterListPage-1)*ELEMENT_PER_PAGE
             ),
             handleSearchList
         )
@@ -71,18 +68,22 @@ function PokedexPage() {
 
     const handleInputChange = (event) => {
         const value = event.target.value
-        setSearchTerm(value)
         if (value === '') {
-            setSearchListPage(1)
-
             setDataList(pokemonList)
             setHasMore(true)
         }
+        setFilterListPage(1)
+        setFilterList([])
+        setSearchTerm(value)
     }
+
+    const handleNextAction = () =>
+        filterList.length === 0 ?
+            fetchPkms() : fetchSearchedPkms()
 
     useEffect(() => {
         fetchPkms()
-    }, [])
+    }, [fetchPkms])
 
     return (
         <div id="pokedexWrapper">
@@ -92,18 +93,10 @@ function PokedexPage() {
                 <div id="recherche">
 
                     {/*Barre de recherche*/}
-                    <div className="barreRecherche">
-                        <input
-                            id="champRecherche"
-                            type="search"
-                            placeholder="Rechercher un Pokémon..."
-                            onKeyDown={(e) => e.key === 'Enter' && fetchSearchedPkms()}
-                            onChange={handleInputChange}
-                        ></input>
-                        <button className="boutonRecherche">
-                            <img src="/assets/search-normal.svg" alt="Loupe"></img>
-                        </button>
-                    </div>
+                    <BarreRecherche
+                        handleInputChange={handleInputChange}
+                        fetchSearchedPkms={fetchSearchedPkms}
+                    />
 
                     {/*Choix de la génération*/}
                     <select id="choixGen">
@@ -126,28 +119,19 @@ function PokedexPage() {
                 </div>
             </div>
 
-            <div id="error-message">{errorMessage}</div>
+            {errorMessage && <div id="error-message">
+                {errorMessage}
+                <button onClick={handleNextAction}>Réessayer</button>
+            </div>}
 
-            <InfiniteScroll
-                next={searchList.length === 0 ? fetchPkms : fetchSearchedPkms}
+
+            <PokemonsList
+                errorMessage={errorMessage}
                 hasMore={hasMore}
+                handleNextAction={handleNextAction}
+                dataList={dataList}
                 loader={<p>Loading...</p>}
-                dataLength={dataList.length}
-            >
-                {<div className="pokemons">
-                    {/*Affichage de liste des Pokémon*/}
-                    {dataList.map(pokemon => (
-                        <PokemonCard
-                            key={pokemon.id}
-                            id={pokemon.id}
-                            nom={pokemon.nom}
-                            image={pokemon.image}
-                            types={pokemon.types}
-                            description={pokemon.description}
-                        />
-                    ))}
-                </div>}
-            </InfiniteScroll>
+            />
         </div>
     )
 }
