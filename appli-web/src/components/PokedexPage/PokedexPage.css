@@ -71,14 +71,20 @@
         gap: 32px;
     }
 
-    .pokemon-card {
+    .pokemon-card-wrapper {
         display: flex;
+        gap: 16px;
+        flex-direction: column;
         background-color: white;
         border-radius: 20px;
-        align-items: center;
-        gap: 16px;
         padding: 16px;
         width: 1000px;
+    }
+
+    .pokemon-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
 
     .pokemon-card button {
