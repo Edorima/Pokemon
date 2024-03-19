@@ -48,6 +48,7 @@ function PokedexPage() {
     }, [pokemonListPage])
 
     function fetchSearchedPkms() {
+        console.log("Fetching")
         const handleSearchList = (data) => {
             const newData = filterList.concat(data)
             setFilterList(newData)

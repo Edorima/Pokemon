@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react'
 import './ItemsPage.css'
-import ApiManager from "../ApiManager/ApiManager";
-import PokemonCard from "../PokedexPage/PokemonCard";
-import ItemCard from "./ItemCard";
+import ItemCard from "./ItemCard"
 
 function normalizeString(str) {
     return str
@@ -12,12 +10,13 @@ function normalizeString(str) {
 }
 
 function ItemsPage() {
-    const [itemList, setItemList] = useState([])
+    //const [itemList, setItemList] = useState([])
     const [categorie, setCategorie] = useState(0)
     const [nom, setNom] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
+    /*
     useEffect(() => {
         ApiManager.getItem()
             .then(response => response.json())
@@ -27,7 +26,7 @@ function ItemsPage() {
             .catch(() => {
                 setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
             })
-    }, [])
+    }, [])*/
 
     function filterItems() {
         const filtereditems =

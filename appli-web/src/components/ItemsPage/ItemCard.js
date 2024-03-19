@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 function ItemCard({ nom, image, description }) {
     return (
