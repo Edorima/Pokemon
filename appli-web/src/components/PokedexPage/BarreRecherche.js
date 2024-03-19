@@ -3,8 +3,9 @@ import React from "react"
 /**
  * @param handleInputChange {(ChangeEvent) => void}
  * @param fetchSearchedPkms {() => void}
+ * @param canFetch {boolean}
  */
-function BarreRecherche({handleInputChange, fetchSearchedPkms}) {
+function BarreRecherche({handleInputChange, fetchSearchedPkms, canFetch}) {
     return (
         <div className="barreRecherche">
             <input
@@ -12,7 +13,7 @@ function BarreRecherche({handleInputChange, fetchSearchedPkms}) {
                 type="search"
                 placeholder="Rechercher un Pokémon..."
                 onKeyDown={(e) => {
-                    if (e.key === 'Enter' && e.target.value !== '')
+                    if (e.key === 'Enter' && canFetch)
                         fetchSearchedPkms()
                 }}
                 onChange={handleInputChange}

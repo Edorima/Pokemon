@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ApiManager from "../ApiManager/ApiManager"
 import "./PokedexPage.css"
 import BarreRecherche from "./BarreRecherche"
@@ -20,6 +20,7 @@ function PokedexPage() {
     const [errorMessage, setErrorMessage] = useState('')
 
     function fetchData(req, handleData) {
+        console.log("Fetching")
         setErrorMessage('')
         req
             .then(response => response.json())
@@ -33,8 +34,7 @@ function PokedexPage() {
             )
     }
 
-    const fetchPkms = useCallback(() => {
-
+    function fetchPkms() {
         const handlePokemonList = (data) => {
             setPokemonList(prevList => prevList.concat(data))
             setDataList(prevList => prevList.concat(data))
@@ -45,10 +45,9 @@ function PokedexPage() {
             ApiManager.getPkms((pokemonListPage-1)*ELEMENT_PER_PAGE),
             handlePokemonList
         )
-    }, [pokemonListPage])
+    }
 
     function fetchSearchedPkms() {
-        console.log("Fetching")
         const handleSearchList = (data) => {
             const newData = filterList.concat(data)
             setFilterList(newData)
@@ -84,7 +83,7 @@ function PokedexPage() {
 
     useEffect(() => {
         fetchPkms()
-    }, [fetchPkms])
+    }, [])
 
     return (
         <div id="pokedexWrapper">
@@ -97,6 +96,7 @@ function PokedexPage() {
                     <BarreRecherche
                         handleInputChange={handleInputChange}
                         fetchSearchedPkms={fetchSearchedPkms}
+                        canFetch={searchTerm !== '' && filterList.length === 0}
                     />
 
                     {/*Choix de la génération*/}

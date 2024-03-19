@@ -6,8 +6,8 @@ import fetch from 'node-fetch'
 import {HttpsProxyAgent} from 'https-proxy-agent'
 import Pokemon from "./api/model/Pokemon.mjs"
 import ConsoleProgressBar from 'console-progress-bar'
-import Capacite from "./api/model/Capacite.mjs";
-import { typeMap } from "./api/model/Type.mjs";
+import Capacite from "./api/model/Capacite.mjs"
+import { typeMap } from "./api/model/Type.mjs"
 
 const proxy = process.env.https_proxy
 let agent = null
@@ -19,7 +19,9 @@ if (proxy !== undefined)
  * @returns {Promise<Object>}
  */
 async function fetchData(url) {
-    let response = agent != null ? await fetch(url, { agent: agent }) : await fetch(url);
+    const response = agent != null ?
+        await fetch(url, { agent: agent, headers: {'Content-Type': 'application/json'} }) :
+        await fetch(url, {headers: {'Content-Type': 'application/json'}})
     return await response.json()
 }
 
@@ -88,6 +90,7 @@ const movesMap = new Map()
 
 for (const move of allMoves.results) {
     progressBar.addValue()
+
     const moveData = await fetchData(move.url)
     const type = typeMap.get(moveData.type.name)
     const moveObject = new Capacite({
@@ -136,6 +139,7 @@ for (const pokemon of allPokemons.results) {
         nom: nom,
         nomNormalise: normalizeString(nom),
         nomAnglais: pokemonData.name,
+        sprite: pokemonData.sprites.front_default,
         description: pokemonSpecies.flavor_text_entries.find(
             d => d.language.name === 'fr'
         ).flavor_text,
