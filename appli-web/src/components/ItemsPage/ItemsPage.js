@@ -10,7 +10,7 @@ function normalizeString(str) {
 }
 
 function ItemsPage() {
-    //const [itemList, setItemList] = useState([])
+    const [itemList, setItemList] = useState([])
     const [categorie, setCategorie] = useState(0)
     const [nom, setNom] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
