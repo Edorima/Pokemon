@@ -32,6 +32,10 @@ function PokemonsList({
                 image={pokemon.sprite}
                 types={pokemon.types}
                 description={pokemon.description}
+                taille = {pokemon.taille}
+                poids = {pokemon.poids}
+                talents = {pokemon.talents}
+
             />
         ))}
         </InfiniteScroll>}
