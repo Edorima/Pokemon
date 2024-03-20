@@ -1,9 +1,9 @@
 const ENDPOINTS = {
-    GET_POKEMONS: (offset) => `/pokemon?offset=${offset}`,
+    GET_POKEMONS: (generation, offset) =>
+        `/pokemon?offset=${offset}${generation ? `&gen=${generation}` : ''}`,
 
-    GET_POKEMONS_THAT_STARTS_WITH: (searchTerm, offset) => `/pokemon/startsWith/${searchTerm}?offset=${offset}`,
-
-    GET_POKEMONS_BY_GEN: (gen) => `/pokemon/gen/${gen}`,
+    GET_POKEMONS_THAT_STARTS_WITH: (searchTerm, generation, offset) =>
+        `/pokemon/startsWith/${searchTerm}?offset=${offset}${generation ? `&gen=${generation}` : ''}`,
 
     LOGIN: () => '/login',
 

@@ -11,6 +11,8 @@ function PokedexPage() {
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
+    const [generation, setGeneration] = useState(null)
+    const [sortAlphabetical, setSortAlphabetical] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
     const fetchData = async (req, reset) => {
@@ -18,7 +20,7 @@ function PokedexPage() {
         try {
             const response = await req
             const data = await response.json()
-            console.log("Received data", data)
+            // TODO Trier les données
             if (reset) {
                 setPokemons(data)
                 setPage(2)
@@ -34,7 +36,9 @@ function PokedexPage() {
 
     const fetchPkms = (reset = false) => {
         fetchData(
-            ApiManager.getPkms(reset ? 0 : (page-1)*ELEMENT_PER_PAGE),
+            ApiManager.getPkms(generation,
+                reset ? 0 : (page-1)*ELEMENT_PER_PAGE
+            ),
             reset
         )
     }
@@ -45,23 +49,31 @@ function PokedexPage() {
             .toLowerCase()
 
         fetchData(
-            ApiManager.getPkmsThatStartsWith(
-                s, reset ? 0 : (page-1)*ELEMENT_PER_PAGE
+            ApiManager.getPkmsThatStartsWith(s, generation,
+                reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             ), reset
         )
     }
 
     const handleSearchBarChange = (event) => {
-
-        const value = event.target.value
-        setSearchTerm(value)
-        if (value === '')
-            fetchPkms(true)
+        setHasMore(true)
+        if (event.target.value === '')
+            setSearchTerm('')
     }
 
     const handleSearchBarEnter = (event) => {
-        if (event.key === 'Enter' && event.target.value !== '')
-            hasMore && fetchSearchedPkms(true)
+        const value = event.target.value
+        if (event.key === 'Enter')
+            setSearchTerm(value)
+    }
+
+    const handleGenChoice = (event) => {
+        const value = event.target.value
+        setGeneration(value ? parseInt(value) : null)
+    }
+
+    const handleSort = (event) => {
+        setSortAlphabetical(event.target.value)
     }
 
     const getNextAction = () => {
@@ -70,8 +82,11 @@ function PokedexPage() {
     }
 
     useEffect(() => {
-        fetchPkms()
-    }, [])
+        if (searchTerm !== '' && hasMore)
+            fetchSearchedPkms(true)
+        else
+            fetchPkms(true)
+    }, [searchTerm, generation])
 
     return (
         <div id="pokedexWrapper">
@@ -87,8 +102,8 @@ function PokedexPage() {
                     />
 
                     {/*Choix de la génération*/}
-                    <select id="choixGen">
-                        <option value="0">Toutes les générations</option>
+                    <select id="choixGen" onChange={handleGenChoice}>
+                        <option value="">Toutes les générations</option>
                         <option value="1">Génération 1</option>
                         <option value="2">Génération 2</option>
                         <option value="3">Génération 3</option>
@@ -99,9 +114,9 @@ function PokedexPage() {
                         <option value="8">Génération 8</option>
                     </select>
 
-                    <select id="choixTri">
-                        <option>Numéro de pokédex</option>
-                        <option>Ordre alphabétique</option>
+                    <select id="choixTri" onChange={handleSort}>
+                        <option value="">Numéro de pokédex</option>
+                        <option value="1">Ordre alphabétique</option>
                     </select>
 
                 </div>

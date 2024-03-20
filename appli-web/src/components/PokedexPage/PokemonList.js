@@ -30,7 +30,7 @@ function PokemonList({
                 key={pokemon.id}
                 id={pokemon.id}
                 nom={pokemon.nom}
-                image={pokemon.sprite}
+                sprites={pokemon.sprites}
                 types={pokemon.types}
                 description={pokemon.description}
                 taille = {pokemon.taille}

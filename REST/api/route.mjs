@@ -20,9 +20,10 @@ router.route('/').get(async (req, res) => {
 })
 
 router.route('/pokemon').get(async (req, res) => {
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
-    res.status(200).send(await pokemonDAO.getPokemons(limit, offset))
+    const generation = parseInt(req.query.gen)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
+    res.status(200).send(await pokemonDAO.getPokemons(generation, limit, offset))
 })
 
 router.route('/pokemon/:nameOrId').get(async (req, res) => {
@@ -36,10 +37,11 @@ router.route('/pokemon/:nameOrId').get(async (req, res) => {
 
 router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
     const searchTerm = req.params.searchTerm
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
+    const generation = parseInt(req.query.gen)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
     const result = await pokemonDAO.findPokemonsThatStartsWith(
-        searchTerm, limit, offset
+        searchTerm, generation, limit, offset
     )
     if (result)
         res.status(200).send(result)
@@ -49,8 +51,8 @@ router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
 
 router.route('/pokemon/type/:type').get(async (req, res) => {
     const type = req.params.type
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
     res.status(200).send(
         await pokemonDAO.findPokemonsByType(
             type, limit, offset
@@ -61,22 +63,11 @@ router.route('/pokemon/type/:type').get(async (req, res) => {
 router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
     const type1 = req.params.type1
     const type2 = req.params.type2
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
     res.status(200).send(
         await pokemonDAO.findPokemonsByDoubleType(
             type1, type2, limit, offset
-        )
-    )
-})
-
-router.route('/pokemon/gen/:gen').get(async (req, res) => {
-    const generation = Number.parseInt(req.params.gen)
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
-    res.status(200).send(
-        await pokemonDAO.findPokemonsByGen(
-            generation, limit, offset
         )
     )
 })
@@ -91,8 +82,8 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
 })
 
 router.route('/item').get(async (req, res) => {
-    const limit = Number.parseInt(req.query.limit)
-    const offset = Number.parseInt(req.query.offset)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
     res.status(200).send(await itemDAO.getItems(limit, offset))
 })
 

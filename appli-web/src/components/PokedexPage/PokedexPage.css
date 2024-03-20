@@ -124,8 +124,6 @@
         white-space: nowrap;
     }
 
-
-
     .pokemon-description {
         flex-basis: 445px;
     }
@@ -147,12 +145,12 @@
         border: 2px solid #dfdfdf;
     }
 
-    .pokemon-details-wrapper{
+    .pokemon-details-wrapper {
         display: flex;
         flex-direction: row;
         gap: 30px;
-
     }
+
     .small-padding {
         display: flex;
         align-content: center;

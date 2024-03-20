@@ -3,11 +3,12 @@ const BASE_URL = 'http://localhost:8081/api/v1'
 
 const ApiManager = {
     /**
+     * @param generation {number | null}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getPkms: (offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(offset)
+    getPkms: (generation, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(generation, offset)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -18,11 +19,12 @@ const ApiManager = {
 
     /**
      * @param searchTerm {string}
+     * @param generation {number | null}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getPkmsThatStartsWith: (searchTerm, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(searchTerm, offset)
+    getPkmsThatStartsWith: (searchTerm, generation, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(searchTerm, generation, offset)
         return fetch(url, {
             method: 'GET',
             headers: {

@@ -1,43 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-function PokemonCard({ id, nom, image, types, description, taille, poids, talents}) {
-    const [ouvert, setOuvert] = useState(false);
+function PokemonCard({ id, nom, sprites, types, description, taille, poids, talents}) {
+    const [ouvert, setOuvert] = useState(false)
 
     const toggleElement = () => {
-        setOuvert(!ouvert);
-    };
-
-    const talent = () => {
-        return (
-            talents
-                .filter(talent => !talent.is_hidden)
-                .map((talent, index) => (
-                    <span key={index}>
-                    {' ' + talent.ability.name} {index !== talents.filter(talent => !talent.is_hidden).length - 1 && '/ '}
-                </span>
-                ))
-        );
-    }
-    const talentCache = () => {
-        return (
-            talents
-                .filter(talent => talent.is_hidden)
-                .map((talent, index) => (
-                    <span key={index}>
-                    {' ' + talent.ability.name} {index !== talents.filter(talent => talent.is_hidden).length - 1 && '/ '}
-                </span>
-                ))
-        );
+        setOuvert(!ouvert)
     }
 
-
+    const talentCache = talents.find(t => t.is_hidden)?.ability.name
 
     return (
-
         <div className="pokemon-card-wrapper">
             <div className="pokemon-card">
                 <span className="pokemon-number">#{id.toString().padStart(3, '0')}</span>
-                <img className="pokemon-sprite" src={image} alt={nom} />
+                <img className="pokemon-sprite" src={sprites.default} alt={nom} />
                 <div className="pokemon-info">
                     <span className="pokemon-name">{nom}</span>
                     <div className="pokemon-types">
@@ -61,12 +37,19 @@ function PokemonCard({ id, nom, image, types, description, taille, poids, talent
                         <p><strong>Espèce :</strong> Donnée manquante </p>
                         <p><strong>Taille :</strong> {taille} m </p>
                         <p><strong>Poids :</strong> {poids} kg  </p>
-                        <p><strong>Talents :</strong> {talent()} </p>
-                        <p> <strong>Talents :</strong> {talentCache()} </p>
+                        <p><strong>Talents :</strong> {
+                            talents.filter(t => !t.is_hidden)
+                                .map(t => t.ability.name)
+                                .join(" / ")
+                        } </p>
+
+                        {talentCache &&
+                            <p> <strong>Talent caché :</strong> {talentCache} </p>
+                        }
                     </div>
                     <div className="center">
-                        <strong> Version Shiny</strong> <br/>
-                        <img className="pokemon-sprite" src={image} alt={nom} />
+                        <strong>Version Shiny</strong> <br/>
+                        <img className="pokemon-sprite" src={sprites.shiny} alt={nom} />
 
                     </div>
 

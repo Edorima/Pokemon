@@ -21,13 +21,18 @@ const pokemonDAO = {
     },
 
     /**
+     * @param generation {number}
      * @param limit {number}
      * @param offset {number}
      @returns {Promise<Pokemon[]>}
      */
-    getPokemons: async (limit, offset) => {
+    getPokemons: async (generation, limit, offset) => {
+        const filter = {}
+        if (Number.isInteger(generation))
+            filter.generation = generation
+
         const data = await pokemonDAO.collection.find(
-            {},
+            filter,
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
@@ -50,13 +55,18 @@ const pokemonDAO = {
 
     /**
      * @param searchTerm {string}
+     * @param generation {number}
      * @param limit {number}
      * @param offset {number}
      * @returns {Promise<Pokemon[]>}
      */
-    findPokemonsThatStartsWith: async (searchTerm, limit, offset) => {
+    findPokemonsThatStartsWith: async (searchTerm, generation, limit, offset) => {
+        const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
+        if (Number.isInteger(generation))
+            filter.generation = generation
+
         const data = await pokemonDAO.collection.find(
-            {nomNormalise: new RegExp('^' + normalizeString(searchTerm))},
+            filter,
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0, sort: {id: 1}}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
@@ -100,19 +110,6 @@ const pokemonDAO = {
                 ]}
         ]}, {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0})
 
-        return (await data.toArray()).map(e => new Pokemon(e))
-    },
-
-    /**
-     * @param generation {number}
-     * @param limit {number}
-     * @param offset {number}
-     * @returns {Promise<Pokemon[]>}
-     */
-    findPokemonsByGen: async (generation, limit, offset) => {
-        const data = pokemonDAO.collection.find({
-            generation: generation || 0
-        }, {projection: {_id: 0, limit: limit || LIMIT, offset: offset || 0}})
         return (await data.toArray()).map(e => new Pokemon(e))
     }
 }

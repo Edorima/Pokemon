@@ -139,7 +139,10 @@ for (const pokemon of allPokemons.results) {
         nom: nom,
         nomNormalise: normalizeString(nom),
         nomAnglais: pokemonData.name,
-        sprite: pokemonData.sprites.front_default,
+        sprites: {
+            default: pokemonData.sprites.front_default,
+            shiny: pokemonData.sprites.front_shiny
+        },
         description: pokemonSpecies.flavor_text_entries.find(
             d => d.language.name === 'fr'
         ).flavor_text,
