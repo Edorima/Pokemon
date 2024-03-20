@@ -2,84 +2,72 @@ import React, {useEffect, useState} from 'react'
 import ApiManager from "../ApiManager/ApiManager"
 import "./PokedexPage.css"
 import BarreRecherche from "./BarreRecherche"
-import PokemonsList from "./PokemonsList"
+import PokemonList from "./PokemonList"
 
 const ELEMENT_PER_PAGE = 20
 
 function PokedexPage() {
-    const [dataList, setDataList] = useState([])
-
-    const [pokemonList, setPokemonList] = useState([])
-    const [pokemonListPage, setPokemonListPage] = useState(1)
-
-    const [filterList, setFilterList] = useState([])
-    const [filterListPage, setFilterListPage] = useState(1)
-    const [searchTerm, setSearchTerm] = useState('')
-
+    const [pokemons, setPokemons] = useState([])
+    const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(true)
+    const [searchTerm, setSearchTerm] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
-    function fetchData(req, handleData) {
-        console.log("Fetching")
+    const fetchData = async (req, reset) => {
         setErrorMessage('')
-        req
-            .then(response => response.json())
-            .then(data => {
-                handleData(data)
-                if (data.length !== ELEMENT_PER_PAGE)
-                    setHasMore(false)
-            })
-            .catch(() =>
-                setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
-            )
+        try {
+            const response = await req
+            const data = await response.json()
+            console.log("Received data", data)
+            if (reset) {
+                setPokemons(data)
+                setPage(2)
+            } else {
+                setPokemons(prev => [...prev, ...data])
+                setPage(prevPage => prevPage + 1)
+            }
+            setHasMore(data.length === ELEMENT_PER_PAGE)
+        } catch (error) {
+            setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
+        }
     }
 
-    function fetchPkms() {
-        const handlePokemonList = (data) => {
-            setPokemonList(prevList => prevList.concat(data))
-            setDataList(prevList => prevList.concat(data))
-            setPokemonListPage(prevPage => prevPage + 1)
-        }
-
+    const fetchPkms = (reset = false) => {
         fetchData(
-            ApiManager.getPkms((pokemonListPage-1)*ELEMENT_PER_PAGE),
-            handlePokemonList
+            ApiManager.getPkms(reset ? 0 : (page-1)*ELEMENT_PER_PAGE),
+            reset
         )
     }
 
-    function fetchSearchedPkms() {
-        const handleSearchList = (data) => {
-            const newData = filterList.concat(data)
-            setFilterList(newData)
-            setDataList(newData)
-            setFilterListPage(filterListPage + 1)
-        }
+    const fetchSearchedPkms = (reset = false) => {
+        const s = searchTerm.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
 
         fetchData(
             ApiManager.getPkmsThatStartsWith(
-                searchTerm.normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase(),
-                (filterListPage-1)*ELEMENT_PER_PAGE
-            ),
-            handleSearchList
+                s, reset ? 0 : (page-1)*ELEMENT_PER_PAGE
+            ), reset
         )
     }
 
-    const handleInputChange = (event) => {
+    const handleSearchBarChange = (event) => {
+
         const value = event.target.value
-        if (value === '') {
-            setDataList(pokemonList)
-            setHasMore(true)
-        }
-        setFilterListPage(1)
-        setFilterList([])
         setSearchTerm(value)
+        if (value === '')
+            fetchPkms(true)
     }
 
-    const handleNextAction = () =>
-        filterList.length === 0 ?
-            fetchPkms() : fetchSearchedPkms()
+    const handleSearchBarEnter = (event) => {
+        if (event.key === 'Enter' && event.target.value !== '')
+            hasMore && fetchSearchedPkms(true)
+    }
+
+    const getNextAction = () => {
+        return searchTerm.length === 0 ?
+            fetchPkms : fetchSearchedPkms
+    }
 
     useEffect(() => {
         fetchPkms()
@@ -94,9 +82,8 @@ function PokedexPage() {
 
                     {/*Barre de recherche*/}
                     <BarreRecherche
-                        handleInputChange={handleInputChange}
-                        fetchSearchedPkms={fetchSearchedPkms}
-                        canFetch={searchTerm !== '' && filterList.length === 0}
+                        handleOnChange={handleSearchBarChange}
+                        handleKeyDown={handleSearchBarEnter}
                     />
 
                     {/*Choix de la génération*/}
@@ -122,15 +109,15 @@ function PokedexPage() {
 
             {errorMessage && <div id="error-message">
                 {errorMessage}
-                <button onClick={handleNextAction}>Réessayer</button>
+                <button onClick={getNextAction}>Réessayer</button>
             </div>}
 
 
-            <PokemonsList
+            <PokemonList
                 errorMessage={errorMessage}
                 hasMore={hasMore}
-                handleNextAction={handleNextAction}
-                dataList={dataList}
+                handleNextAction={getNextAction()}
+                dataList={pokemons}
                 loader={<p>Loading...</p>}
             />
         </div>

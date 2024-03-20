@@ -7,9 +7,9 @@ import PokemonCard from "./PokemonCard";
  * @param handleNextAction {() => void}
  * @param hasMore {boolean}
  * @param dataList {any[]}
- * @param loader {React.ReactHTMLElement}
+ * @param loader {JSX.Element}
  */
-function PokemonsList({
+function PokemonList({
     errorMessage,
     handleNextAction,
     hasMore,
@@ -18,7 +18,8 @@ function PokemonsList({
 }) {
     return (
         <>
-        {!errorMessage && <InfiniteScroll
+        {dataList.length !== 0 ?
+        !errorMessage && <InfiniteScroll
         next={handleNextAction}
         hasMore={hasMore}
         loader={!errorMessage && loader}
@@ -38,9 +39,10 @@ function PokemonsList({
 
             />
         ))}
-        </InfiniteScroll>}
+        </InfiniteScroll> :
+        <span>Aucun résultat</span>}
         </>
     )
 }
 
-export default PokemonsList
+export default PokemonList

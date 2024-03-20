@@ -133,6 +133,8 @@
     .pokemon-sprite {
         min-width: 120px;
         min-height: 120px;
+        max-width: 120px;
+        max-height: 120px;
     }
     .container-details {
         border-radius: 20px;

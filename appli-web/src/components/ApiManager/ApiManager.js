@@ -1,12 +1,12 @@
 import ENDPOINTS from "./EndPoints";
 const BASE_URL = 'http://localhost:8081/api/v1'
 
-export default class ApiManager {
+const ApiManager = {
     /**
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    static getPkms = (offset) => {
+    getPkms: (offset) => {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS(offset)
         return fetch(url, {
             method: 'GET',
@@ -14,14 +14,14 @@ export default class ApiManager {
                 'Content-Type': 'application/json',
             }
         })
-    }
+    },
 
     /**
      * @param searchTerm {string}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    static getPkmsThatStartsWith = (searchTerm, offset) => {
+    getPkmsThatStartsWith: (searchTerm, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(searchTerm, offset)
         return fetch(url, {
             method: 'GET',
@@ -29,13 +29,14 @@ export default class ApiManager {
                 'Content-Type': 'application/json',
             }
         })
-    }
+    },
+
     /**
      * @param username {string}
      * @param password {string}
      * @returns {Promise<Response>}
      */
-    static login = (username, password) => {
+    login: (username, password) => {
         const url = BASE_URL + ENDPOINTS.LOGIN()
         return fetch(url, {
             method: 'POST',
@@ -44,14 +45,14 @@ export default class ApiManager {
             },
             body: JSON.stringify({ pseudo: username, motDePasse: password }),
         })
-    }
+    },
 
     /**
      * @param username {string}
      * @param password {string}
      * @returns {Promise<Response>}
      */
-    static register = (username, password) => {
+    register: (username, password) => {
         const url = BASE_URL + ENDPOINTS.REGISTER()
         return fetch(url, {
             method: 'POST',
@@ -60,13 +61,13 @@ export default class ApiManager {
             },
             body: JSON.stringify({ pseudo: username, motDePasse: password }),
         })
-    }
+    },
 
     /**
      * @param token {string}
      * @returns {Promise<Response>}
      */
-    static getProfil = (token) => {
+    getProfil: (token) => {
         const url = BASE_URL + ENDPOINTS.GET_PROFIL()
         return fetch(url, {
             method: 'GET',
@@ -77,3 +78,5 @@ export default class ApiManager {
         })
     }
 }
+
+export default ApiManager
