@@ -15,10 +15,6 @@ function validateToken(req) {
     return jwt.verify(token, process.env.SECRET_KEY)
 }
 
-router.route('/').get(async (req, res) => {
-    res.send("<h1>Welcome on PokéManager API !</h1>")
-})
-
 router.route('/pokemon').get(async (req, res) => {
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
@@ -125,22 +121,22 @@ router.route('/login').post(async (req, res) => {
         { expiresIn: '1h' }
     );
 
-    res.json({ success: true, token: token });
+    res.json({ success: true, token: token })
 })
 
 router.route('/profil').get(async (req, res) => {
     try {
         // Valider le token de l'utilisateur
-        const userPayload = validateToken(req);
+        const userPayload = validateToken(req)
 
-        const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo);
+        const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
 
         if (!utilisateur) {
             return res.status(404).send()
         }
 
-        const { motDePasse, _id, ...userData } = utilisateur;
-        res.json(userData);
+        const { motDePasse, _id, ...userData } = utilisateur
+        res.json(userData)
     } catch (error) {
         res.status(401).send()
     }

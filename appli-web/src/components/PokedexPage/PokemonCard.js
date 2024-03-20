@@ -34,9 +34,9 @@ function PokemonCard({ id, nom, sprites, types, description, taille, poids, tale
             <div className="pokemon-details-wrapper">
                 <div className="container-details" >
                     <div className="caracteristique" style={{paddingBottom: "18px"}}>
-                        <p><strong>Espèce :</strong> Donnée manquante </p>
-                        <p><strong>Taille :</strong> {taille} m </p>
-                        <p><strong>Poids :</strong> {poids} kg  </p>
+                        <p><strong>Espèce :</strong> Donnée manquante</p>
+                        <p><strong>Taille :</strong> {taille} m</p>
+                        <p><strong>Poids :</strong> {poids} kg</p>
                         <p><strong>Talents :</strong> {
                             talents.filter(t => !t.is_hidden)
                                 .map(t => t.ability.name)
@@ -44,12 +44,12 @@ function PokemonCard({ id, nom, sprites, types, description, taille, poids, tale
                         } </p>
 
                         {talentCache &&
-                            <p> <strong>Talent caché :</strong> {talentCache} </p>
+                            <p> <strong>Talent caché :</strong> {talentCache}</p>
                         }
                     </div>
                     <div className="center">
                         <strong>Version Shiny</strong> <br/>
-                        <img className="pokemon-sprite" src={sprites.shiny} alt={nom} />
+                        <img className="pokemon-sprite" src={sprites.shiny} alt={`${nom} Shiny`} />
 
                     </div>
 

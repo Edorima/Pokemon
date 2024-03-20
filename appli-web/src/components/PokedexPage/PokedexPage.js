@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import ApiManager from "../ApiManager/ApiManager"
 import "./PokedexPage.css"
 import BarreRecherche from "./BarreRecherche"
 import PokemonList from "./PokemonList"
+import sortGeneric from "./sortGeneric";
 
 const ELEMENT_PER_PAGE = 20
 
@@ -12,48 +13,50 @@ function PokedexPage() {
     const [hasMore, setHasMore] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
     const [generation, setGeneration] = useState(null)
-    const [sortAlphabetical, setSortAlphabetical] = useState(false)
+    const [sortKey, setSortKey] = useState("id")
     const [errorMessage, setErrorMessage] = useState('')
 
-    const fetchData = async (req, reset) => {
+    const fetchData = useCallback(async (req, reset) => {
         setErrorMessage('')
         try {
             const response = await req
             const data = await response.json()
-            // TODO Trier les données
-            if (reset) {
-                setPokemons(data)
-                setPage(2)
-            } else {
-                setPokemons(prev => [...prev, ...data])
-                setPage(prevPage => prevPage + 1)
-            }
+
+            const newList = reset ? data : [...pokemons, ...data]
+            const compareFn = (p1, p2) =>
+                sortGeneric(p1[sortKey], p2[sortKey])
+            newList.sort(compareFn)
+
+            setPokemons(newList)
+            setPage(reset ? 2 : prevPage => prevPage + 1)
             setHasMore(data.length === ELEMENT_PER_PAGE)
         } catch (error) {
             setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
         }
-    }
+    }, [pokemons, sortKey])
 
-    const fetchPkms = (reset = false) => {
+    const fetchPkms = useCallback((reset = false) => {
         fetchData(
             ApiManager.getPkms(generation,
                 reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             ),
             reset
         )
-    }
+    }, [fetchData, generation, page])
 
-    const fetchSearchedPkms = (reset = false) => {
-        const s = searchTerm.normalize('NFD')
+    const fetchSearchedPkms = useCallback((reset = false) => {
+        const normalizedST = searchTerm
+            .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
 
         fetchData(
-            ApiManager.getPkmsThatStartsWith(s, generation,
+            ApiManager.getPkmsThatStartsWith(
+                normalizedST, generation,
                 reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             ), reset
         )
-    }
+    }, [fetchData, generation, page, searchTerm])
 
     const handleSearchBarChange = (event) => {
         setHasMore(true)
@@ -69,11 +72,12 @@ function PokedexPage() {
 
     const handleGenChoice = (event) => {
         const value = event.target.value
+        setHasMore(true)
         setGeneration(value ? parseInt(value) : null)
     }
 
     const handleSort = (event) => {
-        setSortAlphabetical(event.target.value)
+        setSortKey(event.target.value);
     }
 
     const getNextAction = () => {
@@ -81,12 +85,16 @@ function PokedexPage() {
             fetchPkms : fetchSearchedPkms
     }
 
+
     useEffect(() => {
         if (searchTerm !== '' && hasMore)
             fetchSearchedPkms(true)
         else
             fetchPkms(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchTerm, generation])
+
+
 
     return (
         <div id="pokedexWrapper">
@@ -115,8 +123,8 @@ function PokedexPage() {
                     </select>
 
                     <select id="choixTri" onChange={handleSort}>
-                        <option value="">Numéro de pokédex</option>
-                        <option value="1">Ordre alphabétique</option>
+                        <option value="id">Numéro de pokédex</option>
+                        <option value="nom">Ordre alphabétique</option>
                     </select>
 
                 </div>
