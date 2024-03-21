@@ -62,14 +62,6 @@ const pokemonCollection = db.collection('pokemon')
 const capaciteCollection = db.collection('capacite')
 const typeCollection = db.collection('type')
 
-console.log("Downloading data...")
-const progressBar = new ConsoleProgressBar({
-    maxValue: 1742,
-    startChars: '[', endChars: ']',
-    filledPartChars: '=', notFilledPartChars: ' '
-})
-
-/** @type {Map<string, string>} */
 const categorieMap = new Map([
     ['physical', 'Physique'],
     ['special', 'Spéciale'],
@@ -83,11 +75,22 @@ const generationMap = new Map([
     ['generation-vii', 7], ['generation-viii', 8],
 ])
 
-const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
-const allMoves = await fetchData(capaciteURL)
 /** @type {Map<string, Capacite>} */
 const movesMap = new Map()
 
+const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
+const talentsURL = 'https://pokeapi.co/api/v2/ability?limit=307'
+const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
+
+
+console.log("Downloading data...")
+const progressBar = new ConsoleProgressBar({
+    maxValue: 2049,
+    startChars: '[', endChars: ']',
+    filledPartChars: '=', notFilledPartChars: ' '
+})
+
+const allMoves = await fetchData(capaciteURL)
 for (const move of allMoves.results) {
     progressBar.addValue()
 
@@ -117,9 +120,7 @@ for (const move of allMoves.results) {
     )
 }
 
-const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
 const allPokemons = await fetchData(pokemonsURL)
-
 for (const pokemon of allPokemons.results) {
     progressBar.addValue()
     const pokemonData = await fetchData(pokemon.url)
@@ -146,13 +147,20 @@ for (const pokemon of allPokemons.results) {
         description: pokemonSpecies.flavor_text_entries.find(
             d => d.language.name === 'fr'
         ).flavor_text,
+        espece: pokemonSpecies.genera.find(
+            g => g.language.name === 'fr'
+        ).genus,
         generation: generationMap.get(pokemonSpecies.generation.name),
         stats: pokemonData.stats,
         taille: Number.parseFloat(pokemonData.height) / 10,
         poids: Number.parseFloat(pokemonData.weight) / 10,
         capacites: pkmMoves,
-        talents: pokemonData.abilities
+        talents: {
+            normaux : [],
+            cache: null
+        }
     })
+
     const types = []
     for (const type of pokemonData.types) {
         const typeObject = typeMap.get(type.type.name)
@@ -160,12 +168,14 @@ for (const pokemon of allPokemons.results) {
         types.push({slot: type.slot, type: typeObject.nom})
     }
     pokemonObject.types = types
+
     await pokemonCollection.updateOne(
         {id: pokemonData.id},
         {$set: pokemonObject},
         {upsert: true}
     )
 }
+
 await pokemonCollection.createIndex({nomNormalise: 1})
 
 for (const type of typeMap.values()) {
@@ -175,6 +185,27 @@ for (const type of typeMap.values()) {
         {$set: type},
         {upsert: true}
     )
+}
+
+const allAbilities = await fetchData(talentsURL)
+for (const ability of allAbilities.results) {
+    progressBar.addValue()
+    const abilityData = await fetchData(ability.url)
+
+    const nom = abilityData.names.find(
+        a => a.language.name === 'fr'
+    ).name
+
+    for (const pokemon of abilityData.pokemon) {
+        const update = pokemon.is_hidden ?
+            {$set: {"talents.cache": nom}} :
+            {$addToSet: {"talents.normaux": nom}}
+        await pokemonCollection.updateOne(
+            {nomAnglais: pokemon.pokemon.name},
+            update,
+            {upsert: true}
+        )
+    }
 }
 
 console.log("Data downloaded.")

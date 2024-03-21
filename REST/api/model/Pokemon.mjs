@@ -5,7 +5,8 @@ export default class Pokemon {
     nomAnglais
     description
     types
-    sprite
+    sprites
+    espece
     generation
     stats
     taille
