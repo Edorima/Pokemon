@@ -1,5 +1,3 @@
-import React from "react"
-
 function BarreRecherche({handleOnChange, handleKeyDown}) {
     return (
         <div className="barreRecherche">
@@ -9,7 +7,7 @@ function BarreRecherche({handleOnChange, handleKeyDown}) {
                 placeholder="Rechercher un Pokémon..."
                 onKeyDown={handleKeyDown}
                 onChange={handleOnChange}
-            ></input>
+            />
             <button className="boutonRecherche">
                 <img src="/assets/search-normal.svg" alt="Loupe"></img>
             </button>

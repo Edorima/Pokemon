@@ -1,16 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
-import Header from "./components/Header/Header";
-import HomePage from './components/HomePage/HomePage';
-import LoginPage from "./components/SecurityPage/LoginPage";
-import RegisterPage from "./components/SecurityPage/RegisterPage";
-import Logout from "./components/SecurityPage/Logout";
-import ProfilPage from "./components/ProfilPage/ProfilPage";
-import PokedexPage from "./components/PokedexPage/PokedexPage";
-import ItemsPage from "./components/ItemsPage/ItemsPage";
-import CapacitesPage from "./components/CapacitesPage/CapacitesPage";
-
-import './index.css';
+import Header from "./components/Header/Header"
+import HomePage from './components/HomePage/HomePage'
+import LoginPage from "./components/SecurityPage/LoginPage"
+import RegisterPage from "./components/SecurityPage/RegisterPage"
+import Logout from "./components/SecurityPage/Logout"
+import ProfilPage from "./components/ProfilPage/ProfilPage"
+import PokedexPage from "./components/PokedexPage/PokedexPage"
+import ItemsPage from "./components/ItemsPage/ItemsPage"
+import CapacitesPage from "./components/CapacitesPage/CapacitesPage"
+import './index.css'
 import './components/SecurityPage/SecurityPage.css'
 
 function App() {

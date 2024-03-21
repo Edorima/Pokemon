@@ -1,5 +1,3 @@
-import React from "react"
-
 function ItemCard({ nom, image, description }) {
     return (
         <div className="item-card">

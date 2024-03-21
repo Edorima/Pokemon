@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import {useState} from "react"
 import "./Header.css"
 
 function NavigationButton({ href, imgSrc, altText, label }) {
@@ -56,4 +56,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default Header

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 function PokemonCard({ id, nom, sprites, types, description, taille, poids, talents}) {
     const [ouvert, setOuvert] = useState(false)
@@ -66,7 +66,7 @@ function PokemonCard({ id, nom, sprites, types, description, taille, poids, tale
         </div>
 
 
-    );
+    )
 }
 
-export default PokemonCard;
+export default PokemonCard

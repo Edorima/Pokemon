@@ -1,9 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import ApiManager from "../ApiManager/ApiManager"
-import "./PokedexPage.css"
+import {useCallback, useEffect, useState} from 'react'
 import BarreRecherche from "./BarreRecherche"
 import PokemonList from "./PokemonList"
-import sortGeneric from "./sortGeneric";
+import SelectGeneration from "./SelectGeneration"
+import ErrorMessage from "../ErrorMessage"
+import ApiManager from "../ApiManager/ApiManager"
+import "./PokedexPage.css"
 
 const ELEMENT_PER_PAGE = 20
 
@@ -13,7 +14,6 @@ function PokedexPage() {
     const [hasMore, setHasMore] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
     const [generation, setGeneration] = useState(null)
-    const [sortKey, setSortKey] = useState("id")
     const [errorMessage, setErrorMessage] = useState('')
 
     const fetchData = useCallback(async (req, reset) => {
@@ -22,18 +22,13 @@ function PokedexPage() {
             const response = await req
             const data = await response.json()
 
-            const newList = reset ? data : [...pokemons, ...data]
-            const compareFn = (p1, p2) =>
-                sortGeneric(p1[sortKey], p2[sortKey])
-            newList.sort(compareFn)
-
-            setPokemons(newList)
+            setPokemons(reset ? data : prevData => prevData.concat(data))
             setPage(reset ? 2 : prevPage => prevPage + 1)
             setHasMore(data.length === ELEMENT_PER_PAGE)
-        } catch (error) {
+        } catch (_) {
             setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
         }
-    }, [pokemons, sortKey])
+    }, [])
 
     const fetchPkms = useCallback((reset = false) => {
         fetchData(
@@ -41,7 +36,7 @@ function PokedexPage() {
                 reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             ),
             reset
-        )
+        ).then()
     }, [fetchData, generation, page])
 
     const fetchSearchedPkms = useCallback((reset = false) => {
@@ -55,12 +50,14 @@ function PokedexPage() {
                 normalizedST, generation,
                 reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             ), reset
-        )
+        ).then()
     }, [fetchData, generation, page, searchTerm])
 
     const handleSearchBarChange = (event) => {
         setHasMore(true)
-        if (event.target.value === '')
+        const value = event.target.value.replace(/ /g, '')
+        event.target.value = value
+        if (value === '')
             setSearchTerm('')
     }
 
@@ -76,15 +73,10 @@ function PokedexPage() {
         setGeneration(value ? parseInt(value) : null)
     }
 
-    const handleSort = (event) => {
-        setSortKey(event.target.value);
-    }
-
     const getNextAction = () => {
         return searchTerm.length === 0 ?
             fetchPkms : fetchSearchedPkms
     }
-
 
     useEffect(() => {
         if (searchTerm !== '' && hasMore)
@@ -94,47 +86,21 @@ function PokedexPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchTerm, generation])
 
-
-
     return (
         <div id="pokedexWrapper">
             <h1>Bienvenue sur le <strong>Pokédex</strong> !</h1>
 
-            <div id="conteneurRecherche">
-                <div id="recherche">
+            <div id="recherche">
 
-                    {/*Barre de recherche*/}
-                    <BarreRecherche
-                        handleOnChange={handleSearchBarChange}
-                        handleKeyDown={handleSearchBarEnter}
-                    />
+                <BarreRecherche
+                    handleOnChange={handleSearchBarChange}
+                    handleKeyDown={handleSearchBarEnter}
+                />
 
-                    {/*Choix de la génération*/}
-                    <select id="choixGen" onChange={handleGenChoice}>
-                        <option value="">Toutes les générations</option>
-                        <option value="1">Génération 1</option>
-                        <option value="2">Génération 2</option>
-                        <option value="3">Génération 3</option>
-                        <option value="4">Génération 4</option>
-                        <option value="5">Génération 5</option>
-                        <option value="6">Génération 6</option>
-                        <option value="7">Génération 7</option>
-                        <option value="8">Génération 8</option>
-                    </select>
-
-                    <select id="choixTri" onChange={handleSort}>
-                        <option value="id">Numéro de pokédex</option>
-                        <option value="nom">Ordre alphabétique</option>
-                    </select>
-
-                </div>
+                <SelectGeneration onChange={handleGenChoice}/>
             </div>
 
-            {errorMessage && <div id="error-message">
-                {errorMessage}
-                <button onClick={getNextAction}>Réessayer</button>
-            </div>}
-
+            <ErrorMessage error={errorMessage}/>
 
             <PokemonList
                 errorMessage={errorMessage}

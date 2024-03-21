@@ -1,14 +1,6 @@
-import React from "react"
-import InfiniteScroll from "react-infinite-scroll-component";
-import PokemonCard from "./PokemonCard";
+import InfiniteScroll from "react-infinite-scroll-component"
+import PokemonCard from "./PokemonCard"
 
-/**
- * @param errorMessage {string}
- * @param handleNextAction {() => void}
- * @param hasMore {boolean}
- * @param dataList {any[]}
- * @param loader {JSX.Element}
- */
 function PokemonList({
     errorMessage,
     handleNextAction,
@@ -18,27 +10,27 @@ function PokemonList({
 }) {
     return (
         <>
-        {dataList.length !== 0 ?
-        !errorMessage && <InfiniteScroll
-        next={handleNextAction}
-        hasMore={hasMore}
-        loader={!errorMessage && loader}
-        dataLength={dataList.length}
-        className='pokemons'>
-        {dataList.map(pokemon => (
-            <PokemonCard
-                key={pokemon.id}
-                id={pokemon.id}
-                nom={pokemon.nom}
-                sprites={pokemon.sprites}
-                types={pokemon.types}
-                description={pokemon.description}
-                taille = {pokemon.taille}
-                poids = {pokemon.poids}
-                talents = {pokemon.talents}
+        {dataList.length !== 0 && !errorMessage ?
+        <InfiniteScroll
+            next={handleNextAction}
+            hasMore={hasMore}
+            loader={!errorMessage && loader}
+            dataLength={dataList.length}
+            className='pokemons'>
+            {dataList.map(pokemon => (
+                <PokemonCard
+                    key={pokemon.id}
+                    id={pokemon.id}
+                    nom={pokemon.nom}
+                    sprites={pokemon.sprites}
+                    types={pokemon.types}
+                    description={pokemon.description}
+                    taille = {pokemon.taille}
+                    poids = {pokemon.poids}
+                    talents = {pokemon.talents}
 
-            />
-        ))}
+                />
+            ))}
         </InfiniteScroll> :
         <span>Aucun résultat</span>}
         </>
