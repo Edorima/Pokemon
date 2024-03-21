@@ -20,15 +20,7 @@ function PokemonList({
             {dataList.map(pokemon => (
                 <PokemonCard
                     key={pokemon.id}
-                    id={pokemon.id}
-                    nom={pokemon.nom}
-                    sprites={pokemon.sprites}
-                    types={pokemon.types}
-                    description={pokemon.description}
-                    taille = {pokemon.taille}
-                    poids = {pokemon.poids}
-                    talents = {pokemon.talents}
-
+                    pokemon={pokemon}
                 />
             ))}
         </InfiniteScroll> :

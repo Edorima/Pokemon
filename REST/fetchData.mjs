@@ -200,6 +200,7 @@ for (const ability of allAbilities.results) {
         const update = pokemon.is_hidden ?
             {$set: {"talents.cache": nom}} :
             {$addToSet: {"talents.normaux": nom}}
+
         await pokemonCollection.updateOne(
             {nomAnglais: pokemon.pokemon.name},
             update,
