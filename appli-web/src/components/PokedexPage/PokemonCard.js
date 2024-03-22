@@ -48,9 +48,9 @@ function PokemonCard({ pokemon }) {
                     </div>
 
                 </div>
-                <div className="container-details border-detail">
-                    <Stats stats={pokemon.stats}/>
-                </div>
+
+                <Stats stats={pokemon.stats}/>
+
                 <div className="container-details border-detail">3</div>
             </div>
             )}

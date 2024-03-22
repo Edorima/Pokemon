@@ -11,7 +11,7 @@ function StatBar({statValue, id}) {
 
 function Stats({stats}) {
     return (
-        <>
+        <div className="container-details border-detail">
             <h2> Statistiques </h2>
             <div className="statistique">
                 <div className="nom-stats">
@@ -32,7 +32,7 @@ function Stats({stats}) {
                     <StatBar statValue={stats.speed} id="speed"/>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
