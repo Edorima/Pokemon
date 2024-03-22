@@ -1,7 +1,8 @@
 function StatBar({statValue, id}) {
     return (
         <div className="barres-stats">
-            {statValue}
+            <span className="div-100">{statValue}</span>
+
             <span id={id} className="barre-stats" style={{
                 width: `${statValue / 255 * 100}%`
             }}/>

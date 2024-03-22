@@ -175,16 +175,21 @@
 
         .valeurs-stats {
             width: 100%;
+
         }
 
 
         .barres-stats {
             display: flex;
             gap: 24px;
+
             .barre-stats {
                 border-style: solid;
                 height: 20px;
                 border-width: 2px;
+            }
+            .div-100{
+                width: 27.4333px;
             }
 
             #hp {background-color: #A8FFA0;}
