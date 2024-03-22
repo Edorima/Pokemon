@@ -31,7 +31,7 @@ function PokemonCard({ pokemon }) {
             </div>
             {ouvert && (
             <div className="pokemon-details-wrapper">
-                <div className="container-details" >
+                <div className="pokemon-information-details" >
                     <div className="caracteristique" style={{paddingBottom: "18px"}}>
                         <p><strong>Espèce :</strong> {pokemon.espece}</p>
                         <p><strong>Taille :</strong> {pokemon.taille} m</p>

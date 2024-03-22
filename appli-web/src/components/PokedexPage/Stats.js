@@ -1,26 +1,39 @@
 function Stats({stats}) {
+    const colors = ["RED", "BLUE", "YELLOW", "GREEN", "CYAN", "GREY"];
     return (
         <>
         <h2> Statistiques </h2>
-        <div className="statistique">
-            <div className="nom-stats">
-                <span>PV</span>
-                <span>Attaque</span>
-                <span>Défense</span>
-                <span>Attaque Spéciale</span>
-                <span>Défense Spéciale</span>
-                <span>Vitesse</span>
-            </div>
+            <div className="statistique">
+                <div className="nom-stats">
+                    <span>PV</span>
+                    <span>Attaque </span>
+                    <span>Défense</span>
+                    <span>Attaque Spéciale</span>
+                    <span>Défense Spéciale</span>
+                    <span>Vitesse</span>
+                </div>
 
-            <div className="valeur-stats">
-                <span>60</span>
-                <span>60</span>
-                <span>60</span>
-                <span>60</span>
-                <span>60</span>
-                <span>60</span>
+                <div className="valeur-stats">
+                    {stats.map((stat, index) => (
+                        <span key={index}>{stat.base_stat}</span>
+                    ))}
+                </div>
+
+
+                <div className="barre-stats">
+                    {stats.map((stat, index) => (
+                        <span
+                            key={index}
+                            className="barre-de_stats"
+                            style={{
+                                width: `${(stat.base_stat / 255) * 200}px`,
+                                backgroundColor: colors[index]
+                            }}
+                        ></span>
+                    ))}
+                </div>
+
             </div>
-        </div>
         </>
     )
 }

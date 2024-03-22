@@ -60,7 +60,9 @@
         background-color: #DBDBDB;
         border-radius: 20px;
         gap: 32px;
+        width: 1300px;
     }
+
 
     .pokemon-card-wrapper {
         display: flex;
@@ -69,7 +71,7 @@
         background-color: white;
         border-radius: 20px;
         padding: 16px;
-        width: 1000px;
+
     }
 
     .pokemon-card {
@@ -159,7 +161,7 @@
         display: flex;
         gap: 24px;
 
-        .nom-stats, .valeur-stats {
+        .nom-stats, .valeur-stats, .barre-stats{
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -173,5 +175,15 @@
         .valeur-stats {
 
         }
+
+        .barre-stats {
+
+        }
+        .barre-de_stats{
+            border-style: solid;
+            height: 19px;
+            border-width: 2px;
+        }
     }
+
 }
