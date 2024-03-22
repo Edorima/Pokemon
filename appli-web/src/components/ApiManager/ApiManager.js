@@ -34,6 +34,21 @@ const ApiManager = {
     },
 
     /**
+     * @param nom {string | null}
+     * @param offset {number}
+     * @returns {Promise<Response>}
+     */
+    getItems: (nom, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(nom, offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
      * @param username {string}
      * @param password {string}
      * @returns {Promise<Response>}

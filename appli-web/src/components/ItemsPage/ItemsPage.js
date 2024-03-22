@@ -1,6 +1,7 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './ItemsPage.css'
 import ItemCard from "./ItemCard"
+import ApiManager from "../ApiManager/ApiManager";
 
 function normalizeString(str) {
     return str
@@ -11,35 +12,11 @@ function normalizeString(str) {
 
 function ItemsPage() {
     const [itemList, setItemList] = useState([])
-    const [categorie, setCategorie] = useState(0)
+    const [page, setPage] = useState(1)
+    const [hasMore, setHasMore] = useState(true)
     const [nom, setNom] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
-
-    /*
-    useEffect(() => {
-        ApiManager.getItem()
-            .then(response => response.json())
-            .then(data => {
-                setItemList(data)
-            })
-            .catch(() => {
-                setErrorMessage("Une erreur c'est produite. Veuillez réessayer.")
-            })
-    }, [])*/
-
-    function filterItems() {
-        const filtereditems =
-            categorie === 0 ? itemList :
-                itemList.filter(
-                    item => item.categorie === categorie
-                )
-
-        return searchTerm === '' ? filtereditems :
-            filtereditems.filter(item =>
-                item.nomNormalise.startsWith(normalizeString(searchTerm))
-            )
-    }
 
     const handleButtonClick = () => setSearchTerm(nom)
     const handleEnterPressed = (event) =>
@@ -63,7 +40,7 @@ function ItemsPage() {
                         <input
                             id="champRecherche"
                             type="search"
-                            placeholder="Rechercher un Pokémon..."
+                            placeholder="Rechercher un Objet..."
                             onChange={handleInputChange}
                             onKeyDown={handleEnterPressed}
                         ></input>
@@ -71,32 +48,8 @@ function ItemsPage() {
                             <img src="/assets/search-normal.svg" alt="Loupe"></img>
                         </button>
                     </div>
-
-                    {/*Choix de la catégorie*/}
-                    <select id="choixGen"
-                            onChange={(e) => {
-                                setCategorie(Number.parseInt(e.target.value))
-                            }}>
-                        <option value="0">Choix de la catégorie</option>
-                        <option value="1">Tout les objets</option>
-                        <option value="2">Consomable</option>
-                        <option value="3">Objet de combat</option>
-                    </select>
                 </div>
             </div>
-
-            <div id="error-message">{errorMessage}</div>
-
-            {!errorMessage && <div className="items">
-                {/*Affichage de liste des items*/}
-                {filterItems().map(item => (
-                    <ItemCard
-                        nom={item.name}
-                        image={item.image}
-                        description={item.description}
-                    />
-                ))}
-            </div>}
         </div>
     )
 }

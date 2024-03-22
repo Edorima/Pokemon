@@ -1,8 +1,8 @@
 export default class Item {
+    id
     nom
     nomAnglais
     description
-    categorie
 
     constructor(obj) {
         Object.assign(this, obj)
