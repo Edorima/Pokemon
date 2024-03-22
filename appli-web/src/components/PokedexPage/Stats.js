@@ -1,5 +1,5 @@
 function Stats({stats}) {
-    const colors = ["RED", "BLUE", "YELLOW", "GREEN", "CYAN", "GREY"];
+    const colors = ["#A8FFA0", "#FFA0A0", "#FDFFA0", "#FFD4A0", "#F6CC5E", "#B5FFFB"];
     return (
         <>
         <h2> Statistiques </h2>
@@ -26,7 +26,7 @@ function Stats({stats}) {
                             key={index}
                             className="barre-de_stats"
                             style={{
-                                width: `${(stat.base_stat / 255) * 200}px`,
+                                width: `${stat.base_stat / 255 *100 }%`,
                                 backgroundColor: colors[index]
                             }}
                         ></span>
