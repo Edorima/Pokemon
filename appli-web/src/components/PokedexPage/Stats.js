@@ -1,8 +1,18 @@
+function StatBar({statValue, id}) {
+    return (
+        <div className="barres-stats">
+            {statValue}
+            <span id={id} className="barre-stats" style={{
+                width: `${statValue / 255 * 100}%`
+            }}/>
+        </div>
+    )
+}
+
 function Stats({stats}) {
-    const colors = ["#A8FFA0", "#FFA0A0", "#FDFFA0", "#FFD4A0", "#F6CC5E", "#B5FFFB"];
     return (
         <>
-        <h2> Statistiques </h2>
+            <h2> Statistiques </h2>
             <div className="statistique">
                 <div className="nom-stats">
                     <span>PV</span>
@@ -13,26 +23,14 @@ function Stats({stats}) {
                     <span>Vitesse</span>
                 </div>
 
-                <div className="valeur-stats">
-                    {stats.map((stat, index) => (
-                        <span key={index}>{stat.base_stat}</span>
-                    ))}
+                <div className="valeurs-stats">
+                    <StatBar statValue={stats.hp} id="hp"/>
+                    <StatBar statValue={stats.attack} id="attack"/>
+                    <StatBar statValue={stats.defense} id="defense"/>
+                    <StatBar statValue={stats.special_attack} id="special-attack"/>
+                    <StatBar statValue={stats.special_defense} id="special-defense"/>
+                    <StatBar statValue={stats.speed} id="speed"/>
                 </div>
-
-
-                <div className="barre-stats">
-                    {stats.map((stat, index) => (
-                        <span
-                            key={index}
-                            className="barre-de_stats"
-                            style={{
-                                width: `${stat.base_stat / 255 *100 }%`,
-                                backgroundColor: colors[index]
-                            }}
-                        ></span>
-                    ))}
-                </div>
-
             </div>
         </>
     )

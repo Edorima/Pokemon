@@ -60,7 +60,6 @@
         background-color: #DBDBDB;
         border-radius: 20px;
         gap: 32px;
-        width: 1300px;
     }
 
 
@@ -78,6 +77,7 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        width: 1200px;
     }
 
     .pokemon-card button {
@@ -161,7 +161,7 @@
         display: flex;
         gap: 24px;
 
-        .nom-stats, .valeur-stats, .barre-stats{
+        .nom-stats, .valeurs-stats {
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -170,19 +170,29 @@
         .nom-stats {
             text-align: left;
             font-weight: bold;
+            white-space: nowrap;
         }
 
-        .valeur-stats {
-
-        }
-
-        .barre-stats {
+        .valeurs-stats {
             width: 100%;
         }
-        .barre-de_stats{
-            border-style: solid;
-            height: 20px;
-            border-width: 2px;
+
+
+        .barres-stats {
+            display: flex;
+            gap: 24px;
+            .barre-stats {
+                border-style: solid;
+                height: 20px;
+                border-width: 2px;
+            }
+
+            #hp {background-color: #A8FFA0;}
+            #attack {background-color: #FFA0A0;}
+            #defense {background-color: #FDFFA0;}
+            #special-attack {background-color: #FFD4A0;}
+            #special-defense {background-color: #F6CC5E;}
+            #speed {background-color: #B5FFFB;}
         }
     }
 
