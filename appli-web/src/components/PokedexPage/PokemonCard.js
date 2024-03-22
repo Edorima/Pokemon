@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Stats from "./Stats";
 
 function PokemonCard({ pokemon }) {
     const [ouvert, setOuvert] = useState(false)
@@ -44,15 +45,11 @@ function PokemonCard({ pokemon }) {
                     <div className="center">
                         <strong>Version Shiny</strong> <br/>
                         <img className="pokemon-sprite" src={pokemon.sprites.shiny} alt={`${pokemon.nom} Shiny`} />
-
                     </div>
 
                 </div>
-                <div className="container-details border-detail center">
-                    <strong> Statistiques </strong>
-                    <div className="statistique">
-                        <span> Statistique</span>
-                    </div>
+                <div className="container-details border-detail">
+                    <Stats stats={pokemon.stats}/>
                 </div>
                 <div className="container-details border-detail">3</div>
             </div>

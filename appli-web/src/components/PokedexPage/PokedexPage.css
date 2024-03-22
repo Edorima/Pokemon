@@ -154,9 +154,24 @@
         justify-content: center;
         flex-direction: column;
     }
-    .statistique{
-        padding: 15px;
+
+    .statistique {
+        display: flex;
+        gap: 24px;
+
+        .nom-stats, .valeur-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nom-stats {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .valeur-stats {
+
+        }
     }
-
-
 }

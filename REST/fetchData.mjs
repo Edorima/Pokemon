@@ -20,16 +20,9 @@ if (proxy !== undefined)
  */
 async function fetchData(url) {
     const response = agent != null ?
-        await fetch(url, { agent: agent, headers: {'Content-Type': 'application/json'} }) :
-        await fetch(url, {headers: {'Content-Type': 'application/json'}})
+        await fetch(url, {agent: agent}) :
+        await fetch(url)
     return await response.json()
-}
-
-function normalizeString(str) {
-    return str
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
 }
 
 let dbUrl = 'mongodb://localhost:27017';
@@ -75,9 +68,6 @@ const generationMap = new Map([
     ['generation-vii', 7], ['generation-viii', 8],
 ])
 
-/** @type {Map<string, Capacite>} */
-const movesMap = new Map()
-
 const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
 const talentsURL = 'https://pokeapi.co/api/v2/ability?limit=307'
 const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
@@ -89,6 +79,71 @@ const progressBar = new ConsoleProgressBar({
     startChars: '[', endChars: ']',
     filledPartChars: '=', notFilledPartChars: ' '
 })
+
+const allPokemons = await fetchData(pokemonsURL)
+for (const pokemon of allPokemons.results) {
+    progressBar.addValue()
+    const pokemonData = await fetchData(pokemon.url)
+    const pokemonSpecies = await fetchData(pokemonData.species.url)
+
+    const nom = pokemonSpecies.names.find(
+        name => name.language.name === 'fr'
+    ).name
+
+    const nomNormalise = nom
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+
+    const description = pokemonSpecies.flavor_text_entries.find(
+        d => d.language.name === 'fr'
+    ).flavor_text
+
+    const espece = pokemonSpecies.genera.find(
+        g => g.language.name === 'fr'
+    ).genus
+
+    const stats = pokemonData.stats.reduce((acc, stat) => {
+        const key = stat.stat.name.replace('-', '_')
+        acc[key] = stat.base_stat
+        return acc
+    }, {})
+
+    const pokemonObject = new Pokemon({
+        id: pokemonData.id,
+        nom: nom,
+        nomNormalise: nomNormalise,
+        nomAnglais: pokemonData.name,
+        sprites: {
+            default: pokemonData.sprites.front_default,
+            shiny: pokemonData.sprites.front_shiny
+        },
+        description: description,
+        espece: espece,
+        generation: generationMap.get(pokemonSpecies.generation.name),
+        stats: stats,
+        taille: Number.parseFloat(pokemonData.height) / 10,
+        poids: Number.parseFloat(pokemonData.weight) / 10,
+        capacites: [],
+        talents: {normaux : [], cache: null}
+    })
+
+    const types = []
+    for (const type of pokemonData.types) {
+        const typeObject = typeMap.get(type.type.name)
+        typeObject.pokemons.push(pokemonObject.nom)
+        types.push({slot: type.slot, type: typeObject.nom})
+    }
+    pokemonObject.types = types
+
+    await pokemonCollection.updateOne(
+        {id: pokemonData.id},
+        {$set: pokemonObject},
+        {upsert: true}
+    )
+}
+await pokemonCollection.createIndex({nomNormalise: 1})
+await pokemonCollection.createIndex({nomAnglais: 1})
 
 const allMoves = await fetchData(capaciteURL)
 for (const move of allMoves.results) {
@@ -112,71 +167,19 @@ for (const move of allMoves.results) {
         type: type.nom
     })
     type.capacites.push(moveObject.nom)
-    movesMap.set(moveData.name, moveObject)
+
     await capaciteCollection.updateOne(
         {id: moveData.id},
         {$set: moveObject},
         {upsert: true}
     )
-}
 
-const allPokemons = await fetchData(pokemonsURL)
-for (const pokemon of allPokemons.results) {
-    progressBar.addValue()
-    const pokemonData = await fetchData(pokemon.url)
-    const pokemonSpecies = await fetchData(pokemonData.species.url)
-
-    let pkmMoves = pokemonData.moves
-        .map(pkmMove => movesMap.get(pkmMove.move.name))
-        .filter(e => e !== undefined)
-        .map(move => move.id)
-
-    const nom = pokemonSpecies.names.find(
-        name => name.language.name === 'fr'
-    ).name
-
-    const pokemonObject = new Pokemon({
-        id: pokemonData.id,
-        nom: nom,
-        nomNormalise: normalizeString(nom),
-        nomAnglais: pokemonData.name,
-        sprites: {
-            default: pokemonData.sprites.front_default,
-            shiny: pokemonData.sprites.front_shiny
-        },
-        description: pokemonSpecies.flavor_text_entries.find(
-            d => d.language.name === 'fr'
-        ).flavor_text,
-        espece: pokemonSpecies.genera.find(
-            g => g.language.name === 'fr'
-        ).genus,
-        generation: generationMap.get(pokemonSpecies.generation.name),
-        stats: pokemonData.stats,
-        taille: Number.parseFloat(pokemonData.height) / 10,
-        poids: Number.parseFloat(pokemonData.weight) / 10,
-        capacites: pkmMoves,
-        talents: {
-            normaux : [],
-            cache: null
-        }
-    })
-
-    const types = []
-    for (const type of pokemonData.types) {
-        const typeObject = typeMap.get(type.type.name)
-        typeObject.pokemons.push(pokemonObject.nom)
-        types.push({slot: type.slot, type: typeObject.nom})
-    }
-    pokemonObject.types = types
-
-    await pokemonCollection.updateOne(
-        {id: pokemonData.id},
-        {$set: pokemonObject},
-        {upsert: true}
+    const learnedByPkms = moveData.learned_by_pokemon.map(p => p.name)
+    await pokemonCollection.updateMany(
+        {nomAnglais: {$in: learnedByPkms}},
+        {$addToSet: {capacites: moveData.id}}
     )
 }
-
-await pokemonCollection.createIndex({nomNormalise: 1})
 
 for (const type of typeMap.values()) {
     progressBar.addValue()
@@ -196,15 +199,26 @@ for (const ability of allAbilities.results) {
         a => a.language.name === 'fr'
     ).name
 
-    for (const pokemon of abilityData.pokemon) {
-        const update = pokemon.is_hidden ?
-            {$set: {"talents.cache": nom}} :
-            {$addToSet: {"talents.normaux": nom}}
+    // Tri les talents cache et normaux dans 2 listes distinctes
+    const { hiddenAbility, normalAbility } = abilityData.pokemon.reduce((acc, a) => {
+        if (a.is_hidden)
+            acc.hiddenAbility.push(a)
+        else
+            acc.normalAbility.push(a)
+        return acc
+    }, { hiddenAbility: [], normalAbility: [] })
 
-        await pokemonCollection.updateOne(
-            {nomAnglais: pokemon.pokemon.name},
-            update,
-            {upsert: true}
+    // Liste les mises à jour
+    const abilityUpdates = [
+        {abilities: hiddenAbility, update: {$set: {"talents.cache": nom}}},
+        {abilities: normalAbility, update: {$addToSet: {"talents.normaux": nom}}}
+    ]
+
+    // Mets à jour les pokémons pour leurs ajouter les talents
+    for (const op of abilityUpdates) {
+        await pokemonCollection.updateMany(
+            {nomAnglais: {$in: op.abilities.map(a => a.pokemon.name)}},
+            op.update
         )
     }
 }
