@@ -1,7 +1,6 @@
 "use strict"
 
 import {MongoClient} from "mongodb"
-import Pokemon from "../model/Pokemon.mjs"
 import Objet from "../model/Objet.mjs";
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
@@ -38,14 +37,14 @@ const objetDAO = {
      * @param searchTerm {string}
      * @param limit {number}
      * @param offset {number}
-     * @returns {Promise<Pokemon[]>}
+     * @returns {Promise<Objet[]>}
      */
     findItemsThatStartsWith: async (searchTerm, limit, offset) => {
         const data = await objetDAO.collection.find(
             {nomNormalise: new RegExp('^' + normalizeString(searchTerm))},
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0, sort: {id: 1}}
         )
-        return (await data.toArray()).map(e => new Pokemon(e))
+        return (await data.toArray()).map(e => new Objet(e))
     },
 
     /**
