@@ -35,13 +35,24 @@ export default function PokemonCard({pokemon}) {
                     />
                 </div>
                 <p className="pokemon-description">{pokemon.description}</p>
-                <button onClick={toggleElement} className="details-button">{ouvert ? 'Fermer' : 'Détails'}</button>
+                <button onClick={toggleElement} className="details-button">{ouvert ? 'Fermer' : 'Détails'}
+                    <img
+                        src={ouvert ? "/assets/haut.svg" : "/assets/bas.svg"}
+                        alt={"flèche"}
+                        width='22'
+                        height='13'
+                        loading="lazy"
+
+                    />
+
+                </button>
+
             </div>
             {ouvert && (
-            <div className="pokemon-details-wrapper">
-                <div className="pokemon-information-details" >
-                    <div className="caracteristique" style={{paddingBottom: "18px"}}>
-                        <p><strong>Espèce :</strong> {pokemon.espece}</p>
+                <div className="pokemon-details-wrapper">
+                    <div className="pokemon-information-details">
+                        <div className="caracteristique" style={{paddingBottom: "18px"}}>
+                            <p><strong>Espèce :</strong> {pokemon.espece}</p>
                         <p><strong>Taille :</strong> {pokemon.taille} m</p>
                         <p><strong>Poids :</strong> {pokemon.poids} kg</p>
                         <p><strong>Talents :</strong> {pokemon.talents.normaux.join(" / ")}</p>
