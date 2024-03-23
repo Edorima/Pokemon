@@ -27,6 +27,20 @@ const ENDPOINTS = {
         return ep
     },
 
+    GET_MOVES: (categorie, offset) => {
+        const ep = `/capacite?offset=${offset}`
+        /*if (categorie)
+            return ep + `&categorie=${categorie}`*/
+        return ep
+    },
+
+
+    GET_MOVES_THAT_STARTS_WITH: (searchTerm, categorie, offset) => {
+        const ep = `/capacite/startsWith/${searchTerm}?offset=${offset}`
+        /*if (categorie)
+            return ep + `&categorie=${categorie}`*/
+        return ep
+    },
 
     LOGIN: () => '/login',
 

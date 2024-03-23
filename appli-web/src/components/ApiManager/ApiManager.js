@@ -50,6 +50,16 @@ const ApiManager = {
         })
     },
 
+    getMoves: (categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES(categorie, offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
     /**
      * @param searchTerm {string}
      * @param categorie {number | null}
@@ -58,6 +68,18 @@ const ApiManager = {
      */
     getItemsThatStartsWith: (searchTerm, categorie, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
+            searchTerm, categorie, offset
+        )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    getMovesThatStartsWith: (searchTerm, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
             searchTerm, categorie, offset
         )
         return fetch(url, {

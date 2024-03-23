@@ -77,6 +77,27 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
         res.status(404).send("Not Found")
 })
 
+router.route('/capacite').get(async (req, res) => {
+    const categorie = parseInt(req.query.categorie)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
+    res.status(200).send(await capaciteDAO.getMoves(categorie, limit, offset))
+})
+
+router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
+    const searchTerm = req.params.searchTerm
+    const categorie = parseInt(req.query.categorie)
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
+    const result = await capaciteDAO.findMovesThatStartsWith(
+        searchTerm, categorie, limit, offset
+    )
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
+})
+
 router.route('/objet').get(async (req, res) => {
     const categorie = parseInt(req.query.categorie)
     const limit = parseInt(req.query.limit)
@@ -97,6 +118,7 @@ router.route('/objet/startsWith/:searchTerm').get(async (req, res) => {
     else
         res.status(404).send("Not Found")
 })
+
 
 router.route('/register').post(async (req, res) => {
     const pseudo = req.body.pseudo
