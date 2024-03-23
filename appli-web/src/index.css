@@ -44,6 +44,14 @@ a[type=button], button {
   border-radius: 50px;
   align-items: center;
   gap: 32px;
+
+  #choix {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 16px;
+    outline: none;
+  }
 }
 
 #champRecherche {

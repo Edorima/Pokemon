@@ -1,4 +1,4 @@
-function Form({method, onSubmit, children}) {
+export default function Form({method, onSubmit, children}) {
     return (
         <form method={method} onSubmit={e => {
             e.preventDefault()
@@ -8,5 +8,3 @@ function Form({method, onSubmit, children}) {
         </form>
     )
 }
-
-export default Form

@@ -5,9 +5,9 @@ import LoginPage from "./components/SecurityPage/LoginPage"
 import RegisterPage from "./components/SecurityPage/RegisterPage"
 import Logout from "./components/SecurityPage/Logout"
 import ProfilPage from "./components/ProfilPage/ProfilPage"
-import PokedexPage from "./components/PokedexPage/PokedexPage"
-import ItemsPage from "./components/ItemsPage/ItemsPage"
-import CapacitesPage from "./components/CapacitesPage/CapacitesPage"
+import PokedexPage from "./components/DataPage/PokedexPage/PokedexPage"
+import ItemsPage from "./components/DataPage/ItemsPage/ItemsPage"
+import CapacitesPage from "./components/DataPage/CapacitesPage/CapacitesPage"
 import './index.css'
 import './components/SecurityPage/SecurityPage.css'
 

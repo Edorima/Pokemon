@@ -4,6 +4,7 @@ export default class Objet {
     nomNormalise
     description
     sprite
+    categorie
 
     constructor(obj) {
         Object.assign(this, obj)

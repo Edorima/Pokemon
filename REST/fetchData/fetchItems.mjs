@@ -1,21 +1,16 @@
 import Objet from "../api/model/Objet.mjs"
+import categorieMap from "../api/model/Categorie.mjs"
 import {
     fetchData, normalize,
     progressBar, objetCollection
 } from "./fetchData.mjs"
 
-const baseURL = "https://pokeapi.co/api/v2/item-"
-
-
 export default async function fetchItems() {
     const itemsURL = new Set()
-    const itemAttributeIds = [
-        'attribute/consumable', 'attribute/usable-in-battle',
-        'attribute/holdable', 'attribute/holdable-active',
-        'category/mega-stones', 'category/held-items'
-    ]
-    for (const id of itemAttributeIds) {
-        const itemAttributeData = await fetchData(baseURL + id)
+    for (const category of categorieMap.keys()) {
+        const itemAttributeData = await fetchData(
+            `https://pokeapi.co/api/v2/item-category/${category}`
+        )
         const itemAttributeItems = itemAttributeData.items
         itemAttributeItems.forEach((item) => itemsURL.add(item.url))
     }
@@ -39,7 +34,8 @@ export default async function fetchItems() {
             nomAnglais: itemData.name,
             nomNormalise: normalize(nom),
             description: description,
-            sprite: itemData.sprites.default
+            sprite: itemData.sprites.default,
+            categorie: categorieMap.get(itemData.category.name)
         })
 
         await objetCollection.updateOne(

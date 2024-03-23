@@ -1,6 +1,6 @@
-import FormInput from "../FormInput"
+import FormInput from "./FormInput"
 
-function PasswordInput({onChange}) {
+export default function PasswordInput({onChange}) {
     return (
         <FormInput
             id="password"
@@ -11,5 +11,3 @@ function PasswordInput({onChange}) {
         />
     )
 }
-
-export default PasswordInput

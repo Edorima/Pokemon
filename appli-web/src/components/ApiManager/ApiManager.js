@@ -1,8 +1,6 @@
 import ENDPOINTS from "./EndPoints";
 const BASE_URL = 'http://localhost:8081/api/v1'
 
-export const ELEMENT_PER_PAGE = 20
-
 const ApiManager = {
     /**
      * @param generation {number | null}
@@ -26,7 +24,9 @@ const ApiManager = {
      * @returns {Promise<Response>}
      */
     getPkmsThatStartsWith: (searchTerm, generation, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(searchTerm, generation, offset)
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(
+            searchTerm, generation, offset
+        )
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -36,11 +36,12 @@ const ApiManager = {
     },
 
     /**
+     * @param categorie {number | null}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getItems: (offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_ITEMS(offset)
+    getItems: (categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS(categorie, offset)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -51,11 +52,14 @@ const ApiManager = {
 
     /**
      * @param searchTerm {string}
+     * @param categorie {number | null}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getItemsThatStartsWith: (searchTerm, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(searchTerm, offset)
+    getItemsThatStartsWith: (searchTerm, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
+            searchTerm, categorie, offset
+        )
         return fetch(url, {
             method: 'GET',
             headers: {

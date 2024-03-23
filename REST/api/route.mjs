@@ -78,17 +78,19 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
 })
 
 router.route('/objet').get(async (req, res) => {
+    const categorie = parseInt(req.query.categorie)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    res.status(200).send(await objetDAO.getItems(limit, offset))
+    res.status(200).send(await objetDAO.getItems(categorie, limit, offset))
 })
 
 router.route('/objet/startsWith/:searchTerm').get(async (req, res) => {
     const searchTerm = req.params.searchTerm
+    const categorie = parseInt(req.query.categorie)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
     const result = await objetDAO.findItemsThatStartsWith(
-        searchTerm, limit, offset
+        searchTerm, categorie, limit, offset
     )
     if (result)
         res.status(200).send(result)

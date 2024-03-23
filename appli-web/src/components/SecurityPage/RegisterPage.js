@@ -1,13 +1,13 @@
 import {useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import ApiManager from "../ApiManager/ApiManager"
-import Form from "../Form"
-import UsernameInput from "./UsernameInput"
-import PasswordInput from "./PasswordInput"
+import Form from "./Form/Form"
+import UsernameInput from "./Form/UsernameInput"
+import PasswordInput from "./Form/PasswordInput"
 import ErrorMessage from "../ErrorMessage"
 import LinkButton from "../LinkButton"
 
-function RegisterPage() {
+export default function RegisterPage() {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -81,5 +81,3 @@ function RegisterPage() {
         </div>
     )
 }
-
-export default RegisterPage

@@ -11,14 +11,6 @@
         margin: 16px 0 0;
     }
 
-    #choixGen, #choixTri {
-        background-color: white;
-        border: none;
-        border-radius: 20px;
-        padding: 12px 16px;
-        outline: none;
-    }
-
     /* Liste des Pokémon */
 
     .pokemons {
@@ -32,18 +24,18 @@
 
     .pokemon-card-wrapper {
         display: flex;
-        gap: 16px;
         flex-direction: column;
+        gap: 16px;
         background-color: white;
         border-radius: 20px;
         padding: 16px;
+        width: 1250px;
     }
 
     .pokemon-card {
         display: flex;
         align-items: center;
         gap: 16px;
-        width: 1200px;
     }
 
     .pokemon-card button {

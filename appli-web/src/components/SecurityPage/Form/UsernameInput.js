@@ -1,6 +1,6 @@
-import FormInput from "../FormInput"
+import FormInput from "./FormInput"
 
-function UsernameInput({onChange}) {
+export default function UsernameInput({onChange}) {
     return (
         <FormInput
             id="username"
@@ -10,5 +10,3 @@ function UsernameInput({onChange}) {
         />
     )
 }
-
-export default UsernameInput

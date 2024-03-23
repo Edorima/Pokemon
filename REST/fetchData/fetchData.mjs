@@ -62,7 +62,7 @@ export const typeMap = new Map([
 
 console.log("Downloading data...")
 export const progressBar = new ConsoleProgressBar({
-    maxValue: 2330,
+    maxValue: 2463,
     startChars: '[', endChars: ']',
     filledPartChars: '=', notFilledPartChars: ' '
 })
@@ -70,7 +70,7 @@ export const progressBar = new ConsoleProgressBar({
 await fetchPokemons() // 898 pas
 await fetchMoves() // 826 pas
 await fetchAbilities() // 307 pas
-await fetchItems() // 299 pas
+await fetchItems() // 432 pas
 
 console.log("Data downloaded.")
 

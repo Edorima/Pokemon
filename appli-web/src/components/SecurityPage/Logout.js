@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Logout() {
+export default function Logout() {
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -14,5 +14,3 @@ function Logout() {
 
     return null
 }
-
-export default Logout

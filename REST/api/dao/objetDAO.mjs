@@ -21,13 +21,14 @@ const objetDAO = {
     },
 
     /**
+     * @param categorie {number}
      * @param limit {number}
      * @param offset {number}
      @returns {Promise<Objet[]>}
      */
-    getItems: async (limit, offset) => {
+    getItems: async (categorie, limit, offset) => {
         const data = await objetDAO.collection.find(
-            {},
+            Number.isInteger(categorie) ? {"categorie.id": categorie} : {},
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Objet(e))
@@ -35,14 +36,22 @@ const objetDAO = {
 
     /**
      * @param searchTerm {string}
+     * @param categorie {number}
      * @param limit {number}
      * @param offset {number}
      * @returns {Promise<Objet[]>}
      */
-    findItemsThatStartsWith: async (searchTerm, limit, offset) => {
+    findItemsThatStartsWith: async (searchTerm, categorie, limit, offset) => {
+        const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
+        if (Number.isInteger(categorie))
+            filter['categorie.id'] = categorie
+
         const data = await objetDAO.collection.find(
-            {nomNormalise: new RegExp('^' + normalizeString(searchTerm))},
-            {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0, sort: {id: 1}}
+            filter,
+            {projection: {_id: 0},
+                limit: limit || LIMIT,
+                skip: offset || 0,
+                sort: {nomNormalise: 1}}
         )
         return (await data.toArray()).map(e => new Objet(e))
     },
@@ -52,7 +61,7 @@ const objetDAO = {
      * @returns {Promise<Objet | null>}
      */
     findItemByName: async (name) => {
-        const id = Number.parseInt(name)
+        const id = parseInt(name)
         let filter
         if (Number.isInteger(id)) {
             filter = {id: id}

@@ -1,4 +1,4 @@
-function FormInput({id, placeholder, size, onChange, type}) {
+export default function FormInput({id, placeholder, size, onChange, type}) {
     return (
         <input
             id={id}
@@ -10,5 +10,3 @@ function FormInput({id, placeholder, size, onChange, type}) {
         />
     )
 }
-
-export default FormInput
