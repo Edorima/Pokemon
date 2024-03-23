@@ -27,18 +27,18 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_MOVES: (categorie, offset) => {
+    GET_MOVES: (type, offset) => {
         const ep = `/capacite?offset=${offset}`
-        /*if (categorie)
-            return ep + `&categorie=${categorie}`*/
+        if (type)
+            return ep + `&type=${type}`
         return ep
     },
 
 
-    GET_MOVES_THAT_STARTS_WITH: (searchTerm, categorie, offset) => {
+    GET_MOVES_THAT_STARTS_WITH: (searchTerm, type, offset) => {
         const ep = `/capacite/startsWith/${searchTerm}?offset=${offset}`
-        /*if (categorie)
-            return ep + `&categorie=${categorie}`*/
+        if (type)
+            return ep + `&type=${type}`
         return ep
     },
 

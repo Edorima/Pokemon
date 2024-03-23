@@ -50,8 +50,20 @@ const ApiManager = {
         })
     },
 
-    getMoves: (categorie, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_MOVES(categorie, offset)
+    getMoves: (type, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES(type, offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    getMovesThatStartsWith: (searchTerm, type, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
+            searchTerm, type, offset
+        )
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -62,13 +74,14 @@ const ApiManager = {
 
     /**
      * @param searchTerm {string}
-     * @param categorie {number | null}
+
+     * @param type
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getItemsThatStartsWith: (searchTerm, categorie, offset) => {
+    getItemsThatStartsWith: (searchTerm, type, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
-            searchTerm, categorie, offset
+            searchTerm, type, offset
         )
         return fetch(url, {
             method: 'GET',
@@ -78,17 +91,7 @@ const ApiManager = {
         })
     },
 
-    getMovesThatStartsWith: (searchTerm, categorie, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
-            searchTerm, categorie, offset
-        )
-        return fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    },
+
 
     /**
      * @param username {string}

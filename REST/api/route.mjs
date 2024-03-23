@@ -19,6 +19,7 @@ router.route('/pokemon').get(async (req, res) => {
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
+    console.log(generation)
     res.status(200).send(await pokemonDAO.getPokemons(generation, limit, offset))
 })
 
@@ -69,8 +70,9 @@ router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
 })
 
 router.route('/capacite/:nameOrId').get(async (req, res) => {
+    const type = req.query.type
     const nameOrId = req.params.nameOrId
-    const result = await capaciteDAO.findMoveByNameOrId(nameOrId)
+    const result = await capaciteDAO.findMoveByNameOrId(nameOrId, type)
     if (result)
         res.status(200).send(result)
     else
@@ -78,19 +80,23 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
 })
 
 router.route('/capacite').get(async (req, res) => {
-    const categorie = parseInt(req.query.categorie)
+    const type = req.query.type
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    res.status(200).send(await capaciteDAO.getMoves(categorie, limit, offset))
+    console.log(type)
+    console.log(offset)
+    res.status(200).send(await capaciteDAO.getMoves(type))
+
+
 })
 
 router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
     const searchTerm = req.params.searchTerm
-    const categorie = parseInt(req.query.categorie)
+    const type = req.query.type
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
     const result = await capaciteDAO.findMovesThatStartsWith(
-        searchTerm, categorie, limit, offset
+        searchTerm, type, limit, offset
     )
     if (result)
         res.status(200).send(result)

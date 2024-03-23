@@ -22,9 +22,9 @@ const capaciteDAO = {
         return db.collection('capacite')
     },
 
-    getMoves: async (categorie, limit, offset) => {
+    getMoves: async (type, limit, offset) => {
         const data = await capaciteDAO.collection.find(
-            Number.isInteger(categorie) ? {"categorie.id": categorie} : {},
+            type ? {"type": type}: {},
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Capacite(e))
@@ -34,20 +34,19 @@ const capaciteDAO = {
      * @param nameOrId {string | number}
      * @returns {Promise<Capacite | null>}
      */
-    findMoveByNameOrId: async (nameOrId) => {
+    findMoveByNameOrId: async (nameOrId, type) => {
         const id = Number.parseInt(nameOrId)
         const data = await capaciteDAO.collection.findOne(
-            Number.isInteger(id) ? {id: id} : {nom: nameOrId},
+            type ? {"type": type}: {},
             {projection: {_id: 0}}
         )
         return data ? new Capacite(data) : null
     },
 
-    findMovesThatStartsWith: async (searchTerm, categorie, limit, offset) => {
-        const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
-        /*if (Number.isInteger(categorie))
-            filter['categorie.id'] = categorie
-*/
+    findMovesThatStartsWith: async (searchTerm, type, limit, offset) => {
+        const filter = type ? {nomNormalise: new RegExp('^' + normalizeString(searchTerm)), "type": type}:
+            {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
+
         const data = await capaciteDAO.collection.find(
             filter,
             {projection: {_id: 0},
@@ -58,17 +57,6 @@ const capaciteDAO = {
         return (await data.toArray()).map(e => new Capacite(e))
     },
 
-    /**
-     * @param type {string}
-     * @returns {Promise<Capacite[]>}
-     */
-    findMovesByType: async (type) => {
-        const data = await capaciteDAO.collection.findOne(
-            {"types.type.name": type},
-            {projection: {_id: 0}}
-        )
-        return (await data.toArray()).map(e => new Capacite(e))
-    },
 
     /**
      * @param nameOrId {string | number}
