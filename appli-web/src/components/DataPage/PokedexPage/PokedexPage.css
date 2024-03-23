@@ -39,15 +39,24 @@
     }
 
     .pokemon-card button {
+        display: flex;
+        align-items: center;
+        gap: 16px;
         color: white;
         background-color: #C20808;
         white-space: nowrap;
         border-radius: 20px;
-        padding: 13px;
+        padding: 12px 16px;
         border: none;
         font-size: 18px;
-    }
 
+        img {
+            transition: all 0.5s ease;
+            &.rotated {
+                transform: rotate(-180deg);
+            }
+        }
+    }
 
     .pokemon-card button:hover {
         background-color: #EE1515;
@@ -140,5 +149,4 @@
         #special-defense {background-color: #F6CC5E;}
         #speed {background-color: #B5FFFB;}
     }
-
 }

@@ -35,16 +35,14 @@ export default function PokemonCard({pokemon}) {
                     />
                 </div>
                 <p className="pokemon-description">{pokemon.description}</p>
-                <button onClick={toggleElement} className="details-button">{ouvert ? 'Fermer' : 'Détails'}
+                <button onClick={toggleElement} className="details-button">
+                    Détails
                     <img
-                        src={ouvert ? "/assets/haut.svg" : "/assets/bas.svg"}
+                        className={ouvert && 'rotated'}
+                        src="/assets/arrow.svg"
                         alt={"flèche"}
-                        width='22'
-                        height='13'
                         loading="lazy"
-
                     />
-
                 </button>
 
             </div>
