@@ -1,6 +1,7 @@
 export default class Capacite {
     id
     nom
+    nomNormalise
     nomAnglais
     description
     categorie

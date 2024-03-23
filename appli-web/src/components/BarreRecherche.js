@@ -1,16 +1,15 @@
-function BarreRecherche({handleOnChange, handleKeyDown}) {
+function BarreRecherche({placeholder, handleOnChange, handleKeyDown}) {
     return (
         <div className="barreRecherche">
             <input
                 id="champRecherche"
                 type="search"
-                placeholder="Rechercher un Pokémon..."
+                placeholder={placeholder}
                 onKeyDown={handleKeyDown}
                 onChange={handleOnChange}
+                size={placeholder.length}
             />
-            <button className="boutonRecherche">
-                <img src="/assets/search-normal.svg" alt="Loupe"></img>
-            </button>
+            <img src="/assets/search-normal.svg" alt="Loupe"/>
         </div>
     )
 }

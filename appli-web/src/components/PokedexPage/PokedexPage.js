@@ -1,14 +1,12 @@
 import {useCallback, useEffect, useState} from 'react'
-import BarreRecherche from "./BarreRecherche"
+import BarreRecherche from "../BarreRecherche"
 import PokemonList from "./PokemonList"
 import SelectGeneration from "./SelectGeneration"
 import ErrorMessage from "../ErrorMessage"
-import ApiManager from "../ApiManager/ApiManager"
+import ApiManager, {ELEMENT_PER_PAGE} from "../ApiManager/ApiManager"
 import "./PokedexPage.css"
 
-const ELEMENT_PER_PAGE = 20
-
-function PokedexPage() {
+export default function PokedexPage() {
     const [pokemons, setPokemons] = useState([])
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(true)
@@ -91,10 +89,10 @@ function PokedexPage() {
             <h1>Bienvenue sur le <strong>Pokédex</strong> !</h1>
 
             <div id="recherche">
-
                 <BarreRecherche
                     handleOnChange={handleSearchBarChange}
                     handleKeyDown={handleSearchBarEnter}
+                    placeholder="Rechercher un Pokémon..."
                 />
 
                 <SelectGeneration onChange={handleGenChoice}/>
@@ -103,7 +101,7 @@ function PokedexPage() {
             <ErrorMessage error={errorMessage}/>
 
             <PokemonList
-                errorMessage={errorMessage}
+                error={errorMessage}
                 hasMore={hasMore}
                 handleNextAction={getNextAction()}
                 dataList={pokemons}
@@ -112,5 +110,3 @@ function PokedexPage() {
         </div>
     )
 }
-
-export default PokedexPage

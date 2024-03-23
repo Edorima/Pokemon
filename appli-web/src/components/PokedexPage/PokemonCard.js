@@ -1,30 +1,38 @@
 import { useState } from "react"
-import Stats from "./Stats";
+import PokemonStats from "./PokemonStats"
 
-function PokemonCard({ pokemon }) {
+function PokemonTypes({type1, type2}) {
+    return (
+        <div className="pokemon-types">
+            <img src={`/assets/types/${type1}.jpg`} alt={type1} loading="lazy"/>
+            {type2 &&
+                <img src={`/assets/types/${type2}.jpg`} alt={type2} loading="lazy"/>}
+        </div>
+    )
+}
+
+export default function PokemonCard({pokemon}) {
     const [ouvert, setOuvert] = useState(false)
 
-    const toggleElement = () => {
-        setOuvert(!ouvert)
-    }
+    const toggleElement = () => setOuvert(!ouvert)
 
     return (
         <div className="pokemon-card-wrapper">
             <div className="pokemon-card">
                 <span className="pokemon-number">#{pokemon.id.toString().padStart(3, '0')}</span>
-                <img className="pokemon-sprite" src={pokemon.sprites.default} alt={pokemon.nom} />
+                <img
+                    src={pokemon.sprites.default}
+                    alt={pokemon.nom}
+                    width='120'
+                    height='120'
+                    loading="lazy"
+                />
                 <div className="pokemon-info">
                     <span className="pokemon-name">{pokemon.nom}</span>
-                    <div className="pokemon-types">
-                        {pokemon.types.map(slot => (
-                            <img
-                                key={slot.type}
-                                src={`/assets/types/${slot.type}.jpg`}
-                                alt={slot.type}
-                                loading="lazy">
-                            </img>
-                        ))}
-                    </div>
+                    <PokemonTypes
+                        type1={pokemon.types.type1}
+                        type2={pokemon.types.type2}
+                    />
                 </div>
                 <p className="pokemon-description">{pokemon.description}</p>
                 <button onClick={toggleElement} className="details-button">{ouvert ? 'Fermer' : 'Détails'}</button>
@@ -36,20 +44,19 @@ function PokemonCard({ pokemon }) {
                         <p><strong>Espèce :</strong> {pokemon.espece}</p>
                         <p><strong>Taille :</strong> {pokemon.taille} m</p>
                         <p><strong>Poids :</strong> {pokemon.poids} kg</p>
-                        <p><strong>Talents :</strong> {pokemon.talents.normaux.join(" / ")} </p>
+                        <p><strong>Talents :</strong> {pokemon.talents.normaux.join(" / ")}</p>
 
                         {pokemon.talents.cache &&
-                            <p> <strong>Talent caché :</strong> {pokemon.talents.cache}</p>
-                        }
-                    </div>
-                    <div className="center">
-                        <strong>Version Shiny</strong> <br/>
-                        <img className="pokemon-sprite" src={pokemon.sprites.shiny} alt={`${pokemon.nom} Shiny`} />
+                            <p><strong>Talent caché :</strong> {pokemon.talents.cache}</p>}
                     </div>
 
+                    <div className="center">
+                        <strong>Version Shiny</strong><br/>
+                        <img className="pokemon-sprite" src={pokemon.sprites.shiny} alt={`${pokemon.nom} Shiny`}/>
+                    </div>
                 </div>
 
-                <Stats stats={pokemon.stats}/>
+                <PokemonStats stats={pokemon.stats}/>
 
                 <div className="container-details border-detail">3</div>
             </div>
@@ -59,5 +66,3 @@ function PokemonCard({ pokemon }) {
 
     )
 }
-
-export default PokemonCard

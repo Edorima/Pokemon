@@ -2,11 +2,11 @@
 
 import express from 'express'
 import pokemonDAO from "./dao/pokemonDAO.mjs";
-import capacityDAO from "./dao/capacityDAO.mjs";
+import capaciteDAO from "./dao/capaciteDAO.mjs";
 import utilisateurDAO from "./dao/utilisateurDAO.mjs";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import itemDAO from "./dao/itemDAO.mjs";
+import objetDAO from "./dao/objetDAO.mjs";
 const router = express.Router()
 
 function validateToken(req) {
@@ -70,17 +70,30 @@ router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
 
 router.route('/capacite/:nameOrId').get(async (req, res) => {
     const nameOrId = req.params.nameOrId
-    const result = await capacityDAO.findMoveByNameOrId(nameOrId)
+    const result = await capaciteDAO.findMoveByNameOrId(nameOrId)
     if (result)
         res.status(200).send(result)
     else
         res.status(404).send("Not Found")
 })
 
-router.route('/item').get(async (req, res) => {
+router.route('/objet').get(async (req, res) => {
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    res.status(200).send(await itemDAO.getItems(limit, offset))
+    res.status(200).send(await objetDAO.getItems(limit, offset))
+})
+
+router.route('/objet/startsWith/:searchTerm').get(async (req, res) => {
+    const searchTerm = req.params.searchTerm
+    const limit = parseInt(req.query.limit)
+    const offset = parseInt(req.query.offset)
+    const result = await objetDAO.findItemsThatStartsWith(
+        searchTerm, limit, offset
+    )
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
 })
 
 router.route('/register').post(async (req, res) => {

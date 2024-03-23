@@ -11,38 +11,6 @@
         margin: 16px 0 0;
     }
 
-    #recherche {
-        background-color: #DBDBDB;
-        display: flex;
-        padding: 32px;
-        border-radius: 50px;
-        align-items: center;
-        gap: 32px;
-    }
-
-    #champRecherche {
-        outline: none;
-        border: none;
-        padding: 12px 16px;
-        border-radius: 20px;
-    }
-
-    .barreRecherche {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: white;
-        border-radius: 20px;
-        padding-right: 12px;
-    }
-
-    .boutonRecherche {
-        border: none;
-        background-color: white;
-        border-radius: 20px;
-        cursor: pointer;
-    }
-
     #choixGen, #choixTri {
         background-color: white;
         border: none;
@@ -62,7 +30,6 @@
         gap: 32px;
     }
 
-
     .pokemon-card-wrapper {
         display: flex;
         gap: 16px;
@@ -70,7 +37,6 @@
         background-color: white;
         border-radius: 20px;
         padding: 16px;
-
     }
 
     .pokemon-card {
@@ -121,12 +87,6 @@
         flex-basis: 445px;
     }
 
-    .pokemon-sprite {
-        min-width: 120px;
-        min-height: 120px;
-        max-width: 120px;
-        max-height: 120px;
-    }
     .container-details {
         border-radius: 20px;
         padding: 30px;
@@ -134,7 +94,7 @@
         flex-basis: 0;
     }
 
-    .border-detail{
+    .border-detail {
         border: 2px solid #dfdfdf;
     }
 
@@ -150,7 +110,7 @@
         padding: 30px
     }
 
-    .center{
+    .center {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -161,7 +121,7 @@
         display: flex;
         gap: 24px;
 
-        .nom-stats, .valeurs-stats {
+        .nom-stats, .valeurs-stats, .barres-stats {
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -173,32 +133,20 @@
             white-space: nowrap;
         }
 
-        .valeurs-stats {
-            width: 100%;
+        .barres-stats {width: 100%;}
 
+        .barre-stats {
+            border-style: solid;
+            height: 20px;
+            border-width: 2px;
         }
 
-
-        .barres-stats {
-            display: flex;
-            gap: 24px;
-
-            .barre-stats {
-                border-style: solid;
-                height: 20px;
-                border-width: 2px;
-            }
-            .div-100{
-                width: 27.4333px;
-            }
-
-            #hp {background-color: #A8FFA0;}
-            #attack {background-color: #FFA0A0;}
-            #defense {background-color: #FDFFA0;}
-            #special-attack {background-color: #FFD4A0;}
-            #special-defense {background-color: #F6CC5E;}
-            #speed {background-color: #B5FFFB;}
-        }
+        #hp {background-color: #A8FFA0;}
+        #attack {background-color: #FFA0A0;}
+        #defense {background-color: #FDFFA0;}
+        #special-attack {background-color: #FFD4A0;}
+        #special-defense {background-color: #F6CC5E;}
+        #speed {background-color: #B5FFFB;}
     }
 
 }

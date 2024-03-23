@@ -1,6 +1,8 @@
 import ENDPOINTS from "./EndPoints";
 const BASE_URL = 'http://localhost:8081/api/v1'
 
+export const ELEMENT_PER_PAGE = 20
+
 const ApiManager = {
     /**
      * @param generation {number | null}
@@ -34,12 +36,26 @@ const ApiManager = {
     },
 
     /**
-     * @param nom {string | null}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getItems: (nom, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(nom, offset)
+    getItems: (offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS(offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
+     * @param searchTerm {string}
+     * @param offset {number}
+     * @returns {Promise<Response>}
+     */
+    getItemsThatStartsWith: (searchTerm, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(searchTerm, offset)
         return fetch(url, {
             method: 'GET',
             headers: {

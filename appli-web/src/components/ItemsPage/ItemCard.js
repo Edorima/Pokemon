@@ -1,11 +1,15 @@
-function ItemCard({ nom, image, description }) {
+export default function ItemCard({item}) {
     return (
         <div className="item-card">
-            <img className="item-sprite" src={image} alt={nom}/>
-            <span className="item-name">{nom}</span>
-            <p className="item-description">{description}</p>
+            <img
+                src={item.sprite ?? '/assets/not_found.png'}
+                alt={item.nom}
+                width='120'
+                height='120'
+                loading="lazy"
+            />
+            <span className="item-name">{item.nom}</span>
+            <p>{item.description}</p>
         </div>
     )
 }
-
-export default ItemCard

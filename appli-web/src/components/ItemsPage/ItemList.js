@@ -1,7 +1,7 @@
-import PokemonCard from "./PokemonCard"
 import List from "../List"
+import ItemCard from "./ItemCard"
 
-export default function PokemonList({
+export default function ItemList({
     error,
     handleNextAction,
     hasMore,
@@ -10,16 +10,16 @@ export default function PokemonList({
 }) {
     return (
         <List
-            className="pokemons"
+            className="items"
             dataList={dataList}
             errorMessage={error}
             handleNextAction={handleNextAction}
             hasMore={hasMore}
             loader={loader}>
-            {dataList.map(pokemon => (
-                <PokemonCard
-                    key={pokemon.id}
-                    pokemon={pokemon}
+            {dataList.map(item => (
+                <ItemCard
+                    key={item.nomAnglais}
+                    item={item}
                 />
             ))}
         </List>
