@@ -1,17 +1,7 @@
 import { useState } from "react"
-import ApiManager from "../ApiManager/ApiManager"
-import BoutonAction from "./BoutonAction";
-
-// TODO TEMPORAIRE
-const pokemonsList = []
-ApiManager.getPkms(null, 0)
-    .then(response => response.json())
-    .then(data => pokemonsList.push(...data))
-
-const itemsList = []
-ApiManager.getItems(null, 0)
-    .then(response => response.json())
-    .then(data => itemsList.push(...data))
+import BoutonsAction from "./BoutonsAction"
+import PokemonSelector from "./PokemonSelector"
+import ItemSelector from "./ItemSelector"
 
 /**
  * @param nom {string}
@@ -27,51 +17,14 @@ export default function EquipeCard({nom, initialPokemons}) {
 
     const modifierPokemon = (index) => setEditing(index + 1)
 
-    const selectPokemon = (event) => {
-        const value = event.target.value
-
-        // On trouve le pokémon correspondant
-        const pkm = pokemonsList.find(
-            p => p.nomNormalise === value
-        )
-
-        // Liste des clés du pokémon à garder
-        const keysToKeep = [
-            'id', 'nom', 'nomAnglais',
-            'nomNormalise', 'sprites',
-            'talents', 'types'
-        ]
-
-        // On ne garde que les clés voulu en y ajoutant d'autres caractéristiques
-        const updatedPokemon = keysToKeep.reduce((acc, key) => {
-            if (key in pkm)
-                acc[key] = pkm[key]
-            return acc
-        }, {
-            isShiny: false,
-            objet: null,
-            capacites: {
-                capacite1: null,
-                capacite2: null,
-                capacite3: null,
-                capacite4: null
-            }
-        })
-
-        // On met à jour la liste
-        const updatedPokemons = {...pokemons}
-        updatedPokemons[`pokemon${editing}`] = updatedPokemon
-        setPokemons(updatedPokemons)
-    }
-
     const toggleShiny = (event) => {
         const updatedPokemons = {...pokemons}
-        updatedPokemons[`pokemon${editing}`].isShiny = event.target.checked
+        updatedPokemons[`pokemon${editing}`].chromatique = event.target.checked
         setPokemons(updatedPokemons)
     }
 
     const getSprite = (pokemon) => {
-        return pokemon.isShiny ?
+        return pokemon.chromatique ?
             pokemon.sprites.shiny :
             pokemon.sprites.default
     }
@@ -118,7 +71,20 @@ export default function EquipeCard({nom, initialPokemons}) {
                             key={`pokemon-${index}`}
                             className={getPokemonClassName(index)}
                             onClick={() => modifierPokemon(index)}>
-                            <img src={getSprite(pokemon)} alt={pokemon.nom} width="100" height="100" draggable="false"/>
+                            <img
+                                src={getSprite(pokemon)}
+                                alt={pokemon.nom}
+                                width="120" height="120"
+                                draggable="false"
+                            />
+                            {pokemon.objet &&
+                            <img
+                                className="item-sprite"
+                                src={pokemon.objet.sprite ?? '/assets/not_found.png'}
+                                width="50" height="50"
+                                alt={pokemon.objet.nom}
+                                draggable="false"
+                            />}
                         </button>
                     ) : (
                         <button
@@ -134,22 +100,16 @@ export default function EquipeCard({nom, initialPokemons}) {
 
             <div className="parametragePokemon">
                 <div className="choixPkm">
-                    <select
-                        onChange={selectPokemon}
-                        value={editedPokemon?.nomNormalise || ''}
-                    >
-                        <option hidden>Choix du Pokémon</option>
-                        {pokemonsList.map((pokemon) => (
-                            <option key={pokemon.id} value={pokemon.nomNormalise}>
-                                {pokemon.nom}
-                            </option>
-                        ))}
-                    </select>
+                    <PokemonSelector
+                        pokemons={pokemons}
+                        setPokemons={setPokemons}
+                        editing={editing}
+                    />
 
                     <label className="estChromatique">
                         <input
                             type="checkbox"
-                            checked={editedPokemon?.isShiny || false}
+                            checked={editedPokemon?.chromatique || false}
                             onChange={(e) => editedPokemon && toggleShiny(e)}
                             disabled={!editedPokemon}
                         />
@@ -163,19 +123,20 @@ export default function EquipeCard({nom, initialPokemons}) {
                     </button>
                 </div>
 
-                {editedPokemon && <><hr/>
-                <div className="optionPkm">
-                    <select>
-                        <option value="">Pas d'objet</option>
-                        {itemsList.map((item) => (
-                            <option key={item.nomNormalise} value={item.nomNormalise}>
-                                {item.nom}
-                            </option>
-                        ))}
-                    </select>
-                </div></>}
+                {editedPokemon && <>
+                    <hr/>
+                    <div className="optionPkm">
+                        <ItemSelector
+                            pokemons={pokemons}
+                            setPokemons={setPokemons}
+                            editing={editing}
+                        />
 
-                <BoutonAction canSave={canSave()}/>
+                        {/* TODO Ajouter les capacités */}
+                    </div>
+                </>}
+
+                <BoutonsAction canSave={canSave()}/>
             </div>
         </div>
     )

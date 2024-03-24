@@ -1,4 +1,4 @@
-export default function BoutonAction({canSave}) {
+export default function BoutonsAction({canSave}) {
     return (
         <div className="boutonsAction">
             <button>Annuler</button>
