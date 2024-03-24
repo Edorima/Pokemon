@@ -65,6 +65,10 @@
             cursor: default;
             opacity: 50%;
         }
+
+        &.editing {
+            border-color: gold;
+        }
     }
 
     #creerEquipeWrapper {
@@ -87,5 +91,49 @@
         border: 2px solid black;
         outline: none;
         padding: 8px;
+    }
+
+    .parametragePokemon {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        hr {
+            border: 1px solid black;
+            width: 100%;
+        }
+    }
+
+    .choixPkm {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .estChromatique {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        input {
+            outline: none;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .optionPkm {
+
+    }
+
+    .boutonsAction {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        span {
+            color: red;
+            font-size: 12px;
+        }
     }
 }

@@ -38,7 +38,7 @@ export default function PokemonCard({pokemon}) {
                 <button onClick={toggleElement} className="details-button">
                     Détails
                     <img
-                        className={ouvert && 'rotated'}
+                        className={ouvert ? 'rotated': ''}
                         src="/assets/arrow.svg"
                         alt={"flèche"}
                         loading="lazy"

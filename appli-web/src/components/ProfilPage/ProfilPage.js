@@ -33,7 +33,7 @@ export default function ProfilPage() {
         }
     }, [navigate])
 
-    function validateNomEquipe() {
+    function validerNomEquipe() {
         if (nomEquipe.trim() === '')
             return "Le nom de l'équipe ne peut pas être vide."
 
@@ -47,7 +47,7 @@ export default function ProfilPage() {
     }
 
     function creerEquipe() {
-        const error = validateNomEquipe()
+        const error = validerNomEquipe()
         if (error) {
             setErrorMessage(error)
             return
@@ -59,7 +59,14 @@ export default function ProfilPage() {
                 ...prevProfil,
                 equipes: [
                     ...prevProfil.equipes,
-                    {nom: nomEquipe, pokemons: []}
+                    {nom: nomEquipe, pokemons: {
+                            pokemon1: null,
+                            pokemon2: null,
+                            pokemon3: null,
+                            pokemon4: null,
+                            pokemon5: null,
+                            pokemon6: null
+                    }}
                 ]
             }
         })
