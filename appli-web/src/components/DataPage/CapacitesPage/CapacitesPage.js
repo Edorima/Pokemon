@@ -6,7 +6,7 @@ import {useState} from "react";
 import CapacitesList from "./CapacitesList";
 import SelectData from "../SelectData";
 
-function SelectCategorie({onChange}) {
+function SelectType({onChange}) {
     const map = new Map([
         [1, "Normal"], [2, "Combat"],
         [3, "Vol"], [4, "Poison"], [5, "Sol"],
@@ -45,7 +45,7 @@ export default function CapacitesPage() {
             wrapperId="objetsWrapper"
             pageTitle={<>Voici la liste des <strong>Capacité</strong> !</>}
             searchBarPlaceholder="Rechercher une capacité..."
-            additionalControl={<SelectCategorie onChange={handleCategoryChoice}/>}
+            additionalControl={<SelectType onChange={handleCategoryChoice}/>}
             additionalState={type}
             getData={getMoves}
             getSearchedData={getSearchedMoves}

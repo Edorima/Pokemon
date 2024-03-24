@@ -19,7 +19,7 @@ router.route('/pokemon').get(async (req, res) => {
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    console.log(generation)
+
     res.status(200).send(await pokemonDAO.getPokemons(generation, limit, offset))
 })
 
@@ -83,9 +83,7 @@ router.route('/capacite').get(async (req, res) => {
     const type = req.query.type
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    console.log(type)
-    console.log(offset)
-    res.status(200).send(await capaciteDAO.getMoves(type))
+    res.status(200).send(await capaciteDAO.getMoves(type, limit, offset))
 
 
 })
