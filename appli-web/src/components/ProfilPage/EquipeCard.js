@@ -1,10 +1,6 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
-/**
- * @param nom {string}
- * @param initialPokemons {Object[]}
- */
-function EquipeCard({nom, initialPokemons}) {
+export default function EquipeCard({nom, initialPokemons}) {
     const [pokemons, setPokemons] = useState(initialPokemons)
     const plusButtonsCount = 6 - (pokemons.length > 6 ? 6 : pokemons.length)
 
@@ -12,7 +8,7 @@ function EquipeCard({nom, initialPokemons}) {
         const updatedPokemons = [...pokemons]
         if (index >= pokemons.length) {
             // Logique pour ajouter un nouveau Pokémon
-            updatedPokemons.push({"nom": "Maganon"})
+            updatedPokemons.push({nom: "Maganon", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png"})
             setPokemons(updatedPokemons)
         } else {
             // Logique pour modifier un Pokémon existant
@@ -28,7 +24,7 @@ function EquipeCard({nom, initialPokemons}) {
             <div className="pokemons">
                 {pokemons.slice(0,6).map((pokemon, index) => (
                     <button key={index} className="pokemon" onClick={() => modifierPokemon(index)}>
-                        <img src={`/assets/pokemons/${pokemon.nom}.png`} alt={pokemon.nom}/>
+                        <img src={pokemon.sprite} alt={pokemon.nom} width="100" height="100" draggable="false"/>
                     </button>
                 ))}
                 {[...Array(plusButtonsCount)].map((_, index) => (
@@ -38,7 +34,7 @@ function EquipeCard({nom, initialPokemons}) {
                                 : undefined
                             }
                             disabled={index > 0}>
-                        <img src="/assets/plus.svg" alt="Plus"/>
+                        <img src="/assets/plus.svg" alt="Plus" draggable="false"/>
                     </button>
                 ))}
             </div>
@@ -47,5 +43,3 @@ function EquipeCard({nom, initialPokemons}) {
         </div>
     )
 }
-
-export default EquipeCard

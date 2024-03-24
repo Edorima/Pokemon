@@ -1,13 +1,13 @@
-export default function CapaciteCard({item}) {
+export default function CapaciteCard({capacity}) {
     return (
-        <div className="item-card">
+        <div className="capacity-card">
             <img
-                src={"/assets/types/" + item.type +".jpg" ?? '/assets/not_found.png'}
-                alt={item.nom}
+                src={`/assets/types/${capacity.type}.jpg` ?? '/assets/not_found.png'}
+                alt={capacity.nom}
                 loading="lazy"
             />
-            <span className="item-name">{item.nom}</span>
-            <p>{item.description}</p>
+            <span className="capacity-name">{capacity.nom}</span>
+            <p>{capacity.description}</p>
         </div>
     )
 }

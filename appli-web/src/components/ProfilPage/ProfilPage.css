@@ -23,21 +23,14 @@
         background-color: #EE1515;
     }
 
-    #mesEquipesWrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #DBDBDB;
-        border-radius: 50px;
-        padding: 32px;
-        gap: 16px;
-    }
-
     #mesEquipes {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 32px;
+        padding: 32px;
+        background-color: #DBDBDB;
+        border-radius: 20px;
     }
 
     .equipe {
@@ -75,10 +68,15 @@
     }
 
     #creerEquipeWrapper {
-        display: grid;
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #DBDBDB;
+        border-radius: 50px;
+        padding: 32px;
+        gap: 16px;
 
-        span:first-child {
+        span {
             display: flex;
             gap: 8px;
         }

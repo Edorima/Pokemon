@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import ApiManager from "../ApiManager/ApiManager";
+import { useState, useEffect } from 'react'
+import ApiManager from "../ApiManager/ApiManager"
+import {useNavigate} from "react-router-dom"
+import EquipeCard from "./EquipeCard"
+import ErrorMessage from "../ErrorMessage"
 import './ProfilPage.css'
-import {useNavigate} from "react-router-dom";
-import EquipeCard from "./EquipeCard";
 
-function ProfilPage() {
+export default function ProfilPage() {
     const navigate = useNavigate()
     const [profil, setProfil] = useState(null)
     const [nomEquipe, setNomEquipe] = useState('')
@@ -71,43 +72,37 @@ function ProfilPage() {
         <div id="profilWrapper">
             <h1 id="title">Créez vos <strong>équipes</strong>, {profil?.pseudo} !</h1>
             <a type="button" className="boutonAction" href="/logout">Me déconnecter</a>
-            <div id="mesEquipesWrapper">
-                <div id="creerEquipeWrapper">
-                    <span>
-                        <label htmlFor="nomEquipe" hidden></label>
-                        <input
-                            id="nomEquipe"
-                            placeholder="Nom de l'équipe"
-                            onChange={e => {
-                                setNomEquipe(e.target.value)
-                                setErrorMessage('')
-                            }}/>
-                        <button
-                            onClick={creerEquipe}
-                            id="creerEquipe"
-                            className="boutonAction">
-                            Créer l'équipe
-                        </button>
-                    </span>
-                    <span
-                        id="error-message"
-                        className={errorMessage ? '' : 'hidden'}>
-                        {errorMessage}
-                    </span>
-                </div>
+            <div id="creerEquipeWrapper">
+                <span>
+                    <input
+                        id="nomEquipe"
+                        placeholder="Nom de l'équipe"
+                        value={nomEquipe}
+                        onChange={e => {
+                            setNomEquipe(e.target.value)
+                            setErrorMessage('')
+                        }}/>
+                    <button
+                        onClick={creerEquipe}
+                        id="creerEquipe"
+                        className="boutonAction">
+                        Créer l'équipe
+                    </button>
+                </span>
 
-                <div id="mesEquipes">
-                    {profil?.equipes.map(e =>
-                        <EquipeCard
-                            key={e.nom}
-                            nom={e.nom}
-                            initialPokemons={e.pokemons}
-                        />
-                    )}
-                </div>
+                <ErrorMessage error={errorMessage}/>
             </div>
+
+
+            {profil?.equipes.length !== 0 ? <div id="mesEquipes">
+                {profil?.equipes.map(e =>
+                    <EquipeCard
+                        key={e.nom}
+                        nom={e.nom}
+                        initialPokemons={e.pokemons}
+                    />
+                )}
+            </div> : <span>Vous n'avez aucune équipe !</span>}
         </div>
     )
 }
-
-export default ProfilPage

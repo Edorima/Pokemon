@@ -1,5 +1,5 @@
 import List from "../List"
-import CapaciteCard from "./CapaciteCard";
+import CapaciteCard from "./CapaciteCard"
 export default function CapacitesList({
      error,
      handleNextAction,
@@ -9,16 +9,16 @@ export default function CapacitesList({
  }) {
     return (
         <List
-            className="items"
+            className="capacity"
             dataList={dataList}
             errorMessage={error}
             handleNextAction={handleNextAction}
             hasMore={hasMore}
             loader={loader}>
-            {dataList.map(item => (
+            {dataList.map(capacity => (
                 <CapaciteCard
-                    key={item.nomAnglais}
-                    item={item}
+                    key={capacity.nomAnglais}
+                    capacity={capacity}
                 />
             ))}
         </List>
