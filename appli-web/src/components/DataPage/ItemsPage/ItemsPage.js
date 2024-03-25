@@ -47,8 +47,8 @@ export default function ItemsPage() {
             wrapperId="objetsWrapper"
             pageTitle={<>Voici la liste des <strong>Objets</strong> !</>}
             searchBarPlaceholder="Rechercher un Objet..."
-            additionalControl={<SelectCategorie onChange={handleCategoryChoice}/>}
-            additionalState={category}
+            additionalControls={[<SelectCategorie key={'categorie'} onChange={handleCategoryChoice}/>]}
+            additionalStates={[category]}
             getData={getItems}
             getSearchedData={getSearchedItems}
             renderList={ItemList}

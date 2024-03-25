@@ -43,8 +43,8 @@ export default function CapacitesPage() {
             wrapperId="capaciteWrapper"
             pageTitle={<>Voici la liste des <strong>Capacité</strong> !</>}
             searchBarPlaceholder="Rechercher une capacité..."
-            additionalControl={<SelectType onChange={handleCategoryChoice}/>}
-            additionalState={type}
+            additionalControls={[<SelectType key={'type'} onChange={handleCategoryChoice}/>]}
+            additionalStates={[type]}
             getData={getMoves}
             getSearchedData={getSearchedMoves}
             renderList={CapacitesList}

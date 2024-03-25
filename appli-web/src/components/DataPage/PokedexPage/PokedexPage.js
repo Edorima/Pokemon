@@ -38,8 +38,8 @@ export default function PokedexPage() {
             wrapperId="pokedexWrapper"
             pageTitle={<>Bienvenue sur le <strong>Pokédex</strong> !</>}
             searchBarPlaceholder="Rechercher un Pokémon..."
-            additionalControl={<SelectGeneration onChange={handleGenChoice}/>}
-            additionalState={generation}
+            additionalControls={[<SelectGeneration key={'generation'} onChange={handleGenChoice}/>]}
+            additionalStates={[generation]}
             getData={getPkms}
             getSearchedData={getSearchedPkms}
             renderList={PokemonList}

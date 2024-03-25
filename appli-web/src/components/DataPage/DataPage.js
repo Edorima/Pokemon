@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react"
+import React, {useCallback, useEffect, useState} from "react"
 import ErrorMessage from "../ErrorMessage"
 
 const ELEMENT_PER_PAGE = 20
@@ -27,8 +27,8 @@ export default function DataPage({
     wrapperId,
     pageTitle,
     searchBarPlaceholder,
-    additionalControl,
-    additionalState,
+    additionalControls = [],
+    additionalStates = [],
     getData,
     getSearchedData,
     renderList,
@@ -57,7 +57,7 @@ export default function DataPage({
             getData({offset: reset ? 0 : (page-1)*ELEMENT_PER_PAGE}),
             reset
         ).then()
-    }, [fetchData, page, additionalState])
+    }, [fetchData, page, ...additionalStates])
 
     const fetchSearchedData = useCallback((reset = false) => {
         const normalizedST = searchTerm
@@ -71,7 +71,7 @@ export default function DataPage({
                 offset: reset ? 0 : (page-1)*ELEMENT_PER_PAGE
             }), reset
         ).then()
-    }, [fetchData, page, searchTerm, additionalState])
+    }, [fetchData, page, searchTerm, ...additionalStates])
 
     const handleSearchBarChange = (event) => {
         if (event.target.value === '')
@@ -93,7 +93,7 @@ export default function DataPage({
             fetchSearchedData(true)
         else
             fetchNormalData(true)
-    }, [searchTerm, additionalState])
+    }, [searchTerm, ...additionalStates])
 
     return (
         <div id={wrapperId}>
@@ -106,7 +106,7 @@ export default function DataPage({
                     placeholder={searchBarPlaceholder}
                 />
 
-                {additionalControl}
+                {additionalControls}
             </div>
 
             <ErrorMessage error={errorMessage}/>

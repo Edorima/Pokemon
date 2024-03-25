@@ -60,12 +60,9 @@ export default function ProfilPage() {
                 equipes: [
                     ...prevProfil.equipes,
                     {nom: nomEquipe, pokemons: {
-                            pokemon1: null,
-                            pokemon2: null,
-                            pokemon3: null,
-                            pokemon4: null,
-                            pokemon5: null,
-                            pokemon6: null
+                        pokemon1: null, pokemon2: null,
+                        pokemon3: null, pokemon4: null,
+                        pokemon5: null, pokemon6: null
                     }}
                 ]
             }
