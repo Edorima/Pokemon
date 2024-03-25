@@ -81,9 +81,10 @@ router.route('/capacite/:nameOrId').get(async (req, res) => {
 
 router.route('/capacite').get(async (req, res) => {
     const type = req.query.type
+    const categorie = req.query.categorie
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    res.status(200).send(await capaciteDAO.getMoves(type, limit, offset))
+    res.status(200).send(await capaciteDAO.getMoves(type,categorie, limit, offset))
 
 
 })
@@ -91,10 +92,11 @@ router.route('/capacite').get(async (req, res) => {
 router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
     const searchTerm = req.params.searchTerm
     const type = req.query.type
+    const categorie = req.query.categorie
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
     const result = await capaciteDAO.findMovesThatStartsWith(
-        searchTerm, type, limit, offset
+        searchTerm, type, categorie, limit, offset
     )
     if (result)
         res.status(200).send(result)

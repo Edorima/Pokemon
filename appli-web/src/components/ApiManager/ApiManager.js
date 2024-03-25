@@ -50,8 +50,8 @@ const ApiManager = {
         })
     },
 
-    getMoves: (type, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_MOVES(type, offset)
+    getMoves: (type, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES(type,categorie, offset)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -60,9 +60,9 @@ const ApiManager = {
         })
     },
 
-    getMovesThatStartsWith: (searchTerm, type, offset) => {
+    getMovesThatStartsWith: (searchTerm, type,categorie, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
-            searchTerm, type, offset
+            searchTerm, type, categorie, offset
         )
         return fetch(url, {
             method: 'GET',

@@ -25,16 +25,37 @@ function SelectType({onChange}) {
     )
 }
 
+function SelectCategorie({onChange}) {
+    const categorie = [
+        'Physique', 'Spéciale', 'Statut'
+    ]
+
+    return (
+        <SelectData
+            onChange={onChange}
+            defaultOptionText="Toutes les catégories">
+            {categorie.map((value, index) => (
+                <option key={index} value={value}>{value}</option>
+            ))}
+        </SelectData>
+    )
+}
+
 
 export default function CapacitesPage() {
     const [type, setType] = useState(null)
+    const [categorie, setCategorie] = useState(null)
 
-    const getMoves = ({offset}) => ApiManager.getMoves(type, offset)
+    const getMoves = ({offset}) => ApiManager.getMoves(type, categorie, offset)
     const getSearchedMoves = ({searchTerm, offset}) =>
-        ApiManager.getMovesThatStartsWith(searchTerm, type, offset)
-    const handleCategoryChoice = (event) => {
+        ApiManager.getMovesThatStartsWith(searchTerm, type, categorie, offset)
+    const handleTypeChoice = (event) => {
         const value = event.target.value
         setType(value ? value : null)
+    }
+    const handleCategoryChoice = (event) => {
+        const value = event.target.value
+        setCategorie(value ? value : null)
     }
 
 
@@ -43,8 +64,11 @@ export default function CapacitesPage() {
             wrapperId="capaciteWrapper"
             pageTitle={<>Voici la liste des <strong>Capacité</strong> !</>}
             searchBarPlaceholder="Rechercher une capacité..."
-            additionalControls={[<SelectType key={'type'} onChange={handleCategoryChoice}/>]}
-            additionalStates={[type]}
+            additionalControls={[
+                <SelectType key={'type'} onChange={handleTypeChoice}/>,
+                <SelectCategorie key={'categorie'} onChange={handleCategoryChoice}/>
+            ]}
+            additionalStates={[type, categorie]}
             getData={getMoves}
             getSearchedData={getSearchedMoves}
             renderList={CapacitesList}

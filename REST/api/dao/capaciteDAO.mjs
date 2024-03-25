@@ -22,30 +22,39 @@ const capaciteDAO = {
         return db.collection('capacite')
     },
 
-    getMoves: async (type, limit, offset) => {
+    /**
+     * @param type {string | undefined}}
+     * @param categorie {string | undefined}
+     * @param limit {number}
+     * @param offset {number}
+     * @returns {Promise<Capacite[]>}
+     */
+    getMoves: async (type, categorie,  limit, offset) => {
+        const filter = {
+            ...(type ? { "type": type } : {}),
+            ...(categorie ? { "categorie": categorie } : {})
+        }
         const data = await capaciteDAO.collection.find(
-            type ? {"type": type}: {},
+            filter,
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Capacite(e))
     },
 
     /**
-     * @param nameOrId {string | number}
-     * @returns {Promise<Capacite | null>}
+     * @param searchTerm {string}
+     * @param type {string | undefined}
+     * @param categorie {string | undefined}
+     * @param limit {number}
+     * @param offset {number}
+     * @returns {Promise<Capacite[]>}
      */
-    findMoveByNameOrId: async (nameOrId, type) => {
-        const id = Number.parseInt(nameOrId)
-        const data = await capaciteDAO.collection.findOne(
-            type ? {"type": type}: {},
-            {projection: {_id: 0}}
-        )
-        return data ? new Capacite(data) : null
-    },
-
-    findMovesThatStartsWith: async (searchTerm, type, limit, offset) => {
-        const filter = type ? {nomNormalise: new RegExp('^' + normalizeString(searchTerm)), "type": type}:
-            {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
+    findMovesThatStartsWith: async (searchTerm, type, categorie, limit, offset) => {
+        const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
+        if (type)
+            filter.type = type
+        if (categorie)
+            filter.categorie = categorie
 
         const data = await capaciteDAO.collection.find(
             filter,
@@ -55,15 +64,6 @@ const capaciteDAO = {
                 sort: {nomNormalise: 1}}
         )
         return (await data.toArray()).map(e => new Capacite(e))
-    },
-
-
-    /**
-     * @param nameOrId {string | number}
-     * @returns {Promise<Capacite[]>}
-     */
-    findPokemonMovesByNamOrId: async (nameOrId) => {
-        let pokemon = pokemonDAO.findPokemonByNameOrId(nameOrId)
     }
 }
 
