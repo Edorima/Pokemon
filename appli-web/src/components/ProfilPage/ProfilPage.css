@@ -12,6 +12,7 @@
 
     .choix {
         width: 180px;
+
         border: 1px solid black;
         border-radius: 5px;
         background-color: white;
@@ -148,7 +149,47 @@
     }
 
     .optionPkm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
 
+        .separator {
+            border: 1px solid black;
+            height: 248px;
+        }
+    }
+
+    .capacitesPkm {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .capacite-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        gap: 8px;
+        width: 248px;
+        height: 108px;
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        select {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Hide the select but keep it functional */
+        }
     }
 
     .boutonsAction {

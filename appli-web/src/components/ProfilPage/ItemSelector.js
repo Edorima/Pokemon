@@ -1,16 +1,19 @@
+import {useEffect, useState} from "react"
 import ApiManager from "../ApiManager/ApiManager"
-
-// TODO TEMPORAIRE
-const itemsList = []
-ApiManager.getItems(null, 0)
-    .then(response => response.json())
-    .then(data => itemsList.push(...data))
 
 export default function ItemSelector({
     pokemons,
     setPokemons,
     editing
 }) {
+    const [itemsList, setItemsList] = useState([])
+
+    useEffect(() => {
+        ApiManager.getItems(0, 0)
+            .then(response => response.json())
+            .then(data => setItemsList(data))
+    }, [])
+
     const selectItem = (event) => {
         const value = event.target.value
         const updatedPokemons = {...pokemons}

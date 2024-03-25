@@ -2,12 +2,21 @@ import { useState } from "react"
 import BoutonsAction from "./BoutonsAction"
 import PokemonSelector from "./PokemonSelector"
 import ItemSelector from "./ItemSelector"
+import CapacitesSelector from "./CapacitesSelector"
+import ApiManager from "../ApiManager/ApiManager"
 
 /**
  * @param nom {string}
  * @param initialPokemons {Object}
+ * @param profil {Object}
+ * @param setProfil {(Object) => void}
  */
-export default function EquipeCard({nom, initialPokemons}) {
+export default function EquipeCard({
+    nom,
+    initialPokemons,
+    profil,
+    setProfil
+}) {
     const [pokemons, setPokemons] = useState(initialPokemons)
     const [editing, setEditing] = useState(1)
 
@@ -15,7 +24,7 @@ export default function EquipeCard({nom, initialPokemons}) {
     const firstPlusButtonIndex =
         Object.values(pokemons).findIndex(pokemon => pokemon === null)
 
-    const modifierPokemon = (index) => setEditing(index + 1)
+    const editPokemon = (index) => setEditing(index + 1)
 
     const toggleShiny = (event) => {
         const updatedPokemons = {...pokemons}
@@ -42,6 +51,15 @@ export default function EquipeCard({nom, initialPokemons}) {
         setPokemons(updatedPokemons)
     }
 
+    const onCancel = () => {
+        const updatedProfil = {...profil}
+        updatedProfil.equipes =
+            updatedProfil.equipes.filter(
+                e => e.nom !== nom
+            )
+        setProfil(updatedProfil)
+    }
+
     const canSave = () => {
         // On vérifie s'il y a au moins un Pokémon
         if (!pokemons.pokemon1)
@@ -53,9 +71,16 @@ export default function EquipeCard({nom, initialPokemons}) {
             comme valide car on cherche des pokémons non null sans capacité */
             if (!pokemon) return true
 
-            // Vérifier si le pokémon a au moins la capacite1 non null
-            return !!pokemon.capacites.capacite1
+            // Vérifier si le pokémon a au moins une des capacités non null
+            return Object.values(pokemon.capacites)
+                .some(capacite => capacite !== null)
         })
+    }
+
+    const onSave = () => {
+        const token = localStorage.getItem('token')
+        const equipe = {nom: nom, pokemons: pokemons}
+        ApiManager.addTeam(token, equipe).then()
     }
 
     return (
@@ -70,7 +95,7 @@ export default function EquipeCard({nom, initialPokemons}) {
                         <button
                             key={`pokemon-${index}`}
                             className={getPokemonClassName(index)}
-                            onClick={() => modifierPokemon(index)}>
+                            onClick={() => editPokemon(index)}>
                             <img
                                 src={getSprite(pokemon)}
                                 alt={pokemon.nom}
@@ -90,7 +115,7 @@ export default function EquipeCard({nom, initialPokemons}) {
                         <button
                             key={`plus-${index}`}
                             className={getPokemonClassName(index)}
-                            onClick={() => index === firstPlusButtonIndex && modifierPokemon(index)}
+                            onClick={() => index === firstPlusButtonIndex && editPokemon(index)}
                             disabled={index !== firstPlusButtonIndex}>
                             <img src="/assets/plus.svg" alt="Plus" draggable="false"/>
                         </button>
@@ -119,7 +144,7 @@ export default function EquipeCard({nom, initialPokemons}) {
                     <button
                         onClick={() => editedPokemon && deletePokemon()}
                         disabled={!editedPokemon}>
-                        Supprimer le pokémon
+                        Supprimer le Pokémon
                     </button>
                 </div>
 
@@ -132,11 +157,21 @@ export default function EquipeCard({nom, initialPokemons}) {
                             editing={editing}
                         />
 
-                        {/* TODO Ajouter les capacités */}
+                        <div className="separator"/>
+
+                        <CapacitesSelector
+                            pokemons={pokemons}
+                            setPokemons={setPokemons}
+                            editing={editing}
+                        />
                     </div>
                 </>}
 
-                <BoutonsAction canSave={canSave()}/>
+                <BoutonsAction
+                    canSave={canSave()}
+                    onCancel={onCancel}
+                    onSave={onSave}
+                />
             </div>
         </div>
     )

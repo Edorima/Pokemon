@@ -33,7 +33,7 @@ export default function ProfilPage() {
         }
     }, [navigate])
 
-    function validerNomEquipe() {
+    const validerNomEquipe = () => {
         if (nomEquipe.trim() === '')
             return "Le nom de l'équipe ne peut pas être vide."
 
@@ -46,7 +46,7 @@ export default function ProfilPage() {
         return null
     }
 
-    function creerEquipe() {
+    const creerEquipe = () => {
         const error = validerNomEquipe()
         if (error) {
             setErrorMessage(error)
@@ -104,6 +104,8 @@ export default function ProfilPage() {
                         key={e.nom}
                         nom={e.nom}
                         initialPokemons={e.pokemons}
+                        profil={profil}
+                        setProfil={setProfil}
                     />
                 )}
             </div> : <span>Vous n'avez aucune équipe !</span>}

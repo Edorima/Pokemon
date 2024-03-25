@@ -1,4 +1,5 @@
 export default class Pokemon {
+    /** @param id {number} */
     id
     nom
     nomNormalise

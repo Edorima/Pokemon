@@ -1,10 +1,9 @@
+import {useState} from "react"
+import DataPage from "../DataPage"
+import CapacitesList from "./CapacitesList"
+import SelectData from "../SelectData"
+import ApiManager from "../../ApiManager/ApiManager"
 import './CapacitesPage.css'
-import DataPage from "../DataPage";
-
-import ApiManager from "../../ApiManager/ApiManager";
-import {useState} from "react";
-import CapacitesList from "./CapacitesList";
-import SelectData from "../SelectData";
 
 function SelectType({onChange}) {
     const types = [
@@ -43,19 +42,19 @@ function SelectCategorie({onChange}) {
 
 
 export default function CapacitesPage() {
-    const [type, setType] = useState(null)
-    const [categorie, setCategorie] = useState(null)
+    const [type, setType] = useState('')
+    const [categorie, setCategorie] = useState('')
 
     const getMoves = ({offset}) => ApiManager.getMoves(type, categorie, offset)
     const getSearchedMoves = ({searchTerm, offset}) =>
         ApiManager.getMovesThatStartsWith(searchTerm, type, categorie, offset)
     const handleTypeChoice = (event) => {
         const value = event.target.value
-        setType(value ? value : null)
+        setType(value)
     }
     const handleCategoryChoice = (event) => {
         const value = event.target.value
-        setCategorie(value ? value : null)
+        setCategorie(value)
     }
 
     return (

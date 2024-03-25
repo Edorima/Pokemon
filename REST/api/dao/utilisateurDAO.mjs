@@ -38,6 +38,26 @@ const utilisateurDAO = {
         const mdpCrypte = await bcrypt.hash(motDePasse, 10)
         await utilisateur.insertOne(new Utilisateur({pseudo: pseudo, motDePasse: mdpCrypte}))
         return true
+    },
+
+    /**
+     * @param pseudo {string}
+     * @param equipe {Object}
+     * @return {Promise<boolean>}
+     */
+    addTeam: async (pseudo, equipe) => {
+        const collection = utilisateurDAO.collection
+        const filter = {pseudo: pseudo}
+
+        const user = await collection.findOne(filter)
+        const teamExists = user.equipes.find(t => t.nom === equipe.nom)
+        if (teamExists)
+            return false
+
+        await utilisateurDAO.collection.updateOne(
+            filter, {$push: {equipes: equipe}}
+        )
+        return true
     }
 }
 

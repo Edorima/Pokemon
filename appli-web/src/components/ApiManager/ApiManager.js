@@ -1,9 +1,9 @@
-import ENDPOINTS from "./EndPoints";
+import ENDPOINTS from "./EndPoints"
 const BASE_URL = 'http://localhost:8081/api/v1'
 
 const ApiManager = {
     /**
-     * @param generation {number | null}
+     * @param generation {number}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
@@ -36,7 +36,7 @@ const ApiManager = {
     },
 
     /**
-     * @param categorie {number | null}
+     * @param categorie {number}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
@@ -50,19 +50,15 @@ const ApiManager = {
         })
     },
 
-    getMoves: (type, categorie, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_MOVES(type,categorie, offset)
-        return fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    },
-
-    getMovesThatStartsWith: (searchTerm, type,categorie, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
-            searchTerm, type, categorie, offset
+    /**
+     * @param searchTerm {string}
+     * @param categorie {number}
+     * @param offset {number}
+     * @returns {Promise<Response>}
+     */
+    getItemsThatStartsWith: (searchTerm, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
+            searchTerm, categorie, offset
         )
         return fetch(url, {
             method: 'GET',
@@ -73,16 +69,13 @@ const ApiManager = {
     },
 
     /**
-     * @param searchTerm {string}
-
-     * @param type
+     * @param type {string}
+     * @param categorie {string}
      * @param offset {number}
      * @returns {Promise<Response>}
      */
-    getItemsThatStartsWith: (searchTerm, type, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
-            searchTerm, type, offset
-        )
+    getMoves: (type, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES(type, categorie, offset)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -91,7 +84,24 @@ const ApiManager = {
         })
     },
 
-
+    /**
+     * @param searchTerm {string}
+     * @param type {string}
+     * @param categorie {string}
+     * @param offset {number}
+     * @return {Promise<Response>}
+     */
+    getMovesThatStartsWith: (searchTerm, type, categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
+            searchTerm, type, categorie, offset
+        )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
 
     /**
      * @param username {string}
@@ -105,7 +115,7 @@ const ApiManager = {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ pseudo: username, motDePasse: password }),
+            body: JSON.stringify({pseudo: username, motDePasse: password}),
         })
     },
 
@@ -130,13 +140,30 @@ const ApiManager = {
      * @returns {Promise<Response>}
      */
     getProfil: (token) => {
-        const url = BASE_URL + ENDPOINTS.GET_PROFIL()
+        const url = BASE_URL + ENDPOINTS.PROFIL()
         return fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
+        })
+    },
+
+    /**
+     * @param token {string}
+     * @param equipe {Object}
+     * @return {Promise<Response>}
+     */
+    addTeam: (token, equipe) => {
+        const url = BASE_URL + ENDPOINTS.PROFIL()
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({equipe: equipe})
         })
     }
 }

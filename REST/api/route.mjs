@@ -1,12 +1,12 @@
 "use strict"
 
 import express from 'express'
-import pokemonDAO from "./dao/pokemonDAO.mjs";
-import capaciteDAO from "./dao/capaciteDAO.mjs";
-import utilisateurDAO from "./dao/utilisateurDAO.mjs";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import objetDAO from "./dao/objetDAO.mjs";
+import pokemonDAO from "./dao/pokemonDAO.mjs"
+import capaciteDAO from "./dao/capaciteDAO.mjs"
+import utilisateurDAO from "./dao/utilisateurDAO.mjs"
+import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
+import objetDAO from "./dao/objetDAO.mjs"
 const router = express.Router()
 
 function validateToken(req) {
@@ -69,16 +69,6 @@ router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
     )
 })
 
-router.route('/capacite/:nameOrId').get(async (req, res) => {
-    const type = req.query.type
-    const nameOrId = req.params.nameOrId
-    const result = await capaciteDAO.findMoveByNameOrId(nameOrId, type)
-    if (result)
-        res.status(200).send(result)
-    else
-        res.status(404).send("Not Found")
-})
-
 router.route('/capacite').get(async (req, res) => {
     const type = req.query.type
     const categorie = req.query.categorie
@@ -125,7 +115,6 @@ router.route('/objet/startsWith/:searchTerm').get(async (req, res) => {
         res.status(404).send("Not Found")
 })
 
-
 router.route('/register').post(async (req, res) => {
     const pseudo = req.body.pseudo
     const motDePasse = req.body.motDePasse
@@ -167,22 +156,38 @@ router.route('/login').post(async (req, res) => {
     res.json({ success: true, token: token })
 })
 
-router.route('/profil').get(async (req, res) => {
-    try {
-        // Valider le token de l'utilisateur
-        const userPayload = validateToken(req)
+router
+    .route('/profil')
+        .get(async (req, res) => {
+            try {
+                // Valider le token de l'utilisateur
+                const userPayload = validateToken(req)
 
-        const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
+                const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
 
-        if (!utilisateur) {
-            return res.status(404).send()
-        }
+                if (!utilisateur) {
+                    return res.status(404).send()
+                }
 
-        const { motDePasse, _id, ...userData } = utilisateur
-        res.json(userData)
-    } catch (error) {
-        res.status(401).send()
-    }
-})
+                const { motDePasse, _id, ...userData } = utilisateur
+                res.json(userData)
+            } catch (error) {
+                res.status(401).send()
+            }
+        })
+        .post(async (req, res) => {
+            const equipe = req.body.equipe
+            try {
+                // Valider le token de l'utilisateur
+                const userPayload = validateToken(req)
+
+                await utilisateurDAO.addTeam(
+                    userPayload.pseudo, equipe
+                ) ? res.status(201).send() :
+                res.status(409).send()
+            } catch (error) {
+                res.status(401).send()
+            }
+        })
 
 export default router

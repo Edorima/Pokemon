@@ -9,7 +9,8 @@ function SelectGeneration({onChange}) {
     return (
         <SelectData
             onChange={onChange}
-            defaultOptionText="Toutes les générations">
+            defaultOptionText="Toutes les générations"
+            defaultOptionValue='0'>
             {Array.from({length: 8}, (_, i) => (
                 <option key={i} value={i + 1}>{`Génération ${i + 1}`}</option>
             ))}
@@ -18,7 +19,7 @@ function SelectGeneration({onChange}) {
 }
 
 export default function PokedexPage() {
-    const [generation, setGeneration] = useState(null)
+    const [generation, setGeneration] = useState(0)
 
     const getPkms = useCallback(({offset}) => {
         return ApiManager.getPkms(generation, offset)
@@ -30,7 +31,7 @@ export default function PokedexPage() {
 
     const handleGenChoice = (event) => {
         const value = event.target.value
-        setGeneration(value ? parseInt(value) : null)
+        setGeneration(parseInt(value))
     }
 
     return (

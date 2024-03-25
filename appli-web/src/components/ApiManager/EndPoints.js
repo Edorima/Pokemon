@@ -50,7 +50,7 @@ const ENDPOINTS = {
 
     REGISTER: () => '/register',
 
-    GET_PROFIL: () => '/profil',
+    PROFIL: () => '/profil',
 }
 
 export default ENDPOINTS

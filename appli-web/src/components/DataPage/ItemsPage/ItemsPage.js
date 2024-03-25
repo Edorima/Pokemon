@@ -31,7 +31,7 @@ function SelectCategorie({onChange}) {
 }
 
 export default function ItemsPage() {
-    const [category, setCategory] = useState(null)
+    const [category, setCategory] = useState(0)
 
     const getItems = ({offset}) => ApiManager.getItems(category, offset)
     const getSearchedItems = ({searchTerm, offset}) =>
