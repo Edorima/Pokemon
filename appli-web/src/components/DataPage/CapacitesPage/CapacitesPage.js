@@ -58,7 +58,6 @@ export default function CapacitesPage() {
         setCategorie(value ? value : null)
     }
 
-
     return (
         <DataPage
             wrapperId="capaciteWrapper"

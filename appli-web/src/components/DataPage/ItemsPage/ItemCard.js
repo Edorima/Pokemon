@@ -1,6 +1,6 @@
 export default function ItemCard({item}) {
     return (
-        <div className="item-card">
+        <div className="card-display">
             <img
                 src={item.sprite ?? '/assets/not_found.png'}
                 alt={item.nom}
@@ -8,7 +8,7 @@ export default function ItemCard({item}) {
                 height='120'
                 loading="lazy"
             />
-            <span className="item-name">{item.nom}</span>
+            <span className="common-name">{item.nom}</span>
             <p>{item.description}</p>
         </div>
     )

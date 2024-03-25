@@ -18,7 +18,7 @@ export default function PokemonCard({pokemon}) {
 
     return (
         <div className="pokemon-card-wrapper">
-            <div className="pokemon-card">
+            <div className="card-display">
                 <span className="pokemon-number">#{pokemon.id.toString().padStart(3, '0')}</span>
                 <img
                     src={pokemon.sprites.default}
@@ -28,7 +28,7 @@ export default function PokemonCard({pokemon}) {
                     loading="lazy"
                 />
                 <div className="pokemon-info">
-                    <span className="pokemon-name">{pokemon.nom}</span>
+                    <span className="common-name">{pokemon.nom}</span>
                     <PokemonTypes
                         type1={pokemon.types.type1}
                         type2={pokemon.types.type2}

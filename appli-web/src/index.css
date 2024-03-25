@@ -69,3 +69,28 @@ a[type=button], button {
   border-radius: 20px;
   padding-right: 12px;
 }
+
+#capaciteWrapper , #objetsWrapper , #pokedexWrapper {
+
+  .list{
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    background-color: #DBDBDB;
+    border-radius: 20px;
+    gap: 32px;
+  }
+
+  .card-display{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .common-name{
+    font-size: 24px;
+    white-space: nowrap;
+    font-weight: bold;
+
+  }
+}

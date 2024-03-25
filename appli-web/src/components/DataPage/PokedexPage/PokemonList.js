@@ -10,7 +10,7 @@ export default function PokemonList({
 }) {
     return (
         <List
-            className="pokemons"
+            className="list"
             dataList={dataList}
             errorMessage={error}
             handleNextAction={handleNextAction}

@@ -9,7 +9,7 @@ export default function CapacitesList({
  }) {
     return (
         <List
-            className="capacity"
+            className="list"
             dataList={dataList}
             errorMessage={error}
             handleNextAction={handleNextAction}

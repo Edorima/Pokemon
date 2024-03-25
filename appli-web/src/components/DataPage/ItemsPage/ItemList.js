@@ -10,7 +10,7 @@ export default function ItemList({
 }) {
     return (
         <List
-            className="items"
+            className="list"
             dataList={dataList}
             errorMessage={error}
             handleNextAction={handleNextAction}
