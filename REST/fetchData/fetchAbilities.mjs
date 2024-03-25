@@ -3,13 +3,20 @@ import {
     pokemonCollection
 } from "./fetchData.mjs"
 
-const talentsURL = 'https://pokeapi.co/api/v2/ability?limit=307'
+
 
 /**
  * Une fonction pour télécharger les données concernant les talents
  * des Pokémon et leurs ajouter en base de données.
  */
-export default async function fetchAbilities() {
+export default async function fetchAbilities(offset = 0) {
+    const limit = 307
+    if (offset >= limit) {
+        progressBar.addValue(limit)
+        return
+    }
+    progressBar.addValue(offset)
+    const talentsURL = `https://pokeapi.co/api/v2/ability?limit=${limit-offset}&offset=${offset}`
     const allAbilities = await fetchData(talentsURL)
     for (const ability of allAbilities.results) {
         progressBar.addValue()

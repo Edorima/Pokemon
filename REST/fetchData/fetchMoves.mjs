@@ -10,10 +10,14 @@ const categorieMap = new Map([
     ['status', 'Statut']
 ])
 
-const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
-
-export default async function fetchMoves() {
-
+export default async function fetchMoves(offset = 0) {
+    const limit = 826
+    if (offset >= limit) {
+        progressBar.addValue(limit)
+        return
+    }
+    progressBar.addValue(offset)
+    const capaciteURL = `https://pokeapi.co/api/v2/move?limit=${limit-offset}&offset=${offset}`
     const allMoves = await fetchData(capaciteURL)
     for (const move of allMoves.results) {
         progressBar.addValue()

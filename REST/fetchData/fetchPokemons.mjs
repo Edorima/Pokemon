@@ -11,14 +11,19 @@ const generationMap = new Map([
     ['generation-vii', 7], ['generation-viii', 8],
 ])
 
-const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
-
 /**
  * Une fonction pour télécharger les données concernant les Pokémon
  * et les mettre en base de données. Elle récupère les 898 premiers Pokémon
  * (de la 1ère à la 8ème génération).
  */
-export default async function fetchPokemons() {
+export default async function fetchPokemons(offset = 0) {
+    const limit = 898
+    if (offset >= limit) {
+        progressBar.addValue(limit)
+        return
+    }
+    progressBar.addValue(offset)
+    const pokemonsURL = `https://pokeapi.co/api/v2/pokemon?limit=${limit-offset}&offset=${offset}`
     const allPokemons = await fetchData(pokemonsURL)
     for (const pokemon of allPokemons.results) {
         progressBar.addValue()
