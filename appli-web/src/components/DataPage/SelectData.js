@@ -5,7 +5,7 @@ export default function SelectData({
     children
 }) {
     return (
-        <select id="choix" onChange={onChange}>
+        <select className="choix" onChange={onChange}>
             <option value={defaultOptionValue}>{defaultOptionText}</option>
             {children}
         </select>

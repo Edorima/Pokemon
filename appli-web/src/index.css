@@ -45,7 +45,7 @@ a[type=button], button {
   align-items: center;
   gap: 32px;
 
-  #choix {
+  .choix {
     background-color: white;
     border: none;
     border-radius: 20px;
@@ -109,7 +109,6 @@ a[type=button], button {
     background-color: white;
     border-radius: 20px;
     width: 100%;
-    justify-content: space-evenly;
   }
 
   .card-display button {
