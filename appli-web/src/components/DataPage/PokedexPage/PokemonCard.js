@@ -17,7 +17,7 @@ export default function PokemonCard({pokemon}) {
     const toggleElement = () => setOuvert(!ouvert)
 
     return (
-        <div className="pokemon-card-wrapper">
+        <div className="common-wrapper">
             <div className="card-display">
                 <span className="pokemon-number">#{pokemon.id.toString().padStart(3, '0')}</span>
                 <img
