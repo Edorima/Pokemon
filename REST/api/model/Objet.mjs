@@ -1,14 +1,10 @@
-export default class Capacite {
-    id
+export default class Objet {
     nom
-    nomNormalise
     nomAnglais
+    nomNormalise
     description
+    sprite
     categorie
-    puissance
-    precision
-    pp
-    type
 
     constructor(obj) {
         Object.assign(this, obj)

@@ -1,14 +1,19 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import ApiManager from "../ApiManager/ApiManager"
+import Form from "./Form/Form"
+import UsernameInput from "./Form/UsernameInput"
+import PasswordInput from "./Form/PasswordInput"
+import ErrorMessage from "../ErrorMessage"
+import LinkButton from "../LinkButton"
 
-function RegisterPage() {
+export default function RegisterPage() {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
-    function validateInputs(username, password) {
+    const validateInputs = (username, password) => {
         if (!username || !password)
             return "Veuillez remplir tous les champs."
 
@@ -24,29 +29,26 @@ function RegisterPage() {
         return null
     }
 
-    function handleRegister() {
+    async function handleRegister() {
         const error = validateInputs(username, password)
         if (error) {
             setErrorMessage(error)
             return
         }
 
-        ApiManager.register(username, password)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success && data.token) {
-                    // Stockage du token JWT
-                    localStorage.setItem('token', data.token)
-                    console.log("Compte crée et token reçu.")
-                    navigate('/profil')
-                } else {
-                    setErrorMessage(data.message || "Échec de la création du compte.")
-                }
-            })
-            .catch(error => {
-                console.error('Erreur lors de la création du compte:', error)
-                setErrorMessage("Erreur lors de la création du compte. Veuillez réessayer.")
-            })
+        try {
+            const response = await ApiManager.register(username, password)
+            const data = await response.json()
+            if (data.success && data.token) {
+                // Stockage du token JWT
+                localStorage.setItem('token', data.token)
+                console.log("Compte crée et token reçu.")
+                navigate('/profil')
+            } else
+                setErrorMessage(data.message || "Échec de la création du compte.")
+        } catch (_) {
+            setErrorMessage("Erreur lors de la création du compte. Veuillez réessayer.")
+        }
     }
 
     return (
@@ -55,39 +57,27 @@ function RegisterPage() {
             <div id="formWrapper">
                 <h2>Vos identifiants</h2>
                 <hr></hr>
-                <div id="error-message" className={errorMessage ? "" : "hidden"}>{errorMessage}</div>
+                <ErrorMessage error={errorMessage}/>
 
-                <form method="POST"
-                      onSubmit={e => {
-                          e.preventDefault()
-                          handleRegister()
-                      }}>
-                    <input
-                        id="username"
-                        value={username}
-                        placeholder="Pseudo"
+                <Form method="POST" onSubmit={handleRegister}>
+                    <UsernameInput
                         onChange={e => setUsername(e.target.value)}
-                        required
                     />
 
-                    <input
-                        id="password"
-                        value={password}
-                        type="password"
-                        placeholder="Mot de passe"
+                    <PasswordInput
                         onChange={e => setPassword(e.target.value)}
-                        required
                     />
 
                     <button type="submit" id="registerButton">Créer un compte</button>
-                </form>
+                </Form>
 
                 <h2>Vous êtes déjà dresseur ?</h2>
                 <hr></hr>
-                <a type="button" id="loginButton" href="/login">Connexion</a>
+
+                <LinkButton id="loginButton" href="/login">
+                    Connexion
+                </LinkButton>
             </div>
         </div>
     )
 }
-
-export default RegisterPage

@@ -1,34 +1,37 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import ApiManager from "../ApiManager/ApiManager"
+import ErrorMessage from "../ErrorMessage"
+import Form from "./Form/Form"
+import LinkButton from "../LinkButton"
+import UsernameInput from "./Form/UsernameInput"
+import PasswordInput from "./Form/PasswordInput"
 
-function LoginPage() {
+export default function LoginPage() {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
-    function handleLogin() {
+    async function handleLogin() {
         if (!username || !password) {
             setErrorMessage("Veuillez remplir tous les champs.")
             return
         }
 
-        ApiManager.login(username, password)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success && data.token) {
-                    // Stocker le token JWT pour une utilisation ultérieure
-                    localStorage.setItem('token', data.token)
-                    console.log("Connexion réussie et token reçu.")
-                    navigate('/profil')
-                } else
-                    setErrorMessage(data.message || "Échec de la connexion.")
-            })
-            .catch(error => {
-                console.error('Erreur lors de la connexion:', error)
-                setErrorMessage("Erreur lors de la connexion. Veuillez réessayer.")
-            })
+        try {
+            const response = await ApiManager.login(username, password)
+            const data = await response.json()
+            if (data.success && data.token) {
+                // Stocker le token JWT pour une utilisation ultérieure
+                localStorage.setItem('token', data.token)
+                console.log("Connexion réussie et token reçu.")
+                navigate('/profil')
+            } else
+                setErrorMessage(data.message || "Échec de la connexion.")
+        } catch (_) {
+            setErrorMessage("Erreur lors de la connexion. Veuillez réessayer.")
+        }
     }
 
     return (
@@ -37,41 +40,28 @@ function LoginPage() {
             <div id="formWrapper">
                 <h2>Vous avez déjà un compte ?</h2>
                 <hr></hr>
-                <div id="error-message" className={errorMessage ? "" : "hidden"}>{errorMessage}</div>
 
-                <form method="POST"
-                    onSubmit={e => {
-                        e.preventDefault()
-                        handleLogin()
-                    }}>
-                    <input
-                        id="username"
-                        value={username}
-                        placeholder="Pseudo"
-                        size="32"
+                <ErrorMessage error={errorMessage}/>
+
+                <Form method="GET" onSubmit={handleLogin}>
+                    <UsernameInput
                         onChange={e => setUsername(e.target.value)}
-                        required
                     />
 
-                    <input
-                        id="password"
-                        value={password}
-                        type="password"
-                        placeholder="Mot de passe"
-                        size="32"
+                    <PasswordInput
                         onChange={e => setPassword(e.target.value)}
-                        required
                     />
 
                     <button type="submit" id="loginButton">Connexion</button>
-                </form>
+                </Form>
 
                 <h2>Vous n’êtes pas encore un dresseur ?</h2>
                 <hr></hr>
-                <a type="button" id="registerButton" href="/register">Créer un compte</a>
+
+                <LinkButton id="registerButton" href="/register">
+                    Créer un compte
+                </LinkButton>
             </div>
         </div>
     )
 }
-
-export default LoginPage

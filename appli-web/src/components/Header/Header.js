@@ -1,29 +1,32 @@
-import React, {useState} from "react"
+import {useState} from "react"
+import LinkButton from "../LinkButton"
 import "./Header.css"
 
 function NavigationButton({ href, imgSrc, altText, label }) {
     return (
-        <a type="button" className="boutonNavigation" href={href}>
+        <LinkButton className="boutonNavigation" href={href}>
             <img src={imgSrc} alt={altText} width="40" height="40"/>
-            <span>{label}</span>
-        </a>
+            {label}
+        </LinkButton>
     )
 }
 
-function Header() {
+export default function Header() {
     const [isSpinning, setIsSpinning] = useState(false)
+    const handleMouseEnter = () => setIsSpinning(true)
+    const handleAnimationEnd = () => setIsSpinning(false)
 
     return (
         <header>
-            <a type="button" id="boutonAccueil" href="/" onMouseEnter={() => setIsSpinning(true)}>
+            <LinkButton id="boutonAccueil" href="/" onMouseEnter={handleMouseEnter}>
                 <img
                     src="/assets/pokeball.svg"
                     alt="Pokeball"
                     className={isSpinning ? 'spinning' : ''}
-                    onAnimationEnd={() => setIsSpinning(false)}
+                    onAnimationEnd={handleAnimationEnd}
                 />
                 <h1>PokéManager</h1>
-            </a>
+            </LinkButton>
 
             <nav>
                 <NavigationButton
@@ -53,7 +56,5 @@ function Header() {
                 label="Mon compte"
             />
         </header>
-    );
+    )
 }
-
-export default Header;

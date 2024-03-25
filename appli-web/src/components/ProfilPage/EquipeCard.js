@@ -1,23 +1,61 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import BoutonsAction from "./BoutonsAction"
+import PokemonSelector from "./PokemonSelector"
+import ItemSelector from "./ItemSelector"
 
 /**
  * @param nom {string}
- * @param initialPokemons {Object[]}
+ * @param initialPokemons {Object}
  */
-function EquipeCard({nom, initialPokemons}) {
+export default function EquipeCard({nom, initialPokemons}) {
     const [pokemons, setPokemons] = useState(initialPokemons)
-    const plusButtonsCount = 6 - (pokemons.length > 6 ? 6 : pokemons.length)
+    const [editing, setEditing] = useState(1)
 
-    function modifierPokemon(index) {
-        const updatedPokemons = [...pokemons]
-        if (index >= pokemons.length) {
-            // Logique pour ajouter un nouveau Pokémon
-            updatedPokemons.push({"nom": "Maganon"})
-            setPokemons(updatedPokemons)
-        } else {
-            // Logique pour modifier un Pokémon existant
-            console.log(updatedPokemons[index])
-        }
+    const editedPokemon = pokemons[`pokemon${editing}`]
+    const firstPlusButtonIndex =
+        Object.values(pokemons).findIndex(pokemon => pokemon === null)
+
+    const modifierPokemon = (index) => setEditing(index + 1)
+
+    const toggleShiny = (event) => {
+        const updatedPokemons = {...pokemons}
+        updatedPokemons[`pokemon${editing}`].chromatique = event.target.checked
+        setPokemons(updatedPokemons)
+    }
+
+    const getSprite = (pokemon) => {
+        return pokemon.chromatique ?
+            pokemon.sprites.shiny :
+            pokemon.sprites.default
+    }
+
+    const getPokemonClassName = (index) => {
+        if (index+1 === editing)
+            return 'pokemon editing'
+        return 'pokemon'
+    }
+
+    const deletePokemon = () => {
+        const updatedPokemons = {...pokemons}
+        for (let i = editing; i <= 6; i++)
+            updatedPokemons[`pokemon${i}`] = updatedPokemons[`pokemon${i + 1}`] || null
+        setPokemons(updatedPokemons)
+    }
+
+    const canSave = () => {
+        // On vérifie s'il y a au moins un Pokémon
+        if (!pokemons.pokemon1)
+            return false
+
+        // On vérifie ensuite si tous les pokémons qui ne sont pas null ont au moins une capacité
+        return Object.values(pokemons).every(pokemon => {
+            /* Si le pokémon est null, on considère cela
+            comme valide car on cherche des pokémons non null sans capacité */
+            if (!pokemon) return true
+
+            // Vérifier si le pokémon a au moins la capacite1 non null
+            return !!pokemon.capacites.capacite1
+        })
     }
 
     return (
@@ -25,27 +63,81 @@ function EquipeCard({nom, initialPokemons}) {
             <div className="headerEquipe">
                 <span className="nomEquipe">{nom}</span>
             </div>
+
             <div className="pokemons">
-                {pokemons.slice(0,6).map((pokemon, index) => (
-                    <button key={index} className="pokemon" onClick={() => modifierPokemon(index)}>
-                        <img src={`/assets/pokemons/${pokemon.nom}.png`} alt={pokemon.nom}/>
-                    </button>
-                ))}
-                {[...Array(plusButtonsCount)].map((_, index) => (
-                    <button key={`plus-${index}`} className="pokemon"
-                            onClick={index === 0 ?
-                                () => modifierPokemon(6-plusButtonsCount)
-                                : undefined
-                            }
-                            disabled={index > 0}>
-                        <img src="/assets/plus.svg" alt="Plus"/>
-                    </button>
+                {Object.entries(pokemons).map(([key, pokemon], index) => (
+                    pokemon ? (
+                        <button
+                            key={`pokemon-${index}`}
+                            className={getPokemonClassName(index)}
+                            onClick={() => modifierPokemon(index)}>
+                            <img
+                                src={getSprite(pokemon)}
+                                alt={pokemon.nom}
+                                width="120" height="120"
+                                draggable="false"
+                            />
+                            {pokemon.objet &&
+                            <img
+                                className="item-sprite"
+                                src={pokemon.objet.sprite ?? '/assets/not_found.png'}
+                                width="50" height="50"
+                                alt={pokemon.objet.nom}
+                                draggable="false"
+                            />}
+                        </button>
+                    ) : (
+                        <button
+                            key={`plus-${index}`}
+                            className={getPokemonClassName(index)}
+                            onClick={() => index === firstPlusButtonIndex && modifierPokemon(index)}
+                            disabled={index !== firstPlusButtonIndex}>
+                            <img src="/assets/plus.svg" alt="Plus" draggable="false"/>
+                        </button>
+                    )
                 ))}
             </div>
 
-            {/* TODO Personnalisation */}
+            <div className="parametragePokemon">
+                <div className="choixPkm">
+                    <PokemonSelector
+                        pokemons={pokemons}
+                        setPokemons={setPokemons}
+                        editing={editing}
+                    />
+
+                    <label className="estChromatique">
+                        <input
+                            type="checkbox"
+                            checked={editedPokemon?.chromatique || false}
+                            onChange={(e) => editedPokemon && toggleShiny(e)}
+                            disabled={!editedPokemon}
+                        />
+                        est chromatique ?
+                    </label>
+
+                    <button
+                        onClick={() => editedPokemon && deletePokemon()}
+                        disabled={!editedPokemon}>
+                        Supprimer le pokémon
+                    </button>
+                </div>
+
+                {editedPokemon && <>
+                    <hr/>
+                    <div className="optionPkm">
+                        <ItemSelector
+                            pokemons={pokemons}
+                            setPokemons={setPokemons}
+                            editing={editing}
+                        />
+
+                        {/* TODO Ajouter les capacités */}
+                    </div>
+                </>}
+
+                <BoutonsAction canSave={canSave()}/>
+            </div>
         </div>
     )
 }
-
-export default EquipeCard

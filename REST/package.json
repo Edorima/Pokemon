@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fetchData": "node fetchData.mjs"
+    "fetchData": "node fetchData/fetchData.mjs"
   },
   "author": "",
   "license": "ISC",

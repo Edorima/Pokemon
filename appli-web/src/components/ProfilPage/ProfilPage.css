@@ -5,6 +5,19 @@
     padding: 16px;
     gap: 16px;
 
+    button:disabled {
+        cursor: default;
+        opacity: 50%;
+    }
+
+    .choix {
+        width: 180px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: white;
+        padding: 4px;
+    }
+
     #title {
         font-weight: normal;
         margin: 0;
@@ -23,21 +36,14 @@
         background-color: #EE1515;
     }
 
-    #mesEquipesWrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #DBDBDB;
-        border-radius: 50px;
-        padding: 32px;
-        gap: 16px;
-    }
-
     #mesEquipes {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 32px;
+        padding: 32px;
+        background-color: #DBDBDB;
+        border-radius: 20px;
     }
 
     .equipe {
@@ -61,6 +67,10 @@
         gap: 32px;
     }
 
+    .item-sprite {
+        margin-left: -50px;
+    }
+
     .pokemon {
         background-color: #F0F0F0;
         border-radius: 20px;
@@ -68,17 +78,21 @@
         padding: 10px;
         cursor: pointer;
 
-        &:disabled {
-            cursor: default;
-            opacity: 50%;
+        &.editing {
+            border-color: gold;
         }
     }
 
     #creerEquipeWrapper {
-        display: grid;
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #DBDBDB;
+        border-radius: 50px;
+        padding: 32px;
+        gap: 16px;
 
-        span:first-child {
+        span {
             display: flex;
             gap: 8px;
         }
@@ -89,5 +103,62 @@
         border: 2px solid black;
         outline: none;
         padding: 8px;
+    }
+
+    .parametragePokemon {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        hr {
+            border: 1px solid black;
+            width: 100%;
+        }
+
+        button {
+            background-color: #C20808;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            color: white;
+
+            &:not(:disabled):hover {
+                background-color: #EE1515;
+            }
+        }
+    }
+
+    .choixPkm {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .estChromatique {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        input {
+            outline: none;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .optionPkm {
+
+    }
+
+    .boutonsAction {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        span {
+            color: red;
+            font-size: 13px;
+        }
     }
 }

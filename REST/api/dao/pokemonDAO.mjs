@@ -27,12 +27,8 @@ const pokemonDAO = {
      @returns {Promise<Pokemon[]>}
      */
     getPokemons: async (generation, limit, offset) => {
-        const filter = {}
-        if (Number.isInteger(generation))
-            filter.generation = generation
-
         const data = await pokemonDAO.collection.find(
-            filter,
+            Number.isInteger(generation) ? {generation: generation} : {},
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
@@ -43,7 +39,7 @@ const pokemonDAO = {
      * @returns {Promise<Pokemon | null>}
      */
     findPokemonByNameOrId: async (nameOrId) => {
-        const id = Number.parseInt(nameOrId)
+        const id = parseInt(nameOrId)
         const data = await pokemonDAO.collection.findOne(
             Number.isInteger(id) ?
                 {id: id} :

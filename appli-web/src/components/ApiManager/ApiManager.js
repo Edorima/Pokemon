@@ -24,7 +24,9 @@ const ApiManager = {
      * @returns {Promise<Response>}
      */
     getPkmsThatStartsWith: (searchTerm, generation, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(searchTerm, generation, offset)
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(
+            searchTerm, generation, offset
+        )
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -32,6 +34,64 @@ const ApiManager = {
             }
         })
     },
+
+    /**
+     * @param categorie {number | null}
+     * @param offset {number}
+     * @returns {Promise<Response>}
+     */
+    getItems: (categorie, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS(categorie, offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    getMoves: (type, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES(type, offset)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    getMovesThatStartsWith: (searchTerm, type, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
+            searchTerm, type, offset
+        )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
+     * @param searchTerm {string}
+
+     * @param type
+     * @param offset {number}
+     * @returns {Promise<Response>}
+     */
+    getItemsThatStartsWith: (searchTerm, type, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
+            searchTerm, type, offset
+        )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+
 
     /**
      * @param username {string}
