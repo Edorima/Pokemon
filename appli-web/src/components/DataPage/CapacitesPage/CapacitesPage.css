@@ -1,22 +1,4 @@
 #capaciteWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    gap: 32px;
-
-    h1 {
-        margin: 0;
-    }
-
-
-
-    .card-display {
-        background-color: white;
-        border-radius: 20px;
-        padding: 16px 32px;
-        width: 1250px;
-    }
 
     .common-name {
         display: flex;
