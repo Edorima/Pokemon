@@ -1,21 +1,34 @@
 import {useState} from "react"
-import ItemSelector from "../ItemSelector"
-import CapacitesSelector from "../CapacitesSelector"
-import ApiManager from "../../ApiManager/ApiManager"
-import BoutonsAction from "../BoutonsAction";
-import {CapaciteViewer} from "../CapaciteViewer";
+import {CapaciteViewer} from "../CapaciteViewer"
+
+function BoutonHeader({className, disabled, onClick, src, alt}) {
+    return (
+        <button
+            className={className}
+            disabled={disabled}
+            onClick={() => !disabled && onClick()}>
+            <img src={src} alt={alt}/>
+        </button>
+    )
+}
 
 /**
  * @param nom {string}
- * @param initialPokemons {Object}
+ * @param pokemons {Object}
  * @param profil {Object}
- * @param setProfil {(Object) => void}
+ * @param setEditingTeam {(value: number | null) => void}
+ * @param changeDisabled {boolean}
+ * @param added {boolean}
+ * @param setAdded {(boolean) => void}
  */
 export default function ViewEquipeCard({
    nom,
    pokemons,
    profil,
-   setProfil
+   setEditingTeam,
+   changeDisabled,
+   added,
+   setAdded
 }) {
     const [viewPkm, setViewPkm] = useState(0)
 
@@ -45,10 +58,41 @@ export default function ViewEquipeCard({
 
     const closeView = () => setViewPkm(0)
 
+    const editTeam = () => {
+        const teamIndex = profil.equipes.findIndex((e) => e.nom === nom)
+        setEditingTeam(teamIndex)
+        setAdded(false)
+    }
+
     return (
         <div className="equipe">
             <div className="headerEquipe">
                 <span className="nomEquipe">{nom}</span>
+                <span className='boutonsHeader'>
+                    <BoutonHeader
+                        className='boutonModifier'
+                        disabled={changeDisabled}
+                        onClick={editTeam}
+                        src='/assets/equipeCardIcons/edit.svg'
+                        alt='Modifier'
+                    />
+
+                    <BoutonHeader
+                        className='boutonFavoris'
+                        disabled={changeDisabled}
+                        onClick={() => {}}
+                        src='/assets/equipeCardIcons/favorite.png'
+                        alt='Favoris'
+                    />
+
+                    <BoutonHeader
+                        className='boutonSupprimer'
+                        disabled={changeDisabled}
+                        onClick={() => {}}
+                        src='/assets/equipeCardIcons/delete.png'
+                        alt='Supprimer'
+                    />
+                </span>
             </div>
 
             <div className="pokemons">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import ApiManager from "../ApiManager/ApiManager"
 import {useNavigate} from "react-router-dom"
-import EquipeCard from "./EquipeCard"
+import EditEquipeCard from "./EquipeCards/EditEquipeCard"
 import ErrorMessage from "../ErrorMessage"
 import './ProfilPage.css'
 import ViewEquipeCard from "./EquipeCards/ViewEquipeCard";
@@ -9,6 +9,8 @@ import ViewEquipeCard from "./EquipeCards/ViewEquipeCard";
 export default function ProfilPage() {
     const navigate = useNavigate()
     const [profil, setProfil] = useState(null)
+    const [editingTeam, setEditingTeam] = useState(null)
+    const [added, setAdded] = useState(true)
     const [nomEquipe, setNomEquipe] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -59,16 +61,18 @@ export default function ProfilPage() {
             return {
                 ...prevProfil,
                 equipes: [
-                    ...prevProfil.equipes,
                     {nom: nomEquipe, pokemons: {
-                        pokemon1: null, pokemon2: null,
-                        pokemon3: null, pokemon4: null,
-                        pokemon5: null, pokemon6: null
-                    }}
+                            pokemon1: null, pokemon2: null,
+                            pokemon3: null, pokemon4: null,
+                            pokemon5: null, pokemon6: null
+                    }},
+                    ...prevProfil.equipes
                 ]
             }
         })
 
+        setAdded(true)
+        setEditingTeam(0)
         setNomEquipe('')
         setErrorMessage('')
     }
@@ -86,11 +90,15 @@ export default function ProfilPage() {
                         onChange={e => {
                             setNomEquipe(e.target.value)
                             setErrorMessage('')
-                        }}/>
+                        }}
+                        disabled={editingTeam !== null}
+                    />
+
                     <button
                         onClick={creerEquipe}
                         id="creerEquipe"
-                        className="boutonAction">
+                        className="boutonAction"
+                        disabled={editingTeam !== null}>
                         Créer l'équipe
                     </button>
                 </span>
@@ -99,17 +107,33 @@ export default function ProfilPage() {
             </div>
 
 
-            {profil?.equipes.length !== 0 ? <div id="mesEquipes">
-                {profil?.equipes.map(e =>
-                    <ViewEquipeCard
-                        key={e.nom}
-                        nom={e.nom}
-                        pokemons={e.pokemons}
-                        profil={profil}
-                        setProfil={setProfil}
-                    />
-                )}
-            </div> : <span>Vous n'avez aucune équipe !</span>}
+            {profil?.equipes.length !== 0 ? (
+                <div id="mesEquipes">
+                    {profil?.equipes.map((e, index) => (
+                        index !== editingTeam ?
+                            <ViewEquipeCard
+                                key={index}
+                                nom={e.nom}
+                                pokemons={e.pokemons}
+                                profil={profil}
+                                setEditingTeam={setEditingTeam}
+                                changeDisabled={editingTeam !== null}
+                                added={added}
+                                setAdded={setAdded}
+                            /> :
+                            <EditEquipeCard
+                                key={index}
+                                nom={e.nom}
+                                initialPokemons={e.pokemons}
+                                profil={profil}
+                                setProfil={setProfil}
+                                setEditingTeam={setEditingTeam}
+                                added={added}
+                            />
+                    ))}
+                </div>
+            ) : <span>Vous n'avez aucune équipe !</span>}
+
         </div>
     )
 }
