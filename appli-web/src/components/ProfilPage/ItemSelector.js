@@ -39,7 +39,8 @@ export default function ItemSelector({
         <select
             className="choix"
             onChange={selectItem}
-            value={editedPokemon?.objet?.nomNormalise || ''}>
+            value={editedPokemon?.objet?.nomNormalise || ''}
+            disabled={!editedPokemon}>
             <option value="">Pas d'objet</option>
             {itemsList.map((item) => (
                 <option key={item.nomNormalise} value={item.nomNormalise}>

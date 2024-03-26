@@ -5,6 +5,10 @@ import ItemSelector from "./ItemSelector"
 import CapacitesSelector from "./CapacitesSelector"
 import ApiManager from "../ApiManager/ApiManager"
 
+export const VIEW_MODE = 'view'
+export const EDIT_MODE = 'edit'
+export const ADD_MODE = 'add'
+
 /**
  * @param nom {string}
  * @param initialPokemons {Object}
@@ -18,17 +22,17 @@ export default function EquipeCard({
     setProfil
 }) {
     const [pokemons, setPokemons] = useState(initialPokemons)
-    const [editing, setEditing] = useState(1)
+    const [editingPkm, setEditingPkm] = useState(1)
 
-    const editedPokemon = pokemons[`pokemon${editing}`]
+    const editedPokemon = pokemons[`pokemon${editingPkm}`]
     const firstPlusButtonIndex =
         Object.values(pokemons).findIndex(pokemon => pokemon === null)
 
-    const editPokemon = (index) => setEditing(index + 1)
+    const editPokemon = (index) => setEditingPkm(index + 1)
 
     const toggleShiny = (event) => {
         const updatedPokemons = {...pokemons}
-        updatedPokemons[`pokemon${editing}`].chromatique = event.target.checked
+        updatedPokemons[`pokemon${editingPkm}`].chromatique = event.target.checked
         setPokemons(updatedPokemons)
     }
 
@@ -39,14 +43,14 @@ export default function EquipeCard({
     }
 
     const getPokemonClassName = (index) => {
-        if (index+1 === editing)
-            return 'pokemon editing'
+        if (index+1 === editingPkm)
+            return 'pokemon focus'
         return 'pokemon'
     }
 
     const deletePokemon = () => {
         const updatedPokemons = {...pokemons}
-        for (let i = editing; i <= 6; i++)
+        for (let i = editingPkm; i <= 6; i++)
             updatedPokemons[`pokemon${i}`] = updatedPokemons[`pokemon${i + 1}`] || null
         setPokemons(updatedPokemons)
     }
@@ -117,18 +121,29 @@ export default function EquipeCard({
                             className={getPokemonClassName(index)}
                             onClick={() => index === firstPlusButtonIndex && editPokemon(index)}
                             disabled={index !== firstPlusButtonIndex}>
-                            <img src="/assets/plus.svg" alt="Plus" draggable="false"/>
+                            <img
+                                width="120" height="120"
+                                src="/assets/plus.svg"
+                                alt="Plus"
+                                draggable="false"
+                            />
                         </button>
                     )
                 ))}
             </div>
 
-            <div className="parametragePokemon">
+            <div className="infoPokemon">
                 <div className="choixPkm">
                     <PokemonSelector
                         pokemons={pokemons}
                         setPokemons={setPokemons}
-                        editing={editing}
+                        editing={editingPkm}
+                    />
+
+                    <ItemSelector
+                        pokemons={pokemons}
+                        setPokemons={setPokemons}
+                        editing={editingPkm}
                     />
 
                     <label className="estChromatique">
@@ -148,30 +163,26 @@ export default function EquipeCard({
                     </button>
                 </div>
 
-                {editedPokemon && <>
-                    <hr/>
+                {editedPokemon &&
                     <div className="optionPkm">
-                        <ItemSelector
-                            pokemons={pokemons}
-                            setPokemons={setPokemons}
-                            editing={editing}
-                        />
 
-                        <div className="separator"/>
+
 
                         <CapacitesSelector
                             pokemons={pokemons}
                             setPokemons={setPokemons}
-                            editing={editing}
+                            editing={editingPkm}
                         />
                     </div>
-                </>}
+                }
 
-                <BoutonsAction
-                    canSave={canSave()}
-                    onCancel={onCancel}
-                    onSave={onSave}
-                />
+                <div className="boutonsAction">
+                    <BoutonsAction
+                        canSave={canSave()}
+                        onCancel={onCancel}
+                        onSave={onSave}
+                    />
+                </div>
             </div>
         </div>
     )

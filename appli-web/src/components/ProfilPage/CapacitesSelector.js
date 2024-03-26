@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react"
+import {CapaciteViewer} from "./CapaciteViewer"
 import ApiManager from "../ApiManager/ApiManager"
 
 export default function CapacitesSelector({
@@ -60,46 +61,35 @@ export default function CapacitesSelector({
         setPokemons(updatedPokemons)
     }
 
-    function CapaciteSelector({slot}) {
-        const editedMove = editedPokemon?.capacites[`capacite${slot}`]
-
+    function CapaciteSelector({slot, editedMove}) {
         return (
-            <div className='capacite-container'
-                style={{backgroundImage: "url('/assets/AttackSlotPokemon.png')"}}>
-                {editedMove ?
-                <>
-                    {editedMove.nom}
-                    <span>
-                        <img
-                            id='type-capacite'
-                            src={`/assets/types/${editedMove.type}.jpg`}
-                            alt={editedMove.type}
-                            width='75'
-                            height='27'
-                        />
-                        PP {editedMove.pp}
-                    </span>
-                </> : 'Aucune Attaque'}
-
-                <select
-                    className="choix"
-                    onChange={(e) => selectCapacite(e, slot)}
-                    value={editedMove?.nomNormalise || ''}>
-                    <option value="">Aucune Attaque</option>
-                    {getAvailableMoves(slot).map(m => (
-                        <option key={m.id} value={m.nomNormalise}>
-                            {m.nom}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            <CapaciteViewer
+                editedMove={editedMove}
+                selector={
+                    <select
+                        className="choix"
+                        onChange={(e) => selectCapacite(e, slot)}
+                        value={editedMove?.nomNormalise || ''}>
+                        <option value="">Aucune Attaque</option>
+                        {getAvailableMoves(slot).map(m => (
+                            <option key={m.id} value={m.nomNormalise}>
+                                {m.nom}
+                            </option>
+                        ))}
+                    </select>
+                }
+            />
         )
     }
 
     return (
         <div className="capacitesPkm">
             {[1, 2, 3, 4].map(slot => (
-                <CapaciteSelector key={slot} slot={slot}/>
+                <CapaciteSelector
+                    key={slot}
+                    slot={slot}
+                    editedMove={editedPokemon?.capacites[`capacite${slot}`]}
+                />
             ))}
         </div>
     )

@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom"
 import EquipeCard from "./EquipeCard"
 import ErrorMessage from "../ErrorMessage"
 import './ProfilPage.css'
+import ViewEquipeCard from "./EquipeCards/ViewEquipeCard";
 
 export default function ProfilPage() {
     const navigate = useNavigate()
@@ -100,10 +101,10 @@ export default function ProfilPage() {
 
             {profil?.equipes.length !== 0 ? <div id="mesEquipes">
                 {profil?.equipes.map(e =>
-                    <EquipeCard
+                    <ViewEquipeCard
                         key={e.nom}
                         nom={e.nom}
-                        initialPokemons={e.pokemons}
+                        pokemons={e.pokemons}
                         profil={profil}
                         setProfil={setProfil}
                     />
