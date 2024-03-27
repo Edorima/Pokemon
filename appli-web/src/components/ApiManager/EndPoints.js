@@ -1,4 +1,6 @@
 const ENDPOINTS = {
+    GET_ALL_POKEMONS: () => '/pokemon?limit=898',
+
     GET_POKEMONS: (generation, offset) => {
         const ep = `/pokemon?offset=${offset}`
         if (generation)
@@ -12,6 +14,8 @@ const ENDPOINTS = {
             return ep + `&gen=${generation}`
         return ep
     },
+
+    GET_POKEMONS_BY_MOVE: (id) => `/capacite/${id}/pokemon`,
 
     GET_ITEMS: (categorie, offset) => {
         const ep = `/objet?offset=${offset}`
@@ -36,11 +40,6 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_POKEMONS_BY_MOVE: (id) => {
-        return `/capacite/${id}/pokemons`
-    },
-
-
     GET_MOVES_THAT_STARTS_WITH: (searchTerm, type, categorie, offset) => {
         let ep = `/capacite/startsWith/${searchTerm}?offset=${offset}`
         if (type)
@@ -49,6 +48,8 @@ const ENDPOINTS = {
             ep += `&categorie=${categorie}`
         return ep
     },
+
+    GET_MOVES_BY_POKEMON: (id) => `/pokemon/${id}/capacite`,
 
     LOGIN: () => '/login',
 

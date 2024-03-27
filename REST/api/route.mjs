@@ -46,7 +46,7 @@ router.route('/pokemon/:id').get(async (req, res) =>  {
         res.status(404).send("Not Found")
 })
 
-router.route('/pokemon/:id/moves').get(async (req, res) => {
+router.route('/pokemon/:id/capacite').get(async (req, res) => {
     const id = parseInt(req.params.id)
     const result = await capaciteDAO.findMovesByPokemon(id)
     if (result)
@@ -87,7 +87,7 @@ router.route('/capacite/:id').get(async (req, res) =>  {
         res.status(404).send("Not Found")
 })
 
-router.route('/capacite/:id/pokemons').get(async (req, res) => {
+router.route('/capacite/:id/pokemon').get(async (req, res) => {
     const id = parseInt(req.params.id)
     const result = await pokemonDAO.findPokemonsByMove(id)
     if (result)

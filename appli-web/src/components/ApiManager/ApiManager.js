@@ -2,6 +2,16 @@ import ENDPOINTS from "./EndPoints"
 const BASE_URL = 'http://localhost:8081/api/v1'
 
 const ApiManager = {
+    getAllPkms: () => {
+        const url = BASE_URL + ENDPOINTS.GET_ALL_POKEMONS()
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
     /**
      * @param generation {number}
      * @param offset {number}
@@ -27,6 +37,20 @@ const ApiManager = {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(
             searchTerm, generation, offset
         )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
+     * @param id {number}
+     * @returns {Promise<Response>}
+     */
+    getPokemonsByMove: (id) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_MOVE(id)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -84,16 +108,6 @@ const ApiManager = {
         })
     },
 
-    getPokemonsByMove: (id) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_MOVE(id)
-        return fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    },
-
     /**
      * @param searchTerm {string}
      * @param type {string}
@@ -105,6 +119,20 @@ const ApiManager = {
         const url = BASE_URL + ENDPOINTS.GET_MOVES_THAT_STARTS_WITH(
             searchTerm, type, categorie, offset
         )
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
+     * @param id {number}
+     * @returns {Promise<Response>}
+     */
+    getMovesByPokemon: (id) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_BY_POKEMON(id)
         return fetch(url, {
             method: 'GET',
             headers: {
