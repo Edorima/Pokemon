@@ -6,6 +6,7 @@ import CapacitesSelector from "../CapacitesSelector"
 import {PokemonProvider} from "../Contexts/PokemonContext"
 import {ObjetProvider} from "../Contexts/ObjetContext"
 import ApiManager from "../../ApiManager/ApiManager"
+import BoutonHeader from "../BoutonHeader";
 
 /**
  * @param nom {string}
@@ -108,9 +109,12 @@ export default function EditEquipeCard({
             <div className="headerEquipe">
                 <span className="nomEquipe">{nom}</span>
                 {!added && 'Mode édition'}
-                <button className='boutonFavoris'>
-                    <img src='/assets/equipeCardIcons/favorite.png' alt='Favoris'/>
-                </button>
+                <BoutonHeader
+                    className="boutonFavoris"
+                    alt='Favoris'
+                    src='/assets/equipeCardIcons/favorite.png'
+                    onClick={() => {}}
+                />
             </div>
 
             <div className="pokemons">

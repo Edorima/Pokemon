@@ -1,16 +1,6 @@
 import {useState} from "react"
 import {CapaciteViewer} from "../CapaciteViewer"
-
-function BoutonHeader({className, disabled, onClick, src, alt}) {
-    return (
-        <button
-            className={className}
-            disabled={disabled}
-            onClick={() => !disabled && onClick()}>
-            <img src={src} alt={alt}/>
-        </button>
-    )
-}
+import BoutonHeader from "../BoutonHeader"
 
 /**
  * @param nom {string}
@@ -18,7 +8,6 @@ function BoutonHeader({className, disabled, onClick, src, alt}) {
  * @param profil {Object}
  * @param setEditingTeam {(value: number | null) => void}
  * @param changeDisabled {boolean}
- * @param added {boolean}
  * @param setAdded {(boolean) => void}
  */
 export default function ViewEquipeCard({
@@ -27,7 +16,6 @@ export default function ViewEquipeCard({
    profil,
    setEditingTeam,
    changeDisabled,
-   added,
    setAdded
 }) {
     const [viewPkm, setViewPkm] = useState(0)
