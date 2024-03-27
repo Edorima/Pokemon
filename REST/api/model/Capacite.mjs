@@ -9,6 +9,7 @@ export default class Capacite {
     precision
     pp
     type
+    pokemons
 
     constructor(obj) {
         Object.assign(this, obj)
