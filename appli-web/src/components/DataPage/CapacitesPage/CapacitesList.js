@@ -18,7 +18,7 @@ export default function CapacitesList({
             {dataList.map(capacity => (
                 <CapaciteCard
                     key={capacity.nomAnglais}
-                    capacity={capacity}
+                    move={capacity}
                 />
             ))}
         </List>

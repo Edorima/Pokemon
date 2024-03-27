@@ -74,6 +74,16 @@ export default function ProfilPage() {
         setErrorMessage('')
     }
 
+    const handleInputChange = (event) => {
+        setNomEquipe(event.target.value)
+        setErrorMessage('')
+    }
+
+    const handleEnterPressed = (event) => {
+        if (event.key === 'Enter' && editingTeam === null)
+            creerEquipe()
+    }
+
     return (
         <div id="profilWrapper">
             <h1 id="title">Créez vos <strong>équipes</strong>, {profil?.pseudo} !</h1>
@@ -84,15 +94,13 @@ export default function ProfilPage() {
                         id="nomEquipe"
                         placeholder="Nom de l'équipe"
                         value={nomEquipe}
-                        onChange={e => {
-                            setNomEquipe(e.target.value)
-                            setErrorMessage('')
-                        }}
+                        onChange={handleInputChange}
+                        onKeyDown={handleEnterPressed}
                         disabled={editingTeam !== null}
                     />
 
                     <button
-                        onClick={creerEquipe}
+                        onClick={() => editingTeam === null && creerEquipe()}
                         id="creerEquipe"
                         className="boutonAction"
                         disabled={editingTeam !== null}>

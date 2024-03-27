@@ -1,10 +1,8 @@
 #capaciteWrapper {
-
-    .card-display {
-
-    }
-
     .stat {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         font-size: 22px;
         white-space: nowrap;
         font-weight: bold;
@@ -32,5 +30,4 @@
         flex-basis: 450px;
 
     }
-
 }

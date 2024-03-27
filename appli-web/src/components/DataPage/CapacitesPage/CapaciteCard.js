@@ -1,13 +1,13 @@
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import ApiManager from "../../ApiManager/ApiManager"
 
-export default function CapaciteCard({capacity}) {
+export default function CapaciteCard({move}) {
     const [pokemons, setPokemons] = useState([])
     const [ouvert, setOuvert] = useState(false)
     const toggleElement = async () => {
         if (pokemons.length === 0) {
             try {
-                const response = await ApiManager.getPokemonsByMove(capacity.id)
+                const response = await ApiManager.getPokemonsByMove(move.id)
                 const data = await response.json()
                 setPokemons(data)
             } catch (_) {
@@ -21,20 +21,25 @@ export default function CapaciteCard({capacity}) {
         <div className="common-wrapper">
             <div className="card-display">
                 <div className="name-image">
-                    <span className="common-name">{capacity.nom}</span>
+                    <span className="common-name">{move.nom}</span>
                     <img
 
-                        src={`/assets/types/${capacity.type}.jpg` ?? '/assets/not_found.png'}
-                        alt={capacity.nom}
+                        src={`/assets/types/${move.type}.jpg` ?? '/assets/not_found.png'}
+                        alt={move.nom}
                         loading="lazy"
                     />
 
                 </div>
-                <p className="stat"> {capacity.puissance}</p>
-
-                <p className="stat"> {capacity.precision? capacity.precision + "%": "--%"}</p>
-                <p className="stat"> {capacity.pp}PP</p>
-                <p className="capacite-description">{capacity.description}</p>
+                <span className="stat">
+                    <img
+                        src={`/assets/movesCategories/${move.categorie}.png`}
+                        alt={move.categorie}
+                    />
+                    {move.puissance ?? '---'}
+                </span>
+                <p className="stat"> {move.precision? move.precision + "%": "--%"}</p>
+                <p className="stat"> {move.pp}PP</p>
+                <p className="capacite-description">{move.description}</p>
 
                 <div>
                     <button onClick={toggleElement} className="details-button">

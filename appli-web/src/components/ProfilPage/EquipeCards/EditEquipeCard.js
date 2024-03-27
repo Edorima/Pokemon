@@ -3,9 +3,9 @@ import BoutonsAction from "../BoutonsAction"
 import PokemonSelector from "../PokemonSelector"
 import ObjetSelector from "../ObjetSelector"
 import CapacitesSelector from "../CapacitesSelector"
-import {PokemonProvider} from "../Contexts/PokemonContext";
+import {PokemonProvider} from "../Contexts/PokemonContext"
+import {ObjetProvider} from "../Contexts/ObjetContext"
 import ApiManager from "../../ApiManager/ApiManager"
-import {ObjetProvider} from "../Contexts/ObjetContext";
 
 /**
  * @param nom {string}
@@ -27,6 +27,7 @@ export default function EditEquipeCard({
     const [editingPkm, setEditingPkm] = useState(1)
 
     const editedPokemon = pokemons[`pokemon${editingPkm}`]
+
     const firstPlusButtonIndex =
         Object.values(pokemons).findIndex(pokemon => pokemon === null)
 

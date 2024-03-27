@@ -14,7 +14,7 @@ export default function CapacitesSelector({
         ApiManager.getMovesByPokemon(editedPokemon.id)
             .then(response => response.json())
             .then(data => setMovesList(data))
-    }, [])
+    }, [editedPokemon])
 
     /**
      * Fonction pour obtenir les capacités disponibles pour un slot donné.
