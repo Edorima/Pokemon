@@ -29,6 +29,7 @@ export default function ObjetSelector({
 
     return (
         <select
+            name='selectItem'
             className="choix"
             onChange={selectItem}
             value={editedPokemon?.objet?.nomNormalise || ''}

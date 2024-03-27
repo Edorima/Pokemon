@@ -158,52 +158,65 @@ router.route('/login').post(async (req, res) => {
     res.json({ success: true, token: token })
 })
 
-router
-    .route('/profil')
-        .get(async (req, res) => {
-            try {
-                // Valider le token de l'utilisateur
-                const userPayload = validateToken(req)
+router.route('/profil')
+    .get(async (req, res) => {
+        try {
+            // Valider le token de l'utilisateur
+            const userPayload = validateToken(req)
 
-                const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
+            const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
 
-                if (!utilisateur) {
-                    return res.status(404).send()
-                }
-
-                const { motDePasse, _id, ...userData } = utilisateur
-                res.json(userData)
-            } catch (error) {
-                res.status(401).send()
+            if (!utilisateur) {
+                return res.status(404).send()
             }
-        })
-        .post(async (req, res) => {
-            const equipe = req.body.equipe
-            try {
-                // Valider le token de l'utilisateur
-                const userPayload = validateToken(req)
 
-                await utilisateurDAO.addTeam(
-                    userPayload.pseudo, equipe
-                ) ? res.status(201).send() :
-                res.status(409).send()
-            } catch (error) {
-                res.status(401).send()
-            }
-        })
-        .put(async  (req, res) => {
-            const equipe = req.body.equipe
-            try {
-                // Valider le token de l'utilisateur
-                const userPayload = validateToken(req)
+            const { motDePasse, _id, ...userData } = utilisateur
+            res.json(userData)
+        } catch (error) {
+            res.status(401).send()
+        }
+    })
+    .post(async (req, res) => {
+        const equipe = req.body.equipe
+        try {
+            // Valider le token de l'utilisateur
+            const userPayload = validateToken(req)
 
-                await utilisateurDAO.editTeam(
-                    userPayload.pseudo, equipe
-                ) ? res.status(204).send() :
-                    res.status(404).send()
-            } catch (error) {
-                res.status(401).send()
-            }
-        })
+            await utilisateurDAO.addTeam(
+                userPayload.pseudo, equipe
+            ) ? res.status(201).send() :
+            res.status(409).send()
+        } catch (error) {
+            res.status(401).send()
+        }
+    })
+    .put(async (req, res) => {
+        const equipe = req.body.equipe
+        try {
+            // Valider le token de l'utilisateur
+            const userPayload = validateToken(req)
+
+            await utilisateurDAO.editTeam(
+                userPayload.pseudo, equipe
+            ) ? res.status(204).send() :
+                res.status(404).send()
+        } catch (error) {
+            res.status(401).send()
+        }
+    })
+    .delete(async (req, res) => {
+        const nomEquipe = req.body.nomEquipe
+        try {
+            // Valider le token de l'utilisateur
+            const userPayload = validateToken(req)
+
+            await utilisateurDAO.deleteTeam(
+                userPayload.pseudo, nomEquipe
+            ) ? res.status(204).send() :
+                res.status(404).send()
+        } catch (error) {
+            res.status(401).send()
+        }
+    })
 
 export default router

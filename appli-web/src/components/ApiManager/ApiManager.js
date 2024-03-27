@@ -206,6 +206,11 @@ const ApiManager = {
         })
     },
 
+    /**
+     * @param token {string}
+     * @param equipe {Object}
+     * @return {Promise<Response>}
+     */
     editTeam: (token, equipe) => {
         const url = BASE_URL + ENDPOINTS.PROFIL()
         return fetch(url, {
@@ -215,6 +220,23 @@ const ApiManager = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({equipe: equipe})
+        })
+    },
+
+    /**
+     * @param token {string}
+     * @param nomEquipe {string}
+     * @return {Promise<Response>}
+     */
+    deleteTeam: (token, nomEquipe) => {
+        const url = BASE_URL + ENDPOINTS.PROFIL()
+        return fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({nomEquipe: nomEquipe})
         })
     }
 }

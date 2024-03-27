@@ -5,8 +5,8 @@ import ObjetSelector from "../ObjetSelector"
 import CapacitesSelector from "../CapacitesSelector"
 import {PokemonProvider} from "../Contexts/PokemonContext"
 import {ObjetProvider} from "../Contexts/ObjetContext"
+import BoutonHeader from "../BoutonHeader"
 import ApiManager from "../../ApiManager/ApiManager"
-import BoutonHeader from "../BoutonHeader";
 
 /**
  * @param nom {string}
@@ -176,6 +176,7 @@ export default function EditEquipeCard({
 
                     <label className="estChromatique">
                         <input
+                            name='shiny'
                             type="checkbox"
                             checked={editedPokemon?.chromatique || false}
                             onChange={(e) => editedPokemon && toggleShiny(e)}

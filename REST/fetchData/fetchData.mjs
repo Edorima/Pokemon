@@ -50,14 +50,14 @@ export const objetCollection = db.collection('objet')
 
 console.log("Downloading data...")
 export const progressBar = new ConsoleProgressBar({
-    maxValue: 2463,
+    maxValue: 2531,
     startChars: '[', endChars: ']',
     filledPartChars: '=', notFilledPartChars: ' '
 })
 
 await fetchPokemons() // 898 pas
 await fetchMoves() // 826 pas
-await fetchAbilities() // 307 pas
+await fetchAbilities() // 375
 await fetchItems() // 432 pas
 
 console.log("Data downloaded.")

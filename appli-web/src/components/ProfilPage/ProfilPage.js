@@ -121,6 +121,7 @@ export default function ProfilPage() {
                                 nom={e.nom}
                                 pokemons={e.pokemons}
                                 profil={profil}
+                                setProfil={setProfil}
                                 setEditingTeam={setEditingTeam}
                                 changeDisabled={editingTeam !== null}
                                 added={added}

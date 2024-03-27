@@ -1,11 +1,13 @@
 import {useState} from "react"
 import {CapaciteViewer} from "../CapaciteViewer"
 import BoutonHeader from "../BoutonHeader"
+import ApiManager from "../../ApiManager/ApiManager"
 
 /**
  * @param nom {string}
  * @param pokemons {Object}
  * @param profil {Object}
+ * @param setProfil {(Object) => void}
  * @param setEditingTeam {(value: number | null) => void}
  * @param changeDisabled {boolean}
  * @param setAdded {(boolean) => void}
@@ -14,6 +16,7 @@ export default function ViewEquipeCard({
    nom,
    pokemons,
    profil,
+   setProfil,
    setEditingTeam,
    changeDisabled,
    setAdded
@@ -52,6 +55,17 @@ export default function ViewEquipeCard({
         setAdded(false)
     }
 
+    const deleteTeam = () => {
+        const token = localStorage.getItem('token')
+        ApiManager.deleteTeam(token, nom).then()
+        setEditingTeam(null)
+        const updatedProfil = {...profil}
+        updatedProfil.equipes = updatedProfil.equipes.filter(
+            e => e.nom !== nom
+        )
+        setProfil(updatedProfil)
+    }
+
     return (
         <div className="equipe">
             <div className="headerEquipe">
@@ -76,7 +90,7 @@ export default function ViewEquipeCard({
                     <BoutonHeader
                         className='boutonSupprimer'
                         disabled={changeDisabled}
-                        onClick={() => {}}
+                        onClick={deleteTeam}
                         src='/assets/equipeCardIcons/delete.png'
                         alt='Supprimer'
                     />

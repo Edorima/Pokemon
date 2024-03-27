@@ -38,6 +38,7 @@ export default function PokemonSelector({
 
     return (
         <select
+            name='selectPokemon'
             className="choix"
             onChange={selectPokemon}
             value={editedPokemon?.nomNormalise || ''}>

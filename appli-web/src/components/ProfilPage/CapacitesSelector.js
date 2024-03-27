@@ -69,6 +69,7 @@ export default function CapacitesSelector({
                     editedMove={editedMove}
                     selector={
                         <select
+                            name={`slot${slot}`}
                             className="choix"
                             onChange={(e) => selectCapacite(e, slot)}
                             value={editedMove?.nomNormalise || ''}>

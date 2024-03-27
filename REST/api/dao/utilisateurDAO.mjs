@@ -41,6 +41,7 @@ const utilisateurDAO = {
     },
 
     /**
+     * Ajoute une équipe pour un utilisateur
      * @param pseudo {string}
      * @param equipe {Object}
      * @return {Promise<boolean>}
@@ -60,12 +61,32 @@ const utilisateurDAO = {
         return true
     },
 
+    /**
+     * Modifie une équipe pour un utilisateur
+     * @param pseudo {string}
+     * @param equipe {Object}
+     * @return {Promise<boolean>}
+     */
     editTeam: async (pseudo, equipe) => {
         const result = await utilisateurDAO.collection.updateOne(
             {'equipes.nom': equipe.nom},
             {$set: {'equipes.$.pokemons': equipe.pokemons}}
         )
-        return result.modifiedCount > 0
+        return result.modifiedCount === 1
+    },
+
+    /**
+     * Supprime une équipe d'un utilisateur
+     * @param pseudo {string}
+     * @param nomEquipe {string}
+     * @return {Promise<boolean>}
+     */
+    deleteTeam: async (pseudo, nomEquipe) => {
+        const result = await utilisateurDAO.collection.updateOne(
+            {pseudo: pseudo},
+            {$pull: {equipes: {nom: nomEquipe}}}
+        )
+        return result.modifiedCount === 1
     }
 }
 
