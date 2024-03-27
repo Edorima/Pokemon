@@ -73,7 +73,7 @@ export default function EditEquipeCard({
             return false
 
         // On vérifie ensuite si tous les pokémons qui ne sont pas null ont au moins une capacité
-        const pokemonsHaveCapacities = Object.values(pokemons).every(pokemon => {
+        return Object.values(pokemons).every(pokemon => {
             /* Si le pokémon est null, on considère cela
             comme valide car on cherche des pokémons non null sans capacité */
             if (!pokemon) return true
@@ -82,12 +82,6 @@ export default function EditEquipeCard({
             return Object.values(pokemon.capacites)
                 .some(capacite => capacite !== null)
         })
-
-        if (!pokemonsHaveCapacities) return false
-
-        // TODO Empêcher de sauvegarder si pas de changement entre {initialPokemons} et {pokemons}
-
-        return true
     }
 
     const onSave = () => {
@@ -110,6 +104,7 @@ export default function EditEquipeCard({
         <div className="equipe">
             <div className="headerEquipe">
                 <span className="nomEquipe">{nom}</span>
+                {!added && 'Mode édition'}
                 <button className='boutonFavoris'>
                     <img src='/assets/equipeCardIcons/favorite.png' alt='Favoris'/>
                 </button>
@@ -187,6 +182,7 @@ export default function EditEquipeCard({
 
                 {editedPokemon &&
                     <div className="optionPkm">
+                        Vous pouvez séléctionner des capacités
                         <CapacitesSelector
                             pokemons={pokemons}
                             setPokemons={setPokemons}
@@ -198,7 +194,6 @@ export default function EditEquipeCard({
                 <div className="boutonsAction">
                     <BoutonsAction
                         canSave={canSave()}
-                        added={added}
                         onCancel={onCancel}
                         onSave={onSave}
                     />
