@@ -2,6 +2,7 @@
 
 import {MongoClient} from "mongodb"
 import Pokemon from "../model/Pokemon.mjs"
+import capaciteDAO from "./capaciteDAO.mjs";
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
 const LIMIT = 20
@@ -35,15 +36,12 @@ const pokemonDAO = {
     },
 
     /**
-     * @param nameOrId {string | number}
+     * @param id {number}
      * @returns {Promise<Pokemon | null>}
      */
-    findPokemonByNameOrId: async (nameOrId) => {
-        const id = parseInt(nameOrId)
+    findPokemonById: async (id) => {
         const data = await pokemonDAO.collection.findOne(
-            Number.isInteger(id) ?
-                {id: id} :
-                {nomNormalise: normalizeString(nameOrId)},
+            {id: id},
             {projection: {_id: 0}}
         )
         return data ? new Pokemon(data) : null
@@ -69,43 +67,15 @@ const pokemonDAO = {
     },
 
     /**
-     * @param type {string}
-     * @param limit {number}
-     * @param offset {number}
-     @returns {Promise<Pokemon[]>}
+     * @param moveId {number}
+     * @returns {Promise<Pokemon[]>}
      */
-    findPokemonsByType: async (type, limit, offset) => {
-        if (offset <= -1) return []
-
+    findPokemonsByMove: async (moveId) => {
+        const move = await capaciteDAO.findMoveById(moveId)
         const data = await pokemonDAO.collection.find(
-            {"types.type": type},
-            {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
+            {nomAnglais: {$in: move.pokemons}},
+            {projection: {_id: 0}}
         )
-        return (await data.toArray()).map(e => new Pokemon(e))
-    },
-
-    /**
-     * @param type1 {string}
-     * @param type2 {string}
-     * @param limit {number}
-     * @param offset {number}
-     @returns {Promise<Pokemon[]>}
-     */
-    findPokemonsByDoubleType: async (type1, type2, limit, offset) => {
-        if (offset <= -1) return []
-
-        const data = pokemonDAO.collection.find({
-            $or: [
-                {$and: [
-                    {types: { $elemMatch: { slot: 1, "type": type1}}},
-                    {types: { $elemMatch: { slot: 2, "type": type2}}}
-                ]},
-                {$and: [
-                    {types: { $elemMatch: { slot: 1, "type": type2}}},
-                    {types: { $elemMatch: { slot: 2, "type": type1}}}
-                ]}
-        ]}, {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0})
-
         return (await data.toArray()).map(e => new Pokemon(e))
     }
 }

@@ -23,15 +23,6 @@ router.route('/pokemon').get(async (req, res) => {
     res.status(200).send(await pokemonDAO.getPokemons(generation, limit, offset))
 })
 
-router.route('/pokemon/:nameOrId').get(async (req, res) => {
-    const nameOrId = req.params.nameOrId
-    const result = await pokemonDAO.findPokemonByNameOrId(nameOrId)
-    if (result)
-        res.status(200).send(result)
-    else
-        res.status(404).send("Not Found")
-})
-
 router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
     const searchTerm = req.params.searchTerm
     const generation = parseInt(req.query.gen)
@@ -46,27 +37,22 @@ router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
         res.status(404).send("Not Found")
 })
 
-router.route('/pokemon/type/:type').get(async (req, res) => {
-    const type = req.params.type
-    const limit = parseInt(req.query.limit)
-    const offset = parseInt(req.query.offset)
-    res.status(200).send(
-        await pokemonDAO.findPokemonsByType(
-            type, limit, offset
-        )
-    )
+router.route('/pokemon/:id').get(async (req, res) =>  {
+    const id = parseInt(req.params.id)
+    const result = await pokemonDAO.findPokemonById(id)
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
 })
 
-router.route('/pokemon/type/:type1/:type2').get(async (req, res) => {
-    const type1 = req.params.type1
-    const type2 = req.params.type2
-    const limit = parseInt(req.query.limit)
-    const offset = parseInt(req.query.offset)
-    res.status(200).send(
-        await pokemonDAO.findPokemonsByDoubleType(
-            type1, type2, limit, offset
-        )
-    )
+router.route('/pokemon/:id/moves').get(async (req, res) => {
+    const id = parseInt(req.params.id)
+    const result = await capaciteDAO.findMovesByPokemon(id)
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
 })
 
 router.route('/capacite').get(async (req, res) => {
@@ -74,9 +60,7 @@ router.route('/capacite').get(async (req, res) => {
     const categorie = req.query.categorie
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    res.status(200).send(await capaciteDAO.getMoves(type,categorie, limit, offset))
-
-
+    res.status(200).send(await capaciteDAO.getMoves(type, categorie, limit, offset))
 })
 
 router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
@@ -88,6 +72,24 @@ router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
     const result = await capaciteDAO.findMovesThatStartsWith(
         searchTerm, type, categorie, limit, offset
     )
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
+})
+
+router.route('/capacite/:id').get(async (req, res) =>  {
+    const id = parseInt(req.params.id)
+    const result = await capaciteDAO.findMoveById(id)
+    if (result)
+        res.status(200).send(result)
+    else
+        res.status(404).send("Not Found")
+})
+
+router.route('/capacite/:id/pokemons').get(async (req, res) => {
+    const id = parseInt(req.params.id)
+    const result = await pokemonDAO.findPokemonsByMove(id)
     if (result)
         res.status(200).send(result)
     else
