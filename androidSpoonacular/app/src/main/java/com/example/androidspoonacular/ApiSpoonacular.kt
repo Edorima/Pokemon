@@ -31,10 +31,28 @@ class ApiSpoonacular(private val context: Context) {
 
     private val baseUrl = "https://api.spoonacular.com/"
     private val key = "2980f9e49c1b48e39cc29ca9fce9180b"
+    private var typeSelectionner = ""
+    private var dietSelectioner = ""
 
     fun requestSpoonRecipes(callback: (RootReponse?) -> Unit) {
+        val typeURL : String
+        var dietURL : String
         val queue = Volley.newRequestQueue(context)
-        val url = "$baseUrl/recipes/complexSearch?apiKey=$key"
+
+        if (typeSelectionner == "All") {
+            typeURL = ""
+        } else {
+            typeURL = "cuisine=$typeSelectionner"
+        }
+
+        if (dietSelectioner == "All"){
+            dietURL = ""
+        } else {
+            dietURL = "&diet=$dietSelectioner"
+        }
+
+        val url = "$baseUrl/recipes/complexSearch?$typeURL$dietURL&apiKey=$key"
+        println(url)
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -49,5 +67,13 @@ class ApiSpoonacular(private val context: Context) {
                 callback(null) // Appeler le callback avec null en cas d'erreur
             })
         queue.add(stringRequest)
+    }
+
+    fun setTypeSelectionner(select: String) {
+        typeSelectionner = select
+    }
+
+    fun setDietSelectioner(select: String) {
+        dietSelectioner = select
     }
 }

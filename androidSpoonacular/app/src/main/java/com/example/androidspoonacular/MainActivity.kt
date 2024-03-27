@@ -1,5 +1,6 @@
 package com.example.androidspoonacular
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         val bouttonRecherche = findViewById<Button>(R.id.buttonRecherche)
         val categoriesTitles = CategoriesTitles()
         val apiSpoonacular = ApiSpoonacular(this)
-        var typeSelectionner = ""
-        var dietSelectioner = ""
 
         val adapterType = ArrayAdapter(this, android.R.layout.simple_spinner_item, categoriesTitles.getType())
         adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -36,8 +35,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Récupérer l'élément sélectionné
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                typeSelectionner = selectedItem
-                println(typeSelectionner)
+                apiSpoonacular.setTypeSelectionner(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -49,8 +47,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Récupérer l'élément sélectionné
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                dietSelectioner = selectedItem
-                println(dietSelectioner)
+                apiSpoonacular.setDietSelectioner(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -70,6 +67,8 @@ class MainActivity : AppCompatActivity() {
                     Log.e("API Error", "Une erreur s'est produite lors de la requête")
                 }
             }
+
+            startActivity(Intent(this,ResultActivity::class.java))
         }
 
     }
