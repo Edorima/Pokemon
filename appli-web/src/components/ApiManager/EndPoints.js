@@ -36,6 +36,10 @@ const ENDPOINTS = {
         return ep
     },
 
+    GET_POKEMONS_BY_MOVE: (id) => {
+        return `/capacite/${id}/pokemons`
+    },
+
 
     GET_MOVES_THAT_STARTS_WITH: (searchTerm, type, categorie, offset) => {
         let ep = `/capacite/startsWith/${searchTerm}?offset=${offset}`

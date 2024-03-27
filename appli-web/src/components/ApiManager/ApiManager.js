@@ -84,6 +84,16 @@ const ApiManager = {
         })
     },
 
+    getPokemonsByMove: (id) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_MOVE(id)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
     /**
      * @param searchTerm {string}
      * @param type {string}
