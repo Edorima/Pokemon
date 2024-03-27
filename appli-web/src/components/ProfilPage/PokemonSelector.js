@@ -1,18 +1,12 @@
-import {useEffect, useState} from "react"
-import ApiManager from "../ApiManager/ApiManager"
+import {usePokemon} from "./Contexts/PokemonContext"
 
 export default function PokemonSelector({
     pokemons,
     setPokemons,
     editing
 }) {
-    const [pokemonsList, setPokemonsList] = useState([])
-
-    useEffect(() => {
-        ApiManager.getPkms(0, 0)
-            .then(response => response.json())
-            .then(data => setPokemonsList(data))
-    }, [])
+    const pokemonsList = usePokemon()
+    const editedPokemon = pokemons[`pokemon${editing}`]
 
     const selectPokemon = (event) => {
         const value = event.target.value
@@ -41,8 +35,6 @@ export default function PokemonSelector({
         }
         setPokemons(updatedPokemons)
     }
-
-    const editedPokemon = pokemons[`pokemon${editing}`]
 
     return (
         <select

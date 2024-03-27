@@ -17,6 +17,8 @@ const ENDPOINTS = {
 
     GET_POKEMONS_BY_MOVE: (id) => `/capacite/${id}/pokemon`,
 
+    GET_ALL_ITEMS: () => '/objet?limit=432',
+
     GET_ITEMS: (categorie, offset) => {
         const ep = `/objet?offset=${offset}`
         if (categorie)

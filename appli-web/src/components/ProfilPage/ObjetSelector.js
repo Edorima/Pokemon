@@ -1,18 +1,12 @@
-import {useEffect, useState} from "react"
-import ApiManager from "../ApiManager/ApiManager"
+import {useObjet} from "./Contexts/ObjetContext"
 
-export default function ItemSelector({
+export default function ObjetSelector({
     pokemons,
     setPokemons,
     editing
 }) {
-    const [itemsList, setItemsList] = useState([])
-
-    useEffect(() => {
-        ApiManager.getItems(0, 0)
-            .then(response => response.json())
-            .then(data => setItemsList(data))
-    }, [])
+    const itemsList = useObjet()
+    const editedPokemon = pokemons[`pokemon${editing}`]
 
     const selectItem = (event) => {
         const value = event.target.value
@@ -33,8 +27,6 @@ export default function ItemSelector({
         setPokemons(updatedPokemons)
     }
 
-    const editedPokemon = pokemons[`pokemon${editing}`]
-
     return (
         <select
             className="choix"
@@ -43,7 +35,7 @@ export default function ItemSelector({
             disabled={!editedPokemon}>
             <option value="">Pas d'objet</option>
             {itemsList.map((item) => (
-                <option key={item.nomNormalise} value={item.nomNormalise}>
+                <option key={item.nomAnglais} value={item.nomNormalise}>
                     {item.nom}
                 </option>
             ))}
