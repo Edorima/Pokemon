@@ -1,23 +1,10 @@
 import Capacite from "../api/model/Capacite.mjs"
-import {
-    fetchData, normalize, progressBar, typeMap,
-    pokemonCollection, capaciteCollection
+import {fetchData, normalize,
+    progressBar, pokemonCollection, capaciteCollection
 } from "./fetchData.mjs"
 
-const categorieMap = new Map([
-    ['physical', 'Physique'],
-    ['special', 'Spéciale'],
-    ['status', 'Statut']
-])
-
-export default async function fetchMoves(offset = 0) {
-    const limit = 826
-    if (offset >= limit) {
-        progressBar.addValue(limit)
-        return
-    }
-    progressBar.addValue(offset)
-    const capaciteURL = `https://pokeapi.co/api/v2/move?limit=${limit-offset}&offset=${offset}`
+export default async function fetchMoves() {
+    const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
     const allMoves = await fetchData(capaciteURL)
     for (const move of allMoves.results) {
         progressBar.addValue()

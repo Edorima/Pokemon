@@ -48,18 +48,6 @@ export const pokemonCollection = db.collection('pokemon')
 export const capaciteCollection = db.collection('capacite')
 export const objetCollection = db.collection('objet')
 
-export const typeMap = new Map([
-    ['normal', 'Normal'], ['fighting', 'Combat'],
-    ['flying', 'Vol'], ['poison', 'Poison'],
-    ['ground', 'Sol'], ['rock', 'Roche'],
-    ['bug', 'Insecte'], ['ghost', 'Spectre'],
-    ['steel', 'Acier'], ['fire', 'Feu'],
-    ['water', 'Eau'], ['grass', 'Plante'],
-    ['electric', 'Électrik'], ['psychic', 'Psy'],
-    ['ice', 'Glace'], ['dragon', 'Dragon'],
-    ['dark', 'Ténèbres'], ['fairy', 'Fée'],
-])
-
 console.log("Downloading data...")
 export const progressBar = new ConsoleProgressBar({
     maxValue: 2463,

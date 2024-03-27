@@ -1,29 +1,14 @@
 import Pokemon from "../api/model/Pokemon.mjs"
-import {
-    fetchData, normalize, typeMap,
-    pokemonCollection, progressBar
-} from "./fetchData.mjs"
-
-const generationMap = new Map([
-    ['generation-i', 1], ['generation-ii', 2],
-    ['generation-iii', 3], ['generation-iv', 4],
-    ['generation-v', 5], ['generation-vi', 6],
-    ['generation-vii', 7], ['generation-viii', 8],
-])
+import {generationMap, typeMap} from "./usefulData.mjs"
+import {fetchData, normalize, pokemonCollection, progressBar} from "./fetchData.mjs"
 
 /**
  * Une fonction pour télécharger les données concernant les Pokémon
  * et les mettre en base de données. Elle récupère les 898 premiers Pokémon
  * (de la 1ère à la 8ème génération).
  */
-export default async function fetchPokemons(offset = 0) {
-    const limit = 898
-    if (offset >= limit) {
-        progressBar.addValue(limit)
-        return
-    }
-    progressBar.addValue(offset)
-    const pokemonsURL = `https://pokeapi.co/api/v2/pokemon?limit=${limit-offset}&offset=${offset}`
+export default async function fetchPokemons() {
+    const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
     const allPokemons = await fetchData(pokemonsURL)
     for (const pokemon of allPokemons.results) {
         progressBar.addValue()
