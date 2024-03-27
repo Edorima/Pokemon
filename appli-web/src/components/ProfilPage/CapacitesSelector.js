@@ -8,11 +8,10 @@ export default function CapacitesSelector({
   editing
 }) {
     const [movesList, setMovesList] = useState([])
-
     const editedPokemon = pokemons[`pokemon${editing}`]
 
     useEffect(() => {
-        ApiManager.getMoves('', '',0)
+        ApiManager.getMovesByPokemon(editedPokemon.id)
             .then(response => response.json())
             .then(data => setMovesList(data))
     }, [])
@@ -61,36 +60,28 @@ export default function CapacitesSelector({
         setPokemons(updatedPokemons)
     }
 
-    function CapaciteSelector({slot, editedMove}) {
-        return (
-            <CapaciteViewer
-                editedMove={editedMove}
-                selector={
-                    <select
-                        className="choix"
-                        onChange={(e) => selectCapacite(e, slot)}
-                        value={editedMove?.nomNormalise || ''}>
-                        <option value="">Aucune Attaque</option>
-                        {getAvailableMoves(slot).map(m => (
-                            <option key={m.id} value={m.nomNormalise}>
-                                {m.nom}
-                            </option>
-                        ))}
-                    </select>
-                }
-            />
-        )
-    }
-
     return (
         <div className="capacitesPkm">
-            {[1, 2, 3, 4].map(slot => (
-                <CapaciteSelector
+            {[1, 2, 3, 4].map(slot => {
+                const editedMove = editedPokemon?.capacites[`capacite${slot}`]
+                return <CapaciteViewer
                     key={slot}
-                    slot={slot}
-                    editedMove={editedPokemon?.capacites[`capacite${slot}`]}
+                    editedMove={editedMove}
+                    selector={
+                        <select
+                            className="choix"
+                            onChange={(e) => selectCapacite(e, slot)}
+                            value={editedMove?.nomNormalise || ''}>
+                            <option value="">Aucune Attaque</option>
+                            {getAvailableMoves(slot).map(m => (
+                                <option key={m.id} value={m.nomNormalise}>
+                                    {m.nom}
+                                </option>
+                            ))}
+                        </select>
+                    }
                 />
-            ))}
+            })}
         </div>
     )
 }

@@ -16,24 +16,21 @@ export default function ProfilPage() {
 
     useEffect(() => {
         const token = localStorage.getItem('token')
+        async function getProfil() {
+            try {
+                const response = await ApiManager.getProfil(token)
+                const data = await response.json()
+                setProfil(data)
+            } catch (_) {
+                localStorage.removeItem('token')
+                navigate('/login')
+            }
+        }
+
         if (!token) {
             navigate('/login')
-        } else {
-            ApiManager.getProfil(token)
-                .then(response => {
-                    if (!response.ok)
-                        throw new Error()
-                    return response.json()
-                })
-                .then(data => {
-                    console.log(data)
-                    setProfil(data)
-                })
-                .catch(() => {
-                    localStorage.removeItem('token')
-                    navigate('/login')
-                })
-        }
+        } else
+            getProfil().then()
     }, [navigate])
 
     const validerNomEquipe = () => {

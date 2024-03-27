@@ -1,9 +1,11 @@
 import {useState} from "react"
 import BoutonsAction from "../BoutonsAction"
 import PokemonSelector from "../PokemonSelector"
-import ItemSelector from "../ItemSelector"
+import ObjetSelector from "../ObjetSelector"
 import CapacitesSelector from "../CapacitesSelector"
+import {PokemonProvider} from "../Contexts/PokemonContext";
 import ApiManager from "../../ApiManager/ApiManager"
+import {ObjetProvider} from "../Contexts/ObjetContext";
 
 /**
  * @param nom {string}
@@ -151,17 +153,21 @@ export default function EditEquipeCard({
 
             <div className="infoPokemon">
                 <div className="choixPkm">
-                    <PokemonSelector
-                        pokemons={pokemons}
-                        setPokemons={setPokemons}
-                        editing={editingPkm}
-                    />
+                    <PokemonProvider>
+                        <PokemonSelector
+                            pokemons={pokemons}
+                            setPokemons={setPokemons}
+                            editing={editingPkm}
+                        />
+                    </PokemonProvider>
 
-                    <ItemSelector
-                        pokemons={pokemons}
-                        setPokemons={setPokemons}
-                        editing={editingPkm}
-                    />
+                    <ObjetProvider>
+                        <ObjetSelector
+                            pokemons={pokemons}
+                            setPokemons={setPokemons}
+                            editing={editingPkm}
+                        />
+                    </ObjetProvider>
 
                     <label className="estChromatique">
                         <input

@@ -2,10 +2,19 @@ import ENDPOINTS from "./EndPoints"
 const BASE_URL = 'http://localhost:8081/api/v1'
 
 const ApiManager = {
+    getAllPkms: () => {
+        const url = BASE_URL + ENDPOINTS.GET_ALL_POKEMONS()
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
     /**
      * @param generation {number}
      * @param offset {number}
-     * @returns {Promise<Response>}
      */
     getPkms: (generation, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS(generation, offset)
@@ -21,7 +30,6 @@ const ApiManager = {
      * @param searchTerm {string}
      * @param generation {number | null}
      * @param offset {number}
-     * @returns {Promise<Response>}
      */
     getPkmsThatStartsWith: (searchTerm, generation, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(
@@ -36,9 +44,32 @@ const ApiManager = {
     },
 
     /**
+     * @param id {number}
+     */
+    getPokemonsByMove: (id) => {
+
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_MOVE(id)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    getAllItems: () => {
+        const url = BASE_URL + ENDPOINTS.GET_ALL_ITEMS()
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
      * @param categorie {number}
      * @param offset {number}
-     * @returns {Promise<Response>}
      */
     getItems: (categorie, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_ITEMS(categorie, offset)
@@ -54,7 +85,6 @@ const ApiManager = {
      * @param searchTerm {string}
      * @param categorie {number}
      * @param offset {number}
-     * @returns {Promise<Response>}
      */
     getItemsThatStartsWith: (searchTerm, categorie, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_ITEMS_THAT_STARTS_WITH(
@@ -72,7 +102,6 @@ const ApiManager = {
      * @param type {string}
      * @param categorie {string}
      * @param offset {number}
-     * @returns {Promise<Response>}
      */
     getMoves: (type, categorie, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_MOVES(type, categorie, offset)
@@ -104,9 +133,21 @@ const ApiManager = {
     },
 
     /**
+     * @param id {number}
+     */
+    getMovesByPokemon: (id) => {
+        const url = BASE_URL + ENDPOINTS.GET_MOVES_BY_POKEMON(id)
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    },
+
+    /**
      * @param username {string}
      * @param password {string}
-     * @returns {Promise<Response>}
      */
     login: (username, password) => {
         const url = BASE_URL + ENDPOINTS.LOGIN()
@@ -122,7 +163,6 @@ const ApiManager = {
     /**
      * @param username {string}
      * @param password {string}
-     * @returns {Promise<Response>}
      */
     register: (username, password) => {
         const url = BASE_URL + ENDPOINTS.REGISTER()
@@ -137,7 +177,6 @@ const ApiManager = {
 
     /**
      * @param token {string}
-     * @returns {Promise<Response>}
      */
     getProfil: (token) => {
         const url = BASE_URL + ENDPOINTS.PROFIL()

@@ -1,6 +1,6 @@
 #capaciteWrapper {
 
-    .card-display p {
+    .card-display {
 
     }
 
@@ -9,6 +9,7 @@
         white-space: nowrap;
         font-weight: bold;
         flex-basis: 50px;
+        margin-right: 50px;
     }
 
     .common-name {
