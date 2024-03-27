@@ -165,6 +165,18 @@ const ApiManager = {
             },
             body: JSON.stringify({equipe: equipe})
         })
+    },
+
+    editTeam: (token, equipe) => {
+        const url = BASE_URL + ENDPOINTS.PROFIL()
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({equipe: equipe})
+        })
     }
 }
 

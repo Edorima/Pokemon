@@ -54,10 +54,18 @@ const utilisateurDAO = {
         if (teamExists)
             return false
 
-        await utilisateurDAO.collection.updateOne(
+        await collection.updateOne(
             filter, {$push: {equipes: equipe}}
         )
         return true
+    },
+
+    editTeam: async (pseudo, equipe) => {
+        const result = await utilisateurDAO.collection.updateOne(
+            {'equipes.nom': equipe.nom},
+            {$set: {'equipes.$.pokemons': equipe.pokemons}}
+        )
+        return result.modifiedCount > 0
     }
 }
 

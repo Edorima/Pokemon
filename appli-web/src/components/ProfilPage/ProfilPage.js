@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import ApiManager from "../ApiManager/ApiManager"
 import {useNavigate} from "react-router-dom"
 import EditEquipeCard from "./EquipeCards/EditEquipeCard"
 import ErrorMessage from "../ErrorMessage"
+import ViewEquipeCard from "./EquipeCards/ViewEquipeCard"
+import ApiManager from "../ApiManager/ApiManager"
 import './ProfilPage.css'
-import ViewEquipeCard from "./EquipeCards/ViewEquipeCard";
 
 export default function ProfilPage() {
     const navigate = useNavigate()

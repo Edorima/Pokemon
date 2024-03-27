@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {useState} from "react"
 import BoutonsAction from "../BoutonsAction"
 import PokemonSelector from "../PokemonSelector"
 import ItemSelector from "../ItemSelector"
@@ -73,7 +73,7 @@ export default function EditEquipeCard({
             return false
 
         // On vérifie ensuite si tous les pokémons qui ne sont pas null ont au moins une capacité
-        return Object.values(pokemons).every(pokemon => {
+        const pokemonsHaveCapacities = Object.values(pokemons).every(pokemon => {
             /* Si le pokémon est null, on considère cela
             comme valide car on cherche des pokémons non null sans capacité */
             if (!pokemon) return true
@@ -82,28 +82,28 @@ export default function EditEquipeCard({
             return Object.values(pokemon.capacites)
                 .some(capacite => capacite !== null)
         })
+
+        if (!pokemonsHaveCapacities) return false
+
+        // TODO Empêcher de sauvegarder si pas de changement entre {initialPokemons} et {pokemons}
+
+        return true
     }
 
     const onSave = () => {
         const token = localStorage.getItem('token')
         const equipe = {nom: nom, pokemons: pokemons}
-        ApiManager.addTeam(token, equipe).then()
+        if (added)
+            ApiManager.addTeam(token, equipe).then()
+        else
+            ApiManager.editTeam(token, equipe).then()
+
         setEditingTeam(null)
-
         // Mise à jour du profil avec les bon Pokémon
-        setProfil(prevProfil => {
-            const equipesMiseAJour = prevProfil.equipes.map(e => ({...e}))
-
-            // Trouver l'index de l'équipe à mettre à jour
-            const equipeIndex = equipesMiseAJour.findIndex(e => e.nom === equipe.nom)
-
-            if (equipeIndex !== -1) {
-                equipesMiseAJour[equipeIndex] = equipe
-            } else
-                equipesMiseAJour.push(equipe)
-
-            return { ...prevProfil, equipes: equipesMiseAJour }
-        })
+        const updatedProfil = {...profil}
+        const updatedEquipeIndex = updatedProfil.equipes.findIndex(e => e.nom === nom)
+        updatedProfil.equipes[updatedEquipeIndex].pokemons = pokemons
+        setProfil(updatedProfil)
     }
 
     return (
@@ -198,6 +198,7 @@ export default function EditEquipeCard({
                 <div className="boutonsAction">
                     <BoutonsAction
                         canSave={canSave()}
+                        added={added}
                         onCancel={onCancel}
                         onSave={onSave}
                     />

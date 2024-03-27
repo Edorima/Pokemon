@@ -50,9 +50,9 @@ export default function CapacitesSelector({
             const move = movesList.find(m => m.nomNormalise === value)
             updatedPokemons[`pokemon${editing}`]
                 .capacites[`capacite${slot}`] = {
-                nom: move.nom, pp: move.pp,
+                id: move.id, nom: move.nom,
                 nomNormalise: move.nomNormalise,
-                type: move.type
+                type: move.type, pp: move.pp
             }
         } else
             updatedPokemons[`pokemon${editing}`]

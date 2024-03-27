@@ -189,5 +189,19 @@ router
                 res.status(401).send()
             }
         })
+        .put(async  (req, res) => {
+            const equipe = req.body.equipe
+            try {
+                // Valider le token de l'utilisateur
+                const userPayload = validateToken(req)
+
+                await utilisateurDAO.editTeam(
+                    userPayload.pseudo, equipe
+                ) ? res.status(204).send() :
+                    res.status(404).send()
+            } catch (error) {
+                res.status(401).send()
+            }
+        })
 
 export default router
