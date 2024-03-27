@@ -27,6 +27,8 @@ export default async function fetchMoves(offset = 0) {
             name => name.language.name === 'fr'
         ).name
 
+        const learnedByPkms = moveData.learned_by_pokemon.map(p => p.name)
+
         const moveObject = new Capacite({
             id: moveData.id,
             nom: nom,
@@ -39,7 +41,8 @@ export default async function fetchMoves(offset = 0) {
             puissance: moveData.power,
             precision: moveData.accuracy,
             pp: moveData.pp,
-            type: typeMap.get(moveData.type.name)
+            type: typeMap.get(moveData.type.name),
+            pokemons: learnedByPkms
         })
 
         await capaciteCollection.updateOne(
@@ -48,7 +51,6 @@ export default async function fetchMoves(offset = 0) {
             {upsert: true}
         )
 
-        const learnedByPkms = moveData.learned_by_pokemon.map(p => p.name)
         await pokemonCollection.updateMany(
             {nomAnglais: {$in: learnedByPkms}},
             {$addToSet: {capacites: moveData.id}}

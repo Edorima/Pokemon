@@ -10,22 +10,30 @@ export default function CapaciteCard({capacity}) {
                 <div className="name-image">
                     <span className="common-name">{capacity.nom}</span>
                     <img
+
                         src={`/assets/types/${capacity.type}.jpg` ?? '/assets/not_found.png'}
                         alt={capacity.nom}
                         loading="lazy"
                     />
 
                 </div>
-                <p>{capacity.description}</p>
-                <button onClick={toggleElement} className="details-button">
-                    Détails
-                    <img
-                        className={ouvert ? 'rotated': ''}
-                        src="/assets/arrow.svg"
-                        alt={"flèche"}
-                        loading="lazy"
-                    />
-                </button>
+                <p className="stat"> {capacity.puissance}</p>
+
+                <p className="stat"> {capacity.precision}%</p>
+                <p className="stat"> {capacity.pp}PP</p>
+                <p className="capacite-description">{capacity.description}</p>
+
+                <div>
+                    <button onClick={toggleElement} className="details-button">
+                        Détails
+                        <img
+                            className={ouvert ? 'rotated': ''}
+                            src="/assets/arrow.svg"
+                            alt={"flèche"}
+                            loading="lazy"
+                        />
+                    </button>
+                </div>
             </div>
         </div>
     )
