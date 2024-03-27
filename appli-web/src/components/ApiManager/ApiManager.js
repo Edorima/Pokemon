@@ -50,6 +50,7 @@ const ApiManager = {
      * @returns {Promise<Response>}
      */
     getPokemonsByMove: (id) => {
+
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS_BY_MOVE(id)
         return fetch(url, {
             method: 'GET',
