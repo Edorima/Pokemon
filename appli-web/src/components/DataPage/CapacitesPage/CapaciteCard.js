@@ -18,12 +18,10 @@ export default function CapaciteCard({move}) {
                 <div className="name-image">
                     <span className="common-name">{move.nom}</span>
                     <img
-
-                        src={`/assets/types/${move.type}.jpg` ?? '/assets/not_found.png'}
+                        src={`/assets/types/${move.type}.jpg`}
                         alt={move.nom}
                         loading="lazy"
                     />
-
                 </div>
                 <span className="stat">
                     <img
@@ -32,21 +30,20 @@ export default function CapaciteCard({move}) {
                     />
                     {move.puissance ?? '---'}
                 </span>
-                <p className="stat"> {move.precision? move.precision + "%": "--%"}</p>
+
+                <p className="stat"> {move.precision ?? "---"}%</p>
                 <p className="stat"> {move.pp}PP</p>
                 <p className="capacite-description">{move.description}</p>
 
-                <div>
-                    <button onClick={toggleElement} className="details-button">
-                        Détails
-                        <img
-                            className={ouvert ? 'rotated': ''}
-                            src="/assets/arrow.svg"
-                            alt={"flèche"}
-                            loading="lazy"
-                        />
-                    </button>
-                </div>
+                <button onClick={toggleElement} className="details-button">
+                    Détails
+                    <img
+                        className={ouvert ? 'rotated' : ''}
+                        src="/assets/arrow.svg"
+                        alt={"flèche"}
+                        loading="lazy"
+                    />
+                </button>
             </div>
             {ouvert && (
                 <div>

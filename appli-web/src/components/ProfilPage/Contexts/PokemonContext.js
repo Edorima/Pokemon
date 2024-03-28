@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 import ApiManager from "../../ApiManager/ApiManager"
 
 const PokemonContext = createContext([])

@@ -1,5 +1,6 @@
 import DataList from "../DataList"
 import CapaciteCard from "./CapaciteCard"
+
 export default function CapacitesList({
      error,
      handleNextAction,

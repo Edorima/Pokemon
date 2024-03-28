@@ -42,7 +42,6 @@ export default function RegisterPage() {
             if (data.success && data.token) {
                 // Stockage du token JWT
                 localStorage.setItem('token', data.token)
-                console.log("Compte crée et token reçu.")
                 navigate('/profil')
             } else
                 setErrorMessage(data.message || "Échec de la création du compte.")

@@ -1,7 +1,6 @@
-import { useState } from "react"
+import {useState} from "react"
 import PokemonStats from "./PokemonStats"
-import ApiManager from "../../ApiManager/ApiManager";
-import InfiniteScroll from "react-infinite-scroll-component";
+import ApiManager from "../../ApiManager/ApiManager"
 
 function PokemonTypes({type1, type2}) {
     return (

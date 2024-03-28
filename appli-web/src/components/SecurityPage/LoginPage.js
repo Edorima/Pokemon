@@ -25,7 +25,6 @@ export default function LoginPage() {
             if (data.success && data.token) {
                 // Stocker le token JWT pour une utilisation ultérieure
                 localStorage.setItem('token', data.token)
-                console.log("Connexion réussie et token reçu.")
                 navigate('/profil')
             } else
                 setErrorMessage(data.message || "Échec de la connexion.")

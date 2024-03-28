@@ -1,4 +1,5 @@
 import ENDPOINTS from "./EndPoints"
+
 const BASE_URL = 'http://localhost:8081/api/v1'
 
 const ApiManager = {
