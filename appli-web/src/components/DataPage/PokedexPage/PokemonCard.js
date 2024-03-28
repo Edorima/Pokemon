@@ -60,8 +60,8 @@ export default function PokemonCard({pokemon}) {
                     </div>
 
                     <div className="center">
-                        <strong>Version Shiny</strong><br/>
-                        <img className="pokemon-sprite" src={pokemon.sprites.shiny} alt={`${pokemon.nom} Shiny`}/>
+                        <strong>Version Chromatique</strong><br/>
+                        <img className="pokemon-sprite" src={pokemon.sprites.shiny} alt={`${pokemon.nom} Chromatique`}/>
                     </div>
                 </div>
 
