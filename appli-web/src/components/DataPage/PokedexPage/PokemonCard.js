@@ -2,12 +2,17 @@ import {useState} from "react"
 import PokemonStats from "./PokemonStats"
 import ApiManager from "../../ApiManager/ApiManager"
 
-function PokemonTypes({type1, type2}) {
+function PokemonTypes({types}) {
     return (
         <div className="pokemon-types">
-            <img src={`/assets/types/${type1}.jpg`} alt={type1} loading="lazy"/>
-            {type2 &&
-                <img src={`/assets/types/${type2}.jpg`} alt={type2} loading="lazy"/>}
+            {types.map(type =>
+                <img
+                    key={type}
+                    src={`/assets/types/${type}.jpg`}
+                    alt={type}
+                    loading="lazy"
+                />
+            )}
         </div>
     )
 }
@@ -36,10 +41,7 @@ export default function PokemonCard({pokemon}) {
                 />
                 <div className="pokemon-info">
                     <span className="common-name">{pokemon.nom}</span>
-                    <PokemonTypes
-                        type1={pokemon.types.type1}
-                        type2={pokemon.types.type2}
-                    />
+                    <PokemonTypes types={pokemon.types}/>
                 </div>
                 <p className="pokemon-description">{pokemon.description}</p>
                 <button onClick={toggleElement} className="details-button">

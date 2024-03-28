@@ -41,20 +41,36 @@ async function validateUserToken(req, res, next) {
 }
 
 router.route('/pokemon').get(async (req, res) => {
+    const type1 = req.query.type1
+    const type2 = req.query.type2
+    if (!type1 && type2) {
+        res.status(400).send('type1 missing.')
+        return
+    }
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
 
-    res.status(200).send(await pokemonDAO.getPokemons(generation, limit, offset))
+    res.status(200).send(
+        await pokemonDAO.getPokemons(
+            generation, type1, type2, limit, offset
+        )
+    )
 })
 
 router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
+    const type1 = req.query.type1
+    const type2 = req.query.type2
+    if (!type1 && type2) {
+        res.status(400).send('type1 missing.')
+        return
+    }
     const searchTerm = req.params.searchTerm
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
     const result = await pokemonDAO.findPokemonsThatStartsWith(
-        searchTerm, generation, limit, offset
+        searchTerm, generation, type1, type2, limit, offset
     )
     if (result)
         res.status(200).send(result)
@@ -179,7 +195,12 @@ router.route('/profil')
         added ? res.status(201).send() : res.status(409).send("Équipe déjà existante ou erreur")
     })
     .put(validateUserToken, async (req, res) => {
-        const updated = await utilisateurDAO.editTeam(req.user.pseudo, req.body.equipe)
+        const updated = await utilisateurDAO.editTeam(
+            req.user.pseudo,
+            req.body.nomActuel,
+            req.body.pokemons,
+            req.body.nouveauNom
+        )
         updated ? res.status(204).send() : res.status(404).send("Équipe non trouvée")
     })
     .delete(validateUserToken, async (req, res) => {

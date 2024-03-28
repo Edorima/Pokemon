@@ -35,6 +35,10 @@ export default async function fetchPokemons() {
 
         const type1 = pokemonData.types[0]
         const type2 = pokemonData.types[1]
+        const types = [typeMap.get(type1.type.name)]
+        if (type2)
+            types.push(typeMap.get(type2.type.name))
+
 
         const pokemonObject = new Pokemon({
             id: pokemonData.id,
@@ -53,10 +57,7 @@ export default async function fetchPokemons() {
             poids: Number.parseFloat(pokemonData.weight) / 10,
             capacites: [],
             talents: {normaux : [], cache: null},
-            types: {
-                type1: typeMap.get(type1.type.name),
-                type2: type2 ? typeMap.get(type2.type.name) : null
-            }
+            types: types
         })
 
         await pokemonCollection.updateOne(

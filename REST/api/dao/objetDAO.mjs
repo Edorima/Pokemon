@@ -15,7 +15,7 @@ function normalizeString(str) {
 
 const objetDAO = {
     /**
-     * Établit une connexion à la collection 'objet' dans MongoDB.
+     * Accède à la collection 'objet' dans MongoDB.
      */
     get collection() {
         const client = new MongoClient(dbUrl)

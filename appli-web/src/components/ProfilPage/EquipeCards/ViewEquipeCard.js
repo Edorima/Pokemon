@@ -1,6 +1,8 @@
 import {useState} from "react"
 import {CapaciteViewer} from "../CapaciteViewer"
-import BoutonHeader from "../BoutonHeader"
+import BoutonHeaderEquipeCard from "./BoutonHeaderEquipeCard"
+import BoutonPokemon from "./BoutonPokemon"
+import BoutonPokemonEmpty from "./BoutonPokemonEmpty"
 import ApiManager from "../../ApiManager/ApiManager"
 
 /**
@@ -35,18 +37,6 @@ export default function ViewEquipeCard({
             setViewPkm(clickedPkm)
     }
 
-    const getSprite = (pokemon) => {
-        return pokemon.chromatique ?
-            pokemon.sprites.shiny :
-            pokemon.sprites.default
-    }
-
-    const getPokemonClassName = (index) => {
-        if (index+1 === viewPkm)
-            return 'pokemon focus'
-        return 'pokemon'
-    }
-
     const closeView = () => setViewPkm(0)
 
     const editTeam = () => {
@@ -71,7 +61,7 @@ export default function ViewEquipeCard({
             <div className="headerEquipe">
                 <span className="nomEquipe">{nom}</span>
                 <span className='boutonsHeader'>
-                    <BoutonHeader
+                    <BoutonHeaderEquipeCard
                         className='boutonModifier'
                         disabled={changeDisabled}
                         onClick={editTeam}
@@ -79,7 +69,7 @@ export default function ViewEquipeCard({
                         alt='Modifier'
                     />
 
-                    <BoutonHeader
+                    <BoutonHeaderEquipeCard
                         className='boutonFavoris'
                         disabled={changeDisabled}
                         onClick={() => {}}
@@ -87,7 +77,7 @@ export default function ViewEquipeCard({
                         alt='Favoris'
                     />
 
-                    <BoutonHeader
+                    <BoutonHeaderEquipeCard
                         className='boutonSupprimer'
                         disabled={changeDisabled}
                         onClick={deleteTeam}
@@ -100,31 +90,17 @@ export default function ViewEquipeCard({
             <div className="pokemons">
                 {Object.entries(pokemons).map(([key, pokemon], index) => (
                     pokemon ? (
-                        <button
+                        <BoutonPokemon
                             key={`pokemon-${index}`}
-                            className={getPokemonClassName(index)}
-                            onClick={() => viewPokemon(index)}>
-                            <img
-                                src={getSprite(pokemon)}
-                                alt={pokemon.nom}
-                                width="120" height="120"
-                                draggable="false"
-                            />
-                            {pokemon.objet &&
-                                <img
-                                    className="item-sprite"
-                                    src={pokemon.objet.sprite ?? '/assets/not_found.png'}
-                                    width="50" height="50"
-                                    alt={pokemon.objet.nom}
-                                    draggable="false"
-                                />}
-                        </button>
+                            focus={index+1 === viewPkm}
+                            onClick={() => viewPokemon(index)}
+                            pokemon={pokemon}
+                        />
                     ) : (
-                        <button
+                        <BoutonPokemonEmpty
                             key={`empty-${index}`}
-                            className='pokemon'
-                            disabled={index >= firstEmptyPokemonIndex}>
-                        </button>
+                            disabled={index >= firstEmptyPokemonIndex}
+                        />
                     )
                 ))}
             </div>

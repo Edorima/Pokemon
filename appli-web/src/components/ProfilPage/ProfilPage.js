@@ -40,6 +40,9 @@ export default function ProfilPage() {
         if (nomEquipe.length <= 2)
             return "Le nom de l'équipe doit faire au moins 3 caractères."
 
+        if (nomEquipe.length > 32)
+            return "Le nom de l'équipe ne doit pas faire plus de 32 caractères."
+
         if (profil && profil.equipes.map(e => e.nom).includes(nomEquipe))
             return "L'équipe existe déjà, supprimez ou modifiez là."
 
@@ -129,13 +132,12 @@ export default function ProfilPage() {
                             /> :
                             <EditEquipeCard
                                 key={index}
-                                nom={e.nom}
+                                initialNom={e.nom}
                                 initialPokemons={e.pokemons}
                                 profil={profil}
                                 setProfil={setProfil}
                                 setEditingTeam={setEditingTeam}
-                                added={added}
-                            />
+                                added={added}/>
                     ))}
                 </div>
             ) : <span>Vous n'avez aucune équipe !</span>}

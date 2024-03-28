@@ -16,7 +16,7 @@ function normalizeString(str) {
 
 const pokemonDAO = {
     /**
-     * Établit une connexion à la collection 'pokemon' dans MongoDB pour les opérations CRUD.
+     * Accède à la collection 'pokemon' dans MongoDB.
      */
     get collection() {
         const client = new MongoClient(dbUrl)
@@ -27,13 +27,27 @@ const pokemonDAO = {
     /**
      * Récupère les Pokémon filtrés par génération avec pagination.
      * @param generation {number} - La génération des Pokémon à filtrer.
+     * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer. Si non spécifié, tous les types sont considérés.
+     * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer. Si non spécifié, tous les types secondaires sont considérés.
      * @param limit {number} - Limite le nombre de résultats retournés.
      * @param offset {number} - Définit le point de départ des résultats.
      * @returns {Promise<Pokemon[]>} - Une promesse qui résout en un tableau de Pokémon.
      */
-    getPokemons: async (generation, limit, offset) => {
+    getPokemons: async (generation, type1, type2, limit, offset) => {
+        const filter = {}
+        if (Number.isInteger(generation))
+            filter.generation = generation
+
+        if (type1) {
+            const types = []
+            types.push(type1)
+            if (type2)
+                types.push(type2)
+            filter.types = {$all: types}
+        }
+
         const data = await pokemonDAO.collection.find(
-            Number.isInteger(generation) ? {generation: generation} : {},
+            filter,
             {projection: {_id: 0}, limit: limit || LIMIT, skip: offset || 0}
         )
         return (await data.toArray()).map(e => new Pokemon(e))
@@ -56,14 +70,24 @@ const pokemonDAO = {
      * Trouve des Pokémon dont le nom normalisé commence par un terme de recherche spécifié, optionnellement filtré par génération, avec pagination.
      * @param searchTerm {string} - Le terme de recherche pour le début du nom du Pokémon.
      * @param generation {number} - La génération des Pokémon à filtrer.
+     * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer. Si non spécifié, tous les types sont considérés.
+     * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer. Si non spécifié, tous les types secondaires sont considérés.
      * @param limit {number} - Limite le nombre de résultats.
      * @param offset {number} - Définit le point de départ pour les résultats.
      * @returns {Promise<Pokemon[]>} - Une promesse qui résout en un tableau de Pokémon correspondants.
      */
-    findPokemonsThatStartsWith: async (searchTerm, generation, limit, offset) => {
+    findPokemonsThatStartsWith: async (searchTerm, generation, type1, type2, limit, offset) => {
         const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
         if (Number.isInteger(generation))
             filter.generation = generation
+
+        if (type1) {
+            const types = []
+            types.push(type1)
+            if (type2)
+                types.push(type2)
+            filter.types = {$all: types}
+        }
 
         const data = await pokemonDAO.collection.find(
             filter,

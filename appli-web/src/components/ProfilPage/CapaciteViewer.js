@@ -2,7 +2,7 @@ export function CapaciteViewer({editedMove, selector}) {
 
     const containerStyles = {
         backgroundImage: `url('/assets/movesSlots/${
-            editedMove?.type ?? 'Normal'
+            editedMove?.type ?? 'Vide'
         }.png')`,
     }
 

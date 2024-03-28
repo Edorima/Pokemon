@@ -1,4 +1,4 @@
-export default function BoutonHeader({className, disabled, onClick, src, alt}) {
+export default function BoutonHeaderEquipeCard({className, disabled, onClick, src, alt}) {
     return (
         <button
             className={className}

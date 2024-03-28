@@ -8,7 +8,7 @@ const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
 
 const utilisateurDAO = {
     /**
-     * Établit une connexion à la collection 'utilisateur' dans MongoDB.
+     * Accède à la collection 'utilisateur' dans MongoDB
      */
     get collection() {
         const client = new MongoClient(dbUrl)
@@ -64,14 +64,18 @@ const utilisateurDAO = {
     /**
      * Modifie les détails d'une équipe existante d'un utilisateur.
      * @param pseudo {string} - Le pseudo de l'utilisateur.
-     * @param equipe {Object} - L'équipe avec les détails modifiés.
+     * @param nomActuel {string} - Le nom de l'équipe à modifier
+     * @param pokemons {Object} - Les pokémons avec les détails modifiés.
+     * @param nouveauNom {string} - Le nouveau nom de l'équipe.
      * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est modifiée, false sinon.
      */
-    editTeam: async (pseudo, equipe) => {
-        console.log(pseudo)
+    editTeam: async (pseudo, nomActuel, pokemons, nouveauNom) => {
         const result = await utilisateurDAO.collection.updateOne(
-            {'equipes.nom': equipe.nom, pseudo: pseudo},
-            {$set: {'equipes.$': equipe}}
+            {'equipes.nom': nomActuel, pseudo: pseudo},
+            {$set: {
+                'equipes.$.pokemons': pokemons,
+                'equipes.$.nom': nouveauNom
+            }}
         )
         return result.modifiedCount === 1
     },

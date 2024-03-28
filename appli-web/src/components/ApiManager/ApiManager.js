@@ -15,10 +15,12 @@ const ApiManager = {
 
     /**
      * @param generation {number}
+     * @param type1 {string}
+     * @param type2 {string}
      * @param offset {number}
      */
-    getPkms: (generation, offset) => {
-        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(generation, offset)
+    getPkms: (generation, type1, type2, offset) => {
+        const url = BASE_URL + ENDPOINTS.GET_POKEMONS(generation, type1, type2, offset)
         return fetch(url, {
             method: 'GET',
             headers: {
@@ -30,11 +32,13 @@ const ApiManager = {
     /**
      * @param searchTerm {string}
      * @param generation {number | null}
+     * @param type1 {string}
+     * @param type2 {string}
      * @param offset {number}
      */
-    getPkmsThatStartsWith: (searchTerm, generation, offset) => {
+    getPkmsThatStartsWith: (searchTerm, generation, type1, type2, offset) => {
         const url = BASE_URL + ENDPOINTS.GET_POKEMONS_THAT_STARTS_WITH(
-            searchTerm, generation, offset
+            searchTerm, generation, type1, type2, offset
         )
         return fetch(url, {
             method: 'GET',
@@ -209,10 +213,12 @@ const ApiManager = {
 
     /**
      * @param token {string}
-     * @param equipe {Object}
+     * @param nomActuel {string}
+     * @param pokemons {Object}
+     * @param nouveauNom {string}
      * @return {Promise<Response>}
      */
-    editTeam: (token, equipe) => {
+    editTeam: (token, nomActuel, pokemons, nouveauNom) => {
         const url = BASE_URL + ENDPOINTS.PROFIL()
         return fetch(url, {
             method: 'PUT',
@@ -220,7 +226,11 @@ const ApiManager = {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({equipe: equipe})
+            body: JSON.stringify({
+                nomActuel: nomActuel,
+                pokemons: pokemons,
+                nouveauNom: nouveauNom
+            })
         })
     },
 

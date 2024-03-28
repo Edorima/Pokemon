@@ -1,15 +1,17 @@
-import {useState} from "react"
-import BoutonsAction from "../BoutonsAction"
+import {useCallback, useState} from "react"
+import BoutonsAction from "./BoutonsAction"
 import PokemonSelector from "../PokemonSelector"
 import ObjetSelector from "../ObjetSelector"
 import CapacitesSelector from "../CapacitesSelector"
 import {PokemonProvider} from "../Contexts/PokemonContext"
 import {ObjetProvider} from "../Contexts/ObjetContext"
-import BoutonHeader from "../BoutonHeader"
+import BoutonHeaderEquipeCard from "./BoutonHeaderEquipeCard"
+import BoutonPokemon from "./BoutonPokemon"
+import BoutonPokemonEmpty from "./BoutonPokemonEmpty"
 import ApiManager from "../../ApiManager/ApiManager"
 
 /**
- * @param nom {string}
+ * @param initialNom {string}
  * @param initialPokemons {Object}
  * @param profil {Object}
  * @param setProfil {(Object) => void}
@@ -17,7 +19,7 @@ import ApiManager from "../../ApiManager/ApiManager"
  * @param added {boolean}
  */
 export default function EditEquipeCard({
-    nom,
+    initialNom,
     initialPokemons,
     profil,
     setProfil,
@@ -25,12 +27,19 @@ export default function EditEquipeCard({
     added
 }) {
     const [pokemons, setPokemons] = useState(initialPokemons)
+    const [nom, setNom] = useState(initialNom)
     const [editingPkm, setEditingPkm] = useState(1)
 
     const editedPokemon = pokemons[`pokemon${editingPkm}`]
 
-    const firstPlusButtonIndex =
-        Object.values(pokemons).findIndex(pokemon => pokemon === null)
+    const firstPlusButtonIndex = Object.values(pokemons)
+        .findIndex(pokemon => pokemon === null)
+
+    const nomsEquipeFiltre = useCallback(() => {
+        return profil.equipes
+            .map(e => e.nom)
+            .filter(nom => nom !== initialNom)
+    }, [profil])
 
     const editPokemon = (index) => setEditingPkm(index + 1)
 
@@ -38,18 +47,6 @@ export default function EditEquipeCard({
         const updatedPokemons = {...pokemons}
         updatedPokemons[`pokemon${editingPkm}`].chromatique = event.target.checked
         setPokemons(updatedPokemons)
-    }
-
-    const getSprite = (pokemon) => {
-        return pokemon.chromatique ?
-            pokemon.sprites.shiny :
-            pokemon.sprites.default
-    }
-
-    const getPokemonClassName = (index) => {
-        if (index+1 === editingPkm)
-            return 'pokemon focus'
-        return 'pokemon'
     }
 
     const deletePokemon = () => {
@@ -71,10 +68,24 @@ export default function EditEquipeCard({
         setEditingTeam(null)
     }
 
-    const canSave = () => {
+    /** @return {string} */
+    const saveMessage = () => {
+        if (!nom)
+            return 'Le nom ne peut pas être vide.'
+
+        if (nomsEquipeFiltre().includes(nom))
+            return "Le nom de l'équipe est déjà pris."
+
+        if (nom.length > 32)
+            return "Le nom de l'équipe ne doit pas faire plus de 32 caractères."
+
+        const message = 'Vous devez choisir au moins un Pokémon ' +
+            'et au moins une capacité pour chacun de vos ' +
+            'Pokémon pour pouvoir sauvegarder.'
+
         // On vérifie s'il y a au moins un Pokémon
         if (!pokemons.pokemon1)
-            return false
+            return message
 
         // On vérifie ensuite si tous les pokémons qui ne sont pas null ont au moins une capacité
         return Object.values(pokemons).every(pokemon => {
@@ -85,7 +96,7 @@ export default function EditEquipeCard({
             // Vérifier si le pokémon a au moins une des capacités non null
             return Object.values(pokemon.capacites)
                 .some(capacite => capacite !== null)
-        })
+        }) ? '' : message
     }
 
     const onSave = () => {
@@ -94,64 +105,62 @@ export default function EditEquipeCard({
         if (added)
             ApiManager.addTeam(token, equipe).then()
         else
-            ApiManager.editTeam(token, equipe).then()
+            ApiManager.editTeam(token, initialNom, pokemons, nom).then()
 
         setEditingTeam(null)
         // Mise à jour du profil avec les bon Pokémon
         const updatedProfil = {...profil}
-        const updatedEquipeIndex = updatedProfil.equipes.findIndex(e => e.nom === nom)
-        updatedProfil.equipes[updatedEquipeIndex].pokemons = pokemons
+        const updatedEquipeIndex = updatedProfil.equipes.findIndex(e => e.nom === initialNom)
+        updatedProfil.equipes[updatedEquipeIndex] = equipe
         setProfil(updatedProfil)
+    }
+
+    const editTeamName = (event) => {
+        const value = event.target.value
+        if (value.length <= 32)
+            setNom(value)
     }
 
     return (
         <div className="equipe">
+            {!added && <h1 id='modeEdition'>Mode édition</h1>}
             <div className="headerEquipe">
-                <span className="nomEquipe">{nom}</span>
-                {!added && 'Mode édition'}
-                <BoutonHeader
+                <textarea
+                    className="nomEquipe"
+                    maxLength='32'
+                    defaultValue={nom}
+                    spellCheck='false'
+                    name='nomEquipe'
+                    onChange={editTeamName}
+                    rows='1'
+                />
+
+                <BoutonHeaderEquipeCard
                     className="boutonFavoris"
                     alt='Favoris'
                     src='/assets/equipeCardIcons/favorite.png'
-                    onClick={() => {}}
+                    onClick={() => {
+                    }}
                 />
             </div>
 
             <div className="pokemons">
                 {Object.entries(pokemons).map(([key, pokemon], index) => (
                     pokemon ? (
-                        <button
+                        <BoutonPokemon
                             key={`pokemon-${index}`}
-                            className={getPokemonClassName(index)}
-                            onClick={() => editPokemon(index)}>
-                            <img
-                                src={getSprite(pokemon)}
-                                alt={pokemon.nom}
-                                width="120" height="120"
-                                draggable="false"
-                            />
-                            {pokemon.objet &&
-                            <img
-                                className="item-sprite"
-                                src={pokemon.objet.sprite ?? '/assets/not_found.png'}
-                                width="50" height="50"
-                                alt={pokemon.objet.nom}
-                                draggable="false"
-                            />}
-                        </button>
+                            focus={index + 1 === editingPkm}
+                            onClick={() => editPokemon(index)}
+                            pokemon={pokemon}
+                        />
                     ) : (
-                        <button
+                        <BoutonPokemonEmpty
                             key={`plus-${index}`}
-                            className={getPokemonClassName(index)}
+                            focus={index+1 === editingPkm}
                             onClick={() => index === firstPlusButtonIndex && editPokemon(index)}
-                            disabled={index !== firstPlusButtonIndex}>
-                            <img
-                                width="120" height="120"
-                                src="/assets/plus.svg"
-                                alt="Plus"
-                                draggable="false"
-                            />
-                        </button>
+                            disabled={index !== firstPlusButtonIndex}
+                            showPlus
+                        />
                     )
                 ))}
             </div>
@@ -205,7 +214,7 @@ export default function EditEquipeCard({
 
                 <div className="boutonsAction">
                     <BoutonsAction
-                        canSave={canSave()}
+                        saveMessage={saveMessage()}
                         onCancel={onCancel}
                         onSave={onSave}
                     />

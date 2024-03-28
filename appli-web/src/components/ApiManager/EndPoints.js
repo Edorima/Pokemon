@@ -1,17 +1,27 @@
 const ENDPOINTS = {
     GET_ALL_POKEMONS: () => '/pokemon?limit=898',
 
-    GET_POKEMONS: (generation, offset) => {
-        const ep = `/pokemon?offset=${offset}`
+    GET_POKEMONS: (generation, type1, type2, offset) => {
+        let ep = `/pokemon?offset=${offset}`
         if (generation)
-            return ep + `&gen=${generation}`
+            ep += `&gen=${generation}`
+        if (type1) {
+            ep += `&type1=${type1}`
+            if (type2)
+                ep += `&type2=${type2}`
+        }
         return ep
     },
 
-    GET_POKEMONS_THAT_STARTS_WITH: (searchTerm, generation, offset) => {
-        const ep = `/pokemon/startsWith/${searchTerm}?offset=${offset}`
+    GET_POKEMONS_THAT_STARTS_WITH: (searchTerm, generation, type1, type2, offset) => {
+        let ep = `/pokemon/startsWith/${searchTerm}?offset=${offset}`
         if (generation)
-            return ep + `&gen=${generation}`
+            ep += `&gen=${generation}`
+        if (type1) {
+            ep += `&type1=${type1}`
+            if (type2)
+                ep += `&type2=${type2}`
+        }
         return ep
     },
 
