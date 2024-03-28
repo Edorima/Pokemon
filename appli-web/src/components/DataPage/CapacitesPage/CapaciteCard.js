@@ -4,16 +4,11 @@ import ApiManager from "../../ApiManager/ApiManager"
 export default function CapaciteCard({move}) {
     const [pokemons, setPokemons] = useState([])
     const [ouvert, setOuvert] = useState(false)
-    const toggleElement = async () => {
-        if (pokemons.length === 0) {
-            try {
-                const response = await ApiManager.getPokemonsByMove(move.id)
-                const data = await response.json()
-                setPokemons(data)
-            } catch (_) {
-
-            }
-        }
+    const toggleElement = () => {
+        if (pokemons.length === 0)
+            ApiManager.getPokemonsByMove(move.id)
+                .then(response => response.json())
+                .then(data => setPokemons(data))
         setOuvert(!ouvert)
     }
 
