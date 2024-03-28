@@ -1,5 +1,5 @@
 import PokemonCard from "./PokemonCard"
-import List from "../List"
+import DataList from "../DataList"
 
 export default function PokemonList({
     error,
@@ -9,7 +9,7 @@ export default function PokemonList({
     loader
 }) {
     return (
-        <List
+        <DataList
             className="list"
             dataList={dataList}
             errorMessage={error}
@@ -22,6 +22,6 @@ export default function PokemonList({
                     pokemon={pokemon}
                 />
             ))}
-        </List>
+        </DataList>
     )
 }

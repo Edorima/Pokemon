@@ -1,15 +1,21 @@
 #pokedexWrapper {
-
-
     /* Liste des Pokémon */
-
-
-
-
     .pokemon-number {
         font-size: 24px;
     }
 
+    .otherstat{
+        padding-left: 10px;
+        flex-basis: 56px;
+    }
+
+    .otherstat2{
+        padding-left: 15px;
+    }
+
+    .stat {
+        font-size: 18px;
+    }
     .pokemon-info {
         display: flex;
         flex-direction: column;
@@ -17,7 +23,11 @@
         gap: 8px;
         flex-grow: 1;
     }
-
+    .paddingLeftRight{
+        padding-left: 15px;
+        padding-right: 3px;
+        flex-basis: 56px;
+    }
     .pokemon-types {
         display: flex;
         gap: 12px;
@@ -29,10 +39,10 @@
     }
 
     .container-details {
+        flex-grow: 1;
+        flex-basis: 400px;
         border-radius: 20px;
         padding: 30px;
-        flex: 1;
-        flex-basis: 0;
     }
 
     .border-detail {
@@ -41,8 +51,8 @@
 
     .pokemon-details-wrapper {
         display: flex;
-        flex-direction: row;
         gap: 30px;
+        height: 333px;
     }
 
     .small-padding {
@@ -56,6 +66,31 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+    }
+
+    .capaciteName{
+        width: 130px;
+
+    }
+    .ligne1{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0px;
+
+    }
+    .capacite-description{
+        margin: 3px
+    }
+    .miniMoveDisplay{
+
+        margin-bottom: 15px;
+        border-style: solid;
+        border-radius: 10px;
+        padding: 10px;
+        border-width: 2px;
+        border-color: #DBDBDB;
+
     }
 
     .statistique {
@@ -81,6 +116,7 @@
             height: 20px;
             border-width: 2px;
         }
+
 
         #hp {background-color: #A8FFA0;}
         #attack {background-color: #FFA0A0;}

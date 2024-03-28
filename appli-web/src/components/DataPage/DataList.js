@@ -1,6 +1,6 @@
 import InfiniteScroll from "react-infinite-scroll-component"
 
-export default function List({
+export default function DataList({
     error,
     handleNextAction,
     hasMore,

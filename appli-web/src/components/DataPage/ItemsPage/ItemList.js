@@ -1,4 +1,4 @@
-import List from "../List"
+import DataList from "../DataList"
 import ItemCard from "./ItemCard"
 
 export default function ItemList({
@@ -9,7 +9,7 @@ export default function ItemList({
     loader
 }) {
     return (
-        <List
+        <DataList
             className="list"
             dataList={dataList}
             errorMessage={error}
@@ -22,6 +22,6 @@ export default function ItemList({
                     item={item}
                 />
             ))}
-        </List>
+        </DataList>
     )
 }

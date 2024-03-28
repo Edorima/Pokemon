@@ -1,4 +1,4 @@
-import List from "../List"
+import DataList from "../DataList"
 import CapaciteCard from "./CapaciteCard"
 export default function CapacitesList({
      error,
@@ -8,7 +8,7 @@ export default function CapacitesList({
      loader
  }) {
     return (
-        <List
+        <DataList
             className="list"
             dataList={dataList}
             errorMessage={error}
@@ -21,6 +21,6 @@ export default function CapacitesList({
                     move={capacity}
                 />
             ))}
-        </List>
+        </DataList>
     )
 }

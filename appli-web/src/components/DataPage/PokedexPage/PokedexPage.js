@@ -33,7 +33,6 @@ export default function PokedexPage() {
         const value = event.target.value
         setGeneration(parseInt(value))
     }
-
     return (
         <DataPage
             wrapperId="pokedexWrapper"
