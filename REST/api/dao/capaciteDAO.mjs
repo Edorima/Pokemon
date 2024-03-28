@@ -13,8 +13,10 @@ function normalizeString(str) {
         .toLowerCase()
 }
 
-
 const capaciteDAO = {
+    /**
+     * Accède à la collection 'capacite' dans MongoDB.
+     */
     get collection() {
         const client = new MongoClient(dbUrl)
         const db = client.db('pokemanager')
@@ -22,11 +24,12 @@ const capaciteDAO = {
     },
 
     /**
-     * @param type {string | undefined}}
-     * @param categorie {string | undefined}
-     * @param limit {number}
-     * @param offset {number}
-     * @returns {Promise<Capacite[]>}
+     * Récupère les capacités filtrées par type et catégorie avec pagination.
+     * @param type {string | undefined} - Filtre les capacités par type.
+     * @param categorie {string | undefined} - Filtre les capacités par catégorie.
+     * @param limit {number} - Limite le nombre de résultats retournés.
+     * @param offset {number} - Définit le point de départ des résultats.
+     * @returns {Promise<Capacite[]>} - Une promesse qui résout en un tableau de capacités.
      */
     getMoves: async (type, categorie,  limit, offset) => {
         const filter = {
@@ -41,8 +44,9 @@ const capaciteDAO = {
     },
 
     /**
-     * @param id {number}
-     * @returns {Promise<Capacite | null>}
+     * Trouve une capacité spécifique par son identifiant.
+     * @param id {number} - L'identifiant de la capacité à trouver.
+     * @returns {Promise<Capacite | null>} - Une promesse qui résout en une capacité ou null si non trouvée.
      */
     findMoveById: async (id) => {
         const data = await capaciteDAO.collection.findOne(
@@ -53,12 +57,13 @@ const capaciteDAO = {
     },
 
     /**
-     * @param searchTerm {string}
-     * @param type {string | undefined}
-     * @param categorie {string | undefined}
-     * @param limit {number}
-     * @param offset {number}
-     * @returns {Promise<Capacite[]>}
+     * Recherche les capacités dont le nom commence par un terme de recherche, optionnellement filtré par type et catégorie, avec pagination.
+     * @param searchTerm {string} - Le terme de recherche pour le début du nom de la capacité.
+     * @param type {string | undefined} - Filtre optionnel par type de capacité.
+     * @param categorie {string | undefined} - Filtre optionnel par catégorie de capacité.
+     * @param limit {number} - Limite le nombre de résultats.
+     * @param offset {number} - Définit le point de départ pour les résultats.
+     * @returns {Promise<Capacite[]>} - Une promesse qui résout en un tableau de capacités correspondantes.
      */
     findMovesThatStartsWith: async (searchTerm, type, categorie, limit, offset) => {
         const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
@@ -78,8 +83,9 @@ const capaciteDAO = {
     },
 
     /**
-     * @param pkmId {number}
-     * @returns {Promise<Capacite[]>}
+     * Trouve toutes les capacités qu'un Pokémon spécifique peut apprendre.
+     * @param pkmId {number} - L'identifiant du Pokémon pour lequel chercher les capacités.
+     * @returns {Promise<Capacite[]>} - Une promesse qui résout en un tableau de capacités que le Pokémon peut apprendre.
      */
     findMovesByPokemon: async (pkmId) => {
         const pkm = await pokemonDAO.findPokemonById(pkmId)

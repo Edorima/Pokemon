@@ -9,10 +9,35 @@ import bcrypt from "bcrypt"
 import objetDAO from "./dao/objetDAO.mjs"
 const router = express.Router()
 
-function validateToken(req) {
-    const token = req.headers.authorization?.split(' ')[1]
-    if (!token) throw new Error('Token manquant ou invalide.')
-    return jwt.verify(token, process.env.SECRET_KEY)
+/**
+ * Permet de signer un pseudo et d'en renvoyer un token.
+ * @param pseudo {string}
+ * @returns {string}
+ */
+function signPayload(pseudo) {
+    return jwt.sign(
+        { pseudo: pseudo },
+        process.env.SECRET_KEY,
+        { expiresIn: '24h' }
+    )
+}
+
+// Middleware pour valider le token et attacher les données utilisateur à la requête
+async function validateUserToken(req, res, next) {
+    try {
+        const token = req.headers.authorization?.split(' ')[1]
+        if (!token) return res.status(401).send('Token manquant ou invalide.')
+        const userPayload = jwt.verify(token, process.env.SECRET_KEY)
+        const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
+
+        if (!utilisateur)
+            return res.status(404).send("Utilisateur non trouvé")
+
+        req.user = utilisateur // Attacher l'utilisateur à l'objet de requête pour un accès ultérieur
+        next() // Passer au prochain middleware / route handler
+    } catch (error) {
+        return res.status(401).send("Token invalide")
+    }
 }
 
 router.route('/pokemon').get(async (req, res) => {
@@ -123,15 +148,9 @@ router.route('/register').post(async (req, res) => {
     const utilisateurAjoute = await utilisateurDAO.addUser(
         pseudo, motDePasse
     )
-
-    if (utilisateurAjoute) {
-        const token = jwt.sign(
-            { pseudo: pseudo },
-            process.env.SECRET_KEY,
-            { expiresIn: '1h' }
-        )
-        res.json({ success: true, token: token })
-    } else
+    if (utilisateurAjoute)
+        res.json({ success: true, token: signPayload(pseudo) })
+    else
         res.status(400).json({ success: false, message: "L'utilisateur existe déjà." })
 })
 
@@ -140,83 +159,32 @@ router.route('/login').post(async (req, res) => {
     const motDePasse = req.body.motDePasse
 
     const utilisateur = await utilisateurDAO.getUser(pseudo)
-    if (!utilisateur) {
+    if (!utilisateur)
         return res.status(401).json({ success: false, message: "L'utilisateur n'existe pas." })
-    }
 
     const mdpValide = await bcrypt.compare(motDePasse, utilisateur.motDePasse)
-    if (!mdpValide) {
-        return res.status(401).json({ success: false, message: "Mot de passe incorrect." });
-    }
+    if (!mdpValide)
+        return res.status(401).json({ success: false, message: "Mot de passe incorrect." })
 
-    const token = jwt.sign(
-        { pseudo: pseudo },
-        process.env.SECRET_KEY,
-        { expiresIn: '1h' }
-    );
-
-    res.json({ success: true, token: token })
+    res.json({ success: true, token: signPayload(pseudo) })
 })
 
 router.route('/profil')
-    .get(async (req, res) => {
-        try {
-            // Valider le token de l'utilisateur
-            const userPayload = validateToken(req)
-
-            const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
-
-            if (!utilisateur) {
-                return res.status(404).send()
-            }
-
-            const { motDePasse, _id, ...userData } = utilisateur
-            res.json(userData)
-        } catch (error) {
-            res.status(401).send()
-        }
+    .get(validateUserToken, async (req, res) => {
+        const { motDePasse, ...userData } = req.user
+        res.json(userData)
     })
-    .post(async (req, res) => {
-        const equipe = req.body.equipe
-        try {
-            // Valider le token de l'utilisateur
-            const userPayload = validateToken(req)
-
-            await utilisateurDAO.addTeam(
-                userPayload.pseudo, equipe
-            ) ? res.status(201).send() :
-            res.status(409).send()
-        } catch (error) {
-            res.status(401).send()
-        }
+    .post(validateUserToken, async (req, res) => {
+        const added = await utilisateurDAO.addTeam(req.user.pseudo, req.body.equipe)
+        added ? res.status(201).send() : res.status(409).send("Équipe déjà existante ou erreur")
     })
-    .put(async (req, res) => {
-        const equipe = req.body.equipe
-        try {
-            // Valider le token de l'utilisateur
-            const userPayload = validateToken(req)
-
-            await utilisateurDAO.editTeam(
-                userPayload.pseudo, equipe
-            ) ? res.status(204).send() :
-                res.status(404).send()
-        } catch (error) {
-            res.status(401).send()
-        }
+    .put(validateUserToken, async (req, res) => {
+        const updated = await utilisateurDAO.editTeam(req.user.pseudo, req.body.equipe)
+        updated ? res.status(204).send() : res.status(404).send("Équipe non trouvée")
     })
-    .delete(async (req, res) => {
-        const nomEquipe = req.body.nomEquipe
-        try {
-            // Valider le token de l'utilisateur
-            const userPayload = validateToken(req)
-
-            await utilisateurDAO.deleteTeam(
-                userPayload.pseudo, nomEquipe
-            ) ? res.status(204).send() :
-                res.status(404).send()
-        } catch (error) {
-            res.status(401).send()
-        }
+    .delete(validateUserToken, async (req, res) => {
+        const deleted = await utilisateurDAO.deleteTeam(req.user.pseudo, req.body.nomEquipe)
+        deleted ? res.status(204).send() : res.status(404).send("Équipe non trouvée")
     })
 
 export default router

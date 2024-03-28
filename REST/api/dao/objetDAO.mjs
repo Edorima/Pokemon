@@ -14,6 +14,9 @@ function normalizeString(str) {
 }
 
 const objetDAO = {
+    /**
+     * Établit une connexion à la collection 'objet' dans MongoDB.
+     */
     get collection() {
         const client = new MongoClient(dbUrl)
         const db = client.db("pokemanager")
@@ -21,10 +24,11 @@ const objetDAO = {
     },
 
     /**
-     * @param categorie {number}
-     * @param limit {number}
-     * @param offset {number}
-     @returns {Promise<Objet[]>}
+     * Récupère les objets filtrés par catégorie avec pagination.
+     * @param categorie {number} - L'ID de la catégorie pour filtrer les objets.
+     * @param limit {number} - Limite le nombre de résultats retournés.
+     * @param offset {number} - Définit le point de départ des résultats.
+     * @returns {Promise<Objet[]>} - Une promesse résolvant un tableau d'objets.
      */
     getItems: async (categorie, limit, offset) => {
         const data = await objetDAO.collection.find(
@@ -35,11 +39,12 @@ const objetDAO = {
     },
 
     /**
-     * @param searchTerm {string}
-     * @param categorie {number}
-     * @param limit {number}
-     * @param offset {number}
-     * @returns {Promise<Objet[]>}
+     * Trouve des objets dont le nom normalisé commence par un terme de recherche spécifié, optionnellement filtré par catégorie, avec pagination.
+     * @param searchTerm {string} - Le terme de recherche pour le début du nom de l'objet.
+     * @param categorie {number} - L'ID de la catégorie pour filtrer les objets.
+     * @param limit {number} - Limite le nombre de résultats.
+     * @param offset {number} - Définit le point de départ pour les résultats.
+     * @returns {Promise<Objet[]>} - Une promesse résolvant un tableau d'objets correspondants.
      */
     findItemsThatStartsWith: async (searchTerm, categorie, limit, offset) => {
         const filter = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
@@ -54,26 +59,6 @@ const objetDAO = {
                 sort: {nomNormalise: 1}}
         )
         return (await data.toArray()).map(e => new Objet(e))
-    },
-
-    /**
-     * @param name {string}
-     * @returns {Promise<Objet | null>}
-     */
-    findItemByName: async (name) => {
-        const id = parseInt(name)
-        let filter
-        if (Number.isInteger(id)) {
-            filter = {id: id}
-        } else {
-            const firstLetter = name.charAt(0).toUpperCase()
-            filter = {nom: firstLetter + name.slice(1)}
-        }
-        const data = await objetDAO.collection.findOne(
-            filter,
-            {projection: {_id: 0}}
-        )
-        return data ? new Objet(data) : null
     }
 }
 
