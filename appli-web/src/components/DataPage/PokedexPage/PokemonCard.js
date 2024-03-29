@@ -3,10 +3,6 @@ import PokemonStats from "./PokemonStats"
 import ApiManager from "../../ApiManager/ApiManager"
 
 function PokemonTypes({types}) {
-    // Vérifie le type de types qui est sensé être un array
-    if (!Array.isArray(types)) {
-        return null; // Permet d'éviter un crash en cas de mauvais fetch des données
-    }
     return (
         <div className="pokemon-types">
 
@@ -46,7 +42,7 @@ export default function PokemonCard({pokemon}) {
                 />
                 <div className="pokemon-info">
                     <span className="common-name">{pokemon.nom}</span>
-                    <PokemonTypes types={pokemon.types}/>
+                    {Array.isArray(pokemon.types) && <PokemonTypes types={pokemon.types}/>}
                 </div>
                 <p className="pokemon-description">{pokemon.description}</p>
                 <button onClick={toggleElement} className="details-button">
