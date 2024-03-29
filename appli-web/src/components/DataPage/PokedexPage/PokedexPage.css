@@ -72,13 +72,15 @@
         width: 130px;
 
     }
-    .ligne1{
+
+    .ligne1 {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-bottom: 0px;
+        margin-bottom: 0;
 
     }
+
     .capacite-description{
         margin: 3px
     }

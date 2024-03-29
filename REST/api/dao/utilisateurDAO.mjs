@@ -39,7 +39,7 @@ const utilisateurDAO = {
         const result = await utilisateur.findOne({pseudo: pseudo})
         if (result) return false
         const mdpCrypte = await bcrypt.hash(motDePasse, 10)
-        await utilisateur.insertOne(new Utilisateur({pseudo, mdpCrypte}))
+        await utilisateur.insertOne(new Utilisateur({pseudo: pseudo, motDePasse: mdpCrypte}))
         return true
     },
 
