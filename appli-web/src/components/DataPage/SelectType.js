@@ -11,7 +11,7 @@ export default function SelectType({
         'Normal', 'Combat', 'Vol', 'Poison',
         'Sol', 'Roche', 'Insecte', 'Spectre',
         'Acier', 'Feu', 'Eau', 'Plante', 'Électrik',
-        'Psy', 'Glace', 'Dragon', 'Ténèbres'
+        'Psy', 'Glace', 'Dragon', 'Ténèbres', 'Fée'
     ].filter(t => t !== doNotInclude)
 
     return (

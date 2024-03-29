@@ -3,9 +3,14 @@ import PokemonStats from "./PokemonStats"
 import ApiManager from "../../ApiManager/ApiManager"
 
 function PokemonTypes({types}) {
+    // Vérifie le type de types qui est sensé être un array
+    if (!Array.isArray(types)) {
+        return null; // Permet d'éviter un crash en cas de mauvais fetch des données
+    }
     return (
         <div className="pokemon-types">
-            {types.map(type =>
+
+            {types.map((type) =>
                 <img
                     key={type}
                     src={`/assets/types/${type}.jpg`}
