@@ -1,4 +1,4 @@
-import Capacite from "../api/model/Capacite.mjs"
+import Capacite from "../../Capacite/api/model/Capacite.mjs"
 import {categorieMap, typeMap} from "./usefulData.mjs"
 import {fetchData, normalize,
     progressBar, pokemonCollection, capaciteCollection

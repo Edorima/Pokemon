@@ -1,4 +1,4 @@
-import Objet from "../api/model/Objet.mjs"
+import Objet from "../../Objet/api/model/Objet.mjs"
 import {categorieObjetMap} from "./usefulData.mjs"
 import {fetchData, normalize, progressBar, objetCollection} from "./fetchData.mjs"
 

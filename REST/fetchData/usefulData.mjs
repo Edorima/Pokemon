@@ -1,4 +1,4 @@
-import Categorie from "../api/model/Categorie.mjs"
+import Categorie from "./Categorie.mjs"
 
 export const generationMap = new Map([
     ['generation-i', 1], ['generation-ii', 2],

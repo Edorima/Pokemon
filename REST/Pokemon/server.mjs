@@ -1,12 +1,6 @@
 "use strict"
 
-import dotenv from 'dotenv'
-dotenv.config()
-
-const serverPort = process.env.PORT || 8080
-const env = process.env.ENV || 'PROD'
-
-console.log(`env : ${env}`)
+const serverPort = 8081
 
 const {default: app}  = await import ('./app.mjs')
 

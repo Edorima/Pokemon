@@ -1,10 +1,10 @@
 "use strict"
 
 import {MongoClient} from "mongodb";
-import Utilisateur from "../model/Utilisateur.mjs";
 import bcrypt from 'bcrypt'
+import Utilisateur from "../model/Utilisateur.mjs"
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
+const dbUrl = 'mongodb://localhost:27017'
 
 const utilisateurDAO = {
     /**

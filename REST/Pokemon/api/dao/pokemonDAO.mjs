@@ -2,9 +2,8 @@
 
 import {MongoClient} from "mongodb"
 import Pokemon from "../model/Pokemon.mjs"
-import capaciteDAO from "./capaciteDAO.mjs";
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017'
+const dbUrl = 'mongodb://localhost:27017'
 const LIMIT = 20
 
 function normalizeString(str) {
@@ -98,11 +97,10 @@ const pokemonDAO = {
 
     /**
      * Trouve des Pokémon capables d'apprendre une capacité spécifique par l'ID de la capacité.
-     * @param moveId {number} - L'identifiant de la capacité pour filtrer les Pokémon qui peuvent l'apprendre.
+     * @param move {Object} - La capacité pour filtrer les Pokémon qui peuvent l'apprendre.
      * @returns {Promise<Pokemon[]>} - Une promesse qui résout en un tableau de Pokémon pouvant apprendre la capacité spécifiée.
      */
-    findPokemonsByMove: async (moveId) => {
-        const move = await capaciteDAO.findMoveById(moveId)
+    findPokemonsByMove: async (move) => {
         const data = await pokemonDAO.collection.find(
             {nomAnglais: {$in: move.pokemons}},
             {projection: {_id: 0}}
