@@ -39,7 +39,7 @@ export default function EditEquipeCard({
         return profil.equipes
             .map(e => e.nom)
             .filter(nom => nom !== initialNom)
-    }, [profil])
+    }, [profil, initialNom])
 
     const editPokemon = (index) => setEditingPkm(index + 1)
 
