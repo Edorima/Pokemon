@@ -1,8 +1,8 @@
 const ENDPOINTS = {
-    GET_ALL_POKEMONS: () => '/pokemon?limit=898',
-
-    GET_POKEMONS: (generation, type1, type2, offset) => {
+    POKEMONS: (generation, type1, type2, offset, limit) => {
         let ep = `/pokemon?offset=${offset}`
+        if (limit)
+            ep += `&limit=${limit}`
         if (generation)
             ep += `&gen=${generation}`
         if (type1) {
@@ -13,7 +13,7 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_POKEMONS_THAT_STARTS_WITH: (searchTerm, generation, type1, type2, offset) => {
+    POKEMONS_THAT_STARTS_WITH: (searchTerm, generation, type1, type2, offset) => {
         let ep = `/pokemon/startsWith/${searchTerm}?offset=${offset}`
         if (generation)
             ep += `&gen=${generation}`
@@ -25,25 +25,23 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_POKEMONS_BY_MOVE: (id) => `/capacite/${id}/pokemon`,
+    POKEMONS_WITH_MOVE: (id) => `/pokemon/withMove/${id}`,
 
-    GET_ALL_ITEMS: () => '/objet?limit=432',
-
-    GET_ITEMS: (categorie, offset) => {
+    ITEMS: (categorie, offset) => {
         const ep = `/objet?offset=${offset}`
         if (categorie)
             return ep + `&categorie=${categorie}`
         return ep
     },
 
-    GET_ITEMS_THAT_STARTS_WITH: (searchTerm, categorie, offset) => {
+    ITEMS_THAT_STARTS_WITH: (searchTerm, categorie, offset) => {
         const ep = `/objet/startsWith/${searchTerm}?offset=${offset}`
         if (categorie)
             return ep + `&categorie=${categorie}`
         return ep
     },
 
-    GET_MOVES: (type, categorie, offset) => {
+    MOVES: (type, categorie, offset) => {
         let ep = `/capacite?offset=${offset}`
         if (type)
             ep += `&type=${type}`
@@ -52,7 +50,7 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_MOVES_THAT_STARTS_WITH: (searchTerm, type, categorie, offset) => {
+    MOVES_THAT_STARTS_WITH: (searchTerm, type, categorie, offset) => {
         let ep = `/capacite/startsWith/${searchTerm}?offset=${offset}`
         if (type)
             ep += `&type=${type}`
@@ -61,7 +59,7 @@ const ENDPOINTS = {
         return ep
     },
 
-    GET_MOVES_BY_POKEMON: (id) => `/pokemon/${id}/capacite`,
+    MOVES_BY_POKEMON: (id) => `/capacite/ofPokemon/${id}`,
 
     LOGIN: () => '/login',
 

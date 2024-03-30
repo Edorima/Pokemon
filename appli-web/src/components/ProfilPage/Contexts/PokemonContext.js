@@ -9,7 +9,7 @@ export const PokemonProvider = ({ children }) => {
     const [pokemonsList, setPokemonsList] = useState([])
 
     useEffect(() => {
-        ApiManager.getAllPkms()
+        ApiManager.getPkms(0, '', '', 0, 898)
             .then(response => response.json())
             .then(data => {
                 const sortedData = [...data].sort((a, b) => {

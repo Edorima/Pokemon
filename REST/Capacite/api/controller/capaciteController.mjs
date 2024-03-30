@@ -1,6 +1,6 @@
 "use strict"
 
-import capaciteDAO from "../dao/capaciteDAO.mjs";
+import capaciteDAO from "../dao/capaciteDAO.mjs"
 
 const capaciteController = {
     getMoves: async (type, categorie,  limit, offset) =>
@@ -13,8 +13,12 @@ const capaciteController = {
         await capaciteDAO.findMovesThatStartsWith(searchTerm, type, categorie, limit, offset),
 
     findMovesByPokemon: async (pkmId) => {
-        // TODO Récupérer le pokémon
-        const pkm = {}
+        const url = `http://localhost:8081/pokemon/${pkmId}`
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+        const pkm = await response.json()
         return await capaciteDAO.findMovesByPokemon(pkm)
     }
 }

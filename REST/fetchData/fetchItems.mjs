@@ -1,4 +1,3 @@
-import Objet from "../../Objet/api/model/Objet.mjs"
 import {categorieObjetMap} from "./usefulData.mjs"
 import {fetchData, normalize, progressBar, objetCollection} from "./fetchData.mjs"
 
@@ -26,14 +25,14 @@ export default async function fetchItems() {
             d => d.language.name === 'fr'
         ).text
 
-        const itemObject = new Objet({
+        const itemObject = {
             nom: nom,
             nomAnglais: itemData.name,
             nomNormalise: normalize(nom),
             description: description,
             sprite: itemData.sprites.default,
             categorie: categorieObjetMap.get(itemData.category.name)
-        })
+        }
 
         await objetCollection.updateOne(
             {nomAnglais: itemData.name},

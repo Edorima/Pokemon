@@ -57,7 +57,7 @@ export const progressBar = new ConsoleProgressBar({
 
 await fetchPokemons() // 898 pas
 await fetchMoves() // 826 pas
-await fetchAbilities() // 375
+await fetchAbilities() // 375 pas
 await fetchItems() // 432 pas
 
 console.log("Data downloaded.")

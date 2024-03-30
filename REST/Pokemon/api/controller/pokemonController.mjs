@@ -13,7 +13,13 @@ const pokemonController = {
         await pokemonDAO.findPokemonsThatStartsWith(searchTerm, generation, type1, type2, limit, offset),
 
     findPokemonsByMove: async (moveId) => {
-
+        const url = `http://localhost:8082/capacite/${moveId}`
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+        const move = await response.json()
+        return await pokemonDAO.findPokemonsByMove(move)
     }
 }
 

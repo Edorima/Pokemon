@@ -1,4 +1,3 @@
-import Pokemon from "../api/model/Pokemon.mjs"
 import {generationMap, typeMap} from "./usefulData.mjs"
 import {fetchData, normalize, pokemonCollection, progressBar} from "./fetchData.mjs"
 
@@ -40,7 +39,7 @@ export default async function fetchPokemons() {
             types.push(typeMap.get(type2.type.name))
 
 
-        const pokemonObject = new Pokemon({
+        const pokemonObject = {
             id: pokemonData.id,
             nom: nom,
             nomNormalise: normalize(nom),
@@ -58,7 +57,7 @@ export default async function fetchPokemons() {
             capacites: [],
             talents: {normaux : [], cache: null},
             types: types
-        })
+        }
 
         await pokemonCollection.updateOne(
             {id: pokemonData.id},

@@ -9,7 +9,7 @@ export const ObjetProvider = ({ children }) => {
     const [objetsList, setObjetsList] = useState([])
 
     useEffect(() => {
-        ApiManager.getAllItems()
+        ApiManager.getItems(0, 0, 432)
             .then(response => response.json())
             .then(data => {
                 const sortedData = [...data].sort((a, b) => {

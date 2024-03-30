@@ -39,7 +39,7 @@ export default function DataPage({
     const [searchTerm, setSearchTerm] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
-    const fetchData = useCallback(async (req, reset = false) => {
+    const fetchData = useCallback(async (req, reset) => {
         setErrorMessage('')
         try {
             const response = await req
@@ -53,6 +53,7 @@ export default function DataPage({
     }, [])
 
     const fetchNormalData = useCallback((reset = false) => {
+        console.log("ici")
         fetchData(
             getData({offset: reset ? 0 : (page-1)*ELEMENT_PER_PAGE}),
             reset

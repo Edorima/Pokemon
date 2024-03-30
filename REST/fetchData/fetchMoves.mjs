@@ -1,4 +1,3 @@
-import Capacite from "../../Capacite/api/model/Capacite.mjs"
 import {categorieMap, typeMap} from "./usefulData.mjs"
 import {fetchData, normalize,
     progressBar, pokemonCollection, capaciteCollection
@@ -17,7 +16,7 @@ export default async function fetchMoves() {
 
         const learnedByPkms = moveData.learned_by_pokemon.map(p => p.name)
 
-        const moveObject = new Capacite({
+        const moveObject = {
             id: moveData.id,
             nom: nom,
             nomNormalise: normalize(nom),
@@ -31,7 +30,7 @@ export default async function fetchMoves() {
             pp: moveData.pp,
             type: typeMap.get(moveData.type.name),
             pokemons: learnedByPkms
-        })
+        }
 
         await capaciteCollection.updateOne(
             {id: moveData.id},
