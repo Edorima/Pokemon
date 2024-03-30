@@ -1,6 +1,13 @@
 "use strict"
 
-const serverPort = 8081
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const serverPort = process.env.PORT || 8081
+const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017'
+const mongoDB = process.env.MONGO_DB || 'pokemanager'
+const env = process.env.ENV || 'PROD'
 
 const {default: app}  = await import ('./app.mjs')
 
@@ -8,6 +15,14 @@ const {default: app}  = await import ('./app.mjs')
 const server = app.listen(serverPort, () =>
     console.log(`App listening on port ${serverPort}`)
 )
+
+if (env === 'TEST') {
+    // TODO TRAVAIL EN MEMOIRE
+} else {
+    const uri = mongoURL + '/' + mongoDB
+    await mongoose.connect(uri)
+    console.log(`MongoDB on ${uri}`)
+}
 
 //Pour les interrucptions utilisateur
 for (let signal of ["SIGTERM", "SIGINT"])

@@ -40,7 +40,7 @@ export default function ViewEquipeCard({
     const closeView = () => setViewPkm(0)
 
     const editTeam = () => {
-        const teamIndex = profil.equipes.findIndex((e) => e.nom === nom)
+        const teamIndex = profil.equipes.findIndex(e => e.nom === nom)
         setEditingTeam(teamIndex)
         setAdded(false)
     }

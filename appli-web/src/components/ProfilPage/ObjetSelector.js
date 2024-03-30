@@ -21,7 +21,7 @@ export default function ObjetSelector({
                 sprite: item.sprite,
             }
         } else
-            updatedPokemons[`pokemon${editing}`].objet = null
+            delete updatedPokemons[`pokemon${editing}`].objet
 
         // On met à jour la liste
         setPokemons(updatedPokemons)

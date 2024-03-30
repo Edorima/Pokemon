@@ -1,31 +1,20 @@
 "use strict"
 
-import {MongoClient} from "mongodb";
 import bcrypt from 'bcrypt'
 import Utilisateur from "../model/Utilisateur.mjs"
 
-const dbUrl = 'mongodb://localhost:27017'
-
 const utilisateurDAO = {
-    /**
-     * Accède à la collection 'utilisateur' dans MongoDB
-     */
-    get collection() {
-        const client = new MongoClient(dbUrl)
-        const db = client.db('pokemanager')
-        return db.collection('utilisateur')
-    },
-
     /**
      * Trouve un utilisateur par son pseudo.
      * @param pseudo {string} - Le pseudo de l'utilisateur à trouver.
-     * @returns {Promise<Utilisateur | null>} - Promesse résolvant un utilisateur ou null si non trouvé.
+     * @returns {Promise<Object | null>} - Promesse résolvant un utilisateur ou null si non trouvé.
      */
     getUser: async (pseudo) => {
-        const data = await utilisateurDAO.collection.findOne(
-            {pseudo: pseudo}, {projection: {_id: 0}}
+        return Utilisateur.findOne(
+            {pseudo: pseudo},
+            {_id: 0},
+            null
         )
-        return data ? new Utilisateur(data) : null
     },
 
     /**
@@ -35,11 +24,20 @@ const utilisateurDAO = {
      * @returns {Promise<boolean>} - Promesse résolvant en true si l'utilisateur est ajouté, false s'il existe déjà.
      */
     addUser: async (pseudo, motDePasse) => {
-        const utilisateur = utilisateurDAO.collection
-        const result = await utilisateur.findOne({pseudo: pseudo})
-        if (result) return false
+        // Vérifier si l'utilisateur existe déjà
+        let utilisateur = await utilisateurDAO.getUser(pseudo)
+        if (utilisateur) return false // L'utilisateur existe déjà
+
+        // Hacher le mot de passe
         const mdpCrypte = await bcrypt.hash(motDePasse, 10)
-        await utilisateur.insertOne(new Utilisateur({pseudo: pseudo, motDePasse: mdpCrypte}))
+
+        // Créer une nouvelle instance de l'utilisateur
+        utilisateur = new Utilisateur({pseudo, motDePasse: mdpCrypte})
+
+        // Sauvegarder l'utilisateur dans la base de données
+        await utilisateur.save()
+
+        // L'utilisateur a été créé avec succès
         return true
     },
 
@@ -50,15 +48,20 @@ const utilisateurDAO = {
      * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est ajoutée, false si l'équipe existe déjà.
      */
     addTeam: async (pseudo, equipe) => {
-        const collection = utilisateurDAO.collection
-        const filter = {pseudo: pseudo}
+        // Recherche l'utilisateur par son pseudo
+        const utilisateur = await utilisateurDAO.getUser(pseudo)
 
-        const user = await collection.findOne(filter)
-        if (user.equipes.some(t => t.nom === equipe.nom))
-            return false
+        // Vérifie si l'utilisateur a déjà une équipe avec le même nom
+        if (utilisateur.equipes.some(t => t.nom === equipe.nom))
+            return false // Une équipe avec le même nom existe déjà
 
-        await collection.updateOne(filter, {$push: {equipes: equipe}})
-        return true
+        // Ajoute l'équipe au tableau d'équipes de l'utilisateur
+        await Utilisateur.updateOne(
+            { pseudo: pseudo },
+            { $push: { equipes: equipe } }
+        )
+
+        return true // L'équipe a été ajoutée avec succès
     },
 
     /**
@@ -70,13 +73,19 @@ const utilisateurDAO = {
      * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est modifiée, false sinon.
      */
     editTeam: async (pseudo, nomActuel, pokemons, nouveauNom) => {
-        const result = await utilisateurDAO.collection.updateOne(
-            {'equipes.nom': nomActuel, pseudo: pseudo},
-            {$set: {
-                'equipes.$.pokemons': pokemons,
-                'equipes.$.nom': nouveauNom
-            }}
+        // Met à jour l'équipe spécifiée de l'utilisateur en utilisant l'opérateur de position $.
+        // Cela permet de cibler l'élément spécifique du tableau 'equipes' correspondant au critère.
+        const result = await Utilisateur.updateOne(
+            { 'equipes.nom': nomActuel, pseudo: pseudo },
+            {
+                $set: {
+                    'equipes.$.pokemons': pokemons, // Met à jour les pokémons de l'équipe
+                    'equipes.$.nom': nouveauNom // Met à jour le nom de l'équipe
+                }
+            }
         )
+
+        // Vérifie si la mise à jour a affecté exactement un document.
         return result.modifiedCount === 1
     },
 
@@ -87,10 +96,13 @@ const utilisateurDAO = {
      * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est supprimée, false sinon.
      */
     deleteTeam: async (pseudo, nomEquipe) => {
-        const result = await utilisateurDAO.collection.updateOne(
-            {pseudo: pseudo},
-            {$pull: {equipes: {nom: nomEquipe}}}
+        // Exécute la mise à jour pour retirer l'équipe du tableau 'equipes' de l'utilisateur
+        const result = await Utilisateur.updateOne(
+            { pseudo: pseudo },
+            { $pull: { equipes: { nom: nomEquipe } } } // Utilise $pull pour retirer l'équipe
         )
+
+        // Vérifie si la mise à jour a affecté exactement un document
         return result.modifiedCount === 1
     }
 }

@@ -10,7 +10,7 @@ export default function ProfilPage() {
     const navigate = useNavigate()
     const [profil, setProfil] = useState(null)
     const [editingTeam, setEditingTeam] = useState(null)
-    const [added, setAdded] = useState(true)
+    const [added, setAdded] = useState(false)
     const [nomEquipe, setNomEquipe] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -113,7 +113,6 @@ export default function ProfilPage() {
 
                 <ErrorMessage error={errorMessage}/>
             </div>
-
 
             {profil?.equipes.length !== 0 ? (
                 <div id="mesEquipes">

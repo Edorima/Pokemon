@@ -1,5 +1,5 @@
 # PokéManager
 
-Temps passé par Alexis : 100h00
+Temps passé par Alexis : 104h30
 <br>
-Dernière mesure le 29 mars à 00h30
+Dernière mesure le 30 mars à 23h11

@@ -1,17 +1,24 @@
-export default class Capacite {
-    id
-    nom
-    nomNormalise
-    nomAnglais
-    description
-    categorie
-    puissance
-    precision
-    pp
-    type
-    pokemons
+import mongoose from "mongoose"
 
-    constructor(obj) {
-        Object.assign(this, obj)
-    }
-}
+const capaciteSchema = new mongoose.Schema({
+    categorie: String,
+    description: String,
+    id: {type: Number, unique: true},
+    nom: String,
+    nomAnglais: String,
+    nomNormalise: String,
+    pokemons: [String],
+    pp: Number,
+    precision: Number,
+    puissance: Number,
+    type: String
+})
+
+capaciteSchema.index({id: 1}, {unique: true})
+capaciteSchema.index({nomNormalise: 1})
+capaciteSchema.index({type: 1})
+capaciteSchema.index({categorie: 1})
+
+const Capacite = mongoose.model('Capacite', capaciteSchema)
+
+export default Capacite

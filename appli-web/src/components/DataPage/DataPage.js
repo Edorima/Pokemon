@@ -53,7 +53,6 @@ export default function DataPage({
     }, [])
 
     const fetchNormalData = useCallback((reset = false) => {
-        console.log("ici")
         fetchData(
             getData({offset: reset ? 0 : (page-1)*ELEMENT_PER_PAGE}),
             reset

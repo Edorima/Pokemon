@@ -1,7 +1,7 @@
 "use strict"
 
 import express from 'express'
-import utilisateurDAO from "./dao/utilisateurDAO.mjs"
+import utilisateurController from "./controller/utilisateurController.mjs"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 const router = express.Router()
@@ -25,7 +25,7 @@ async function validateUserToken(req, res, next) {
         const token = req.headers.authorization?.split(' ')[1]
         if (!token) return res.status(401).send('Token manquant ou invalide.')
         const userPayload = jwt.verify(token, process.env.SECRET_KEY)
-        const utilisateur = await utilisateurDAO.getUser(userPayload.pseudo)
+        const utilisateur = await utilisateurController.getUser(userPayload.pseudo)
 
         if (!utilisateur)
             return res.status(404).send("Utilisateur non trouvé")
@@ -40,9 +40,10 @@ async function validateUserToken(req, res, next) {
 router.route('/register').post(async (req, res) => {
     const pseudo = req.body.pseudo
     const motDePasse = req.body.motDePasse
-    const utilisateurAjoute = await utilisateurDAO.addUser(
+    const utilisateurAjoute = await utilisateurController.addUser(
         pseudo, motDePasse
     )
+
     if (utilisateurAjoute)
         res.json({ success: true, token: signPayload(pseudo) })
     else
@@ -53,7 +54,7 @@ router.route('/login').post(async (req, res) => {
     const pseudo = req.body.pseudo
     const motDePasse = req.body.motDePasse
 
-    const utilisateur = await utilisateurDAO.getUser(pseudo)
+    const utilisateur = await utilisateurController.getUser(pseudo)
     if (!utilisateur)
         return res.status(401).json({ success: false, message: "L'utilisateur n'existe pas." })
 
@@ -66,25 +67,26 @@ router.route('/login').post(async (req, res) => {
 
 router.route('/profil')
     .get(validateUserToken, async (req, res) => {
-        const { motDePasse, ...userData } = req.user
+        const userData = req.user.toObject()
+        delete userData.motDePasse
         res.json(userData)
     })
     .post(validateUserToken, async (req, res) => {
-        const added = await utilisateurDAO.addTeam(req.user.pseudo, req.body.equipe)
+        const added = await utilisateurController.addTeam(req.user.pseudo, req.body.equipe)
         added ? res.status(201).send() : res.status(409).send("Équipe déjà existante ou erreur")
     })
     .put(validateUserToken, async (req, res) => {
-        const updated = await utilisateurDAO.editTeam(
+        const updated = await utilisateurController.editTeam(
             req.user.pseudo,
             req.body.nomActuel,
             req.body.pokemons,
             req.body.nouveauNom
         )
-        updated ? res.status(204).send() : res.status(404).send("Équipe non trouvée")
+        updated ? res.status(200).send() : res.status(204).send("Aucune mise à jour effectuée.")
     })
     .delete(validateUserToken, async (req, res) => {
-        const deleted = await utilisateurDAO.deleteTeam(req.user.pseudo, req.body.nomEquipe)
-        deleted ? res.status(204).send() : res.status(404).send("Équipe non trouvée")
+        const deleted = await utilisateurController.deleteTeam(req.user.pseudo, req.body.nomEquipe)
+        deleted ? res.status(200).send() : res.status(204).send("Aucune suppression effectuée.")
     })
 
 export default router

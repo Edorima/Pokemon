@@ -44,9 +44,9 @@ export function normalize(str) {
 let dbUrl = 'mongodb://localhost:27017'
 const client = new MongoClient(dbUrl)
 const db = client.db("pokemanager")
-export const pokemonCollection = db.collection('pokemon')
-export const capaciteCollection = db.collection('capacite')
-export const objetCollection = db.collection('objet')
+export const pokemonCollection = db.collection('pokemons')
+export const capaciteCollection = db.collection('capacites')
+export const objetCollection = db.collection('objets')
 
 console.log("Downloading data...")
 export const progressBar = new ConsoleProgressBar({
