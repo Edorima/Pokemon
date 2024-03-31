@@ -5,7 +5,7 @@ const pokemonSchema = new mongoose.Schema({
     nom: {type: String, unique: true},
     nomAnglais: {type: String, unique: true},
     nomNormalise: {type: String, unique: true},
-    poids: Number,
+    poids: {type: Number, min: 0.1},
     sprites: {
         default: String,
         shiny: String,
@@ -18,12 +18,12 @@ const pokemonSchema = new mongoose.Schema({
         special_defense: Number,
         speed: Number,
     },
-    taille: Number,
+    taille: {type: Number, min: 0.1},
     talents: {
         normaux: [String],
         cache: String,
     },
-    types: [String],
+    types: {type: [String], minLength: 1},
     capacites: [Number],
     description: String,
     espece: String,

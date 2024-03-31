@@ -58,11 +58,14 @@ const pokemonDAO = {
     },
 
     /**
-     * Trouve des Pokémon dont le nom normalisé commence par un terme de recherche spécifié, optionnellement filtré par génération, avec pagination.
+     * Trouve des Pokémon dont le nom normalisé commence par un terme de recherche spécifié,
+     * optionnellement filtré par génération et par type(s).
      * @param searchTerm {string} - Le terme de recherche pour le début du nom du Pokémon.
      * @param generation {number | undefined} - La génération des Pokémon à filtrer.
-     * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer. Si non spécifié, tous les types sont considérés.
-     * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer. Si non spécifié, tous les types secondaires sont considérés.
+     * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer.
+     * Si non spécifié, tous les types sont considérés.
+     * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer.
+     * Si non spécifié, tous les types secondaires sont considérés.
      * @param limit {number} - Limite le nombre de résultats.
      * @param offset {number} - Définit le point de départ pour les résultats.
      * @returns {Promise<Object[]>} - Une promesse qui résout en un tableau de Pokémon correspondants.
