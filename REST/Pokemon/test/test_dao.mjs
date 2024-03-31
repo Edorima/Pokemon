@@ -30,29 +30,43 @@ describe("getPokemons should return", () => {
         ])
     })
 
-    it("pokemons of specified generation", async () => {
-        const pokemons = await pokemonDAO.getPokemons(1, undefined, undefined, 898)
+    it("pokemons of generation 1", async () => {
+        const pokemons = await pokemonDAO.getPokemons(1, undefined, undefined)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon => pokemon.generation === 1))
     })
 
+    it("pokemons of generation 5", async () => {
+        const pokemons = await pokemonDAO.getPokemons(5, undefined, undefined)
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.every(pokemon => pokemon.generation === 5))
+    })
+
+    it("pokemons of generation 8", async () => {
+        const pokemons = await pokemonDAO.getPokemons(8, undefined, undefined)
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.every(pokemon => pokemon.generation === 8))
+    })
+
     it("no pokemons with invalid generation", async () => {
-        const pokemons = await pokemonDAO.getPokemons(0, undefined, undefined, 898)
+        const pokemons = await pokemonDAO.getPokemons(0, undefined, undefined)
         expect(pokemons).to.be.an('array').that.is.empty
     })
 
     it("pokemons of specified generation and type", async () => {
-        const pokemons = await pokemonDAO.getPokemons(1, 'Feu', undefined, 898)
+        const pokemons = await pokemonDAO.getPokemons(4, 'Feu', undefined)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon =>
-                pokemon.generation === 1 && pokemon.types.includes('Feu')
-        ))
+                pokemon.generation === 4 && pokemon.types.includes('Feu')
+            ))
     })
 
     it("pokemons of specified generation and both type", async () => {
-        const pokemons = await pokemonDAO.getPokemons(1, 'Plante', 'Poison', 898)
+        const pokemons = await pokemonDAO.getPokemons(1, 'Plante', 'Poison')
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon =>
@@ -63,16 +77,16 @@ describe("getPokemons should return", () => {
     })
 
     it("pokemons of specified type", async () => {
-        const pokemons = await pokemonDAO.getPokemons(undefined, 'Feu', undefined, 898)
+        const pokemons = await pokemonDAO.getPokemons(undefined, 'Combat', undefined)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
-            pokemons.every(pokemon => pokemon.types.includes('Feu'))
+            pokemons.every(pokemon => pokemon.types.includes('Combat'))
         )
     })
 
     it("pokemons of both specified type", async () => {
         const pokemons = await pokemonDAO.getPokemons(
-            undefined, 'Plante', 'Poison', 898
+            undefined, 'Plante', 'Poison'
         )
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
@@ -82,10 +96,24 @@ describe("getPokemons should return", () => {
     })
 
     it("pokemons without taking consideration of type2 without type1", async () => {
-        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, 'Feu', 898)
+        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, 'Feu')
+        expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.some(pokemon => !pokemon.types.includes('Feu'))
         )
+    })
+
+    it("a limited number of pokemons when a limit is specified", async () => {
+        const limit = 5
+        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, undefined, limit)
+        expect(pokemons).to.be.an('array')
+        expect(pokemons.length).to.equal(limit)
+    })
+
+    it(`${pokemonDAO.LIMIT} pokemons when limit is errored`, async () => {
+        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, undefined, NaN)
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons.length).to.equal(pokemonDAO.LIMIT)
     })
 })
 
@@ -103,13 +131,124 @@ describe('findPokemonById should return', () => {
     })
 })
 
-describe('findPokemonsThatStartsWith should return', () => {
-    it("pokemons whose names start with the specified term", async () => {
-        // Utilisation des 3 caractères du nom du premier Pokémon
-        const searchTerm = pokemonsData[0].nom.slice(0, 3)
+describe('findPokemonsThatStartsWith should', () => {
+    it("return pokemons whose names start with the specified term", async () => {
+        const searchTerm = 'Bulbi'
         const pokemons = await pokemonDAO.findPokemonsThatStartsWith(searchTerm)
-        expect(pokemons).to.be.an('array').with.lengthOf.at.least(1)
-        expect(pokemons[0].nom).to.include(searchTerm)
+
+        // Vérifie que le tableau n'est pas vide.
+        expect(pokemons).to.be.an('array').that.is.lengthOf(1)
+
+        // Vérifie que chaque Pokémon retourné commence bien par le terme de recherche.
+        expect(pokemons[0].nom).to.equal('Bulbizarre')
+        expect(pokemons[0].id).to.equal(1)
+    })
+
+    it("return an empty array for an unmatched search term", async () => {
+        const searchTerm = 'Zyx' // Un terme qui ne correspond à aucun nom de Pokémon.
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(searchTerm)
+
+        // Vérifie que le tableau est vide.
+        expect(pokemons).to.be.an('array').that.is.empty
+    })
+
+    it("correctly handle pokemons with specified search and generation", async () => {
+        const searchTerm = 'Sala'
+        const generation = 1 // On filtre par la 1ère génération dans cet exemple.
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            searchTerm, generation
+        )
+
+        expect(pokemons).to.be.an('array').that.is.not.empty
+
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.every(pokemon =>
+                pokemon.nom.startsWith(searchTerm) && pokemon.generation === generation
+            )
+        )
+    })
+
+    it("return no pokemons with an invalid generation", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'Cara', 0, undefined, undefined,
+        )
+        expect(pokemons).to.be.an('array').that.is.empty
+    })
+
+    it("return pokemons of specified search with generation and type", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'B', 3, 'Feu', undefined,
+        )
+        expect(pokemons).to.be.an('array').that.is.lengthOf(1)
+        const pokemon = pokemons[0]
+        expect(pokemon.nom).to.equal('Braségali')
+        expect(pokemon.generation).to.equal(3)
+        expect(pokemon.types).to.include('Feu')
+    })
+
+    it("return pokemons of specified search, generation and both type", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'O', 1, 'Plante', 'Poison'
+        )
+
+        expect(pokemons).to.be.an('array').that.is.lengthOf(1)
+        const pokemon = pokemons[0]
+        expect(pokemon.nom).to.equal('Ortide')
+        expect(pokemon.generation).to.equal(1)
+        expect(pokemon.types).to.includes(...['Plante', 'Poison'])
+    })
+
+    it("return pokemons of specified search and type", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'C', undefined, 'Combat', undefined
+        )
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons.length).to.equal(12)
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.every(pokemon =>
+                pokemon.types.includes('Combat') &&
+                pokemon.nom.startsWith('C')
+        ))
+    })
+
+    it("return pokemons of specified search and both type", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'P', undefined, 'Normal', 'Vol'
+        )
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons.length).to.equal(6)
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.every(pokemon =>
+                pokemon.types.includes('Normal') &&
+                pokemon.types.includes('Vol') &&
+                pokemon.nom.startsWith('P')
+        ))
+    })
+
+    it("return pokemons with search without taking consideration of type2 without type1", async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith('M', undefined, undefined, 'Feu')
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons).to.satisfy(pokemons =>
+            pokemons.some(pokemon => !pokemon.types.includes('Feu')) &&
+            pokemons.every(pokemon => pokemon.nom.startsWith('M'))
+        )
+    })
+
+    it("returns a limited number of pokemons when a limit is specified", async () => {
+        const limit = 5
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'A', undefined, undefined, undefined, limit
+        )
+        expect(pokemons).to.be.an('array')
+        expect(pokemons.length).to.equal(limit)
+    })
+
+    it(`returns ${pokemonDAO.LIMIT} pokemons when limit is errored`, async () => {
+        const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
+            'A', undefined, undefined, undefined, NaN
+        )
+        expect(pokemons).to.be.an('array').that.is.not.empty
+        expect(pokemons.length).to.equal(pokemonDAO.LIMIT)
     })
 })
 
@@ -124,7 +263,10 @@ describe('findPokemonsByMove should return', () => {
          mapper les Pokémon qui peuvent apprendre cette attaque. */
         const pokemons = await pokemonDAO.findPokemonsByMove({pokemons: pkmApprenantCoupeVent})
         expect(pokemons).to.satisfy(pokemons =>
-            pokemons.every(pokemon => pokemon.capacites.includes(13))
+            pokemons.every(pokemon =>
+                pokemon.capacites.includes(13) &&
+                pkmApprenantCoupeVent.includes(pokemon.nomAnglais)
+            )
         )
     })
 })

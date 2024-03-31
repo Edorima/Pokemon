@@ -5,19 +5,22 @@
   "main": "server.mjs",
   "scripts": {
     "start": "nodemon server.mjs",
-    "test": "c8 mocha --timeout 10000 --cache off --exit"
+    "test": "c8 --clean mocha --timeout 10000 --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "c8": "^9.1.0",
-    "chai": "^5.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "mongoose": "^8.2.4",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "chai": "^5.1.0",
     "mocha": "^10.4.0",
     "mongodb-memory-server": "^9.1.8",
-    "mongoose": "^8.2.4",
-    "nodemon": "^3.1.0",
+    "nyc": "^15.1.0",
     "supertest": "^6.3.4"
   }
 }

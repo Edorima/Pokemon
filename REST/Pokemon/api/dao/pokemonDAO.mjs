@@ -2,8 +2,6 @@
 
 import Pokemon from "../model/Pokemon.mjs"
 
-const LIMIT = 20
-
 function normalizeString(str) {
     return str
         .normalize('NFD')
@@ -12,6 +10,8 @@ function normalizeString(str) {
 }
 
 const pokemonDAO = {
+    LIMIT: 20,
+
     /**
      * Récupère les Pokémon filtrés par génération avec pagination.
      * @param generation {number | undefined} - La génération des Pokémon à filtrer.
@@ -25,7 +25,7 @@ const pokemonDAO = {
         generation = undefined,
         type1 = undefined,
         type2 = undefined,
-        limit = LIMIT,
+        limit = pokemonDAO.LIMIT,
         offset = 0
     ) => {
         const query = {}
@@ -39,7 +39,7 @@ const pokemonDAO = {
         }
 
         return Pokemon.find(query, {_id: 0}, null)
-            .limit(limit || LIMIT)
+            .limit(limit || pokemonDAO.LIMIT)
             .skip(offset || 0)
             .exec()
     },
@@ -72,7 +72,7 @@ const pokemonDAO = {
         generation = undefined,
         type1 = undefined,
         type2 = undefined,
-        limit = LIMIT,
+        limit = pokemonDAO.LIMIT,
         offset = 0
     ) => {
         const query = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
@@ -86,7 +86,7 @@ const pokemonDAO = {
         }
 
         return Pokemon.find(query, {_id: 0}, null)
-            .limit(limit || LIMIT)
+            .limit(limit || pokemonDAO.LIMIT)
             .skip(offset || 0)
             .sort({id: 1})
             .exec()
