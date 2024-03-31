@@ -1,4 +1,4 @@
-import {fetchData, progressBar, pokemonCollection} from "./fetchData.mjs"
+import {fetchData, progressBar, Pokemon} from "./fetchData.mjs"
 
 /**
  * Une fonction pour télécharger les données concernant les talents
@@ -8,7 +8,6 @@ export default async function fetchAbilities() {
     const talentsURL = 'https://pokeapi.co/api/v2/ability?limit=307'
     const allAbilities = await fetchData(talentsURL)
     for (const ability of allAbilities.results) {
-        progressBar.addValue()
         const abilityData = await fetchData(ability.url)
 
         const nom = abilityData.names.find(
@@ -32,10 +31,11 @@ export default async function fetchAbilities() {
 
         // Mets à jour les pokémons pour leurs ajouter les talents
         for (const op of abilityUpdates) {
-            await pokemonCollection.updateMany(
+            await Pokemon.updateMany(
                 {nomAnglais: {$in: op.abilities.map(a => a.pokemon.name)}},
                 op.update
             )
         }
+        progressBar.addValue()
     }
 }

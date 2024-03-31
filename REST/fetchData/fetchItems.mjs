@@ -1,5 +1,5 @@
 import {categorieObjetMap} from "./usefulData.mjs"
-import {fetchData, normalize, progressBar, objetCollection} from "./fetchData.mjs"
+import {fetchData, normalize, Objet, progressBar} from "./fetchData.mjs"
 
 export default async function fetchItems() {
     const itemsURL = new Set()
@@ -12,14 +12,13 @@ export default async function fetchItems() {
     }
 
     for (const itemURL of itemsURL) {
-        progressBar.addValue()
         const itemData = await fetchData(itemURL)
 
         const nom = itemData.names.find(
             n => n.language.name === 'fr'
         )?.name
-        if (nom === undefined)
-            continue
+
+        if (!nom) continue
 
         const description = itemData.flavor_text_entries.find(
             d => d.language.name === 'fr'
@@ -34,10 +33,11 @@ export default async function fetchItems() {
             categorie: categorieObjetMap.get(itemData.category.name)
         }
 
-        await objetCollection.updateOne(
+        await Objet.updateOne(
             {nomAnglais: itemData.name},
             {$set: itemObject},
             {upsert: true}
         )
+        progressBar.addValue()
     }
 }

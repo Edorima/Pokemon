@@ -1,5 +1,5 @@
 import {generationMap, typeMap} from "./usefulData.mjs"
-import {fetchData, normalize, pokemonCollection, progressBar} from "./fetchData.mjs"
+import {fetchData, normalize, Pokemon, progressBar} from "./fetchData.mjs"
 
 /**
  * Une fonction pour télécharger les données concernant les Pokémon
@@ -10,7 +10,6 @@ export default async function fetchPokemons() {
     const pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?limit=898'
     const allPokemons = await fetchData(pokemonsURL)
     for (const pokemon of allPokemons.results) {
-        progressBar.addValue()
         const pokemonData = await fetchData(pokemon.url)
         const pokemonSpecies = await fetchData(pokemonData.species.url)
 
@@ -59,13 +58,11 @@ export default async function fetchPokemons() {
             types: types
         }
 
-        await pokemonCollection.updateOne(
+        await Pokemon.updateOne(
             {id: pokemonData.id},
             {$set: pokemonObject},
             {upsert: true}
         )
+        progressBar.addValue()
     }
-
-    await pokemonCollection.createIndex({nomNormalise: 1})
-    await pokemonCollection.createIndex({nomAnglais: 1})
 }

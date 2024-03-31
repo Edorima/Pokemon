@@ -1,5 +1,3 @@
-import Categorie from "./Categorie.mjs"
-
 export const generationMap = new Map([
     ['generation-i', 1], ['generation-ii', 2],
     ['generation-iii', 3], ['generation-iv', 4],
@@ -24,6 +22,16 @@ export const categorieMap = new Map([
     ['special', 'Spéciale'],
     ['status', 'Statut']
 ])
+
+class Categorie {
+    static #instance = 1
+    id = Categorie.#instance
+    nom
+    constructor(nom) {
+        this.nom = nom
+        Categorie.#instance++
+    }
+}
 
 export const categorieObjetMap = new Map([
     ['stat-boosts', new Categorie("Boosts de statistiques")],

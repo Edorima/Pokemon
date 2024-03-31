@@ -14,14 +14,20 @@ function normalizeString(str) {
 const pokemonDAO = {
     /**
      * Récupère les Pokémon filtrés par génération avec pagination.
-     * @param generation {number} - La génération des Pokémon à filtrer.
+     * @param generation {number | undefined} - La génération des Pokémon à filtrer.
      * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer. Si non spécifié, tous les types sont considérés.
      * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer. Si non spécifié, tous les types secondaires sont considérés.
      * @param limit {number} - Limite le nombre de résultats retournés.
      * @param offset {number} - Définit le point de départ des résultats.
      * @returns {Promise<Object[]>} - Une promesse qui résout en un tableau de Pokémon.
      */
-    getPokemons: async (generation, type1, type2, limit, offset) => {
+    getPokemons: async (
+        generation = undefined,
+        type1 = undefined,
+        type2 = undefined,
+        limit = LIMIT,
+        offset = 0
+    ) => {
         const query = {}
         if (Number.isInteger(generation))
             query.generation = generation
@@ -54,14 +60,21 @@ const pokemonDAO = {
     /**
      * Trouve des Pokémon dont le nom normalisé commence par un terme de recherche spécifié, optionnellement filtré par génération, avec pagination.
      * @param searchTerm {string} - Le terme de recherche pour le début du nom du Pokémon.
-     * @param generation {number} - La génération des Pokémon à filtrer.
+     * @param generation {number | undefined} - La génération des Pokémon à filtrer.
      * @param type1 {string | undefined} - Le type principal des Pokémon à filtrer. Si non spécifié, tous les types sont considérés.
      * @param type2 {string | undefined} - Le type secondaire des Pokémon à filtrer. Si non spécifié, tous les types secondaires sont considérés.
      * @param limit {number} - Limite le nombre de résultats.
      * @param offset {number} - Définit le point de départ pour les résultats.
      * @returns {Promise<Object[]>} - Une promesse qui résout en un tableau de Pokémon correspondants.
      */
-    findPokemonsThatStartsWith: async (searchTerm, generation, type1, type2, limit, offset) => {
+    findPokemonsThatStartsWith: async (
+        searchTerm,
+        generation = undefined,
+        type1 = undefined,
+        type2 = undefined,
+        limit = LIMIT,
+        offset = 0
+    ) => {
         const query = {nomNormalise: new RegExp('^' + normalizeString(searchTerm))}
         if (Number.isInteger(generation))
             query.generation = generation

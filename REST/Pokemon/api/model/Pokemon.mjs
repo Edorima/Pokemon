@@ -28,7 +28,7 @@ const pokemonSchema = new mongoose.Schema({
     description: String,
     espece: String,
     generation: Number
-})
+}, {versionKey: false})
 
 pokemonSchema.index({id: 1}, {unique: true})
 pokemonSchema.index({nomNormalise: 1}, {unique: true})
@@ -38,4 +38,5 @@ pokemonSchema.index({types: 1})
 
 const Pokemon = mongoose.model('Pokemon', pokemonSchema)
 
+export {pokemonSchema}
 export default Pokemon

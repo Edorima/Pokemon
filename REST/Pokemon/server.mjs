@@ -17,7 +17,10 @@ const server = app.listen(serverPort, () =>
 )
 
 if (env === 'TEST') {
-    // TODO TRAVAIL EN MEMOIRE
+    const {MongoMemoryServer}  = await import('mongodb-memory-server')
+    const mongoServer = await MongoMemoryServer.create()
+    const uri = mongoServer.getUri()
+    await mongoose.connect(uri)
 } else {
     const uri = mongoURL + '/' + mongoDB
     await mongoose.connect(uri)

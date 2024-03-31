@@ -1,6 +1,5 @@
 "use strict"
 
-import { MongoClient } from 'mongodb'
 import fetch from 'node-fetch'
 import {HttpsProxyAgent} from 'https-proxy-agent'
 import ConsoleProgressBar from 'console-progress-bar'
@@ -8,6 +7,10 @@ import fetchPokemons from "./fetchPokemons.mjs"
 import fetchMoves from "./fetchMoves.mjs"
 import fetchAbilities from "./fetchAbilities.mjs"
 import fetchItems from "./fetchItems.mjs"
+import mongoose from "mongoose"
+import {pokemonSchema} from '../Pokemon/api/model/Pokemon.mjs'
+import {capaciteSchema} from '../Capacite/api/model/Capacite.mjs'
+import {objetSchema} from '../Objet/api/model/Objet.mjs'
 
 const proxy = process.env.https_proxy
 const agent = proxy !== undefined ?
@@ -40,26 +43,30 @@ export function normalize(str) {
         .toLowerCase()
 }
 
-
-let dbUrl = 'mongodb://localhost:27017'
-const client = new MongoClient(dbUrl)
-const db = client.db("pokemanager")
-export const pokemonCollection = db.collection('pokemons')
-export const capaciteCollection = db.collection('capacites')
-export const objetCollection = db.collection('objets')
+await mongoose.connect('mongodb://localhost:27017/pokemanager')
+export const Pokemon = mongoose.model('Pokemon', pokemonSchema)
+export const Capacite = mongoose.model('Capacite', capaciteSchema)
+export const Objet = mongoose.model('Objet', objetSchema)
 
 console.log("Downloading data...")
 export const progressBar = new ConsoleProgressBar({
-    maxValue: 2531,
+    maxValue: 2463,
     startChars: '[', endChars: ']',
     filledPartChars: '=', notFilledPartChars: ' '
 })
 
 await fetchPokemons() // 898 pas
+console.log('Pokemon :', progressBar.value)
+
 await fetchMoves() // 826 pas
-await fetchAbilities() // 375 pas
+console.log('Moves :', progressBar.value)
+
+await fetchAbilities() // 307 pas
+console.log('Abilities :', progressBar.value)
+
 await fetchItems() // 432 pas
+console.log('Items :', progressBar.value)
 
 console.log("Data downloaded.")
 
-await client.close()
+await mongoose.disconnect()

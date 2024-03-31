@@ -12,7 +12,7 @@ const capaciteSchema = new mongoose.Schema({
     precision: Number,
     puissance: Number,
     type: String
-})
+}, {versionKey: false})
 
 capaciteSchema.index({id: 1}, {unique: true})
 capaciteSchema.index({nomNormalise: 1})
@@ -21,4 +21,5 @@ capaciteSchema.index({categorie: 1})
 
 const Capacite = mongoose.model('Capacite', capaciteSchema)
 
+export {capaciteSchema}
 export default Capacite

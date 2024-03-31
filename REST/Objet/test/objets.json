@@ -1,0 +1,5186 @@
+[
+  {
+    "_id": {"$oid": "6608c10a77ba6ad856336be1"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Empêche la réduction des stats\nde tous les Pokémon de l’équipe\npendant 5 tours.",
+    "nom": "Garde-Stats",
+    "nomAnglais": "guard-spec",
+    "nomNormalise": "garde-stats",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/guard-spec.png"
+  },
+  {
+    "_id": {"$oid": "6608c10a77ba6ad856336be3"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte fortement le taux de critiques.\nUtilisable une seule fois. L’effet\ndisparaît si le Pokémon se retire.",
+    "nom": "Muscle +",
+    "nomAnglais": "dire-hit",
+    "nomNormalise": "muscle +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dire-hit.png"
+  },
+  {
+    "_id": {"$oid": "6608c10a77ba6ad856336be5"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte l’Attaque pendant un combat.\nL’effet s’estompe si le Pokémon se\nretire.",
+    "nom": "Attaque +",
+    "nomAnglais": "x-attack",
+    "nomNormalise": "attaque +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-attack.png"
+  },
+  {
+    "_id": {"$oid": "6608c10a77ba6ad856336be7"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte la Défense pendant un combat.\nL’effet s’estompe si le Pokémon se\nretire.",
+    "nom": "Défense +",
+    "nomAnglais": "x-defense",
+    "nomNormalise": "defense +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-defense.png"
+  },
+  {
+    "_id": {"$oid": "6608c10b77ba6ad856336be9"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte la Vitesse pendant un combat.\nL’effet s’estompe si le Pokémon se\nretire.",
+    "nom": "Vitesse +",
+    "nomAnglais": "x-speed",
+    "nomNormalise": "vitesse +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-speed.png"
+  },
+  {
+    "_id": {"$oid": "6608c10b77ba6ad856336beb"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte la Précision pendant un combat.\nL’effet s’estompe si le Pokémon se\nretire.",
+    "nom": "Précision +",
+    "nomAnglais": "x-accuracy",
+    "nomNormalise": "precision +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-accuracy.png"
+  },
+  {
+    "_id": {"$oid": "6608c10b77ba6ad856336bed"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte l’Attaque Spéciale pendant\nun combat. L’effet s’estompe si\nle Pokémon se retire.",
+    "nom": "Atq. Spé. +",
+    "nomAnglais": "x-sp-atk",
+    "nomNormalise": "atq. spe. +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-sp-atk.png"
+  },
+  {
+    "_id": {"$oid": "6608c10b77ba6ad856336bef"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Monte la Défense Spéciale pendant\nun combat. L’effet s’estompe si le\nPokémon se retire.",
+    "nom": "Déf. Spé. +",
+    "nomAnglais": "x-sp-def",
+    "nomNormalise": "def. spe. +",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-sp-def.png"
+  },
+  {
+    "_id": {"$oid": "6608c10b77ba6ad856336bf1"},
+    "categorie": {
+      "id": 1,
+      "nom": "Boosts de statistiques"
+    },
+    "description": "Un champignon pouvant modifier l’apparence\ndes Pokémon Dynamax. Utilisé en combat,\nil augmente toutes les stats d’un Pokémon.",
+    "nom": "Maxi Champi",
+    "nomAnglais": "max-mushrooms",
+    "nomNormalise": "maxi champi",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bf3"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leurs PV de base.",
+    "nom": "Baie Grena",
+    "nomAnglais": "pomeg-berry",
+    "nomNormalise": "baie grena",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pomeg-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bf5"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leur stat Attaque de base.",
+    "nom": "Baie Alga",
+    "nomAnglais": "kelpsy-berry",
+    "nomNormalise": "baie alga",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kelpsy-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bf7"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leur stat Défense de base.",
+    "nom": "Baie Qualot",
+    "nomAnglais": "qualot-berry",
+    "nomNormalise": "baie qualot",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/qualot-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bf9"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leur stat Attaque Spéciale de\nbase.",
+    "nom": "Baie Lonme",
+    "nomAnglais": "hondew-berry",
+    "nomNormalise": "baie lonme",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hondew-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bfb"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leur stat Défense Spéciale de\nbase.",
+    "nom": "Baie Résin",
+    "nomAnglais": "grepa-berry",
+    "nomNormalise": "baie resin",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/grepa-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bfd"},
+    "categorie": {
+      "id": 2,
+      "nom": "Réducteur d'EVs"
+    },
+    "description": "Rend les Pokémon plus amicaux, mais\nbaisse leur stat Vitesse de base.",
+    "nom": "Baie Tamato",
+    "nomAnglais": "tamato-berry",
+    "nomNormalise": "baie tamato",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tamato-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10c77ba6ad856336bff"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne la paralysie lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Ceriz",
+    "nomAnglais": "cheri-berry",
+    "nomNormalise": "baie ceriz",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cheri-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10d77ba6ad856336c01"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne le sommeil lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Maron",
+    "nomAnglais": "chesto-berry",
+    "nomNormalise": "baie maron",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chesto-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10d77ba6ad856336c03"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne l’empoisonnement\nlorsqu’elle est tenue par un Pokémon.",
+    "nom": "Baie Pêcha",
+    "nomAnglais": "pecha-berry",
+    "nomNormalise": "baie pecha",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pecha-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10d77ba6ad856336c05"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne les brûlures lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Fraive",
+    "nomAnglais": "rawst-berry",
+    "nomNormalise": "baie fraive",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rawst-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10d77ba6ad856336c07"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne le gel lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Willia",
+    "nomAnglais": "aspear-berry",
+    "nomNormalise": "baie willia",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aspear-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c09"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui restaure 10 PP lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Mepo",
+    "nomAnglais": "leppa-berry",
+    "nomNormalise": "baie mepo",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leppa-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c0b"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui restaure 10 PV lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Oran",
+    "nomAnglais": "oran-berry",
+    "nomNormalise": "baie oran",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oran-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c0d"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne la confusion lorsqu’elle\nest tenue par un Pokémon.",
+    "nom": "Baie Kika",
+    "nomAnglais": "persim-berry",
+    "nomNormalise": "baie kika",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/persim-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c0f"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui soigne tous les problèmes\nde statut lorsqu’elle est tenue\npar un Pokémon.",
+    "nom": "Baie Prine",
+    "nomAnglais": "lum-berry",
+    "nomNormalise": "baie prine",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lum-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c11"},
+    "categorie": {
+      "id": 3,
+      "nom": "Médecine"
+    },
+    "description": "Baie qui restaure quelques PV\nlorsqu’elle est tenue par un Pokémon.",
+    "nom": "Baie Sitrus",
+    "nomAnglais": "sitrus-berry",
+    "nomNormalise": "baie sitrus",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sitrus-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c13"},
+    "categorie": {
+      "id": 4,
+      "nom": "Autres"
+    },
+    "description": "Tenue, cette Baie restaure les PV\ndu Pokémon s’il subit une attaque\nsuper efficace.",
+    "nom": "Baie Enigma",
+    "nomAnglais": "enigma-berry",
+    "nomNormalise": "baie enigma",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/enigma-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10e77ba6ad856336c15"},
+    "categorie": {
+      "id": 4,
+      "nom": "Autres"
+    },
+    "description": "Tenue, cette Baie inflige des dégâts\nà l’ennemi s’il utilise une attaque\nphysique qui atteint son but.",
+    "nom": "Baie Jaboca",
+    "nomAnglais": "jaboca-berry",
+    "nomNormalise": "baie jaboca",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/jaboca-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10f77ba6ad856336c18"},
+    "categorie": {
+      "id": 4,
+      "nom": "Autres"
+    },
+    "description": "Tenue, cette Baie inflige des dégâts\nà l’ennemi s’il utilise une attaque\nspéciale qui atteint son but.",
+    "nom": "Baie Pommo",
+    "nomAnglais": "rowap-berry",
+    "nomNormalise": "baie pommo",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rowap-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10f77ba6ad856336c1a"},
+    "categorie": {
+      "id": 4,
+      "nom": "Autres"
+    },
+    "description": "Baie à tenir augmentant la Défense du Pokémon\nlorsqu’il est touché par une attaque physique.",
+    "nom": "Baie Éka",
+    "nomAnglais": "kee-berry",
+    "nomNormalise": "baie eka",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kee-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10f77ba6ad856336c1d"},
+    "categorie": {
+      "id": 4,
+      "nom": "Autres"
+    },
+    "description": "Baie à tenir augmentant la Défense Spéciale\ndu Pokémon lorsqu’il est touché par une attaque\nspéciale.",
+    "nom": "Baie Rangma",
+    "nomAnglais": "maranga-berry",
+    "nomNormalise": "baie rangma",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/maranga-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10f77ba6ad856336c1f"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte l’Attaque\nen cas de besoin.",
+    "nom": "Baie Lichii",
+    "nomAnglais": "liechi-berry",
+    "nomNormalise": "baie lichii",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/liechi-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c10f77ba6ad856336c21"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte la Défense\nen cas de besoin.",
+    "nom": "Baie Lingan",
+    "nomAnglais": "ganlon-berry",
+    "nomNormalise": "baie lingan",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ganlon-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c23"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte la Vitesse\nen cas de besoin.",
+    "nom": "Baie Sailak",
+    "nomAnglais": "salac-berry",
+    "nomNormalise": "baie sailak",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/salac-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c25"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte l’Atq. Spé.\nen cas de besoin.",
+    "nom": "Baie Pitaye",
+    "nomAnglais": "petaya-berry",
+    "nomNormalise": "baie pitaye",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/petaya-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c27"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte la Déf. Spé.\nen cas de besoin.",
+    "nom": "Baie Abriko",
+    "nomAnglais": "apicot-berry",
+    "nomNormalise": "baie abriko",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/apicot-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c29"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte le taux de\ncritiques en cas de besoin.",
+    "nom": "Baie Lansat",
+    "nomAnglais": "lansat-berry",
+    "nomNormalise": "baie lansat",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lansat-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c2b"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie monte beaucoup une\ndes stats en cas de besoin.",
+    "nom": "Baie Frista",
+    "nomAnglais": "starf-berry",
+    "nomNormalise": "baie frista",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/starf-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11077ba6ad856336c2e"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie augmente une fois\nla Précision d’une capacité en cas de\nbesoin.",
+    "nom": "Baie Micle",
+    "nomAnglais": "micle-berry",
+    "nomNormalise": "baie micle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/micle-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11177ba6ad856336c30"},
+    "categorie": {
+      "id": 5,
+      "nom": "Dans un état critique"
+    },
+    "description": "Tenue, cette Baie permet d’attaquer\nen premier une fois en cas de besoin.",
+    "nom": "Baie Chérim",
+    "nomAnglais": "custap-berry",
+    "nomNormalise": "baie cherim",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/custap-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11177ba6ad856336c32"},
+    "categorie": {
+      "id": 6,
+      "nom": "Soin conditionnel"
+    },
+    "description": "Tenue, cette Baie restaure des PV en\ncas de besoin, mais rend confus si\nle Pokémon n’aime pas son goût.",
+    "nom": "Baie Figuy",
+    "nomAnglais": "figy-berry",
+    "nomNormalise": "baie figuy",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/figy-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11177ba6ad856336c35"},
+    "categorie": {
+      "id": 6,
+      "nom": "Soin conditionnel"
+    },
+    "description": "Tenue, cette Baie restaure des PV en\ncas de besoin, mais rend confus si\nle Pokémon n’aime pas son goût.",
+    "nom": "Baie Wiki",
+    "nomAnglais": "wiki-berry",
+    "nomNormalise": "baie wiki",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wiki-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11177ba6ad856336c37"},
+    "categorie": {
+      "id": 6,
+      "nom": "Soin conditionnel"
+    },
+    "description": "Tenue, cette Baie restaure des PV en\ncas de besoin, mais rend confus si\nle Pokémon n’aime pas son goût.",
+    "nom": "Baie Mago",
+    "nomAnglais": "mago-berry",
+    "nomNormalise": "baie mago",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mago-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c39"},
+    "categorie": {
+      "id": 6,
+      "nom": "Soin conditionnel"
+    },
+    "description": "Tenue, cette Baie restaure des PV en\ncas de besoin, mais rend confus si\nle Pokémon n’aime pas son goût.",
+    "nom": "Baie Gowav",
+    "nomAnglais": "aguav-berry",
+    "nomNormalise": "baie gowav",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aguav-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c3b"},
+    "categorie": {
+      "id": 6,
+      "nom": "Soin conditionnel"
+    },
+    "description": "Tenue, cette Baie restaure des PV en\ncas de besoin, mais rend confus si\nle Pokémon n’aime pas son goût.",
+    "nom": "Baie Papaya",
+    "nomAnglais": "iapapa-berry",
+    "nomNormalise": "baie papaya",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iapapa-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c3d"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Feu.",
+    "nom": "Baie Chocco",
+    "nomAnglais": "occa-berry",
+    "nomNormalise": "baie chocco",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/occa-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c3f"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Eau.",
+    "nom": "Baie Pocpoc",
+    "nomAnglais": "passho-berry",
+    "nomNormalise": "baie pocpoc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/passho-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c41"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une\nattaque ennemie super efficace\nde type Électrik.",
+    "nom": "Baie Parma",
+    "nomAnglais": "wacan-berry",
+    "nomNormalise": "baie parma",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wacan-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11277ba6ad856336c43"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Plante.",
+    "nom": "Baie Ratam",
+    "nomAnglais": "rindo-berry",
+    "nomNormalise": "baie ratam",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rindo-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11377ba6ad856336c45"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Glace.",
+    "nom": "Baie Nanone",
+    "nomAnglais": "yache-berry",
+    "nomNormalise": "baie nanone",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/yache-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11377ba6ad856336c47"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Combat.",
+    "nom": "Baie Pomroz",
+    "nomAnglais": "chople-berry",
+    "nomNormalise": "baie pomroz",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chople-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11377ba6ad856336c49"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Poison.",
+    "nom": "Baie Kébia",
+    "nomAnglais": "kebia-berry",
+    "nomNormalise": "baie kebia",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kebia-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11377ba6ad856336c4b"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Sol.",
+    "nom": "Baie Jouca",
+    "nomAnglais": "shuca-berry",
+    "nomNormalise": "baie jouca",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shuca-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11377ba6ad856336c4d"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Vol.",
+    "nom": "Baie Cobaba",
+    "nomAnglais": "coba-berry",
+    "nomNormalise": "baie cobaba",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/coba-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11477ba6ad856336c4f"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Psy.",
+    "nom": "Baie Yapap",
+    "nomAnglais": "payapa-berry",
+    "nomNormalise": "baie yapap",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/payapa-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11477ba6ad856336c51"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Insecte.",
+    "nom": "Baie Panga",
+    "nomAnglais": "tanga-berry",
+    "nomNormalise": "baie panga",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tanga-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11477ba6ad856336c53"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Roche.",
+    "nom": "Baie Charti",
+    "nomAnglais": "charti-berry",
+    "nomNormalise": "baie charti",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charti-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11477ba6ad856336c55"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Spectre.",
+    "nom": "Baie Sédra",
+    "nomAnglais": "kasib-berry",
+    "nomNormalise": "baie sedra",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kasib-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11477ba6ad856336c57"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Dragon.",
+    "nom": "Baie Fraigo",
+    "nomAnglais": "haban-berry",
+    "nomNormalise": "baie fraigo",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/haban-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11577ba6ad856336c59"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une\nattaque ennemie super efficace\nde type Ténèbres.",
+    "nom": "Baie Lampou",
+    "nomAnglais": "colbur-berry",
+    "nomNormalise": "baie lampou",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/colbur-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11577ba6ad856336c5b"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie super efficace de type Acier.",
+    "nom": "Baie Babiri",
+    "nomAnglais": "babiri-berry",
+    "nomNormalise": "baie babiri",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/babiri-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11577ba6ad856336c5d"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque\nennemie de type Normal.",
+    "nom": "Baie Zalis",
+    "nomAnglais": "chilan-berry",
+    "nomNormalise": "baie zalis",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chilan-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11577ba6ad856336c5f"},
+    "categorie": {
+      "id": 7,
+      "nom": "Protection contre un type"
+    },
+    "description": "Tenue, cette Baie affaiblit une attaque ennemie\nsuper efficace de type Fée.",
+    "nom": "Baie Selro",
+    "nomAnglais": "roseli-berry",
+    "nomNormalise": "baie selro",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/roseli-berry.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c61"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle est rouge comme le soleil.",
+    "nom": "Pierre Soleil",
+    "nomAnglais": "sun-stone",
+    "nomNormalise": "pierre soleil",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c63"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle est noire comme la nuit.",
+    "nom": "Pierre Lune",
+    "nomAnglais": "moon-stone",
+    "nomNormalise": "pierre lune",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c65"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle est jaune et orange.",
+    "nom": "Pierre Feu",
+    "nomAnglais": "fire-stone",
+    "nomNormalise": "pierre feu",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c67"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nUn éclair est dessiné dessus.",
+    "nom": "Pierre Foudre",
+    "nomAnglais": "thunder-stone",
+    "nomNormalise": "pierre foudre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c69"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle est de couleur bleue.",
+    "nom": "Pierre Eau",
+    "nomAnglais": "water-stone",
+    "nomNormalise": "pierre eau",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c6b"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nUne feuille est dessinée dessus.",
+    "nom": "Pierre Plante",
+    "nomAnglais": "leaf-stone",
+    "nomNormalise": "pierre plante",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11677ba6ad856336c6d"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Pierre étrange qui fait évoluer\ncertaines espèces de Pokémon. Elle\nbrille d’une lumière aveuglante.",
+    "nom": "Pierre Éclat",
+    "nomAnglais": "shiny-stone",
+    "nomNormalise": "pierre eclat",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11777ba6ad856336c6f"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Pierre étrange qui fait évoluer\ncertaines espèces de Pokémon. Elle\nest sombre comme une nuit sans lune.",
+    "nom": "Pierre Nuit",
+    "nomAnglais": "dusk-stone",
+    "nomNormalise": "pierre nuit",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11777ba6ad856336c71"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle brille comme un œil.",
+    "nom": "Pierre Aube",
+    "nomAnglais": "dawn-stone",
+    "nomNormalise": "pierre aube",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11777ba6ad856336c73"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Pierre étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle a la forme d’un œuf.",
+    "nom": "Pierre Ovale",
+    "nomAnglais": "oval-stone",
+    "nomNormalise": "pierre ovale",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oval-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11777ba6ad856336c75"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une écaille épaisse et dure tenue\nparfois par les Pokémon de type Dragon\nquand ils sont attrapés.",
+    "nom": "Écaille Draco",
+    "nomAnglais": "dragon-scale",
+    "nomNormalise": "ecaille draco",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png"
+  },
+  {
+    "_id": {"$oid": "6608c11777ba6ad856336c77"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Dispositif transparent rempli de\ndonnées diverses et variées.\nFabriqué par la Sylphe SARL.",
+    "nom": "Améliorator",
+    "nomAnglais": "up-grade",
+    "nomNormalise": "ameliorator",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/up-grade.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c79"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Objet protecteur très dur et très\nlourd, apprécié d’un certain Pokémon.",
+    "nom": "Protecteur",
+    "nomAnglais": "protector",
+    "nomNormalise": "protecteur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c7b"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une boîte remplie d’une énorme quantité\nd’énergie électrique. Appréciée d’un\ncertain Pokémon.",
+    "nom": "Électriseur",
+    "nomAnglais": "electirizer",
+    "nomNormalise": "electriseur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electirizer.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c7d"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une boîte remplie d’une énorme quantité\nd’énergie magmatique. Appréciée d’un\ncertain Pokémon.",
+    "nom": "Magmariseur",
+    "nomAnglais": "magmarizer",
+    "nomNormalise": "magmariseur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c7f"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Appareil transparent rempli de données\ndouteuses. Son fabricant n’est pas\nconnu.",
+    "nom": "CD Douteux",
+    "nomAnglais": "dubious-disc",
+    "nomNormalise": "cd douteux",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c81"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un tissu imprégné d’une énergie\nspirituelle horriblement puissante.\nApprécié d’un certain Pokémon.",
+    "nom": "Tissu Fauche",
+    "nomAnglais": "reaper-cloth",
+    "nomNormalise": "tissu fauche",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png"
+  },
+  {
+    "_id": {"$oid": "6608c11877ba6ad856336c83"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une écaille étrange qui fait évoluer\ncertaines espèces de Pokémon.\nElle a une couleur arc-en-ciel.",
+    "nom": "Bel’Écaille",
+    "nomAnglais": "prism-scale",
+    "nomNormalise": "bel’ecaille",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png"
+  },
+  {
+    "_id": {"$oid": "6608c11977ba6ad856336c86"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une crème sucrée qui fond dans la bouche,\nlégère comme un nuage. Elle est appréciée\nd’un certain Pokémon.",
+    "nom": "Chantibonbon",
+    "nomAnglais": "whipped-dream",
+    "nomNormalise": "chantibonbon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/whipped-dream.png"
+  },
+  {
+    "_id": {"$oid": "6608c11977ba6ad856336c88"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un sachet d’herbes et d’épices, au parfum trop\nmarqué pour beaucoup, mais néanmoins apprécié\nd’un certain Pokémon.",
+    "nom": "Sachet Senteur",
+    "nomAnglais": "sachet",
+    "nomNormalise": "sachet senteur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sachet.png"
+  },
+  {
+    "_id": {"$oid": "6608c11977ba6ad856336c8b"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pierre étrange qui fait évoluer certaines\nespèces de Pokémon. Un flocon de neige\nsemble dessiné dessus.",
+    "nom": "Pierre Glace",
+    "nomAnglais": "ice-stone",
+    "nomNormalise": "pierre glace",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c11977ba6ad856336c8d"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de fraise.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Fraise en Sucre",
+    "nomAnglais": "strawberry-sweet",
+    "nomNormalise": "fraise en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11977ba6ad856336c8f"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de cœur.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Cœur en Sucre",
+    "nomAnglais": "love-sweet",
+    "nomNormalise": "cœur en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c91"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de Baie.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Baie en Sucre",
+    "nomAnglais": "berry-sweet",
+    "nomNormalise": "baie en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c93"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de trèfle.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Trèfle en Sucre",
+    "nomAnglais": "clover-sweet",
+    "nomNormalise": "trefle en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c95"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de fleur.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Fleur en Sucre",
+    "nomAnglais": "flower-sweet",
+    "nomNormalise": "fleur en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c97"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme d’étoile.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Étoile en Sucre",
+    "nomAnglais": "star-sweet",
+    "nomNormalise": "etoile en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c99"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un bonbon en forme de ruban.\nQuand on le donne à un Crèmy, il danse de bonheur.",
+    "nom": "Ruban en Sucre",
+    "nomAnglais": "ribbon-sweet",
+    "nomNormalise": "ruban en sucre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c9b"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pomme mystérieuse très sucrée qui permet\nde faire évoluer un certain Pokémon.",
+    "nom": "Pomme Sucrée",
+    "nomAnglais": "sweet-apple",
+    "nomNormalise": "pomme sucree",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336c9e"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Une pomme mystérieuse très acide qui permet\nde faire évoluer un certain Pokémon.",
+    "nom": "Pomme Acidulée",
+    "nomAnglais": "tart-apple",
+    "nomNormalise": "pomme acidulee",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336ca0"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un récipient mystérieux pouvant faire évoluer un certain\nPokémon. Il est abîmé, mais on y fait du bon thé.",
+    "nom": "Théière Fêlée",
+    "nomAnglais": "cracked-pot",
+    "nomNormalise": "theiere felee",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11a77ba6ad856336ca2"},
+    "categorie": {
+      "id": 8,
+      "nom": "Évolution"
+    },
+    "description": "Un récipient mystérieux pouvant faire évoluer un certain\nPokémon. Il est ébréché, mais on y fait du bon thé.",
+    "nom": "Théière Ébréchée",
+    "nomAnglais": "chipped-pot",
+    "nomNormalise": "theiere ebrechee",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11c77ba6ad856336ca5"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Poupée qui attire les Pokémon. Permet\nde s’enfuir d’un combat contre un\nPokémon sauvage.",
+    "nom": "Poké Poupée",
+    "nomAnglais": "poke-doll",
+    "nomNormalise": "poke poupee",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-doll.png"
+  },
+  {
+    "_id": {"$oid": "6608c11c77ba6ad856336ca7"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Objet qui attire les Pokémon. Permet\nde s’enfuir d’un combat contre un\nPokémon sauvage.",
+    "nom": "Queue Skitty",
+    "nomAnglais": "fluffy-tail",
+    "nomNormalise": "queue skitty",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fluffy-tail.png"
+  },
+  {
+    "_id": {"$oid": "6608c11c77ba6ad856336ca9"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Jouet en forme de flûte en verre\nnoir. Les amateurs en donnent\nun bon prix.",
+    "nom": "Flûte Noire",
+    "nomAnglais": "black-flute",
+    "nomNormalise": "flute noire",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-flute.png"
+  },
+  {
+    "_id": {"$oid": "6608c11c77ba6ad856336cab"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Jouet en forme de flûte en verre\nblanc. Les amateurs en donnent\nun bon prix.",
+    "nom": "Flûte Blanche",
+    "nomAnglais": "white-flute",
+    "nomNormalise": "flute blanche",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/white-flute.png"
+  },
+  {
+    "_id": {"$oid": "6608c11c77ba6ad856336cad"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Repousse les Pokémon sauvages\nfaibles pendant 200 pas.",
+    "nom": "Super Repousse",
+    "nomAnglais": "super-repel",
+    "nomNormalise": "super repousse",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/super-repel.png"
+  },
+  {
+    "_id": {"$oid": "6608c11d77ba6ad856336caf"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Repousse les Pokémon sauvages\nfaibles pendant 250 pas.",
+    "nom": "Repousse Max",
+    "nomAnglais": "max-repel",
+    "nomNormalise": "repousse max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-repel.png"
+  },
+  {
+    "_id": {"$oid": "6608c11d77ba6ad856336cb1"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Une corde longue et solide permettant\nde sortir rapidement d’une grotte ou\nd’un donjon.",
+    "nom": "Corde Sortie",
+    "nomAnglais": "escape-rope",
+    "nomNormalise": "corde sortie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/escape-rope.png"
+  },
+  {
+    "_id": {"$oid": "6608c11d77ba6ad856336cb3"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Repousse les Pokémon sauvages\nfaibles pendant 100 pas.",
+    "nom": "Repousse",
+    "nomAnglais": "repel",
+    "nomNormalise": "repousse",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/repel.png"
+  },
+  {
+    "_id": {"$oid": "6608c11d77ba6ad856336cb5"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Objet qui attire les Pokémon. Permet\nde s’enfuir d’un combat contre un\nPokémon sauvage.",
+    "nom": "Poké Plumet",
+    "nomAnglais": "poke-toy",
+    "nomNormalise": "poke plumet",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-toy.png"
+  },
+  {
+    "_id": {"$oid": "6608c11d77ba6ad856336cb7"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Une substance qui fait apparaître les Pokémon rares\nplus facilement pendant un court moment.",
+    "nom": "Parfum",
+    "nomAnglais": "lure",
+    "nomNormalise": "parfum",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cb9"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Une substance qui fait apparaître les Pokémon rares\nplus facilement pendant une durée plus longue que\nle Parfum.",
+    "nom": "Super Parfum",
+    "nomAnglais": "super-lure",
+    "nomNormalise": "super parfum",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cbb"},
+    "categorie": {
+      "id": 9,
+      "nom": "Via Spéléologie"
+    },
+    "description": "Une substance qui fait apparaître les Pokémon rares\nplus facilement pendant une durée plus longue que\nle Super Parfum.",
+    "nom": "Parfum Max",
+    "nomAnglais": "max-lure",
+    "nomNormalise": "parfum max",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cbd"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir qui intimide et baisse\nla Précision de l’ennemi.",
+    "nom": "Poudre Claire",
+    "nomAnglais": "bright-powder",
+    "nomNormalise": "poudre claire",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/bright-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cbf"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir qui restaure les stats\nbaissées. Ne peut être utilisé qu’une\nfois.",
+    "nom": "Herbe Blanche",
+    "nomAnglais": "white-herb",
+    "nomNormalise": "herbe blanche",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/white-herb.png"
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cc1"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Griffe légère mais\ntranchante qui permet parfois de\nfrapper le premier.",
+    "nom": "Vive Griffe",
+    "nomAnglais": "quick-claw",
+    "nomNormalise": "vive griffe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-claw.png"
+  },
+  {
+    "_id": {"$oid": "6608c11e77ba6ad856336cc3"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir qui annule l’attirance\nd’un Pokémon. Ne peut être utilisé\nqu’une fois.",
+    "nom": "Herbe Mental",
+    "nomAnglais": "mental-herb",
+    "nomNormalise": "herbe mental",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mental-herb.png"
+  },
+  {
+    "_id": {"$oid": "6608c11f77ba6ad856336cc5"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Peut apeurer l’ennemi\nlorsque le porteur lui inflige des\ndégâts.",
+    "nom": "Roche Royale",
+    "nomAnglais": "kings-rock",
+    "nomNormalise": "roche royale",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png"
+  },
+  {
+    "_id": {"$oid": "6608c11f77ba6ad856336cc7"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Permet au porteur de\ns’enfuir à coup sûr face à un Pokémon\nsauvage.",
+    "nom": "Boule Fumée",
+    "nomAnglais": "smoke-ball",
+    "nomNormalise": "boule fumee",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/smoke-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c11f77ba6ad856336cc9"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir pouvant parfois empêcher\nd’être mis K.O., ne laissant qu’un PV.",
+    "nom": "Bandeau",
+    "nomAnglais": "focus-band",
+    "nomNormalise": "bandeau",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/focus-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c11f77ba6ad856336ccb"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Lentille qui augmente le\ntaux de critiques du porteur.",
+    "nom": "Lentilscope",
+    "nomAnglais": "scope-lens",
+    "nomNormalise": "lentilscope",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/scope-lens.png"
+  },
+  {
+    "_id": {"$oid": "6608c11f77ba6ad856336ccd"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir permettant de restaurer\nles PV du porteur graduellement durant\nle combat.",
+    "nom": "Restes",
+    "nomAnglais": "leftovers",
+    "nomNormalise": "restes",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leftovers.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336ccf"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Restaure un peu les PV\ndu porteur à chaque fois qu’il inflige\ndes dégâts.",
+    "nom": "Grelot Coque",
+    "nomAnglais": "shell-bell",
+    "nomNormalise": "grelot coque",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shell-bell.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cd1"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Le parfum trompeur\nde cet encens baisse la Précision de\nl’ennemi.",
+    "nom": "Encens Doux",
+    "nomAnglais": "lax-incense",
+    "nomNormalise": "encens doux",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lax-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cd3"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Magnifique loupe\naugmentant un peu la Précision\ndes capacités.",
+    "nom": "Loupe",
+    "nomAnglais": "wide-lens",
+    "nomNormalise": "loupe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wide-lens.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cd5"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Bandeau augmentant\nlégèrement la puissance des attaques\nphysiques.",
+    "nom": "Bandeau Muscle",
+    "nomAnglais": "muscle-band",
+    "nomNormalise": "bandeau muscle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/muscle-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cd7"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Paire de lunettes\népaisses augmentant un peu la\npuissance des attaques spéciales.",
+    "nom": "Lunettes Sages",
+    "nomAnglais": "wise-glasses",
+    "nomNormalise": "lunettes sages",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wise-glasses.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cd9"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Ceinture usée\naugmentant légèrement la puissance\ndes capacités super efficaces.",
+    "nom": "Ceinture Pro",
+    "nomAnglais": "expert-belt",
+    "nomNormalise": "ceinture pro",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/expert-belt.png"
+  },
+  {
+    "_id": {"$oid": "6608c12077ba6ad856336cdb"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée\nde capacités barrières telles que\nMur Lumière et Protection.",
+    "nom": "Lumargile",
+    "nomAnglais": "light-clay",
+    "nomNormalise": "lumargile",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/light-clay.png"
+  },
+  {
+    "_id": {"$oid": "6608c12177ba6ad856336cdd"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la puissance\ndes capacités, mais qui dépense des\nPV à chaque coup.",
+    "nom": "Orbe Vie",
+    "nomAnglais": "life-orb",
+    "nomNormalise": "orbe vie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/life-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12177ba6ad856336cdf"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir et à usage unique. Permet\nd’utiliser immédiatement une capacité\nqui devrait se charger au premier tour.",
+    "nom": "Herbe Pouvoir",
+    "nomAnglais": "power-herb",
+    "nomNormalise": "herbe pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-herb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12177ba6ad856336ce1"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir permettant au porteur,\ns’il a ses PV pleins, d’éviter un\npotentiel K.O. en conservant un PV.",
+    "nom": "Ceinture Force",
+    "nomAnglais": "focus-sash",
+    "nomNormalise": "ceinture force",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/focus-sash.png"
+  },
+  {
+    "_id": {"$oid": "6608c12177ba6ad856336ce3"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la Précision\ndu porteur s’il attaque après l’ennemi.",
+    "nom": "Lentille Zoom",
+    "nomAnglais": "zoom-lens",
+    "nomNormalise": "lentille zoom",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/zoom-lens.png"
+  },
+  {
+    "_id": {"$oid": "6608c12177ba6ad856336ce5"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir boostant une capacité\nutilisée à répétition. L’effet s’annule\nsi une autre capacité est utilisée.",
+    "nom": "Métronome",
+    "nomAnglais": "metronome",
+    "nomNormalise": "metronome",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metronome.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336ce7"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Un long fil rouge vif à faire tenir à un\nPokémon. Si le porteur succombe à\nl’attirance, l’ennemi aussi.",
+    "nom": "Nœud Destin",
+    "nomAnglais": "destiny-knot",
+    "nomNormalise": "nœud destin",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/destiny-knot.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336ce9"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir restaurant peu à peu les\nPV des Pokémon de type Poison. Inflige\ndes dégâts à tous les autres types.",
+    "nom": "Boue Noire",
+    "nomAnglais": "black-sludge",
+    "nomNormalise": "boue noire",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-sludge.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336ceb"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée\nde la capacité Grêle utilisée par le\nporteur.",
+    "nom": "Roche Glace",
+    "nomAnglais": "icy-rock",
+    "nomNormalise": "roche glace",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/icy-rock.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336ced"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée de\nla capacité Tempêtesable utilisée par\nle porteur.",
+    "nom": "Roche Lisse",
+    "nomAnglais": "smooth-rock",
+    "nomNormalise": "roche lisse",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/smooth-rock.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336cef"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée\nde la capacité Zénith utilisée par le\nporteur.",
+    "nom": "Roche Chaude",
+    "nomAnglais": "heat-rock",
+    "nomNormalise": "roche chaude",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heat-rock.png"
+  },
+  {
+    "_id": {"$oid": "6608c12277ba6ad856336cf1"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée\nde la capacité Danse Pluie utilisée\npar le porteur.",
+    "nom": "Roche Humide",
+    "nomAnglais": "damp-rock",
+    "nomNormalise": "roche humide",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/damp-rock.png"
+  },
+  {
+    "_id": {"$oid": "6608c12377ba6ad856336cf4"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la durée des\nattaques à tours multiples telles que\nLigotage et Étreinte.",
+    "nom": "Accro Griffe",
+    "nomAnglais": "grip-claw",
+    "nomNormalise": "accro griffe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/grip-claw.png"
+  },
+  {
+    "_id": {"$oid": "6608c12377ba6ad856336cf6"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Carapace dure qui permet\nau porteur de se retirer même s’il est\naffecté par une attaque immobilisante.",
+    "nom": "Carapace Mue",
+    "nomAnglais": "shed-shell",
+    "nomNormalise": "carapace mue",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shed-shell.png"
+  },
+  {
+    "_id": {"$oid": "6608c12377ba6ad856336cf9"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la puissance\ndes attaques volant des PV.",
+    "nom": "Grosse Racine",
+    "nomAnglais": "big-root",
+    "nomNormalise": "grosse racine",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-root.png"
+  },
+  {
+    "_id": {"$oid": "6608c12377ba6ad856336cfb"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Griffe crochue\net pointue augmentant le taux\nde critiques.",
+    "nom": "Griffe Rasoir",
+    "nomAnglais": "razor-claw",
+    "nomNormalise": "griffe rasoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png"
+  },
+  {
+    "_id": {"$oid": "6608c12377ba6ad856336cfd"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir pouvant apeurer l’ennemi\nquand le porteur lui inflige des dégâts.",
+    "nom": "Croc Rasoir",
+    "nomAnglais": "razor-fang",
+    "nomNormalise": "croc rasoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336cff"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Un étrange concentré d’évolution qui\naugmente la Défense et la Déf. Spé.\nd’un Pokémon pouvant évoluer.",
+    "nom": "Évoluroc",
+    "nomAnglais": "eviolite",
+    "nomNormalise": "evoluroc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/eviolite.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d01"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Une pierre très légère.\nElle réduit le poids du\nPokémon qui la tient.",
+    "nom": "Pierrallégée",
+    "nomAnglais": "float-stone",
+    "nomNormalise": "pierrallegee",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/float-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d03"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Tenu, cet objet inflige des dégâts\nà l’attaquant si ce dernier utilise une\nattaque physique qui atteint son but.",
+    "nom": "Casque Brut",
+    "nomAnglais": "rocky-helmet",
+    "nomNormalise": "casque brut",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rocky-helmet.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d05"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Tenu par un Pokémon, cet objet lui\npermet de flotter dans les airs.\nIl éclate en cas d’attaque.",
+    "nom": "Ballon",
+    "nomAnglais": "air-balloon",
+    "nomNormalise": "ballon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/air-balloon.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d07"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Carte au pouvoir mystérieux.\nTenue, elle force un Pokémon touchant\nle porteur à se retirer du combat.",
+    "nom": "Carton Rouge",
+    "nomAnglais": "red-card",
+    "nomNormalise": "carton rouge",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/red-card.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d09"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Un Pokémon tenant cet objet devient\nsensible aux capacités autrement\ninefficaces en raison de son type.",
+    "nom": "Point de Mire",
+    "nomAnglais": "ring-target",
+    "nomNormalise": "point de mire",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ring-target.png"
+  },
+  {
+    "_id": {"$oid": "6608c12477ba6ad856336d0c"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir augmentant la puissance\ndes attaques immobilisantes telles\nque Ligotage ou Étreinte.",
+    "nom": "Bande Étreinte",
+    "nomAnglais": "binding-band",
+    "nomNormalise": "bande etreinte",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/binding-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d0e"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Bulbe jetable. Tenu, il augmente la\nDéfense Spéciale lorsque le Pokémon\nsubit une attaque de type Eau.",
+    "nom": "Bulbe",
+    "nomAnglais": "absorb-bulb",
+    "nomNormalise": "bulbe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/absorb-bulb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d10"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Pile jetable. Tenue, elle augmente\nl’Attaque lorsque le Pokémon subit\nune attaque de type Électrik.",
+    "nom": "Pile",
+    "nomAnglais": "cell-battery",
+    "nomNormalise": "pile",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cell-battery.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d13"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Si le Pokémon qui le tient subit une\nattaque, il s’enfuit pour être remplacé\npar un autre membre de l’équipe.",
+    "nom": "Bouton Fuite",
+    "nomAnglais": "eject-button",
+    "nomNormalise": "bouton fuite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/eject-button.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d15"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Sphère mystérieuse contenant\nl’Aura d’Unys et utilisable\navec l’Offri-Aura.",
+    "nom": "Offrisphère",
+    "nomAnglais": "pass-orb",
+    "nomNormalise": "offrisphere",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pass-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d17"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente beaucoup l’Attaque et\nl’Attaque Spéciale du Pokémon lorsqu’il reçoit\nun coup d’un type auquel il est vulnérable.",
+    "nom": "Vulné-Assurance",
+    "nomAnglais": "weakness-policy",
+    "nomNormalise": "vulne-assurance",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/weakness-policy.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d19"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Une veste augmentant la Défense\nSpéciale, mais empêchant d’utiliser des attaques\nde statut.",
+    "nom": "Veste de Combat",
+    "nomAnglais": "assault-vest",
+    "nomNormalise": "veste de combat",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/assault-vest.png"
+  },
+  {
+    "_id": {"$oid": "6608c12577ba6ad856336d1b"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Du lichen à usage unique.\nTenu, il augmente la Défense Spéciale lorsque\nle Pokémon subit une attaque de type Eau.",
+    "nom": "Lichen Lumineux",
+    "nomAnglais": "luminous-moss",
+    "nomNormalise": "lichen lumineux",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luminous-moss.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d1d"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à usage unique. Tenue, elle augmente\nl’Attaque du Pokémon lorsqu’il est touché par\nune capacité de type Glace.",
+    "nom": "Boule de Neige",
+    "nomAnglais": "snowball",
+    "nomNormalise": "boule de neige",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/snowball.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d1f"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Protège le Pokémon contre les\ndégâts dus à la météo et la plupart des\ncapacités utilisant de la poudre.",
+    "nom": "Lunettes Filtre",
+    "nomAnglais": "safety-goggles",
+    "nomNormalise": "lunettes filtre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safety-goggles.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d21"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Utilisé, augmente les chances qu’un Pokémon\nappelle du renfort, et disparaît. Équipé, augmente la\nVitesse du porteur s’il est affecté par Intimidation.",
+    "nom": "Orbe Frousse",
+    "nomAnglais": "adrenaline-orb",
+    "nomNormalise": "orbe frousse",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/adrenaline-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d23"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la durée des champs\nque le Pokémon peut créer sur le terrain avec\nune capacité ou un talent.",
+    "nom": "Champ’Duit",
+    "nomAnglais": "terrain-extender",
+    "nomNormalise": "champ’duit",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/terrain-extender.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d25"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Annule les effets subis par le porteur quand il\nutilise une attaque directe sur un autre Pokémon.",
+    "nom": "Pare-Effet",
+    "nomAnglais": "protective-pads",
+    "nomNormalise": "pare-effet",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protective-pads.png"
+  },
+  {
+    "_id": {"$oid": "6608c12677ba6ad856336d27"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la Défense lorsque\nle terrain est couvert d’un Champ Électrifié.",
+    "nom": "Graine Électrik",
+    "nomAnglais": "electric-seed",
+    "nomNormalise": "graine electrik",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electric-seed.png"
+  },
+  {
+    "_id": {"$oid": "6608c12777ba6ad856336d29"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la Défense Spéciale lorsque\nle terrain est couvert d’un Champ Psychique.",
+    "nom": "Graine Psychique",
+    "nomAnglais": "psychic-seed",
+    "nomNormalise": "graine psychique",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/psychic-seed.png"
+  },
+  {
+    "_id": {"$oid": "6608c12777ba6ad856336d2b"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la Défense lorsque\nle terrain est couvert d’un Champ Brumeux.",
+    "nom": "Graine Brume",
+    "nomAnglais": "misty-seed",
+    "nomNormalise": "graine brume",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/misty-seed.png"
+  },
+  {
+    "_id": {"$oid": "6608c12777ba6ad856336d2d"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Augmente la Défense Spéciale lorsque\nle terrain est couvert d’un Champ Herbu.",
+    "nom": "Graine Herbe",
+    "nomAnglais": "grassy-seed",
+    "nomNormalise": "graine herbe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/grassy-seed.png"
+  },
+  {
+    "_id": {"$oid": "6608c12777ba6ad856336d2f"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Augmente l’Attaque Spéciale du porteur\nlorsqu’il utilise une capacité basée sur le son.",
+    "nom": "Spray Gorge",
+    "nomAnglais": "throat-spray",
+    "nomNormalise": "spray gorge",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12777ba6ad856336d31"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Si le porteur subit une baisse de stats,\nil revient vers son Dresseur et change de place\navec un coéquipier.",
+    "nom": "Sac Fuite",
+    "nomAnglais": "eject-pack",
+    "nomNormalise": "sac fuite",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12877ba6ad856336d33"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Le porteur ne subit plus les effets des pièges\nou autres entraves posés sur le terrain.",
+    "nom": "Grosses Bottes",
+    "nomAnglais": "heavy-duty-boots",
+    "nomNormalise": "grosses bottes",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12877ba6ad856336d35"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Si un Pokémon manque sa cible parce qu’une capacité\na peu de Précision, sa Vitesse augmente beaucoup.",
+    "nom": "Assurance Échec",
+    "nomAnglais": "blunder-policy",
+    "nomNormalise": "assurance echec",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12877ba6ad856336d37"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Baisse la Vitesse du porteur\nlorsque la capacité Distorsion est active.",
+    "nom": "Chariot Distordu",
+    "nomAnglais": "room-service",
+    "nomNormalise": "chariot distordu",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12877ba6ad856336d39"},
+    "categorie": {
+      "id": 10,
+      "nom": "Objet porté"
+    },
+    "description": "Objet à tenir. Protège le porteur des effets de la pluie\net des rayons du soleil.",
+    "nom": "Parapluie Solide",
+    "nomAnglais": "utility-umbrella",
+    "nomNormalise": "parapluie solide",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c12a77ba6ad856336d3b"},
+    "categorie": {
+      "id": 11,
+      "nom": "Choix"
+    },
+    "description": "Objet à tenir. Ce bandeau monte\nl’Attaque, mais ne permet d’utiliser\nqu’une seule capacité par combat.",
+    "nom": "Bandeau Choix",
+    "nomAnglais": "choice-band",
+    "nomNormalise": "bandeau choix",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/choice-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c12a77ba6ad856336d3d"},
+    "categorie": {
+      "id": 11,
+      "nom": "Choix"
+    },
+    "description": "Objet à tenir augmentant la Vitesse,\nmais ne permettant d’utiliser qu’une\nseule capacité par combat.",
+    "nom": "Mouchoir Choix",
+    "nomAnglais": "choice-scarf",
+    "nomNormalise": "mouchoir choix",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/choice-scarf.png"
+  },
+  {
+    "_id": {"$oid": "6608c12a77ba6ad856336d3f"},
+    "categorie": {
+      "id": 11,
+      "nom": "Choix"
+    },
+    "description": "Objet à tenir augmentant l’Attaque\nSpéciale, mais ne permettant d’utiliser\nqu’une seule capacité par combat.",
+    "nom": "Lunettes Choix",
+    "nomAnglais": "choice-specs",
+    "nomNormalise": "lunettes choix",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/choice-specs.png"
+  },
+  {
+    "_id": {"$oid": "6608c12b77ba6ad856336d41"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir. C’est un bracelet dur\net lourd qui rend le porteur plus fort,\nmais baisse sa Vitesse.",
+    "nom": "Bracelet Macho",
+    "nomAnglais": "macho-brace",
+    "nomNormalise": "bracelet macho",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/macho-brace.png"
+  },
+  {
+    "_id": {"$oid": "6608c12b77ba6ad856336d43"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir augmentant l’Attaque\nlors des montées de niveau, mais\nréduisant la Vitesse pendant le combat.",
+    "nom": "Poignet Pouvoir",
+    "nomAnglais": "power-bracer",
+    "nomNormalise": "poignet pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-bracer.png"
+  },
+  {
+    "_id": {"$oid": "6608c12b77ba6ad856336d45"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir augmentant la Défense\nlors des montées de niveau, mais\nréduisant la Vitesse pendant le combat.",
+    "nom": "Ceinture Pouvoir",
+    "nomAnglais": "power-belt",
+    "nomNormalise": "ceinture pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-belt.png"
+  },
+  {
+    "_id": {"$oid": "6608c12b77ba6ad856336d47"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir augmentant l’Attaque\nSpéciale lors des montées de niveau mais\nréduisant la Vitesse pendant le combat.",
+    "nom": "Lentille Pouvoir",
+    "nomAnglais": "power-lens",
+    "nomNormalise": "lentille pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-lens.png"
+  },
+  {
+    "_id": {"$oid": "6608c12b77ba6ad856336d49"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir augmentant la Défense\nSpéciale lors des montées de niveau mais\nréduisant la Vitesse pendant le combat.",
+    "nom": "Bandeau Pouvoir",
+    "nomAnglais": "power-band",
+    "nomNormalise": "bandeau pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d4b"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir. Il augmente la Vitesse\nlors des montées de niveau mais réduit\nla Vitesse pendant le combat.",
+    "nom": "Chaîne Pouvoir",
+    "nomAnglais": "power-anklet",
+    "nomNormalise": "chaine pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-anklet.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d4d"},
+    "categorie": {
+      "id": 12,
+      "nom": "Booster d'EV"
+    },
+    "description": "Objet à tenir augmentant les PV lors\ndes montées de niveau, mais réduisant\nla Vitesse pendant le combat.",
+    "nom": "Poids Pouvoir",
+    "nomAnglais": "power-weight",
+    "nomNormalise": "poids pouvoir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-weight.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d4f"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir. Orbe bizarre\nempoisonnant gravement son\nporteur durant le combat.",
+    "nom": "Orbe Toxique",
+    "nomAnglais": "toxic-orb",
+    "nomNormalise": "orbe toxique",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/toxic-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d51"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir. Orbe bizarre brûlant\nson porteur durant le combat.",
+    "nom": "Orbe Flamme",
+    "nomAnglais": "flame-orb",
+    "nomNormalise": "orbe flamme",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/flame-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d53"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir réduisant la Vitesse. Rend\nles porteurs de type Vol et lévitant\nsensibles aux capacités de type Sol.",
+    "nom": "Balle Fer",
+    "nomAnglais": "iron-ball",
+    "nomNormalise": "balle fer",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iron-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d55"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir extrêmement lourd qui\nralentit le porteur.",
+    "nom": "Ralentiqueue",
+    "nomAnglais": "lagging-tail",
+    "nomNormalise": "ralentiqueue",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lagging-tail.png"
+  },
+  {
+    "_id": {"$oid": "6608c12c77ba6ad856336d58"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir blessant le porteur à\nchaque tour. Peut s’accrocher aux\nennemis qui attaquent le porteur.",
+    "nom": "Piquants",
+    "nomAnglais": "sticky-barb",
+    "nomNormalise": "piquants",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sticky-barb.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d5a"},
+    "categorie": {
+      "id": 13,
+      "nom": "Portable avec un effet négatif"
+    },
+    "description": "Objet à tenir. Encens au parfum\nexotique gonflant son porteur et\nle faisant se déplacer lentement.",
+    "nom": "Encens Plein",
+    "nomAnglais": "full-incense",
+    "nomNormalise": "encens plein",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d5c"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Le porteur reçoit une\npartie des points Exp. du combat sans\navoir à combattre.",
+    "nom": "Multi Exp",
+    "nomAnglais": "exp-share",
+    "nomNormalise": "multi exp",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/exp-share.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d5f"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Grelot dont le carillon\ncalme le porteur et favorise l’amitié.",
+    "nom": "Grelot Zen",
+    "nomAnglais": "soothe-bell",
+    "nomNormalise": "grelot zen",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d61"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Double l’argent gagné\nsi le porteur se joint au combat.",
+    "nom": "Pièce Rune",
+    "nomAnglais": "amulet-coin",
+    "nomNormalise": "piece rune",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/amulet-coin.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d63"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Aide à repousser les\nPokémon sauvages si le porteur est\nle premier Pokémon de l’équipe.",
+    "nom": "Rune Purifiante",
+    "nomAnglais": "cleanse-tag",
+    "nomNormalise": "rune purifiante",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cleanse-tag.png"
+  },
+  {
+    "_id": {"$oid": "6608c12d77ba6ad856336d65"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Pierre merveilleuse\nempêchant l’évolution.",
+    "nom": "Pierre Stase",
+    "nomAnglais": "everstone",
+    "nomNormalise": "pierre stase",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/everstone.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d67"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Œuf rempli de joie qui\naugmente le nombre de points Exp.\ngagnés au combat.",
+    "nom": "Œuf Chance",
+    "nomAnglais": "lucky-egg",
+    "nomNormalise": "œuf chance",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucky-egg.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d69"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Double l’argent gagné si le porteur\nse joint au combat.",
+    "nom": "Encens Veine",
+    "nomAnglais": "luck-incense",
+    "nomNormalise": "encens veine",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luck-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d6b"},
+    "categorie": {
+      "id": 14,
+      "nom": "Entraînement"
+    },
+    "description": "Objet à tenir. Aide à repousser les\nPokémon sauvages si le porteur est\nle premier Pokémon de l’équipe.",
+    "nom": "Encens Pur",
+    "nomAnglais": "pure-incense",
+    "nomNormalise": "encens pur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pure-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d6d"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Feu.",
+    "nom": "Plaque Flamme",
+    "nomAnglais": "flame-plate",
+    "nomNormalise": "plaque flamme",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/flame-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d6f"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Eau.",
+    "nom": "Plaque Hydro",
+    "nomAnglais": "splash-plate",
+    "nomNormalise": "plaque hydro",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/splash-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d71"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Électrik.",
+    "nom": "Plaque Volt",
+    "nomAnglais": "zap-plate",
+    "nomNormalise": "plaque volt",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/zap-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12e77ba6ad856336d74"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Plante.",
+    "nom": "Plaque Herbe",
+    "nomAnglais": "meadow-plate",
+    "nomNormalise": "plaque herbe",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/meadow-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12f77ba6ad856336d76"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Glace.",
+    "nom": "Plaque Glace",
+    "nomAnglais": "icicle-plate",
+    "nomNormalise": "plaque glace",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/icicle-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12f77ba6ad856336d78"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Combat.",
+    "nom": "Plaque Poing",
+    "nomAnglais": "fist-plate",
+    "nomNormalise": "plaque poing",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fist-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12f77ba6ad856336d7b"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Poison.",
+    "nom": "Plaque Toxicité",
+    "nomAnglais": "toxic-plate",
+    "nomNormalise": "plaque toxicite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/toxic-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c12f77ba6ad856336d7d"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Sol.",
+    "nom": "Plaque Terre",
+    "nomAnglais": "earth-plate",
+    "nomNormalise": "plaque terre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/earth-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d7f"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Vol.",
+    "nom": "Plaque Ciel",
+    "nomAnglais": "sky-plate",
+    "nomNormalise": "plaque ciel",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sky-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d81"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Psy.",
+    "nom": "Plaque Esprit",
+    "nomAnglais": "mind-plate",
+    "nomNormalise": "plaque esprit",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mind-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d83"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Insecte.",
+    "nom": "Plaque Insecte",
+    "nomAnglais": "insect-plate",
+    "nomNormalise": "plaque insecte",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/insect-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d85"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Roche.",
+    "nom": "Plaque Roc",
+    "nomAnglais": "stone-plate",
+    "nomNormalise": "plaque roc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/stone-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d87"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Spectre.",
+    "nom": "Plaque Fantôme",
+    "nomAnglais": "spooky-plate",
+    "nomNormalise": "plaque fantome",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/spooky-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d89"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Dragon.",
+    "nom": "Plaque Draco",
+    "nomAnglais": "draco-plate",
+    "nomNormalise": "plaque draco",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/draco-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d8b"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Ténèbres.",
+    "nom": "Plaque Ombre",
+    "nomAnglais": "dread-plate",
+    "nomNormalise": "plaque ombre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dread-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13077ba6ad856336d8d"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Tablette en pierre\naugmentant la puissance des capacités\nde type Acier.",
+    "nom": "Plaque Fer",
+    "nomAnglais": "iron-plate",
+    "nomNormalise": "plaque fer",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iron-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13177ba6ad856336d8f"},
+    "categorie": {
+      "id": 15,
+      "nom": "Plaques"
+    },
+    "description": "Objet à tenir. Une tablette en pierre augmentant\nla puissance des capacités de type Fée.",
+    "nom": "Plaque Pixie",
+    "nomAnglais": "pixie-plate",
+    "nomNormalise": "plaque pixie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pixie-plate.png"
+  },
+  {
+    "_id": {"$oid": "6608c13177ba6ad856336d91"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Orbe très brillant destiné à Dialga.\nAugmente la puissance des capacités\nde type Dragon et Acier.",
+    "nom": "Orbe Adamant",
+    "nomAnglais": "adamant-orb",
+    "nomNormalise": "orbe adamant",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/adamant-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c13177ba6ad856336d93"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Bel orbe luisant destiné à Palkia.\nAugmente la puissance des capacités\nde type Dragon et Eau.",
+    "nom": "Orbe Perlé",
+    "nomAnglais": "lustrous-orb",
+    "nomNormalise": "orbe perle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lustrous-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c13177ba6ad856336d95"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Orbe prodigieux à faire tenir à Latios\nou Latias qui monte leur Attaque\nSpéciale et leur Défense Spéciale.",
+    "nom": "Rosée Âme",
+    "nomAnglais": "soul-dew",
+    "nomNormalise": "rosee ame",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soul-dew.png"
+  },
+  {
+    "_id": {"$oid": "6608c13177ba6ad856336d97"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Coquiperl.\nDent de couleur argent montant\nson Attaque Spéciale.",
+    "nom": "Dent Océan",
+    "nomAnglais": "deep-sea-tooth",
+    "nomNormalise": "dent ocean",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png"
+  },
+  {
+    "_id": {"$oid": "6608c13277ba6ad856336d99"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Coquiperl.\nÉcaille de couleur rose montant\nsa Défense Spéciale.",
+    "nom": "Écaille Océan",
+    "nomAnglais": "deep-sea-scale",
+    "nomNormalise": "ecaille ocean",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-scale.png"
+  },
+  {
+    "_id": {"$oid": "6608c13277ba6ad856336d9b"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir par Pikachu. Orbe\nénigmatique qui monte son Attaque et\nson Attaque Spéciale.",
+    "nom": "Balle Lumière",
+    "nomAnglais": "light-ball",
+    "nomNormalise": "balle lumiere",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/light-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c13277ba6ad856336d9d"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Leveinard. Paire\nde gants montant son taux de critiques.",
+    "nom": "Poing Chance",
+    "nomAnglais": "lucky-punch",
+    "nomNormalise": "poing chance",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucky-punch.png"
+  },
+  {
+    "_id": {"$oid": "6608c13277ba6ad856336d9f"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Métamorph. Cette\npoudre étrange, très fine mais\nrésistante, booste sa Défense.",
+    "nom": "Poudre Métal",
+    "nomAnglais": "metal-powder",
+    "nomNormalise": "poudre metal",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c13277ba6ad856336da1"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Osselait ou\nOssatueur. Os dur qui monte leur\nAttaque.",
+    "nom": "Masse Os",
+    "nomAnglais": "thick-club",
+    "nomNormalise": "masse os",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thick-club.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336da3"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Canarticho.\nPoireau très long et solide qui\nmonte son taux de critiques.",
+    "nom": "Poireau",
+    "nomAnglais": "stick",
+    "nomNormalise": "poireau",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/stick.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336da5"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Objet à faire tenir à Métamorph. Cette\npoudre étrange, très fine mais\nrésistante, augmente sa Vitesse.",
+    "nom": "Poudre Vite",
+    "nomAnglais": "quick-powder",
+    "nomNormalise": "poudre vite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336da7"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Mystérieux objet destiné à Giratina.\nAméliore les capacités de type Dragon\net Spectre.",
+    "nom": "Orbe Platiné",
+    "nomAnglais": "griseous-orb",
+    "nomNormalise": "orbe platine",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/griseous-orb.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336da9"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Tenu par Genesect, ce module\nchange la capacité TechnoBuster\nen une capacité de type Eau.",
+    "nom": "Module Aqua",
+    "nomAnglais": "douse-drive",
+    "nomNormalise": "module aqua",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/douse-drive.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336dab"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Tenu par Genesect, ce module\nchange la capacité TechnoBuster\nen une capacité de type Électrik.",
+    "nom": "Module Choc",
+    "nomAnglais": "shock-drive",
+    "nomNormalise": "module choc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shock-drive.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336dad"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Tenu par Genesect, ce module\nchange la capacité TechnoBuster\nen une capacité de type Feu.",
+    "nom": "Module Pyro",
+    "nomAnglais": "burn-drive",
+    "nomNormalise": "module pyro",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/burn-drive.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336daf"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Tenu par Genesect, ce module\nchange la capacité TechnoBuster\nen une capacité de type Glace.",
+    "nom": "Module Cryo",
+    "nomAnglais": "chill-drive",
+    "nomNormalise": "module cryo",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chill-drive.png"
+  },
+  {
+    "_id": {"$oid": "6608c13377ba6ad856336db1"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Un nectar obtenu au Jardin d’Ula-Ula.\nPermet à un certain Pokémon de changer\nd’apparence.",
+    "nom": "Nectar Rouge",
+    "nomAnglais": "red-nectar",
+    "nomNormalise": "nectar rouge",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/red-nectar.png"
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336db3"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Un nectar obtenu au Jardin de Mele-Mele.\nPermet à un certain Pokémon de changer\nd’apparence.",
+    "nom": "Nectar Jaune",
+    "nomAnglais": "yellow-nectar",
+    "nomNormalise": "nectar jaune",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/yellow-nectar.png"
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336db5"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Un nectar obtenu à partir des fleurs de la Rue\ndu Dôme Royal. Permet à un certain Pokémon\nde changer d’apparence.",
+    "nom": "Nectar Rose",
+    "nomAnglais": "pink-nectar",
+    "nomNormalise": "nectar rose",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pink-nectar.png"
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336db7"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "Un nectar obtenu au Jardin de Poni.\nPermet à un certain Pokémon de changer\nd’apparence.",
+    "nom": "Nectar Mauve",
+    "nomAnglais": "purple-nectar",
+    "nomNormalise": "nectar mauve",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/purple-nectar.png"
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336db9"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "On raconte que cette épée fut jadis utilisée\npar un héros pour vaincre une calamité.\nÀ présent, elle est toute usée et rouillée.",
+    "nom": "Épée Rouillée",
+    "nomAnglais": "rusted-sword",
+    "nomNormalise": "epee rouillee",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336dbb"},
+    "categorie": {
+      "id": 16,
+      "nom": "Spécifique à une espèce"
+    },
+    "description": "On raconte que ce bouclier fut jadis utilisé\npar un héros pour vaincre une calamité.\nÀ présent, il est tout usé et rouillé.",
+    "nom": "Bouclier Rouillé",
+    "nomAnglais": "rusted-shield",
+    "nomNormalise": "bouclier rouille",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336dbd"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Poudre d’argent\nbrillante qui monte la puissance\ndes capacités de type Insecte.",
+    "nom": "Poudre Argentée",
+    "nomAnglais": "silver-powder",
+    "nomNormalise": "poudre argentee",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/silver-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c13477ba6ad856336dbf"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Pellicule métallique\nspéciale qui monte la puissance des\ncapacités de type Acier.",
+    "nom": "Peau Métal",
+    "nomAnglais": "metal-coat",
+    "nomNormalise": "peau metal",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dc1"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Sable fin et soyeux\nmontant la puissance des capacités\nde type Sol.",
+    "nom": "Sable Doux",
+    "nomAnglais": "soft-sand",
+    "nomNormalise": "sable doux",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soft-sand.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dc3"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Pierre incassable qui\nmonte la puissance des capacités de\ntype Roche.",
+    "nom": "Pierre Dure",
+    "nomAnglais": "hard-stone",
+    "nomNormalise": "pierre dure",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hard-stone.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dc5"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Graine remplie de vie qui\nmonte la puissance des capacités de\ntype Plante.",
+    "nom": "Graine Miracle",
+    "nomAnglais": "miracle-seed",
+    "nomNormalise": "graine miracle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/miracle-seed.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dc7"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Paire de lunettes à\nl’aspect louche qui monte la puissance\ndes capacités de type Ténèbres.",
+    "nom": "Lunettes Noires",
+    "nomAnglais": "black-glasses",
+    "nomNormalise": "lunettes noires",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-glasses.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dc9"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Ceinture qui augmente\nla détermination et la puissance des\ncapacités de type Combat.",
+    "nom": "Ceinture Noire",
+    "nomAnglais": "black-belt",
+    "nomNormalise": "ceinture noire",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-belt.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dcb"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Aimant puissant montant\nla puissance des capacités de type\nÉlectrik.",
+    "nom": "Aimant",
+    "nomAnglais": "magnet",
+    "nomNormalise": "aimant",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magnet.png"
+  },
+  {
+    "_id": {"$oid": "6608c13577ba6ad856336dcd"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Gemme en forme de\ngoutte d’eau montant la puissance\ndes capacités de type Eau.",
+    "nom": "Eau Mystique",
+    "nomAnglais": "mystic-water",
+    "nomNormalise": "eau mystique",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mystic-water.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dcf"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Bec long et pointu\nmontant la puissance des capacités\nde type Vol.",
+    "nom": "Bec Pointu",
+    "nomAnglais": "sharp-beak",
+    "nomNormalise": "bec pointu",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sharp-beak.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dd1"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Petit pic empoisonné\nmontant la puissance des capacités\nde type Poison.",
+    "nom": "Pic Venin",
+    "nomAnglais": "poison-barb",
+    "nomNormalise": "pic venin",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poison-barb.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dd3"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Morceau de glace qui\nréfléchit la chaleur et monte la\npuissance des capacités de type Glace.",
+    "nom": "Glace Éternelle",
+    "nomAnglais": "never-melt-ice",
+    "nomNormalise": "glace eternelle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/never-melt-ice.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dd5"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Plaque sinistre et\nétrange montant la puissance des\ncapacités de type Spectre.",
+    "nom": "Rune Sort",
+    "nomAnglais": "spell-tag",
+    "nomNormalise": "rune sort",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/spell-tag.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dd7"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Cuillère contenant un\npouvoir télékinésique montant la\npuissance des capacités de type Psy.",
+    "nom": "Cuillère Tordue",
+    "nomAnglais": "twisted-spoon",
+    "nomNormalise": "cuillere tordue",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/twisted-spoon.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336dd9"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Combustible montant la\npuissance des capacités de type Feu.",
+    "nom": "Charbon",
+    "nomAnglais": "charcoal",
+    "nomNormalise": "charbon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charcoal.png"
+  },
+  {
+    "_id": {"$oid": "6608c13677ba6ad856336ddc"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Croc dur et pointu\nmontant la puissance des capacités\nde type Dragon.",
+    "nom": "Croc Dragon",
+    "nomAnglais": "dragon-fang",
+    "nomNormalise": "croc dragon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-fang.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336dde"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Mouchoir somptueux\nmontant la puissance des capacités\nde type Normal.",
+    "nom": "Mouchoir Soie",
+    "nomAnglais": "silk-scarf",
+    "nomNormalise": "mouchoir soie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/silk-scarf.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336de0"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Encens au parfum curieux\nqui augmente la puissance des capacités\nde type Eau.",
+    "nom": "Encens Mer",
+    "nomAnglais": "sea-incense",
+    "nomNormalise": "encens mer",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sea-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336de3"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Encens au parfum\nexotique augmentant la puissance\ndes capacités de type Psy.",
+    "nom": "Encens Bizarre",
+    "nomAnglais": "odd-incense",
+    "nomNormalise": "encens bizarre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/odd-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336de5"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Encens au parfum\nexotique augmentant la puissance\ndes capacités de type Roche.",
+    "nom": "Encens Roc",
+    "nomAnglais": "rock-incense",
+    "nomNormalise": "encens roc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rock-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336de7"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Encens au parfum\nexotique augmentant la puissance\ndes capacités de type Eau.",
+    "nom": "Encens Vague",
+    "nomAnglais": "wave-incense",
+    "nomNormalise": "encens vague",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wave-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c13777ba6ad856336de9"},
+    "categorie": {
+      "id": 17,
+      "nom": "Amélioration de type"
+    },
+    "description": "Objet à tenir. Encens au parfum\nexotique augmentant la puissance\ndes capacités de type Plante.",
+    "nom": "Encens Fleur",
+    "nomAnglais": "rose-incense",
+    "nomNormalise": "encens fleur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rose-incense.png"
+  },
+  {
+    "_id": {"$oid": "6608c13877ba6ad856336deb"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un petit champignon plutôt rare.\nIl est plutôt populaire parmi\ncertains fans dévoués.",
+    "nom": "Petit Champi",
+    "nomAnglais": "tiny-mushroom",
+    "nomNormalise": "petit champi",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tiny-mushroom.png"
+  },
+  {
+    "_id": {"$oid": "6608c13877ba6ad856336ded"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un grand champignon plutôt rare.\nIl est très populaire parmi\ncertains fans dévoués.",
+    "nom": "Gros Champi",
+    "nomAnglais": "big-mushroom",
+    "nomNormalise": "gros champi",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-mushroom.png"
+  },
+  {
+    "_id": {"$oid": "6608c13877ba6ad856336def"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une petite perle qui brille d’une jolie\ncouleur argent. Peut être vendue\nà bas prix aux magasins.",
+    "nom": "Perle",
+    "nomAnglais": "pearl",
+    "nomNormalise": "perle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pearl.png"
+  },
+  {
+    "_id": {"$oid": "6608c13877ba6ad856336df1"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une grande perle qui brille d’une jolie\ncouleur argent. Peut être vendue à\nbon prix aux magasins.",
+    "nom": "Grande Perle",
+    "nomAnglais": "big-pearl",
+    "nomNormalise": "grande perle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-pearl.png"
+  },
+  {
+    "_id": {"$oid": "6608c13877ba6ad856336df3"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Sable rouge ravissant, aux grains très\nfins. Peut être vendu à bon prix aux\nmagasins.",
+    "nom": "Poussière Étoile",
+    "nomAnglais": "stardust",
+    "nomNormalise": "poussiere etoile",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/stardust.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336df6"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Fragment de gemme qui brille d’un éclat\nrouge. Peut se vendre à bon prix aux\nmagasins.",
+    "nom": "Morceau d’Étoile",
+    "nomAnglais": "star-piece",
+    "nomNormalise": "morceau d’etoile",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/star-piece.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336df8"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Pépite d’or pur qui brille\nmagnifiquement. Peut être vendue\nà bon prix aux magasins.",
+    "nom": "Pépite",
+    "nomAnglais": "nugget",
+    "nomNormalise": "pepite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336dfa"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un os d’une grande valeur pour\nl’archéologie Pokémon. Peut être\nvendu à bon prix aux magasins.",
+    "nom": "Os Rare",
+    "nomAnglais": "rare-bone",
+    "nomNormalise": "os rare",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-bone.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336dfc"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une plume très jolie, mais ordinaire\net sans effet particulier.",
+    "nom": "Jolie Plume",
+    "nomAnglais": "pretty-wing",
+    "nomNormalise": "jolie plume",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pretty-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336dff"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Champignon rare qui répand un\nagréable parfum autour de lui.\nLes amateurs en donnent un bon prix.",
+    "nom": "Champi Suave",
+    "nomAnglais": "balm-mushroom",
+    "nomNormalise": "champi suave",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/balm-mushroom.png"
+  },
+  {
+    "_id": {"$oid": "6608c13977ba6ad856336e01"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Grosse pépite d’or pur qui brille\nmagnifiquement.\nLes amateurs en donnent un bon prix.",
+    "nom": "Maxi Pépite",
+    "nomAnglais": "big-nugget",
+    "nomNormalise": "maxi pepite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-nugget.png"
+  },
+  {
+    "_id": {"$oid": "6608c13a77ba6ad856336e03"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une très grosse perle qui brille\nd’une jolie couleur argent. \nLes amateurs en donnent un bon prix.",
+    "nom": "Perle Triple",
+    "nomAnglais": "pearl-string",
+    "nomNormalise": "perle triple",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pearl-string.png"
+  },
+  {
+    "_id": {"$oid": "6608c13a77ba6ad856336e05"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un fragment de comète, tombé au sol\nquand elle traversait l’atmosphère.\nLes amateurs en donnent un bon prix.",
+    "nom": "Morceau Comète",
+    "nomAnglais": "comet-shard",
+    "nomNormalise": "morceau comete",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/comet-shard.png"
+  },
+  {
+    "_id": {"$oid": "6608c13a77ba6ad856336e07"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une pièce de cuivre d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Sou",
+    "nomAnglais": "relic-copper",
+    "nomNormalise": "vieux sou",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-copper.png"
+  },
+  {
+    "_id": {"$oid": "6608c13a77ba6ad856336e09"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une pièce d’argent d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieil Écu",
+    "nomAnglais": "relic-silver",
+    "nomNormalise": "vieil ecu",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-silver.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e0b"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une pièce d’or d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Ducat",
+    "nomAnglais": "relic-gold",
+    "nomNormalise": "vieux ducat",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-gold.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e0d"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un vase d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Vase",
+    "nomAnglais": "relic-vase",
+    "nomNormalise": "vieux vase",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-vase.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e0f"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un bijou d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Bijou",
+    "nomAnglais": "relic-band",
+    "nomNormalise": "vieux bijou",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-band.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e11"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une statuette d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Santon",
+    "nomAnglais": "relic-statue",
+    "nomNormalise": "vieux santon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-statue.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e13"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une couronne d’une civilisation\nvieille de plus de 3 000 ans.\nLes amateurs en donnent un bon prix.",
+    "nom": "Vieux Tortil",
+    "nomAnglais": "relic-crown",
+    "nomNormalise": "vieux tortil",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/relic-crown.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e15"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un ticket donnant droit à une réduction dans\nles boutiques de vêtements.",
+    "nom": "Bon Réduction",
+    "nomAnglais": "discount-coupon",
+    "nomNormalise": "bon reduction",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/discount-coupon.png"
+  },
+  {
+    "_id": {"$oid": "6608c13b77ba6ad856336e17"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un ornement à l’image d’un Pokémon vénéré\ncomme protecteur dans une région éloignée\nde Kalos.",
+    "nom": "Bibelot Bizarre",
+    "nomAnglais": "strange-souvenir",
+    "nomNormalise": "bibelot bizarre",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/strange-souvenir.png"
+  },
+  {
+    "_id": {"$oid": "6608c13c77ba6ad856336e19"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une jolie capsule en argent.\nCertaines personnes adorent en recevoir.",
+    "nom": "Capsule d’Argent",
+    "nomAnglais": "bottle-cap",
+    "nomNormalise": "capsule d’argent",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/bottle-cap.png"
+  },
+  {
+    "_id": {"$oid": "6608c13c77ba6ad856336e1b"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une jolie capsule en or, encore plus rare\nque la Capsule d’Argent.\nCertaines personnes adorent en recevoir.",
+    "nom": "Capsule d’Or",
+    "nomAnglais": "gold-bottle-cap",
+    "nomNormalise": "capsule d’or",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gold-bottle-cap.png"
+  },
+  {
+    "_id": {"$oid": "6608c13c77ba6ad856336e1d"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un petit ressort fin et complètement distendu.\nNul ne sait à quoi il peut bien servir.",
+    "nom": "Ressort Détendu",
+    "nomAnglais": "stretchy-spring",
+    "nomNormalise": "ressort detendu",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13c77ba6ad856336e1f"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une petite pierre blanchâtre trouvée sur le bord\nde la route.",
+    "nom": "Craie",
+    "nomAnglais": "chalky-stone",
+    "nomNormalise": "craie",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13c77ba6ad856336e21"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une bille de verre transparente avec un motif coloré\nà l’intérieur.",
+    "nom": "Bille",
+    "nomAnglais": "marble",
+    "nomNormalise": "bille",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e23"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une boucle d’oreille perdue par quelqu’un.",
+    "nom": "Boucle d’Oreille",
+    "nomAnglais": "lone-earring",
+    "nomNormalise": "boucle d’oreille",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e25"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un morceau de verre coloré arrondi par les vagues.\nSa texture est légèrement rugueuse.",
+    "nom": "Galet de Verre",
+    "nomAnglais": "beach-glass",
+    "nomNormalise": "galet de verre",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e27"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une feuille dorée mystérieuse. Elle ne semble\nappartenir à aucun arbre connu.",
+    "nom": "Feuille Dorée",
+    "nomAnglais": "gold-leaf",
+    "nomNormalise": "feuille doree",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e29"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une feuille argentée mystérieuse. Elle ne semble\nappartenir à aucun arbre connu.",
+    "nom": "Feuille Argentée",
+    "nomAnglais": "silver-leaf",
+    "nomNormalise": "feuille argentee",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e2b"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une boulette de boue si bien polie qu’elle brille\nde mille feux.",
+    "nom": "Boulette de Boue",
+    "nomAnglais": "polished-mud-ball",
+    "nomNormalise": "boulette de boue",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13d77ba6ad856336e2d"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un joli coquillage blanc. Il a peut-être été porté\npar les vagues depuis une région tropicale.",
+    "nom": "Coquille du Sud",
+    "nomAnglais": "tropical-shell",
+    "nomNormalise": "coquille du sud",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13e77ba6ad856336e2f"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une lettre rédigée sur une feuille d’arbre.\nPikachu semble y avoir écrit quelque chose\navec ses pattes.",
+    "nom": "Lettre Végétale",
+    "nomAnglais": "leaf-letter--pikachu",
+    "nomNormalise": "lettre vegetale",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13e77ba6ad856336e31"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Une lettre rédigée sur une feuille d’arbre.\nÉvoli semble y avoir écrit quelque chose avec ses pattes.",
+    "nom": "Lettre Végétale",
+    "nomAnglais": "leaf-letter--eevee",
+    "nomNormalise": "lettre vegetale",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13e77ba6ad856336e33"},
+    "categorie": {
+      "id": 18,
+      "nom": "Butin"
+    },
+    "description": "Un petit bouquet arrangé avec amour pour\nun[VAR (00FF,0B09)] Dresseure Dresseuse vraiment unique.",
+    "nom": "Petit Bouquet",
+    "nomAnglais": "small-bouquet",
+    "nomNormalise": "petit bouquet",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e35"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui monte\nles PV de base d’un Pokémon.",
+    "nom": "PV Plus",
+    "nomAnglais": "hp-up",
+    "nomNormalise": "pv plus",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hp-up.png"
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e37"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui monte\nl’Attaque de base d’un Pokémon.",
+    "nom": "Protéine",
+    "nomAnglais": "protein",
+    "nomNormalise": "proteine",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protein.png"
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e39"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui monte\nla Défense de base d’un Pokémon.",
+    "nom": "Fer",
+    "nomAnglais": "iron",
+    "nomNormalise": "fer",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iron.png"
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e3b"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui monte\nla Vitesse de base d’un Pokémon.",
+    "nom": "Carbone",
+    "nomAnglais": "carbos",
+    "nomNormalise": "carbone",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/carbos.png"
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e3d"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui\nmonte l’Attaque Spéciale de\nbase d’un Pokémon.",
+    "nom": "Calcium",
+    "nomAnglais": "calcium",
+    "nomNormalise": "calcium",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/calcium.png"
+  },
+  {
+    "_id": {"$oid": "6608c13f77ba6ad856336e3f"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner\nun niveau d’expérience.",
+    "nom": "Super Bonbon",
+    "nomAnglais": "rare-candy",
+    "nomNormalise": "super bonbon",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e41"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Monte un peu les PP max d’une\ncapacité sélectionnée.",
+    "nom": "PP Plus",
+    "nomAnglais": "pp-up",
+    "nomNormalise": "pp plus",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pp-up.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e43"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une boisson très nutritive qui monte\nla Défense Spéciale d’un Pokémon.",
+    "nom": "Zinc",
+    "nomAnglais": "zinc",
+    "nomNormalise": "zinc",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/zinc.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e45"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Monte sensiblement les PP max d’une\ncapacité sélectionnée.",
+    "nom": "PP Max",
+    "nomAnglais": "pp-max",
+    "nomNormalise": "pp max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pp-max.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e47"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu ses PV lors\nd’une montée de niveau.",
+    "nom": "Plume Santé",
+    "nomAnglais": "health-wing",
+    "nomNormalise": "plume sante",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/health-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e49"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu son Attaque\nlors d’une montée de niveau.",
+    "nom": "Plume Force",
+    "nomAnglais": "muscle-wing",
+    "nomNormalise": "plume force",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/muscle-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14077ba6ad856336e4b"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu sa Défense\nlors d’une montée de niveau.",
+    "nom": "Plume Armure",
+    "nomAnglais": "resist-wing",
+    "nomNormalise": "plume armure",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/resist-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e4e"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu son Atq. Spé.\nlors d’une montée de niveau.",
+    "nom": "Plume Esprit",
+    "nomAnglais": "genius-wing",
+    "nomNormalise": "plume esprit",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/genius-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e50"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu sa Déf. Spé.\nlors d’une montée de niveau.",
+    "nom": "Plume Mental",
+    "nomAnglais": "clever-wing",
+    "nomNormalise": "plume mental",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/clever-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e52"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Objet à utiliser sur un Pokémon.\nIl augmente un peu sa Vitesse\nlors d’une montée de niveau.",
+    "nom": "Plume Sprint",
+    "nomAnglais": "swift-wing",
+    "nomNormalise": "plume sprint",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/swift-wing.png"
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e54"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Une capsule permettant à un Pokémon pouvant\navoir deux talents de changer de l’un à l’autre.",
+    "nom": "Pilule Talent",
+    "nomAnglais": "ability-capsule",
+    "nomNormalise": "pilule talent",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ability-capsule.png"
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e57"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente les PV d’un Pokémon.",
+    "nom": "Bonbon Santé S",
+    "nomAnglais": "health-candy",
+    "nomNormalise": "bonbon sante s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14177ba6ad856336e59"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente l’Attaque d’un Pokémon.",
+    "nom": "Bonbon Force S",
+    "nomAnglais": "mighty-candy",
+    "nomNormalise": "bonbon force s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e5b"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente la Défense d’un Pokémon.",
+    "nom": "Bonbon Armure S",
+    "nomAnglais": "tough-candy",
+    "nomNormalise": "bonbon armure s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e5d"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente l’Attaque Spéciale d’un Pokémon.",
+    "nom": "Bonbon Esprit S",
+    "nomAnglais": "smart-candy",
+    "nomNormalise": "bonbon esprit s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e5f"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente la Défense Spéciale d’un Pokémon.",
+    "nom": "Bonbon Mental S",
+    "nomAnglais": "courage-candy",
+    "nomNormalise": "bonbon mental s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e61"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl augmente la Vitesse d’un Pokémon.",
+    "nom": "Bonbon Sprint S",
+    "nomAnglais": "quick-candy",
+    "nomNormalise": "bonbon sprint s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e63"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente les PV d’un Pokémon de niveau 30\nou supérieur.",
+    "nom": "Bonbon Santé M",
+    "nomAnglais": "health-candy-l",
+    "nomNormalise": "bonbon sante m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e65"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente l’Attaque d’un Pokémon de niveau 30\nou supérieur.",
+    "nom": "Bonbon Force M",
+    "nomAnglais": "mighty-candy-l",
+    "nomNormalise": "bonbon force m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14277ba6ad856336e67"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente la Défense d’un Pokémon de niveau 30\nou supérieur.",
+    "nom": "Bonbon Armure M",
+    "nomAnglais": "tough-candy-l",
+    "nomNormalise": "bonbon armure m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e6a"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente l’Attaque Spéciale d’un Pokémon\nde niveau 30 ou supérieur.",
+    "nom": "Bonbon Esprit M",
+    "nomAnglais": "smart-candy-l",
+    "nomNormalise": "bonbon esprit m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e6c"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente la Défense Spéciale d’un Pokémon\nde niveau 30 ou supérieur.",
+    "nom": "Bonbon Mental M",
+    "nomAnglais": "courage-candy-l",
+    "nomNormalise": "bonbon mental m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e6e"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un gros bonbon plein d’énergie.\nIl augmente la Vitesse d’un Pokémon de niveau 30\nou supérieur.",
+    "nom": "Bonbon Sprint M",
+    "nomAnglais": "quick-candy-l",
+    "nomNormalise": "bonbon sprint m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e70"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente les PV d’un Pokémon de niveau 60\nou supérieur.",
+    "nom": "Bonbon Santé L",
+    "nomAnglais": "health-candy-xl",
+    "nomNormalise": "bonbon sante l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e72"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente l’Attaque d’un Pokémon de niveau 60\nou supérieur.",
+    "nom": "Bonbon Force L",
+    "nomAnglais": "mighty-candy-xl",
+    "nomNormalise": "bonbon force l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e75"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente la Défense d’un Pokémon de niveau 60\nou supérieur.",
+    "nom": "Bonbon Armure L",
+    "nomAnglais": "tough-candy-xl",
+    "nomNormalise": "bonbon armure l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14377ba6ad856336e77"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente l’Attaque Spéciale d’un Pokémon\nde niveau 60 ou supérieur.",
+    "nom": "Bonbon Esprit L",
+    "nomAnglais": "smart-candy-xl",
+    "nomNormalise": "bonbon esprit l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14477ba6ad856336e79"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente la Défense Spéciale d’un Pokémon\nde niveau 60 ou supérieur.",
+    "nom": "Bonbon Mental L",
+    "nomAnglais": "courage-candy-xl",
+    "nomNormalise": "bonbon mental l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14477ba6ad856336e7b"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un énorme bonbon plein d’énergie.\nIl augmente la Vitesse d’un Pokémon de niveau 60\nou supérieur.",
+    "nom": "Bonbon Sprint L",
+    "nomAnglais": "quick-candy-xl",
+    "nomNormalise": "bonbon sprint l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14477ba6ad856336e7d"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner un petit peu\nde Points d’Expérience.",
+    "nom": "Bonbon Exp. XS",
+    "nomAnglais": "exp-candy-xs",
+    "nomNormalise": "bonbon exp. xs",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14477ba6ad856336e7f"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner un peu de Points\nd’Expérience.",
+    "nom": "Bonbon Exp. S",
+    "nomAnglais": "exp-candy-s",
+    "nomNormalise": "bonbon exp. s",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14477ba6ad856336e81"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner quelques Points\nd’Expérience.",
+    "nom": "Bonbon Exp. M",
+    "nomAnglais": "exp-candy-m",
+    "nomNormalise": "bonbon exp. m",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14577ba6ad856336e83"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner une bonne quantité\nde Points d’Expérience.",
+    "nom": "Bonbon Exp. L",
+    "nomAnglais": "exp-candy-l",
+    "nomNormalise": "bonbon exp. l",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14577ba6ad856336e85"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie.\nIl permet à un Pokémon de gagner beaucoup\nde Points d’Expérience.",
+    "nom": "Bonbon Exp. XL",
+    "nomAnglais": "exp-candy-xl",
+    "nomNormalise": "bonbon exp. xl",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14577ba6ad856336e87"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un bonbon plein d’énergie qui fait monter le niveau\nDynamax d’un Pokémon d’un point. Plus ce dernier\nest élevé, plus les PV sous forme Dynamax augmentent.",
+    "nom": "Bonbon Dynamax",
+    "nomAnglais": "dynamax-candy",
+    "nomNormalise": "bonbon dynamax",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14577ba6ad856336e89"},
+    "categorie": {
+      "id": 19,
+      "nom": "Vitamines"
+    },
+    "description": "Un objet qui permet de remplacer le talent ordinaire\nd’un Pokémon par un talent rare.",
+    "nom": "Patch Talent",
+    "nomAnglais": "ability-patch",
+    "nomNormalise": "patch talent",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14677ba6ad856336e8b"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un spray qui soigne les blessures.\nRestaure 20 PV à un Pokémon.",
+    "nom": "Potion",
+    "nomAnglais": "potion",
+    "nomNormalise": "potion",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/potion.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e8d"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un médicament qui restaure tous les\nPV d’un Pokémon et soigne tous ses\nproblèmes de statut.",
+    "nom": "Guérison",
+    "nomAnglais": "full-restore",
+    "nomNormalise": "guerison",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-restore.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e8f"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un spray qui soigne les blessures.\nRestaure tous les PV d’un Pokémon.",
+    "nom": "Potion Max",
+    "nomAnglais": "max-potion",
+    "nomNormalise": "potion max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-potion.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e91"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un spray qui soigne les blessures.\nRestaure 200 PV à un Pokémon.",
+    "nom": "Hyper Potion",
+    "nomAnglais": "hyper-potion",
+    "nomNormalise": "hyper potion",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hyper-potion.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e93"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un spray qui soigne les blessures.\nRestaure 50 PV à un Pokémon.",
+    "nom": "Super Potion",
+    "nomAnglais": "super-potion",
+    "nomNormalise": "super potion",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/super-potion.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e95"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une eau riche en minéraux.\nRestaure 50 PV à un Pokémon.",
+    "nom": "Eau Fraîche",
+    "nomAnglais": "fresh-water",
+    "nomNormalise": "eau fraiche",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fresh-water.png"
+  },
+  {
+    "_id": {"$oid": "6608c14777ba6ad856336e97"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une boisson pétillante.\nRestaure 60 PV à un Pokémon.",
+    "nom": "Soda Cool",
+    "nomAnglais": "soda-pop",
+    "nomNormalise": "soda cool",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soda-pop.png"
+  },
+  {
+    "_id": {"$oid": "6608c14877ba6ad856336e99"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une boisson très sucrée.\nRestaure 80 PV à un Pokémon.",
+    "nom": "Limonade",
+    "nomAnglais": "lemonade",
+    "nomNormalise": "limonade",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lemonade.png"
+  },
+  {
+    "_id": {"$oid": "6608c14877ba6ad856336e9b"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un lait très nourrissant.\nRestaure 100 PV à un Pokémon.",
+    "nom": "Lait Meumeu",
+    "nomAnglais": "moomoo-milk",
+    "nomNormalise": "lait meumeu",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moomoo-milk.png"
+  },
+  {
+    "_id": {"$oid": "6608c14877ba6ad856336e9d"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une poudre médicinale très amère.\nRestaure 50 PV à un Pokémon.",
+    "nom": "Poudrénergie",
+    "nomAnglais": "energy-powder",
+    "nomNormalise": "poudrenergie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c14877ba6ad856336e9f"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une racine très amère.\nRestaure 200 PV à un Pokémon.",
+    "nom": "Racinénergie",
+    "nomAnglais": "energy-root",
+    "nomNormalise": "racinenergie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-root.png"
+  },
+  {
+    "_id": {"$oid": "6608c14977ba6ad856336ea1"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Une boisson 100% pur jus de Baies.\nRestaure 20 PV à un Pokémon.",
+    "nom": "Jus de Baie",
+    "nomAnglais": "berry-juice",
+    "nomNormalise": "jus de baie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/berry-juice.png"
+  },
+  {
+    "_id": {"$oid": "6608c14977ba6ad856336ea3"},
+    "categorie": {
+      "id": 20,
+      "nom": "Soins"
+    },
+    "description": "Un chocolat extrêmement\nsucré. Restaure 20 PV\nà un Pokémon.",
+    "nom": "Chococœur",
+    "nomAnglais": "sweet-heart",
+    "nomNormalise": "chococœur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sweet-heart.png"
+  },
+  {
+    "_id": {"$oid": "6608c14977ba6ad856336ea5"},
+    "categorie": {
+      "id": 21,
+      "nom": "Récupération de PP"
+    },
+    "description": "Restaure jusqu’à 10 PP d’une\ncapacité sélectionnée.",
+    "nom": "Huile",
+    "nomAnglais": "ether",
+    "nomNormalise": "huile",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ether.png"
+  },
+  {
+    "_id": {"$oid": "6608c14977ba6ad856336ea7"},
+    "categorie": {
+      "id": 21,
+      "nom": "Récupération de PP"
+    },
+    "description": "Restaure tous les PP d’une capacité\nsélectionnée.",
+    "nom": "Huile Max",
+    "nomAnglais": "max-ether",
+    "nomNormalise": "huile max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-ether.png"
+  },
+  {
+    "_id": {"$oid": "6608c14977ba6ad856336ea9"},
+    "categorie": {
+      "id": 21,
+      "nom": "Récupération de PP"
+    },
+    "description": "Restaure 10 PP de toutes les\ncapacités d’un Pokémon.",
+    "nom": "Élixir",
+    "nomAnglais": "elixir",
+    "nomNormalise": "elixir",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/elixir.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eab"},
+    "categorie": {
+      "id": 21,
+      "nom": "Récupération de PP"
+    },
+    "description": "Restaure tous les PP de toutes\nles capacités d’un Pokémon.",
+    "nom": "Élixir Max",
+    "nomAnglais": "max-elixir",
+    "nomNormalise": "elixir max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-elixir.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336ead"},
+    "categorie": {
+      "id": 22,
+      "nom": "Réanimation"
+    },
+    "description": "Un médicament qui ranime un Pokémon\nK.O. et restaure la moitié de ses PV\nmax.",
+    "nom": "Rappel",
+    "nomAnglais": "revive",
+    "nomNormalise": "rappel",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/revive.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eaf"},
+    "categorie": {
+      "id": 22,
+      "nom": "Réanimation"
+    },
+    "description": "Un médicament qui ranime un Pokémon\nK.O. et restaure tous ses PV.",
+    "nom": "Rappel Max",
+    "nomAnglais": "max-revive",
+    "nomNormalise": "rappel max",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-revive.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eb1"},
+    "categorie": {
+      "id": 22,
+      "nom": "Réanimation"
+    },
+    "description": "Une herbe médicinale très amère.\nRanime un Pokémon K.O. et restaure\ntous ses PV.",
+    "nom": "Herbe Rappel",
+    "nomAnglais": "revival-herb",
+    "nomNormalise": "herbe rappel",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/revival-herb.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eb3"},
+    "categorie": {
+      "id": 22,
+      "nom": "Réanimation"
+    },
+    "description": "Ranime tous les Pokémon K.O. et\nrestaure tous leurs PV.",
+    "nom": "Cendre Sacrée",
+    "nomAnglais": "sacred-ash",
+    "nomNormalise": "cendre sacree",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sacred-ash.png"
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eb5"},
+    "categorie": {
+      "id": 22,
+      "nom": "Réanimation"
+    },
+    "description": "Un miel crémeux produit par un Apireine Dynamax\nqui permet d’adoucir le goût de la Maxi Soupe.\nIl a également le même effet qu’un Rappel Max.",
+    "nom": "Maxi Miel",
+    "nomAnglais": "max-honey",
+    "nomNormalise": "maxi miel",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14a77ba6ad856336eb7"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nGuérit un Pokémon empoisonné.",
+    "nom": "Antidote",
+    "nomAnglais": "antidote",
+    "nomNormalise": "antidote",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/antidote.png"
+  },
+  {
+    "_id": {"$oid": "6608c14b77ba6ad856336eba"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nSoigne les brûlures d’un Pokémon.",
+    "nom": "Anti-Brûle",
+    "nomAnglais": "burn-heal",
+    "nomNormalise": "anti-brule",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/burn-heal.png"
+  },
+  {
+    "_id": {"$oid": "6608c14b77ba6ad856336ebc"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nRéchauffe un Pokémon gelé.",
+    "nom": "Antigel",
+    "nomAnglais": "ice-heal",
+    "nomNormalise": "antigel",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-heal.png"
+  },
+  {
+    "_id": {"$oid": "6608c14b77ba6ad856336ebf"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nRéveille un Pokémon endormi.",
+    "nom": "Réveil",
+    "nomAnglais": "awakening",
+    "nomNormalise": "reveil",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/awakening.png"
+  },
+  {
+    "_id": {"$oid": "6608c14b77ba6ad856336ec1"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nSoigne un Pokémon de la paralysie.",
+    "nom": "Anti-Para",
+    "nomAnglais": "paralyze-heal",
+    "nomNormalise": "anti-para",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/paralyze-heal.png"
+  },
+  {
+    "_id": {"$oid": "6608c14b77ba6ad856336ec3"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Un médicament sous forme de spray.\nSoigne tous les problèmes de statut\nd’un Pokémon.",
+    "nom": "Total Soin",
+    "nomAnglais": "full-heal",
+    "nomNormalise": "total soin",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-heal.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ec5"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Une poudre médicinale très amère.\nSoigne tous les problèmes de statut\nd’un Pokémon.",
+    "nom": "Poudre Soin",
+    "nomAnglais": "heal-powder",
+    "nomNormalise": "poudre soin",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-powder.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ec7"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "La spécialité de la ville de Vermilava.\nSoigne tous les problèmes de statut\nd’un Pokémon.",
+    "nom": "Lava Cookie",
+    "nomAnglais": "lava-cookie",
+    "nomNormalise": "lava cookie",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lava-cookie.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ec9"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Spécialité du Vieux Château. Il\nsoigne tous les problèmes de\nstatut d’un Pokémon.",
+    "nom": "Vieux Gâteau",
+    "nomAnglais": "old-gateau",
+    "nomNormalise": "vieux gateau",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-gateau.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ecb"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Spécialité de Volucité. Elle\nsoigne tous les problèmes\nde statut d’un Pokémon.",
+    "nom": "Glace Volute",
+    "nomAnglais": "casteliacone",
+    "nomNormalise": "glace volute",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/casteliacone.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ecd"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "La spécialité d’Illumis.\nElle soigne tous les problèmes de statut\nd’un Pokémon.",
+    "nom": "Galette Illumis",
+    "nomAnglais": "lumiose-galette",
+    "nomNormalise": "galette illumis",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lumiose-galette.png"
+  },
+  {
+    "_id": {"$oid": "6608c14c77ba6ad856336ed0"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "La spécialité de Yantreizh.\nElle soigne tous les problèmes de statut\nd’un Pokémon.",
+    "nom": "Sablé Yantreizh",
+    "nomAnglais": "shalour-sable",
+    "nomNormalise": "sable yantreizh",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shalour-sable.png"
+  },
+  {
+    "_id": {"$oid": "6608c14d77ba6ad856336ed2"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Une spécialité d’Alola. Elle soigne toutes\nles altérations de statut d’un Pokémon.",
+    "nom": "Malasada Maxi",
+    "nomAnglais": "big-malasada",
+    "nomNormalise": "malasada maxi",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/big-malasada.png"
+  },
+  {
+    "_id": {"$oid": "6608c14d77ba6ad856336ed4"},
+    "categorie": {
+      "id": 23,
+      "nom": "Soins de Statuts"
+    },
+    "description": "Une spécialité d’Argenta.\nSoigne toutes les altérations de statut d’un Pokémon.",
+    "nom": "Crok’Argenta",
+    "nomAnglais": "pewter-crunchies",
+    "nomNormalise": "crok’argenta",
+    "sprite": null
+  },
+  {
+    "_id": {"$oid": "6608c14d77ba6ad856336ed6"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball un peu spéciale qui\nfonctionne particulièrement bien\nsur les Pokémon Eau ou Insecte.",
+    "nom": "Filet Ball",
+    "nomAnglais": "net-ball",
+    "nomNormalise": "filet ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/net-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14d77ba6ad856336ed9"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball un peu spéciale qui\nfonctionne particulièrement bien\nsur les Pokémon sous-marins.",
+    "nom": "Scuba Ball",
+    "nomAnglais": "dive-ball",
+    "nomNormalise": "scuba ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dive-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336edb"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball un peu spéciale qui\nfonctionne particulièrement bien\nsur les Pokémon les plus faibles.",
+    "nom": "Faiblo Ball",
+    "nomAnglais": "nest-ball",
+    "nomNormalise": "faiblo ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nest-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336edd"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball un peu spéciale qui\nfonctionne particulièrement bien sur\nles espèces de Pokémon déjà capturées.",
+    "nom": "Bis Ball",
+    "nomAnglais": "repeat-ball",
+    "nomNormalise": "bis ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/repeat-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336edf"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball un peu spéciale qui\nfonctionne de mieux en mieux à\nmesure que le combat s’éternise.",
+    "nom": "Chrono Ball",
+    "nomAnglais": "timer-ball",
+    "nomNormalise": "chrono ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/timer-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336ee1"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball pratique qui permet\nde gagner rapidement l’amitié d’un\nPokémon sauvage attrapé.",
+    "nom": "Luxe Ball",
+    "nomAnglais": "luxury-ball",
+    "nomNormalise": "luxe ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luxury-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336ee3"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball assez rare qui fut créée\npour un événement particulier.",
+    "nom": "Honor Ball",
+    "nomAnglais": "premier-ball",
+    "nomNormalise": "honor ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336ee5"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball efficace pour attraper\nles Pokémon de nuit ou dans des\nendroits sombres tels que les grottes.",
+    "nom": "Sombre Ball",
+    "nomAnglais": "dusk-ball",
+    "nomNormalise": "sombre ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14e77ba6ad856336ee7"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball de soin qui rend tous les\nPV du Pokémon attrapé et qui soigne\ntous les changements de statut.",
+    "nom": "Soin Ball",
+    "nomAnglais": "heal-ball",
+    "nomNormalise": "soin ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14f77ba6ad856336ee9"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball qui permet d’attraper un\nPokémon sauvage plus facilement si on\nl’utilise au début du combat.",
+    "nom": "Rapide Ball",
+    "nomAnglais": "quick-ball",
+    "nomNormalise": "rapide ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14f77ba6ad856336eeb"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball plutôt rare qui fut créée\npour une occasion spéciale.",
+    "nom": "Mémoire Ball",
+    "nomAnglais": "cherish-ball",
+    "nomNormalise": "memoire ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cherish-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14f77ba6ad856336eed"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Poké Ball du rêve. Apparue dans le\nSac à la Forêt du Heylink. Permet\nd’attraper n’importe quel Pokémon.",
+    "nom": "Rêve Ball",
+    "nomAnglais": "dream-ball",
+    "nomNormalise": "reve ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14f77ba6ad856336eef"},
+    "categorie": {
+      "id": 24,
+      "nom": "Pokéballs spéciales"
+    },
+    "description": "Une Poké Ball spéciale créée pour pouvoir capturer\ndes Ultra-Chimères. Elle n’est pas du tout efficace\nsur les autres créatures.",
+    "nom": "Ultra Ball",
+    "nomAnglais": "beast-ball",
+    "nomNormalise": "ultra ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beast-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c14f77ba6ad856336ef1"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Assurément la Ball la plus performante.\nElle permet de capturer à coup sûr un\nPokémon sauvage.",
+    "nom": "Master Ball",
+    "nomAnglais": "master-ball",
+    "nomNormalise": "master ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336ef3"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Une Ball ultraperformante dont le taux\nde réussite est supérieur à celui de la\nSuper Ball.",
+    "nom": "Hyper Ball",
+    "nomAnglais": "ultra-ball",
+    "nomNormalise": "hyper ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336ef5"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Une Ball très performante dont le taux\nde réussite est supérieur à celui de la\nPoké Ball.",
+    "nom": "Super Ball",
+    "nomAnglais": "great-ball",
+    "nomNormalise": "super ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336ef7"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Un objet pareil à une capsule, qui\ncapture les Pokémon sauvages. Il suffit\npour cela de le jeter comme une balle.",
+    "nom": "Poké Ball",
+    "nomAnglais": "poke-ball",
+    "nomNormalise": "poke ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336ef9"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Une Poké Ball spéciale dont l’usage\nest réservé au Parc Safari. Elle est\ndécorée d’un motif camouflage.",
+    "nom": "Safari Ball",
+    "nomAnglais": "safari-ball",
+    "nomNormalise": "safari ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safari-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336efb"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Une Poké Ball spéciale utilisée au Parc des Amis.",
+    "nom": "Parc Ball",
+    "nomAnglais": "park-ball",
+    "nomNormalise": "parc ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/park-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15077ba6ad856336efd"},
+    "categorie": {
+      "id": 25,
+      "nom": "Pokéballs standards"
+    },
+    "description": "Une Poké Ball spéciale utilisée au\nConcours de Capture d’insecte.",
+    "nom": "Compét’Ball",
+    "nomAnglais": "sport-ball",
+    "nomNormalise": "compet’ball",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sport-ball.png"
+  },
+  {
+    "_id": {"$oid": "6608c15177ba6ad856336eff"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Ectoplasma, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Ectoplasmite",
+    "nomAnglais": "gengarite",
+    "nomNormalise": "ectoplasmite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gengarite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15177ba6ad856336f01"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Gardevoir, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Gardevoirite",
+    "nomAnglais": "gardevoirite",
+    "nomNormalise": "gardevoirite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gardevoirite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15177ba6ad856336f03"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Pharamp, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Pharampite",
+    "nomAnglais": "ampharosite",
+    "nomNormalise": "pharampite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ampharosite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15177ba6ad856336f05"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Florizarre, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Florizarrite",
+    "nomAnglais": "venusaurite",
+    "nomNormalise": "florizarrite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/venusaurite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15177ba6ad856336f07"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Dracaufeu, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Dracaufite X",
+    "nomAnglais": "charizardite-x",
+    "nomNormalise": "dracaufite x",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-x.png"
+  },
+  {
+    "_id": {"$oid": "6608c15277ba6ad856336f09"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Tortank, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Tortankite",
+    "nomAnglais": "blastoisinite",
+    "nomNormalise": "tortankite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blastoisinite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15277ba6ad856336f0b"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par Mewtwo, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Mewtwoïte X",
+    "nomAnglais": "mewtwonite-x",
+    "nomNormalise": "mewtwoite x",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-x.png"
+  },
+  {
+    "_id": {"$oid": "6608c15277ba6ad856336f0d"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par Mewtwo, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Mewtwoïte Y",
+    "nomAnglais": "mewtwonite-y",
+    "nomNormalise": "mewtwoite y",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-y.png"
+  },
+  {
+    "_id": {"$oid": "6608c15277ba6ad856336f0f"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Braségali, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Braségalite",
+    "nomAnglais": "blazikenite",
+    "nomNormalise": "brasegalite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blazikenite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15277ba6ad856336f11"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Charmina, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Charminite",
+    "nomAnglais": "medichamite",
+    "nomNormalise": "charminite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/medichamite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f13"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Démolosse, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Démolossite",
+    "nomAnglais": "houndoominite",
+    "nomNormalise": "demolossite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/houndoominite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f15"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Galeking, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Galekingite",
+    "nomAnglais": "aggronite",
+    "nomNormalise": "galekingite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aggronite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f17"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Branette, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Branettite",
+    "nomAnglais": "banettite",
+    "nomNormalise": "branettite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/banettite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f19"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Tyranocif, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Tyranocivite",
+    "nomAnglais": "tyranitarite",
+    "nomNormalise": "tyranocivite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tyranitarite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f1b"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Cizayox, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Cizayoxite",
+    "nomAnglais": "scizorite",
+    "nomNormalise": "cizayoxite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/scizorite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15377ba6ad856336f1d"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Scarabrute, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Scarabruite",
+    "nomAnglais": "pinsirite",
+    "nomNormalise": "scarabruite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinsirite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15477ba6ad856336f1f"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Ptéra, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Ptéraïte",
+    "nomAnglais": "aerodactylite",
+    "nomNormalise": "pteraite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aerodactylite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15477ba6ad856336f21"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Lucario, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Lucarite",
+    "nomAnglais": "lucarionite",
+    "nomNormalise": "lucarite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucarionite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15477ba6ad856336f23"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Blizzaroi, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Blizzarite",
+    "nomAnglais": "abomasite",
+    "nomNormalise": "blizzarite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/abomasite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15477ba6ad856336f25"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Kangourex, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Kangourexite",
+    "nomAnglais": "kangaskhanite",
+    "nomNormalise": "kangourexite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kangaskhanite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15477ba6ad856336f27"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Léviator, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Léviatorite",
+    "nomAnglais": "gyaradosite",
+    "nomNormalise": "leviatorite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gyaradosite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f2a"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Absol, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Absolite",
+    "nomAnglais": "absolite",
+    "nomNormalise": "absolite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/absolite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f2c"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Dracaufeu, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Dracaufite Y",
+    "nomAnglais": "charizardite-y",
+    "nomNormalise": "dracaufite y",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-y.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f2e"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Alakazam, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Alakazamite",
+    "nomAnglais": "alakazite",
+    "nomNormalise": "alakazamite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/alakazite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f31"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Scarhino, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Scarhinoïte",
+    "nomAnglais": "heracronite",
+    "nomNormalise": "scarhinoite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heracronite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f33"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Mysdibule, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Mysdibulite",
+    "nomAnglais": "mawilite",
+    "nomNormalise": "mysdibulite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mawilite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15577ba6ad856336f35"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Élecsprint, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Élecsprintite",
+    "nomAnglais": "manectite",
+    "nomNormalise": "elecsprintite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/manectite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15677ba6ad856336f37"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Carchacrok, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Carchacrokite",
+    "nomAnglais": "garchompite",
+    "nomNormalise": "carchacrokite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/garchompite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15677ba6ad856336f39"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par Latias, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Latiasite",
+    "nomAnglais": "latiasite",
+    "nomNormalise": "latiasite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiasite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15677ba6ad856336f3b"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par Latios, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Latiosite",
+    "nomAnglais": "latiosite",
+    "nomNormalise": "latiosite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiosite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15677ba6ad856336f3d"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Laggron, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Laggronite",
+    "nomAnglais": "swampertite",
+    "nomNormalise": "laggronite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/swampertite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15677ba6ad856336f40"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Jungko, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Jungkite",
+    "nomAnglais": "sceptilite",
+    "nomNormalise": "jungkite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sceptilite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f42"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Ténéfix, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Ténéfixite",
+    "nomAnglais": "sablenite",
+    "nomNormalise": "tenefixite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sablenite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f44"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Altaria, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Altarite",
+    "nomAnglais": "altarianite",
+    "nomNormalise": "altarite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/altarianite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f46"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Gallame, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Gallamite",
+    "nomAnglais": "galladite",
+    "nomNormalise": "gallamite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/galladite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f48"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Nanméouïe, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Nanméouïte",
+    "nomAnglais": "audinite",
+    "nomNormalise": "nanmeouite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/audinite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f4a"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Métalosse, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Métalossite",
+    "nomAnglais": "metagrossite",
+    "nomNormalise": "metalossite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metagrossite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f4c"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Sharpedo, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Sharpedite",
+    "nomAnglais": "sharpedonite",
+    "nomNormalise": "sharpedite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sharpedonite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f4f"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Flagadoss, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Flagadossite",
+    "nomAnglais": "slowbronite",
+    "nomNormalise": "flagadossite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/slowbronite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f51"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Steelix, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Steelixite",
+    "nomAnglais": "steelixite",
+    "nomNormalise": "steelixite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/steelixite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15777ba6ad856336f53"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Roucarnage, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Roucarnagite",
+    "nomAnglais": "pidgeotite",
+    "nomNormalise": "roucarnagite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pidgeotite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15877ba6ad856336f55"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Oniglali, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Oniglalite",
+    "nomAnglais": "glalitite",
+    "nomNormalise": "oniglalite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/glalitite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15877ba6ad856336f57"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Diancie, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Diancite",
+    "nomAnglais": "diancite",
+    "nomNormalise": "diancite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/diancite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15877ba6ad856336f59"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Camérupt, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Caméruptite",
+    "nomAnglais": "cameruptite",
+    "nomNormalise": "cameruptite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cameruptite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15877ba6ad856336f5b"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Lockpin, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Lockpinite",
+    "nomAnglais": "lopunnite",
+    "nomNormalise": "lockpinite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lopunnite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15877ba6ad856336f5d"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Drattak, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Drattakite",
+    "nomAnglais": "salamencite",
+    "nomNormalise": "drattakite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/salamencite.png"
+  },
+  {
+    "_id": {"$oid": "6608c15977ba6ad856336f5f"},
+    "categorie": {
+      "id": 26,
+      "nom": "Méga-Gemmes"
+    },
+    "description": "Une variété de Méga-Gemme.\nTenue par un Dardargnan, elle lui permet de\nméga-évoluer durant un combat.",
+    "nom": "Dardargnite",
+    "nomAnglais": "beedrillite",
+    "nomNormalise": "dardargnite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beedrillite.png"
+  }
+]

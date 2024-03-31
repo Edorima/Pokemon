@@ -1,13 +1,10 @@
 import {categorieMap, typeMap} from "./usefulData.mjs"
-import {fetchData, normalize,
-    progressBar, pokemonCollection, capaciteCollection
-} from "./fetchData.mjs"
+import {fetchData, normalize, Pokemon, Capacite, progressBar} from "./fetchData.mjs"
 
 export default async function fetchMoves() {
     const capaciteURL = 'https://pokeapi.co/api/v2/move?limit=826'
     const allMoves = await fetchData(capaciteURL)
     for (const move of allMoves.results) {
-        progressBar.addValue()
         const moveData = await fetchData(move.url)
 
         const nom = moveData.names.find(
@@ -32,15 +29,16 @@ export default async function fetchMoves() {
             pokemons: learnedByPkms
         }
 
-        await capaciteCollection.updateOne(
+        await Capacite.updateOne(
             {id: moveData.id},
             {$set: moveObject},
             {upsert: true}
         )
 
-        await pokemonCollection.updateMany(
+        await Pokemon.updateMany(
             {nomAnglais: {$in: learnedByPkms}},
             {$addToSet: {capacites: moveData.id}}
         )
+        progressBar.addValue()
     }
 }
