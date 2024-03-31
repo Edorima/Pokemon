@@ -1,6 +1,6 @@
 "use strict"
 
-import pokemonDAO from "../dao/pokemonDAO.mjs";
+import pokemonDAO from "../dao/pokemonDAO.mjs"
 
 const pokemonController = {
     getPokemons: async (generation, type1, type2, limit, offset) =>

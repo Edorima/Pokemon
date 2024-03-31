@@ -1,11 +1,11 @@
 import mongoose from "mongoose"
 
 const pokemonSchema = new mongoose.Schema({
-    id: {type: Number, unique: true},
-    nom: {type: String, unique: true},
-    nomAnglais: {type: String, unique: true},
-    nomNormalise: {type: String, unique: true},
-    poids: {type: Number, min: 0.1},
+    id: {type: Number, required: true, unique: true},
+    nom: {type: String, required: true, unique: true},
+    nomAnglais: {type: String, required: true, unique: true},
+    nomNormalise: {type: String, required: true, unique: true},
+    poids: {type: Number, min: 0.1, max: 999.9},
     sprites: {
         default: String,
         shiny: String,
@@ -23,11 +23,11 @@ const pokemonSchema = new mongoose.Schema({
         normaux: [String],
         cache: String,
     },
-    types: {type: [String], minLength: 1},
+    types: [String],
     capacites: [Number],
     description: String,
     espece: String,
-    generation: Number
+    generation: {type: Number, min: 1}
 }, {versionKey: false})
 
 pokemonSchema.index({id: 1}, {unique: true})

@@ -86,4 +86,6 @@ describe("Pokemon model validation", () => {
             expect(error.errors.taille.kind).to.equal('min')
         }
     })
+
+
 })

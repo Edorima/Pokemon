@@ -13,19 +13,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const pokemonsPath = path.join(__dirname, 'pokemons.json')
 const rawPokemons = fs.readFileSync(pokemonsPath, 'utf8')
 const pokemonsData = JSON.parse(rawPokemons).map(({ _id, ...rest }) => rest)
-
-
-async function reset() {
-    await mongoose.connection.close()
-    const mongoServer = await MongoMemoryServer.create()
-    const uri = mongoServer.getUri()
-    await mongoose.connect(uri)
-    await Pokemon.insertMany(pokemonsData, null)
-}
+await mongoose.connection.close()
+const mongoServer = await MongoMemoryServer.create()
+const uri = mongoServer.getUri()
+await mongoose.connect(uri)
+await Pokemon.insertMany(pokemonsData, null)
 
 describe("getPokemons", () => {
-    before(reset)
-
     it("should return pokemons", async () => {
         const pokemons = await pokemonDAO.getPokemons()
         expect(pokemons).to.be.an('array').that.is.not.empty
@@ -37,33 +31,33 @@ describe("getPokemons", () => {
     })
 
     it("should return pokemons of generation 1", async () => {
-        const pokemons = await pokemonDAO.getPokemons(1, undefined, undefined)
+        const pokemons = await pokemonDAO.getPokemons(1)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon => pokemon.generation === 1))
     })
 
     it("should return pokemons of generation 5", async () => {
-        const pokemons = await pokemonDAO.getPokemons(5, undefined, undefined)
+        const pokemons = await pokemonDAO.getPokemons(5)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon => pokemon.generation === 5))
     })
 
     it("should return pokemons of generation 8", async () => {
-        const pokemons = await pokemonDAO.getPokemons(8, undefined, undefined)
+        const pokemons = await pokemonDAO.getPokemons(8)
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon => pokemon.generation === 8))
     })
 
     it("should return no pokemons with invalid generation", async () => {
-        const pokemons = await pokemonDAO.getPokemons(0, undefined, undefined)
+        const pokemons = await pokemonDAO.getPokemons(0)
         expect(pokemons).to.be.an('array').that.is.empty
     })
 
     it("should return pokemons of generation 4 and type Fire", async () => {
-        const pokemons = await pokemonDAO.getPokemons(4, 'Feu', undefined)
+        const pokemons = await pokemonDAO.getPokemons(4, 'Feu')
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon =>
@@ -83,7 +77,7 @@ describe("getPokemons", () => {
     })
 
     it("should return pokemons of type Fighting", async () => {
-        const pokemons = await pokemonDAO.getPokemons(undefined, 'Combat', undefined)
+        const pokemons = await pokemonDAO.getPokemons(undefined, 'Combat')
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons).to.satisfy(pokemons =>
             pokemons.every(pokemon => pokemon.types.includes('Combat'))
@@ -111,21 +105,23 @@ describe("getPokemons", () => {
 
     it("should return a limited number of pokemons when a limit is specified", async () => {
         const limit = 5
-        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, undefined, limit)
+        const pokemons = await pokemonDAO.getPokemons(
+            undefined, undefined, undefined, limit
+        )
         expect(pokemons).to.be.an('array')
         expect(pokemons.length).to.equal(limit)
     })
 
     it(`should return ${pokemonDAO.LIMIT} pokemons when limit is errored`, async () => {
-        const pokemons = await pokemonDAO.getPokemons(undefined, undefined, undefined, NaN)
+        const pokemons = await pokemonDAO.getPokemons(
+            undefined, undefined, undefined, NaN
+        )
         expect(pokemons).to.be.an('array').that.is.not.empty
         expect(pokemons.length).to.equal(pokemonDAO.LIMIT)
     })
 })
 
 describe('findPokemonById', () => {
-    before(reset)
-
     it("should return a pokemon with the specified id", async () => {
         const pokemon = await pokemonDAO.findPokemonById(200)
         expect(pokemon).to.not.be.null
@@ -140,8 +136,6 @@ describe('findPokemonById', () => {
 })
 
 describe('findPokemonsThatStartsWith', () => {
-    before(reset)
-
     it("should return pokemons whose names start with the specified term", async () => {
         const searchTerm = 'Bulbi'
         const pokemons = await pokemonDAO.findPokemonsThatStartsWith(searchTerm)
@@ -263,8 +257,6 @@ describe('findPokemonsThatStartsWith', () => {
 })
 
 describe('findPokemonsByMove', () => {
-    before(reset)
-
     it("should return pokemons that can learn a specified move", async () => {
         // Coupe-Vent est la capacité ayant pour id 13
         const pkmApprenantCoupeVent = pokemonsData.filter(
