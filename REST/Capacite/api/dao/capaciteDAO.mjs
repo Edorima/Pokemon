@@ -39,6 +39,9 @@ const capaciteDAO = {
      * @returns {Promise<Object | null>} - Une promesse qui résout en une capacité ou null si non trouvée.
      */
     findMoveById: async (id) => {
+        if (!Number.isInteger(id))
+            return null
+
         return Capacite.findOne(
             {id: id},
             {_id: 0},

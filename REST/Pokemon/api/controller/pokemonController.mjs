@@ -18,6 +18,9 @@ const pokemonController = {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         })
+
+        if (!response.ok) return null
+
         const move = await response.json()
         return await pokemonDAO.findPokemonsByMove(move)
     }

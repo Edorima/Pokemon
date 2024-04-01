@@ -192,6 +192,20 @@ describe('Pokemon Routes', () => {
     })
 
     describe('• GET /pokemon/withMove/:id', () => {
+        it('should return Pokemons that can learn the move', async () => {
+            const response = await requestWithSupertest.get('/pokemon/withMove/1')
+            expect(response.status).to.equal(200)
+            const body = response.body
+            expect(body).to.be.an('array').that.is.not.empty
+            expect(body).to.satisfy(pokemons =>
+                pokemons.every(pokemon => pokemon.capacites.includes(1))
+            )
+        })
 
+        it('should return not found for invalid move id', async () => {
+            const response = await requestWithSupertest.get('/pokemon/withMove/-1')
+            expect(response.status).to.equal(404)
+            expect(response.body).to.deep.equal({message: 'Move Not Found'})
+        })
     })
 })

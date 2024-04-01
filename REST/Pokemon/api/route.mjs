@@ -55,7 +55,7 @@ router.route('/pokemon/withMove/:id').get(async (req, res) => {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send({message: 'Not Found'})
+        res.status(404).send({message: 'Move Not Found'})
 })
 
 export default router

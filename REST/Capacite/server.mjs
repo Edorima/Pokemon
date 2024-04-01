@@ -2,10 +2,7 @@
 
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import {dirname, join} from "path"
-import {fileURLToPath} from "url"
-import {readFileSync} from "fs"
-import Capacite from "./api/model/Capacite.mjs"
+import createTestDbAndPopulate from "./test/createTestDbAndPopulate.mjs"
 
 dotenv.config()
 
@@ -24,16 +21,7 @@ const server = app.listen(serverPort, () =>
 console.log(`ENV : ${env}`)
 
 if (env === 'TEST') {
-    const __dirname = dirname(fileURLToPath(import.meta.url))
-    const capacitesPath = join(__dirname, 'capacites.json')
-    const rawCapacites = readFileSync(capacitesPath, 'utf8')
-    const capacitesData = JSON.parse(rawCapacites).map(({ _id, ...rest }) => rest)
-    await mongoose.connection.close()
-    const {MongoMemoryServer} = await import("mongodb-memory-server")
-    const mongoServer = await MongoMemoryServer.create()
-    const uri = mongoServer.getUri()
-    await mongoose.connect(uri)
-    await Capacite.insertMany(capacitesData, null)
+    await createTestDbAndPopulate()
 } else {
     const uri = mongoURL + '/' + mongoDB
     await mongoose.connect(uri)
