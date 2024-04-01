@@ -4,6 +4,7 @@ import Pokemon from "../model/Pokemon.mjs"
 
 function normalizeString(str) {
     return str
+        .trim()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase()
@@ -50,6 +51,9 @@ const pokemonDAO = {
      * @returns {Promise<Object | null>} - Une promesse qui résout en un Pokémon trouvé ou null.
      */
     findPokemonById: async (id) => {
+        if (!Number.isInteger(id))
+            return null
+
         return Pokemon.findOne(
             {id: id},
             {_id: 0},

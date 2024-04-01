@@ -2,6 +2,8 @@
 
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import createTestDbAndPopulate from "./test/createTestDbAndPopulate.mjs"
+
 dotenv.config()
 
 const serverPort = process.env.PORT || 8081
@@ -13,21 +15,20 @@ const {default: app}  = await import ('./app.mjs')
 
 // Lancement du serveur
 const server = app.listen(serverPort, () =>
-    console.log(`App listening on port ${serverPort}`)
+    console.log(`Pokémon service listening on port ${serverPort}`)
 )
 
+console.log(`ENV : ${env}`)
+
 if (env === 'TEST') {
-    const {MongoMemoryServer}  = await import('mongodb-memory-server')
-    const mongoServer = await MongoMemoryServer.create()
-    const uri = mongoServer.getUri()
-    await mongoose.connect(uri)
+    await createTestDbAndPopulate()
 } else {
     const uri = mongoURL + '/' + mongoDB
     await mongoose.connect(uri)
     console.log(`MongoDB on ${uri}`)
 }
 
-//Pour les interrucptions utilisateur
+//Pour les interruptions utilisateur
 for (let signal of ["SIGTERM", "SIGINT"])
     process.on(signal,  () => {
         console.info(`${signal} signal received.`)
@@ -37,3 +38,5 @@ for (let signal of ["SIGTERM", "SIGINT"])
             process.exit(err ? 1 : 0)
         })
     })
+
+export default server

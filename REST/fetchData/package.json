@@ -4,8 +4,7 @@
   "description": "Un micro-service permettant de récupérer les données de l'application.",
   "main": "fetchData.mjs",
   "scripts": {
-    "start": "node fetchData.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node fetchData.mjs"
   },
   "author": "",
   "license": "ISC",

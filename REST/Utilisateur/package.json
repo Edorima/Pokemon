@@ -5,7 +5,7 @@
   "main": "server.mjs",
   "scripts": {
     "start": "nodemon server.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ENV=TEST PORT=3004 c8 --clean mocha --timeout 10000 --exit"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,13 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "mongodb-memory-server": "^9.1.8",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.4"
   }
 }

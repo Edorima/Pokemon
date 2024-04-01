@@ -9,7 +9,7 @@ router.route('/pokemon').get(async (req, res) => {
     const type1 = req.query.type1
     const type2 = req.query.type2
     if (!type1 && type2) {
-        res.status(400).send('type1 missing.')
+        res.status(400).send({message: 'type1 missing'})
         return
     }
     const generation = parseInt(req.query.gen)
@@ -19,8 +19,7 @@ router.route('/pokemon').get(async (req, res) => {
     res.status(200).send(
         await pokemonController.getPokemons(
             generation, type1, type2, limit, offset
-        )
-    )
+    ))
 })
 
 router.route('/pokemon/:id').get(async (req, res) =>  {
@@ -29,27 +28,25 @@ router.route('/pokemon/:id').get(async (req, res) =>  {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send("Not Found")
+        res.status(404).send({message: 'Not Found'})
 })
 
 router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {
     const type1 = req.query.type1
     const type2 = req.query.type2
     if (!type1 && type2) {
-        res.status(400).send('type1 missing.')
+        res.status(400).send({message: 'type1 missing'})
         return
     }
     const searchTerm = req.params.searchTerm
     const generation = parseInt(req.query.gen)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    const result = await pokemonController.findPokemonsThatStartsWith(
-        searchTerm, generation, type1, type2, limit, offset
-    )
-    if (result)
-        res.status(200).send(result)
-    else
-        res.status(404).send("Not Found")
+
+    res.status(200).send(
+        await pokemonController.findPokemonsThatStartsWith(
+            searchTerm, generation, type1, type2, limit, offset
+    ))
 })
 
 router.route('/pokemon/withMove/:id').get(async (req, res) => {
@@ -58,7 +55,7 @@ router.route('/pokemon/withMove/:id').get(async (req, res) => {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send("Not Found")
+        res.status(404).send({message: 'Not Found'})
 })
 
 export default router

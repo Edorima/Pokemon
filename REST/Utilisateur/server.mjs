@@ -2,6 +2,7 @@
 
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 const serverPort = process.env.PORT || 8084
@@ -13,8 +14,10 @@ const {default: app}  = await import ('./app.mjs')
 
 // Lancement du serveur
 const server = app.listen(serverPort, () =>
-    console.log(`App listening on port ${serverPort}`)
+    console.log(`Utilisateur service listening on port ${serverPort}`)
 )
+
+console.log(`ENV : ${env}`)
 
 if (env === 'TEST') {
     // TODO TRAVAIL EN MEMOIRE
@@ -24,7 +27,7 @@ if (env === 'TEST') {
     console.log(`MongoDB on ${uri}`)
 }
 
-//Pour les interrucptions utilisateur
+//Pour les interruptions utilisateur
 for (let signal of ["SIGTERM", "SIGINT"])
     process.on(signal,  () => {
         console.info(`${signal} signal received.`)
@@ -34,3 +37,5 @@ for (let signal of ["SIGTERM", "SIGINT"])
             process.exit(err ? 1 : 0)
         })
     })
+
+export default server
