@@ -28,7 +28,7 @@ router.route('/pokemon/:id').get(async (req, res) =>  {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send({message: 'Not Found'})
+        res.status(404).send({message: 'Pokemon Not Found'})
 })
 
 router.route('/pokemon/startsWith/:searchTerm').get(async (req, res) => {

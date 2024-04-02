@@ -18,8 +18,11 @@ const capaciteController = {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         })
-        const pkm = await response.json()
-        return await capaciteDAO.findMovesByPokemon(pkm)
+
+        if (!response.ok) return null
+
+        const pokemon = await response.json()
+        return await capaciteDAO.findMovesByPokemon(pokemon)
     }
 }
 

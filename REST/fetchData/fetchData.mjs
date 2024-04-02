@@ -9,7 +9,7 @@ import fetchAbilities from "./fetchAbilities.mjs"
 import fetchItems from "./fetchItems.mjs"
 import mongoose from "mongoose"
 import {pokemonSchema} from '../Pokemon/api/model/Pokemon.mjs'
-import {capaciteSchema} from '../Capacite/api/model/Capacite.mjs'
+import {capaciteSchema} from '../Capacite/api/dao/CapaciteModel.mjs'
 import {objetSchema} from '../Objet/api/model/Objet.mjs'
 
 const proxy = process.env.https_proxy

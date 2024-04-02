@@ -1,10 +1,11 @@
 import mongoose from "mongoose"
+import Pokemon from "../model/Pokemon.mjs"
 
 const pokemonSchema = new mongoose.Schema({
     id: {type: Number, required: true, unique: true, min: 1},
-    nom: {type: String, required: true, unique: true},
-    nomAnglais: {type: String, required: true, unique: true},
-    nomNormalise: {type: String, required: true, unique: true},
+    nom: {type: String, required: true, unique: true, minLength: 1},
+    nomAnglais: {type: String, required: true, unique: true, minLength: 1},
+    nomNormalise: {type: String, required: true, unique: true, minLength: 1},
     poids: {type: Number, min: 0.1, max: 999.9, required: true},
     sprites: {
         default: String,
@@ -23,7 +24,13 @@ const pokemonSchema = new mongoose.Schema({
         normaux: [String],
         cache: String
     },
-    types: {type: [String], minLength: 1, maxLength: 2},
+    types: {
+        type: [String],
+        minLength: 1,
+        maxLength: 2,
+        enum: Pokemon.validTypes,
+        required: true
+    },
     capacites: [Number],
     description: {type: String, required: true},
     espece: {type: String, required: true},

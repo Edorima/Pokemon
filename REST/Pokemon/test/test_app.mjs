@@ -3,6 +3,8 @@
 import {expect} from "chai"
 import supertest from 'supertest'
 import server from '../server.mjs'
+import pokemonDAO from "../api/dao/pokemonDAO.mjs"
+import pokemonsData from "./pokemonsData.mjs"
 
 const requestWithSupertest = supertest(server)
 
@@ -99,13 +101,13 @@ describe('Pokemon Routes', () => {
         it("should not found a Pokemon whose id doesn't exist", async () => {
             const response = await requestWithSupertest.get('/pokemon/-1')
             expect(response.status).to.equal(404)
-            expect(response.body).to.deep.equal({message: 'Not Found'})
+            expect(response.body).to.deep.equal({message: 'Pokemon Not Found'})
         })
 
         it('should not found a Pokemon with invalid id', async () => {
             const response = await requestWithSupertest.get('/pokemon/Invalid')
             expect(response.status).to.equal(404)
-            expect(response.body).to.deep.equal({message: 'Not Found'})
+            expect(response.body).to.deep.equal({message: 'Pokemon Not Found'})
         })
     })
 

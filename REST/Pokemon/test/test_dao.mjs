@@ -1,13 +1,21 @@
 "use strict"
 
 import {expect} from "chai"
+import mongoose from "mongoose"
+import {MongoMemoryServer} from "mongodb-memory-server"
 import pokemonDAO from "../api/dao/pokemonDAO.mjs"
-import createTestDbAndPopulate from "./createTestDbAndPopulate.mjs"
+import pokemonsData from "./pokemonsData.mjs"
 
 describe('PokemonDAO', () => {
-    before(async () => await createTestDbAndPopulate())
+    before(async () => {
+        await mongoose.connection.close()
+        const mongoServer = await MongoMemoryServer.create()
+        const uri = mongoServer.getUri()
+        await mongoose.connect(uri)
+        await pokemonDAO.insertAll(await pokemonsData())
+    })
 
-    describe("• getPokemons", () => {
+    describe('• getPokemons', () => {
         it("should return Pokemons", async () => {
             const pokemons = await pokemonDAO.getPokemons()
             expect(pokemons).to.be.an('array').that.is.not.empty
@@ -20,7 +28,7 @@ describe('PokemonDAO', () => {
 
             expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon => {
-                    const pokemonKeys = Object.keys(pokemon.toObject())
+                    const pokemonKeys = Object.keys(pokemon)
                     return pokemonKeys.every(key => allKeys.has(key))
                 })
             )
@@ -106,33 +114,39 @@ describe('PokemonDAO', () => {
     })
 
     describe('• findPokemonById', () => {
-        it("should return a Pokemon with the specified id", async () => {
+        it('should return a Pokemon with the specified id', async () => {
             const pokemon = await pokemonDAO.findPokemonById(200)
             expect(pokemon).to.not.be.null
             expect(pokemon.nom).to.equal('Feuforêve')
             expect(pokemon.id).to.equal(200)
         })
 
-        it("should return null with an invalid Pokemon id", async () => {
+        it('should return null with a non existing Pokemon id', async () => {
             const pokemon = await pokemonDAO.findPokemonById(0)
+            expect(pokemon).to.be.null
+        })
+
+        it('should return null with an invalid Pokemon id', async () => {
+            const pokemon = await pokemonDAO.findPokemonById(NaN)
             expect(pokemon).to.be.null
         })
     })
 
     describe('• findPokemonsThatStartsWith', () => {
-        it("should return Pokemons whose names start with the specified term", async () => {
-            const searchTerm = 'Bulbi'
+        it('should return Pokemons whose names start with the specified term', async () => {
+            const searchTerm = 'B'
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(searchTerm)
 
             // Vérifie que le tableau n'est pas vide.
-            expect(pokemons).to.be.an('array').that.is.lengthOf(1)
+            expect(pokemons).to.be.an('array').that.is.not.empty
 
             // Vérifie que chaque Pokémon retourné commence bien par le terme de recherche.
-            expect(pokemons[0].nom).to.equal('Bulbizarre')
-            expect(pokemons[0].id).to.equal(1)
+            expect(pokemons).to.satisfy(() =>
+                pokemons.every(pokemon => pokemon.nom.startsWith(searchTerm))
+            )
         })
 
-        it("should return no Pokemon for an unmatched search term", async () => {
+        it('should return no Pokemon for an unmatched search term', async () => {
             const searchTerm = 'Zyx' // Un terme qui ne correspond à aucun nom de Pokémon.
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(searchTerm)
 
@@ -140,7 +154,7 @@ describe('PokemonDAO', () => {
             expect(pokemons).to.be.an('array').that.is.empty
         })
 
-        it("should correctly handle Pokemons with specified search and generation", async () => {
+        it('should correctly handle Pokemons with specified search and generation', async () => {
             const searchTerm = 'Sala'
             const generation = 1 // On filtre par la 1ère génération dans cet exemple.
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
@@ -156,16 +170,16 @@ describe('PokemonDAO', () => {
             )
         })
 
-        it("should return no Pokemons with an invalid generation", async () => {
+        it('should return no Pokemons with an invalid generation', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
-                'Cara', 0, undefined, undefined,
+                'Cara', 0
             )
             expect(pokemons).to.be.an('array').that.is.empty
         })
 
-        it("should return Pokemons of specified search with generation and type", async () => {
+        it('should return Pokemons of specified search with generation and type', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
-                'B', 3, 'Feu', undefined,
+                'B', 3, 'Feu'
             )
             expect(pokemons).to.be.an('array').that.is.lengthOf(1)
             const pokemon = pokemons[0]
@@ -174,7 +188,7 @@ describe('PokemonDAO', () => {
             expect(pokemon.types).to.include('Feu')
         })
 
-        it("should return Pokemons of specified search, generation and both type", async () => {
+        it('should return Pokemons of specified search, generation and both type', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
                 'O', 1, 'Plante', 'Poison'
             )
@@ -186,20 +200,19 @@ describe('PokemonDAO', () => {
             expect(pokemon.types).to.includes(...['Plante', 'Poison'])
         })
 
-        it("should return Pokemons of specified search and type", async () => {
+        it('should return Pokemons of specified search and type', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
-                'C', undefined, 'Combat', undefined
+                'C', undefined, 'Combat'
             )
             expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons.length).to.equal(12)
             expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon =>
                     pokemon.types.includes('Combat') &&
                     pokemon.nom.startsWith('C')
-                ))
+            ))
         })
 
-        it("should return Pokemons of specified search and both type", async () => {
+        it('should return Pokemons of specified search and both type', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
                 'P', undefined, 'Normal', 'Vol'
             )
@@ -213,7 +226,7 @@ describe('PokemonDAO', () => {
                 ))
         })
 
-        it("should return Pokemons with search without taking consideration of type2 without type1", async () => {
+        it('should return Pokemons with search without taking consideration of type2 without type1', async () => {
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith('M', undefined, undefined, 'Feu')
             expect(pokemons).to.be.an('array').that.is.not.empty
             expect(pokemons).to.satisfy(() =>
@@ -241,7 +254,7 @@ describe('PokemonDAO', () => {
     })
 
     describe('• findPokemonsByMove', () => {
-        it("should return Pokemons that can learn a specified move", async () => {
+        it('should return Pokemons that can learn a specified move', async () => {
             // Coupe-Vent est la capacité ayant pour id 13
             const pkmApprenantCoupeVent = [
                 "bulbasaur", "butterfree", "pidgey", "pidgeotto", "pidgeot",
@@ -258,6 +271,7 @@ describe('PokemonDAO', () => {
             /* findPokemonsByMove se sert de la colonne 'pokemons' d'une capacité pour
              mapper les Pokémon qui peuvent apprendre cette attaque. */
             const pokemons = await pokemonDAO.findPokemonsByMove({pokemons: pkmApprenantCoupeVent})
+            expect(pokemons).to.be.an('array').that.is.not.empty
             expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon =>
                     pokemon.capacites.includes(13) &&

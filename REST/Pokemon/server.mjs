@@ -2,7 +2,8 @@
 
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import createTestDbAndPopulate from "./test/createTestDbAndPopulate.mjs"
+import pokemonDAO from "./api/dao/pokemonDAO.mjs";
+import pokemonsData from "./test/pokemonsData.mjs";
 
 dotenv.config()
 
@@ -21,7 +22,12 @@ const server = app.listen(serverPort, () =>
 console.log(`ENV : ${env}`)
 
 if (env === 'TEST') {
-    await createTestDbAndPopulate()
+    const {MongoMemoryServer}  = await import('mongodb-memory-server')
+    const mongoServer = await MongoMemoryServer.create()
+    const uri = mongoServer.getUri();
+    await mongoose.connect(uri)
+    await pokemonDAO.insertAll(await pokemonsData())
+    console.log(`Mongo on memory ${uri}`)
 } else {
     const uri = mongoURL + '/' + mongoDB
     await mongoose.connect(uri)
