@@ -1,14 +1,18 @@
 import mongoose from "mongoose"
 
 const capaciteSchema = new mongoose.Schema({
-    categorie: String,
+    categorie: {
+        type: String,
+        required: true,
+        enum: ['Spéciale', 'Physique', 'Statut']
+    },
     description: String,
-    id: {type: Number, unique: true},
-    nom: String,
-    nomAnglais: String,
-    nomNormalise: String,
+    id: {type: Number, required: true, unique: true},
+    nom: {type: String, required: true},
+    nomAnglais: {type: String, required: true, unique: true},
+    nomNormalise: {type: String, required: true},
     pokemons: [String],
-    pp: Number,
+    pp: {type: Number, min: 1},
     precision: Number,
     puissance: Number,
     type: String
