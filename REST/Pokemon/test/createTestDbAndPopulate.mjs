@@ -3,7 +3,7 @@ import {fileURLToPath} from "url"
 import {readFileSync} from "fs"
 import mongoose from "mongoose"
 import {MongoMemoryServer} from "mongodb-memory-server"
-import Pokemon from "../api/model/Pokemon.mjs"
+import PokemonModel from "../api/dao/PokemonModel.mjs"
 
 export default async function createTestDbAndPopulate() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -14,5 +14,5 @@ export default async function createTestDbAndPopulate() {
     const mongoServer = await MongoMemoryServer.create()
     const uri = mongoServer.getUri()
     await mongoose.connect(uri)
-    await Pokemon.insertMany(pokemonsData, null)
+    await PokemonModel.insertMany(pokemonsData, null)
 }

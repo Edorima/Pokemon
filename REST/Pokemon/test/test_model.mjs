@@ -3,7 +3,7 @@
 import {expect} from "chai"
 import mongoose from "mongoose"
 import {MongoMemoryServer} from "mongodb-memory-server"
-import Pokemon from "../api/model/Pokemon.mjs"
+import PokemonModel from "../api/dao/PokemonModel.mjs"
 
 describe("Pokemon model validation", () => {
     before(async () => {
@@ -13,17 +13,17 @@ describe("Pokemon model validation", () => {
         await mongoose.connect(uri)
     })
 
-    beforeEach(async () => await Pokemon.deleteMany({}))
+    beforeEach(async () => await PokemonModel.deleteMany({}))
 
     it("should enforce unique constraints on various fields", async () => {
         const basePokemon = { id: 1, nom: "Pikachu", nomAnglais: "pikachu", nomNormalise: "pikachu" }
-        await Pokemon.create([basePokemon], null)
+        await PokemonModel.create([basePokemon], null)
 
         const secondPokemon = { id: 2, nom: "Pikachu2", nomAnglais: "pikachu2", nomNormalise: "pikachu2" }
 
         const createPkmExpectDuplicateError = async (duplicateField) => {
             try {
-                await Pokemon.create([{...secondPokemon, ...duplicateField}], null)
+                await PokemonModel.create([{...secondPokemon, ...duplicateField}], null)
 
                 // Ceci indique que le test a échoué si aucune erreur n'est levée
                 expect.fail("Should have thrown an duplicate error")
@@ -57,7 +57,7 @@ describe("Pokemon model validation", () => {
             const {[field]: omitted, ...pkmDataWthField} = pokemonData
 
             try {
-                await Pokemon.create([pkmDataWthField], null)
+                await PokemonModel.create([pkmDataWthField], null)
                 // Ceci indique que le test a échoué si aucune erreur n'est levée
                 expect.fail('Should have thrown an rule error')
             } catch (error) {
@@ -82,7 +82,7 @@ describe("Pokemon model validation", () => {
         }
 
         try {
-            await Pokemon.create([pokemonData], null)
+            await PokemonModel.create([pokemonData], null)
 
             // Ceci indique que le test a échoué si aucune erreur n'est levée
             expect.fail('Should have thrown an rule error')
@@ -102,7 +102,7 @@ describe("Pokemon model validation", () => {
         }
 
         try {
-            await Pokemon.create([pokemonData], null)
+            await PokemonModel.create([pokemonData], null)
 
             // Ceci indique que le test a échoué si aucune erreur n'est levée
             expect.fail('Should have thrown an rule error')
@@ -122,7 +122,7 @@ describe("Pokemon model validation", () => {
         }
 
         try {
-            await Pokemon.create([pokemonData], null)
+            await PokemonModel.create([pokemonData], null)
 
             // Ceci indique que le test a échoué si aucune erreur n'est levée
             expect.fail('Should have thrown an rule error')
@@ -142,7 +142,7 @@ describe("Pokemon model validation", () => {
         }
 
         try {
-            await Pokemon.create([pokemonData], null)
+            await PokemonModel.create([pokemonData], null)
 
             // Ceci indique que le test a échoué si aucune erreur n'est levée
             expect.fail('Should have thrown an rule error')
@@ -181,10 +181,10 @@ describe("Pokemon model validation", () => {
         }
 
         // Tentative d'ajout du Pokémon
-        await Pokemon.create([pokemonData], null)
+        await PokemonModel.create([pokemonData], null)
 
         // Vérification que le Pokémon créé est retrouvable
-        const foundPokemon = await Pokemon.findOne(
+        const foundPokemon = await PokemonModel.findOne(
             { id: pokemonData.id },
             {_id: 0},
             null

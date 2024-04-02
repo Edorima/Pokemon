@@ -1,6 +1,6 @@
 "use strict"
 
-import Pokemon from "../model/Pokemon.mjs"
+import PokemonModel from "./PokemonModel.mjs"
 
 function normalizeString(str) {
     return str
@@ -39,7 +39,7 @@ const pokemonDAO = {
                 query.types.$all.push(type2)
         }
 
-        return Pokemon.find(query, {_id: 0}, null)
+        return PokemonModel.find(query, {_id: 0}, null)
             .limit(limit || pokemonDAO.LIMIT)
             .skip(offset || 0)
             .exec()
@@ -54,7 +54,7 @@ const pokemonDAO = {
         if (!Number.isInteger(id))
             return null
 
-        return Pokemon.findOne(
+        return PokemonModel.findOne(
             {id: id},
             {_id: 0},
             null
@@ -92,7 +92,7 @@ const pokemonDAO = {
                 query.types.$all.push(type2)
         }
 
-        return Pokemon.find(query, {_id: 0}, null)
+        return PokemonModel.find(query, {_id: 0}, null)
             .limit(limit || pokemonDAO.LIMIT)
             .skip(offset || 0)
             .sort({id: 1})
@@ -105,7 +105,7 @@ const pokemonDAO = {
      * @returns {Promise<Object[]>} - Une promesse qui résout en un tableau de Pokémon pouvant apprendre la capacité spécifiée.
      */
     findPokemonsByMove: async (move) => {
-        return Pokemon.find(
+        return PokemonModel.find(
             {nomAnglais: {$in: move.pokemons}},
             {_id: 0},
             null
