@@ -1,3 +1,96 @@
+class PokemonSprites {
+    /** @type string */
+    default
+
+    /** @type string */
+    shiny
+
+    constructor(obj) {
+        if (typeof obj.default !== 'string')
+            throw new Error("'default' must be a string")
+
+        if (typeof obj.shiny !== 'string')
+            throw new Error("'shiny' must be a string")
+
+        this.default = obj.default
+        this.shiny = obj.shiny
+    }
+}
+
+class PokemonStats {
+    /** @type number */
+    hp
+
+    /** @type number */
+    attack
+
+    /** @type number */
+    defense
+
+    /** @type number */
+    special_attack
+
+    /** @type number */
+    special_defense
+
+    /** @type number */
+    speed
+
+    constructor(obj) {
+        if (!PokemonStats.areStatsValid(obj))
+            throw new Error("Stats values must be a integer between 1 and 255")
+
+        this.hp = obj.hp
+        this.attack = obj.attack
+        this.defense = obj.defense
+        this.special_attack = obj.special_attack
+        this.special_defense = obj.special_defense
+        this.speed = obj.speed
+    }
+
+    /**
+     * Cette fonction vérifie que toute les stats
+     * sont des entiers entre 1 et 255
+     * @param stats {any}
+     * @return {boolean}
+     */
+    static areStatsValid(stats) {
+        if (!stats || typeof stats !== 'object')
+            return false
+
+        const statsKeys = ["hp", "attack", "defense", "special_attack", "special_defense", "speed"]
+
+        for (const key of statsKeys) {
+            const value = stats[key]
+            if (!Number.isInteger(value) || value < 1 || value > 255) {
+                // La valeur de la stat n'est pas dans l'intervalle autorisé
+                return false
+            }
+        }
+
+        return true // Toutes les stats sont valides
+    }
+}
+
+class PokemonTalents {
+    /** @type string[] */
+    normaux
+
+    /** @type {string | null} */
+    cache
+
+    constructor(obj) {
+        if (!Array.isArray(obj.normaux) || obj.normaux.some(t => typeof t !== 'string'))
+            throw new Error("'normaux' must be an array of strings")
+
+        if (obj.cache !== null && typeof obj.cache !== 'string')
+            throw new Error("'cache' must be a string or null")
+
+        this.normaux = obj.normaux
+        this.cache = obj.cache
+    }
+}
+
 export default class Pokemon {
     /** @type number */
     id
@@ -11,26 +104,22 @@ export default class Pokemon {
     /** @type string */
     nomNormalise
 
+    /** @type string */
+    description
+
     /** @type number */
     poids
 
-    /** @type {{default: string, shiny: string}} */
+    /** @type PokemonSprites */
     sprites
 
-    /** @type {{
-        hp: number,
-        attack: number,
-        defense: number,
-        special_attack: number,
-        special_defense: number,
-        speed: number
-     }} */
+    /** @type PokemonStats */
     stats
 
     /** @type number */
     taille
 
-    /** @type {{normaux: string[], cache: string | null}} */
+    /** @type PokemonTalents */
     talents
 
     /** @type string[] */
@@ -38,9 +127,6 @@ export default class Pokemon {
 
     /** @type number[] */
     capacites
-
-    /** @type string */
-    description
 
     /** @type string */
     espece
@@ -61,33 +147,48 @@ export default class Pokemon {
         if (!Pokemon.isNameValid(obj.nomNormalise))
             throw new Error("'nomNormalise' must be a not empty string")
 
+        if (typeof obj.description !== 'string')
+            throw new Error("'description' must be a string")
+
         if (!Pokemon.isValidWeight(obj.poids))
             throw new Error("Weight must be a number between 0.1 and 999.9")
+
+        if (typeof obj.sprites !== 'object')
+            throw new Error("'sprites' must be an object")
+
+        if (typeof obj.stats !== 'object')
+            throw new Error("'stats' must be an object")
 
         if (!Pokemon.isValidHeight(obj.taille))
             throw new Error("Height must be a number greater or equal to 0.1")
 
-        if (!Pokemon.areStatsValid(obj.stats))
-            throw new Error("Stats values must be a integer between 1 and 255")
-
-        if (!Pokemon.isGenerationValid(obj.generation))
-            throw new Error("Generation must be a integer greater or equal to 1")
+        if (typeof obj.talents !== 'object')
+            throw new Error("'talents' must be an object")
 
         if (!Pokemon.isValidArrayOfTypes(obj.types))
             throw new Error("Types must be an array of atleast one valid type and not more than 2")
+
+        if (!Array.isArray(obj.capacites) || obj.capacites.some(c => typeof c !== 'number'))
+            throw new Error("'capacites' must be an array of numbers")
+
+        if (typeof obj.espece !== 'string')
+            throw new Error("'espece' must be a string")
+
+        if (!Pokemon.isGenerationValid(obj.generation))
+            throw new Error("Generation must be a integer greater or equal to 1")
 
         this.id = obj.id
         this.nom = obj.nom
         this.nomAnglais = obj.nomAnglais
         this.nomNormalise = obj.nomNormalise
+        this.description = obj.description
         this.poids = obj.poids
-        this.sprites = obj.sprites
-        this.stats = obj.stats
+        this.sprites = new PokemonSprites(obj.sprites)
+        this.stats = new PokemonStats(obj.stats)
         this.taille = obj.taille
-        this.talents = obj.talents
+        this.talents = new PokemonTalents(obj.talents)
         this.types = obj.types
         this.capacites = obj.capacites
-        this.description = obj.description
         this.espece = obj.espece
         this.generation = obj.generation
     }
@@ -103,7 +204,7 @@ export default class Pokemon {
     /**
      * Pour qu'un nom soit valide, il doit être une
      * chaîne de caractère et qu'elle ne soit pas vide.
-     * @param value
+     * @param value {any}
      * @return {boolean}
      */
     static isNameValid(value) {
@@ -130,29 +231,6 @@ export default class Pokemon {
     static isValidHeight(value) {
         return typeof value === 'number' &&
             value >= 0.1
-    }
-
-    /**
-     * Cette fonction vérifie que toute les stats
-     * sont des entiers entre 1 et 255
-     * @param stats {any}
-     * @return {boolean}
-     */
-    static areStatsValid(stats) {
-        if (!stats || typeof stats !== 'object')
-            return false
-
-        const statsKeys = ["hp", "attack", "defense", "special_attack", "special_defense", "speed"]
-
-        for (const key of statsKeys) {
-            const value = stats[key]
-            if (!Number.isInteger(value) || value < 1 || value > 255) {
-                // La valeur de la stat n'est pas dans l'intervalle autorisé
-                return false
-            }
-        }
-
-        return true // Toutes les stats sont valides
     }
 
     /**
@@ -185,6 +263,6 @@ export default class Pokemon {
         }
 
         // Vérifie que tous les éléments du tableau sont des types valides
-        return typesArray.every(type => Pokemon.validTypes.includes(type))
+        return typesArray.every(type => this.validTypes.includes(type))
     }
 }

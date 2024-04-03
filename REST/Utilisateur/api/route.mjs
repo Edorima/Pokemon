@@ -67,7 +67,7 @@ router.route('/login').post(async (req, res) => {
 
 router.route('/profil')
     .get(validateUserToken, async (req, res) => {
-        const userData = req.user.toObject()
+        const userData = req.user
         delete userData.motDePasse
         res.json(userData)
     })

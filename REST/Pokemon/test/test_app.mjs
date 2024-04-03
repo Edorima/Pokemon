@@ -20,7 +20,7 @@ describe('Pokemon Routes', () => {
             expect(response.status).to.equal(200)
             const pokemons = response.body
             expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.types.includes('Normal'))
             )
         })
@@ -30,7 +30,7 @@ describe('Pokemon Routes', () => {
             expect(response.status).to.equal(200)
             const pokemons = response.body
             expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.types.includes(...['Normal', 'Combat']))
             )
         })
@@ -59,7 +59,7 @@ describe('Pokemon Routes', () => {
                 expect(response.status).to.equal(200)
                 const pokemons = response.body
                 expect(pokemons).to.be.an('array').that.is.not.empty
-                expect(pokemons).satisfy(() =>
+                expect(pokemons).to.satisfy(() =>
                     pokemons.every(pokemon => pokemon.generation === gen)
                 )
             })
@@ -77,7 +77,7 @@ describe('Pokemon Routes', () => {
             const pokemons = response.body
             expect(pokemons).to.be.an('array').that.is.not.empty
             let expectedId = 6
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.id === expectedId++)
             )
         })
@@ -113,7 +113,7 @@ describe('Pokemon Routes', () => {
             expect(response.status).to.equal(200)
             const pokemons = response.body
             expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.nom.startsWith('Car'))
             )
         })
@@ -123,7 +123,7 @@ describe('Pokemon Routes', () => {
             expect(response.status).to.equal(200)
             const pokemons = response.body
             expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon =>
                     pokemon.nom.startsWith('D') &&
                     pokemon.types.includes('Fée')
@@ -170,7 +170,7 @@ describe('Pokemon Routes', () => {
                 expect(response.status).to.equal(200)
                 const pokemons = response.body
                 expect(pokemons).to.be.an('array').that.is.not.empty
-                expect(pokemons).satisfy(() =>
+                expect(pokemons).to.satisfy(() =>
                     pokemons.every(pokemon =>
                         pokemon.nom.startsWith('A') &&
                         pokemon.generation === gen

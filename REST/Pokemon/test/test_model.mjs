@@ -1,7 +1,7 @@
 "use strict"
 
 import {expect} from "chai"
-import Pokemon from "../api/model/Pokemon.mjs";
+import Pokemon from "../api/model/Pokemon.mjs"
 
 describe("Pokemon Model", () => {
     const validPokemon = {

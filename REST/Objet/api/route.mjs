@@ -17,13 +17,9 @@ router.route('/objet/startsWith/:searchTerm').get(async (req, res) => {
     const categorie = parseInt(req.query.categorie)
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    const result = await objetController.findItemsThatStartsWith(
+    res.status(200).send(await objetController.findItemsThatStartsWith(
         searchTerm, categorie, limit, offset
-    )
-    if (result)
-        res.status(200).send(result)
-    else
-        res.status(404).send("Not Found")
+    ))
 })
 
 export default router

@@ -26,7 +26,7 @@ describe('PokemonDAO', () => {
                 'sprites', 'stats', 'taille', 'talents', 'types'
             ])
 
-            expect(pokemons).satisfy(() =>
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => {
                     const pokemonKeys = Object.keys(pokemon)
                     return pokemonKeys.every(key => allKeys.has(key))
@@ -154,7 +154,7 @@ describe('PokemonDAO', () => {
             expect(pokemons).to.be.an('array').that.is.empty
         })
 
-        it('should correctly handle Pokemons with specified search and generation', async () => {
+        it('should return Pokemons with specified search and generation', async () => {
             const searchTerm = 'Sala'
             const generation = 1 // On filtre par la 1ère génération dans cet exemple.
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
@@ -245,11 +245,14 @@ describe('PokemonDAO', () => {
         })
 
         it(`should return ${pokemonDAO.LIMIT} Pokemons when limit is errored`, async () => {
+            const searchTerm = 'A'
             const pokemons = await pokemonDAO.findPokemonsThatStartsWith(
-                'A', undefined, undefined, undefined, NaN
+                searchTerm, undefined, undefined, undefined, NaN
             )
-            expect(pokemons).to.be.an('array').that.is.not.empty
-            expect(pokemons.length).to.equal(pokemonDAO.LIMIT)
+            expect(pokemons).to.be.an('array').that.is.lengthOf(pokemonDAO.LIMIT)
+            expect(pokemons).to.satisfy(() =>
+                pokemons.every(pokemon => pokemon.nom.startsWith(searchTerm))
+            )
         })
     })
 

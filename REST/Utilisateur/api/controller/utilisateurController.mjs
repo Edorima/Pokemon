@@ -1,6 +1,6 @@
 "use strict"
 
-import utilisateurDAO from "../dao/utilisateurDAO.mjs";
+import utilisateurDAO from "../dao/utilisateurDAO.mjs"
 
 const utilisateurController = {
     getUser: async (pseudo) =>

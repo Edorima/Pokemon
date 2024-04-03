@@ -6,6 +6,7 @@ import server from '../server.mjs'
 
 const requestWithSupertest = supertest(server)
 
+//Utilise l'environnement de TEST du serveur
 describe('Capacite Routes', () => {
     describe('• GET /capacite', () => {
         it('should return Moves', async () => {
