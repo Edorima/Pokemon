@@ -19,13 +19,9 @@ router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
     const categorie = req.query.categorie
     const limit = parseInt(req.query.limit)
     const offset = parseInt(req.query.offset)
-    const result = await capaciteController.findMovesThatStartsWith(
+    res.status(200).send(await capaciteController.findMovesThatStartsWith(
         searchTerm, type, categorie, limit, offset
-    )
-    if (result)
-        res.status(200).send(result)
-    else
-        res.status(404).send({message: 'Move Not Found'})
+    ))
 })
 
 router.route('/capacite/:id').get(async (req, res) =>  {

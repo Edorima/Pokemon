@@ -152,7 +152,7 @@ describe('Capacite Routes', () => {
                 moves.every(move => move.pokemons.includes('incineroar'))
             )
         })
-        it('should return a error because the id is invalid' , async() =>{
+        it('should return a error for invalid pokemon id' , async() =>{
             const response = await requestWithSupertest.get('/capacite/ofpokemon/-1')
             expect(response.status).to.equal(404)
             expect(response.body).to.deep.equal({message:'Pokemon Not Found'})
