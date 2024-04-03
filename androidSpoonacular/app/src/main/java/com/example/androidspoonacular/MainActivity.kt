@@ -9,42 +9,34 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import android.widget.Toast
-import com.google.android.material.chip.Chip
 
-object ApiSpoonacularHolder {
-    var apiSpoonacular: ApiSpoonacular? = null
-}
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Récupération des éléments de la page
         val typeSpinner = findViewById<Spinner>(R.id.typeSpinner)
         val dietSpinner = findViewById<Spinner>(R.id.dietSpinner)
         val bouttonRecherche = findViewById<Button>(R.id.buttonRecherche)
+        //Récup des catégories
         val categoriesTitles = CategoriesTitles()
-        val apiSpoonacular = ApiSpoonacular(this)
-        ApiSpoonacularHolder.apiSpoonacular = apiSpoonacular
 
+        //Adaptateur
         val adapterType = ArrayAdapter(this, android.R.layout.simple_spinner_item, categoriesTitles.getType())
         adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val adapterDiet = ArrayAdapter(this, android.R.layout.simple_spinner_item, categoriesTitles.getDiet())
         adapterDiet.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         typeSpinner.adapter = adapterType
         dietSpinner.adapter = adapterDiet
-
-
-
 
 
         typeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Récupérer l'élément sélectionné
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                apiSpoonacular.setTypeSelectionner(selectedItem)
+                ApiSpoonacular.setTypeSelectionner(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -56,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Récupérer l'élément sélectionné
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                apiSpoonacular.setDietSelectioner(selectedItem)
+                ApiSpoonacular.setDietSelectioner(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -65,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bouttonRecherche.setOnClickListener {
-            apiSpoonacular.requestSpoonRecipes {
+            ApiSpoonacular.requestSpoonRecipes({
                     rootResponse ->
                 // Traiter la réponse de l'API ici
                 if (rootResponse != null) {
@@ -76,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     // Une erreur s'est produite lors de la requête
                     Log.e("API Error", "Une erreur s'est produite lors de la requête")
                 }
-            }
+            }, this)
 
             startActivity(Intent(this,ResultActivity::class.java))
         }

@@ -1,79 +1,59 @@
 package com.example.androidspoonacular
 
+import android.content.Context
 import android.util.Log
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import android.content.Context
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
+class ApiSpoonacular {
+    companion object {
+        private const val baseUrl = "https://api.spoonacular.com/"
+        private const val key = "2980f9e49c1b48e39cc29ca9fce9180b"
+        private var typeSelectionner = ""
+        private var dietSelectioner = ""
 
-@Serializable
-data class RootReponse(
-    val results : Array<Result>,
-    val offset : Int,
-    val number : Int,
-    val totalResults : Int
-)
+        fun requestSpoonRecipes(callback: (RootReponse?) -> Unit, context: Context) {
+            val queue = Volley.newRequestQueue(context)
 
-@Serializable
-data class Result(
-    val id: Int,
-    val title : String,
-    val image : String,
-    val imageType : String
-)
+            val typeURL : String = if (typeSelectionner == "All") {
+                ""
+            } else {
+                "cuisine=$typeSelectionner"
+            }
 
-class ApiSpoonacular(private val context: Context) {
+            val dietURL : String = if (dietSelectioner == "All"){
+                ""
+            } else {
+                "&diet=$dietSelectioner"
+            }
 
-    private val baseUrl = "https://api.spoonacular.com/"
-    private val key = "2980f9e49c1b48e39cc29ca9fce9180b"
-    private var typeSelectionner = ""
-    private var dietSelectioner = ""
+            val url = "$baseUrl/recipes/complexSearch?$typeURL$dietURL&apiKey=$key"
+            println(url)
 
-    fun requestSpoonRecipes(callback: (RootReponse?) -> Unit) {
-        val typeURL : String
-        var dietURL : String
-        val queue = Volley.newRequestQueue(context)
-
-        if (typeSelectionner == "All") {
-            typeURL = ""
-        } else {
-            typeURL = "cuisine=$typeSelectionner"
+            val stringRequest = StringRequest(
+                Request.Method.GET, url,
+                { response ->
+                    // Gérer la réponse de la requête ici
+                    val rootResponse = Json.decodeFromString<RootReponse>(response)
+                    callback(rootResponse) // Appeler le callback avec la réponse
+                },
+                { error ->
+                    // Gérer les erreurs de la requête ici
+                    Log.e("API Error", error.toString())
+                    callback(null) // Appeler le callback avec null en cas d'erreur
+                })
+            queue.add(stringRequest)
         }
 
-        if (dietSelectioner == "All"){
-            dietURL = ""
-        } else {
-            dietURL = "&diet=$dietSelectioner"
+        fun setTypeSelectionner(select: String) {
+            typeSelectionner = select
         }
 
-        val url = "$baseUrl/recipes/complexSearch?$typeURL$dietURL&apiKey=$key"
-        println(url)
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            { response ->
-                // Gérer la réponse de la requête ici
-                val rootResponse = Json.decodeFromString<RootReponse>(response)
-                callback(rootResponse) // Appeler le callback avec la réponse
-            },
-            { error ->
-                // Gérer les erreurs de la requête ici
-                Log.e("API Error", error.toString())
-                callback(null) // Appeler le callback avec null en cas d'erreur
-            })
-        queue.add(stringRequest)
-    }
-
-    fun setTypeSelectionner(select: String) {
-        typeSelectionner = select
-    }
-
-    fun setDietSelectioner(select: String) {
-        dietSelectioner = select
+        fun setDietSelectioner(select: String) {
+            dietSelectioner = select
+        }
     }
 }
