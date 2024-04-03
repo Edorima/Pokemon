@@ -28,6 +28,6 @@ capaciteSchema.index({nomNormalise: 1})
 capaciteSchema.index({type: 1})
 capaciteSchema.index({categorie: 1})
 
-const CapaciteModel = mongoose.model('CapaciteModel', capaciteSchema)
+const CapaciteModel = mongoose.model('Capacite', capaciteSchema)
 
 export default CapaciteModel

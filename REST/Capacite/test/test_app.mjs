@@ -143,6 +143,19 @@ describe('Capacite Routes', () => {
     })
 
     describe('• GET /capacite/ofPokemon/:id', () => {
-
+        it('should return all moves from a pokemon', async() =>{
+            const response = await requestWithSupertest.get('/capacite/ofPokemon/727')
+            expect(response.status).to.equal(200)
+            const moves = response.body
+            expect(moves).to.be.an('array').that.is.not.empty
+            expect(moves).to.satisfy(() =>
+                moves.every(move => move.pokemons.includes('incineroar'))
+            )
+        })
+        it('should return a error because the id is invalid' , async() =>{
+            const response = await requestWithSupertest.get('/capacite/ofpokemon/-1')
+            expect(response.status).to.equal(404)
+            expect(response.body).to.deep.equal({message:'Pokemon Not Found'})
+        })
     })
 })
