@@ -98,24 +98,47 @@ describe('Capacite Routes', () => {
             )
         })
 
-        it('should return Moves with matching searchTerm and with type Grass', async () => {
+        it('should return Moves of type Grass with matching searchTerm', async () => {
             const response = await requestWithSupertest.get('/capacite/startsWith/B?type=Plante')
             expect(response.status).to.equal(200)
             const moves = response.body
             expect(moves).to.be.an('array').that.is.not.empty
-            expect(moves).to.satisfy(() => {
-                moves.every(move => move.nom.startsWith('B') && move.type === 'Plante')
-            })
+            expect(moves).to.satisfy(() =>
+                moves.every(move => move.nom.startsWith('B') && move.type === 'Plante'))
         })
 
-        it('should return Moves with matching searchTerm and of category Physical', async () => {
+        it('should return Moves of category Physical with matching searchTerm', async () => {
             const response = await requestWithSupertest.get('/capacite/startsWith/Poing?categorie=Physique')
             expect(response.status).to.equal(200)
             const moves = response.body
             expect(moves).to.be.an('array').that.is.not.empty
-            expect(moves).to.satisfy(() => {
+            expect(moves).to.satisfy(() =>
                 moves.every(move => move.nom.startsWith('Poing') && move.categorie === 'Physique')
-            })
+            )
+        })
+
+        it('should return Moves of type Ground and category Physical with matching searchTerm', async () => {
+            const response = await requestWithSupertest.get('/capacite/startsWith/T?type=Sol&categorie=Physique')
+            expect(response.status).to.equal(200)
+            const moves = response.body
+            expect(moves).to.be.an('array').that.is.not.empty
+            expect(moves).to.satisfy(() =>
+                moves.every(move =>
+                    move.nom.startsWith('T') &&
+                    move.type === 'Sol' &&
+                    move.categorie === 'Physique'
+                )
+            )
+        })
+
+        it('should return only certain amount of Moves with limit set', async () => {
+            const response = await requestWithSupertest.get('/capacite/startsWith/B?limit=5')
+            expect(response.status).to.equal(200)
+            const moves = response.body
+            expect(moves).to.be.an('array').that.is.lengthOf(5)
+            expect(moves).to.satisfy(() =>
+                moves.every(move => move.nom.startsWith('B'))
+            )
         })
     })
 

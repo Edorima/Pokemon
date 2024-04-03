@@ -25,7 +25,7 @@ router.route('/capacite/startsWith/:searchTerm').get(async (req, res) => {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send("Not Found")
+        res.status(404).send({message: 'Move Not Found'})
 })
 
 router.route('/capacite/:id').get(async (req, res) =>  {
@@ -43,7 +43,7 @@ router.route('/capacite/ofPokemon/:id').get(async (req, res) => {
     if (result)
         res.status(200).send(result)
     else
-        res.status(404).send("Not Found")
+        res.status(404).send({message: 'Pokemon Not Found'})
 })
 
 export default router
