@@ -8,7 +8,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.SeekBar
 import android.widget.Spinner
+import android.widget.TextView
+import com.example.androidspoonacular.ApiSpoonacular.Companion.setNumberSelectionner
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         val typeSpinner = findViewById<Spinner>(R.id.typeSpinner)
         val dietSpinner = findViewById<Spinner>(R.id.dietSpinner)
         val bouttonRecherche = findViewById<Button>(R.id.buttonRecherche)
+        val seekBar = findViewById<SeekBar>(R.id.seekBar)
+        val textViewSelectedValue = findViewById<TextView>(R.id.numberSeekBar)
         //Récup des catégories
         val categoriesTitles = CategoriesTitles()
 
@@ -73,5 +78,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,ResultActivity::class.java))
         }
 
+
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Mise à jour de la valeur lorsque le Slider est déplacé
+                val selectedValue = progress.toString()
+                setNumberSelectionner(selectedValue)       //Modifie
+                textViewSelectedValue.text = selectedValue //Text en dessous de la seek bar
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
     }
 }

@@ -11,10 +11,12 @@ import kotlinx.serialization.json.Json
 class ApiSpoonacular {
     companion object {
         private const val baseUrl = "https://api.spoonacular.com/"
-        private const val key = "2980f9e49c1b48e39cc29ca9fce9180b"
+        private const val key = "bcefedbe027d455cbefea35dda1a9fdc"
+        //bcefedbe027d455cbefea35dda1a9fdc
+        //2980f9e49c1b48e39cc29ca9fce9180b
         private var typeSelectionner = ""
         private var dietSelectioner = ""
-
+        private var numberSelectionner = "1"
         fun requestSpoonRecipes(callback: (RootReponse?) -> Unit, context: Context) {
             val queue = Volley.newRequestQueue(context)
 
@@ -30,7 +32,9 @@ class ApiSpoonacular {
                 "&diet=$dietSelectioner"
             }
 
-            val url = "$baseUrl/recipes/complexSearch?$typeURL$dietURL&apiKey=$key"
+            val numberURL : String = "&number=$numberSelectionner"
+
+            val url = "$baseUrl/recipes/complexSearch?$typeURL$dietURL$numberURL&apiKey=$key"
             println(url)
 
             val stringRequest = StringRequest(
@@ -54,6 +58,10 @@ class ApiSpoonacular {
 
         fun setDietSelectioner(select: String) {
             dietSelectioner = select
+        }
+
+        fun setNumberSelectionner(select : String){
+            numberSelectionner = select
         }
     }
 }
