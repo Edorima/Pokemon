@@ -1,6 +1,5 @@
 package com.example.androidspoonacular
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,14 +16,15 @@ class ResultActivity : AppCompatActivity() {
 
         val listViewRecipes = findViewById<ListView>(R.id.maView)
 
-        val apiSpoonacular = ApiSpoonacularHolder.apiSpoonacular
-
-        // Appeler la méthode pour récupérer les recettes
-        apiSpoonacular?.requestSpoonRecipes { rootResponse ->
-            // Vérifier si la réponse n'est pas nulle et s'il y a des résultats
+        var tab : Array<Result> = arrayOf()
+        // Récupération des données
+        ApiSpoonacular.requestSpoonRecipes ({ rootResponse ->
+            // Vérifier que la réponse n'est pas null
             if (rootResponse != null && rootResponse.results.isNotEmpty()) {
-                // Créer un adaptateur pour la ListView
-                Log.d("oq,fdqzrfzqd", "$apiSpoonacular.")
+
+                Log.d("Resultat reçu", "ResultActivity")
+                tab = rootResponse.results
+
                 val adapter = ArrayAdapter(
                     this,
                     android.R.layout.simple_list_item_1,
@@ -33,16 +33,25 @@ class ResultActivity : AppCompatActivity() {
                 // Définir l'adaptateur sur la ListView
                 listViewRecipes.adapter = adapter
             } else {
-                // Gérer le cas où aucune recette n'a été trouvée
-                // Par exemple, afficher un message à l'utilisateur
+                // cas où aucune recette n'a été trouvée
                 Toast.makeText(this, "Aucune recette trouvée", Toast.LENGTH_SHORT).show()
             }
-        }
+        }, this)
 
         val buttonReturn = findViewById<Button>(R.id.retour_list)
+        listViewRecipes.setOnItemClickListener { _, _, position, _ ->
 
+            // Récupérer l'élément cliqué
+
+            val clickedItem = tab[position].title
+
+
+            Toast.makeText(this, "Vous avez cliqué sur $clickedItem", Toast.LENGTH_SHORT).show()
+
+
+        }
         buttonReturn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
