@@ -3,8 +3,6 @@
 import {expect} from "chai"
 import supertest from 'supertest'
 import server from '../server.mjs'
-import pokemonDAO from "../api/dao/pokemonDAO.mjs"
-import pokemonsData from "./pokemonsData.mjs"
 
 const requestWithSupertest = supertest(server)
 
@@ -20,9 +18,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons with type Normal', async () => {
             const response = await requestWithSupertest.get('/pokemon?type1=Normal')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon => pokemon.types.includes('Normal'))
             )
         })
@@ -30,9 +28,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons with both types Normal and Fighting', async () => {
             const response = await requestWithSupertest.get('/pokemon?type1=Normal&type2=Combat')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon => pokemon.types.includes(...['Normal', 'Combat']))
             )
         })
@@ -59,9 +57,9 @@ describe('Pokemon Routes', () => {
             it(`should return Pokemons of generation ${gen}`, async () => {
                 const response = await requestWithSupertest.get(`/pokemon?gen=${gen}`)
                 expect(response.status).to.equal(200)
-                const body = response.body
-                expect(body).to.be.an('array').that.is.not.empty
-                expect(body).satisfy(pokemons =>
+                const pokemons = response.body
+                expect(pokemons).to.be.an('array').that.is.not.empty
+                expect(pokemons).satisfy(() =>
                     pokemons.every(pokemon => pokemon.generation === gen)
                 )
             })
@@ -76,11 +74,10 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons skipped by a specified offset', async () => {
             const response = await requestWithSupertest.get('/pokemon?offset=5')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
             let expectedId = 6
-            expect(body).satisfy(pokemons =>
+            expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon => pokemon.id === expectedId++)
             )
         })
@@ -93,8 +90,7 @@ describe('Pokemon Routes', () => {
             const pokemon = response.body
             expect(pokemon).to.be.an('object')
             expect(pokemon).to.satisfy(() =>
-                pokemon.id === 1 &&
-                pokemon.nom === 'Bulbizarre'
+                pokemon.nom === 'Bulbizarre' && pokemon.id === 1
             )
         })
 
@@ -115,9 +111,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons matching searchTerm', async () => {
             const response = await requestWithSupertest.get('/pokemon/startsWith/Car')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon => pokemon.nom.startsWith('Car'))
             )
         })
@@ -125,9 +121,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons with matching searchTerm and with type Fairy', async () => {
             const response = await requestWithSupertest.get('/pokemon/startsWith/D?type1=Fée')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).satisfy(() =>
                 pokemons.every(pokemon =>
                     pokemon.nom.startsWith('D') &&
                     pokemon.types.includes('Fée')
@@ -137,9 +133,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons with matching searchTerm and both types Steel and Dragon', async () => {
             const response = await requestWithSupertest.get('/pokemon/startsWith/D?type1=Dragon&type2=Acier')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).to.satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon =>
                     pokemon.nom.startsWith('D') &&
                     pokemon.types.includes(...['Dragon', 'Acier'])
@@ -155,9 +151,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons with invalid generation', async () => {
             const response = await requestWithSupertest.get('/pokemon/startsWith/P?gen=Invalid')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).to.satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.nom.startsWith('P'))
             )
         })
@@ -172,9 +168,9 @@ describe('Pokemon Routes', () => {
             it(`should return Pokemons of generation ${gen}`, async () => {
                 const response = await requestWithSupertest.get(`/pokemon/startsWith/A?gen=${gen}`)
                 expect(response.status).to.equal(200)
-                const body = response.body
-                expect(body).to.be.an('array').that.is.not.empty
-                expect(body).satisfy(pokemons =>
+                const pokemons = response.body
+                expect(pokemons).to.be.an('array').that.is.not.empty
+                expect(pokemons).satisfy(() =>
                     pokemons.every(pokemon =>
                         pokemon.nom.startsWith('A') &&
                         pokemon.generation === gen
@@ -185,9 +181,9 @@ describe('Pokemon Routes', () => {
         it('should return only certain amount of Pokemon with limit set', async () => {
             const response = await requestWithSupertest.get('/pokemon/startsWith/B?limit=5')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.lengthOf(5)
-            expect(body).to.satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.lengthOf(5)
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.nom.startsWith('B'))
             )
         })
@@ -197,9 +193,9 @@ describe('Pokemon Routes', () => {
         it('should return Pokemons that can learn the move', async () => {
             const response = await requestWithSupertest.get('/pokemon/withMove/1')
             expect(response.status).to.equal(200)
-            const body = response.body
-            expect(body).to.be.an('array').that.is.not.empty
-            expect(body).to.satisfy(pokemons =>
+            const pokemons = response.body
+            expect(pokemons).to.be.an('array').that.is.not.empty
+            expect(pokemons).to.satisfy(() =>
                 pokemons.every(pokemon => pokemon.capacites.includes(1))
             )
         })
