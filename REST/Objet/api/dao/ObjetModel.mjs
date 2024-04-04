@@ -18,4 +18,5 @@ objetSchema.index({'categorie.id': 1})
 
 const ObjetModel = mongoose.model('Objet', objetSchema)
 
+export {objetSchema}
 export default ObjetModel

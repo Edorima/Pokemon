@@ -45,4 +45,5 @@ pokemonSchema.index({types: 1})
 
 const PokemonModel = mongoose.model('Pokemon', pokemonSchema)
 
+export {pokemonSchema}
 export default PokemonModel

@@ -30,4 +30,5 @@ capaciteSchema.index({categorie: 1})
 
 const CapaciteModel = mongoose.model('Capacite', capaciteSchema)
 
+export {capaciteSchema}
 export default CapaciteModel

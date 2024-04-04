@@ -8,9 +8,9 @@ import fetchMoves from "./fetchMoves.mjs"
 import fetchAbilities from "./fetchAbilities.mjs"
 import fetchItems from "./fetchItems.mjs"
 import mongoose from "mongoose"
-import {pokemonSchema} from '../Pokemon/api/model/Pokemon.mjs'
+import {pokemonSchema} from '../Pokemon/api/dao/PokemonModel.mjs'
 import {capaciteSchema} from '../Capacite/api/dao/CapaciteModel.mjs'
-import {objetSchema} from '../Objet/api/model/Objet.mjs'
+import {objetSchema} from '../Objet/api/dao/ObjetModel.mjs'
 
 const proxy = process.env.https_proxy
 const agent = proxy !== undefined ?
