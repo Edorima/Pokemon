@@ -27,10 +27,12 @@ const ENDPOINTS = {
 
     POKEMONS_WITH_MOVE: (id) => `/pokemon/withMove/${id}`,
 
-    ITEMS: (categorie, offset) => {
-        const ep = `/objet?offset=${offset}`
+    ITEMS: (categorie, offset, limit) => {
+        let ep = `/objet?offset=${offset}`
+        if (limit)
+            ep += `&limit=${limit}`
         if (categorie)
-            return ep + `&categorie=${categorie}`
+            ep += `&categorie=${categorie}`
         return ep
     },
 
