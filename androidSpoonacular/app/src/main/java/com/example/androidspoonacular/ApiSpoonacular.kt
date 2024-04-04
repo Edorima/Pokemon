@@ -14,6 +14,7 @@ class ApiSpoonacular {
         private const val key = "bcefedbe027d455cbefea35dda1a9fdc"
         //bcefedbe027d455cbefea35dda1a9fdc
         //2980f9e49c1b48e39cc29ca9fce9180b
+        //fe45b7ce7dc3486597142119a88f92d2
         private var typeSelectionner = ""
         private var dietSelectioner = ""
         private var numberSelectionner = "1"
