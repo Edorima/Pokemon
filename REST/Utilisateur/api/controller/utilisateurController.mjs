@@ -19,27 +19,12 @@ const utilisateurController = {
         }
     },
 
-    addTeam: async (pseudo, equipe) => {
-        try {
-            return await utilisateurDAO.addTeam(
-                pseudo, new Equipe(equipe)
-            )
-        } catch {
-            throw 'Équipe invalide'
-        }
-    },
+    addTeam: async (pseudo, equipe) =>
+        await utilisateurDAO.addTeam(pseudo, new Equipe(equipe)),
 
-    editTeam: async (pseudo, nomActuel, pokemons, nouveauNom) => {
-        try {
-            return await utilisateurDAO.editTeam(
-                pseudo, nomActuel,
-                new PokemonsEquipe(pokemons),
-                nouveauNom
-            )
-        } catch {
-            throw 'Pokemons invalide'
-        }
-    },
+    editTeam: async (pseudo, nomActuel, pokemons, nouveauNom) =>
+        await utilisateurDAO.editTeam(pseudo, nomActuel,
+            new PokemonsEquipe(pokemons), nouveauNom),
 
     deleteTeam: async (pseudo, nomEquipe) =>
         await utilisateurDAO.deleteTeam(pseudo, nomEquipe)

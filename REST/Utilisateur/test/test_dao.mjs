@@ -108,15 +108,21 @@ describe('UtilisateurDAO', () => {
             equipes: [validTeam]
         })
         await utilisateurDAO.addUser(newUser)
-        const added = await utilisateurDAO.addTeam(newUser.pseudo, validTeam)
-        expect(added).to.be.false
+        try {
+            await utilisateurDAO.addTeam(newUser.pseudo, validTeam)
+            expect.fail("Should have thrown an error")
+        } catch (e) {
+            expect(e).to.equal("L'équipe existe déjà")
+        }
     })
 
     it('addTeam added', async () => {
         const newUser = new Utilisateur({pseudo: 'OutGame', motDePasse: "test123"})
         await utilisateurDAO.addUser(newUser)
-        const added = await utilisateurDAO.addTeam(newUser.pseudo, validTeam)
-        expect(added).to.be.true
+        await utilisateurDAO.addTeam(newUser.pseudo, validTeam)
+        const team = await utilisateurDAO.getTeam(newUser.pseudo, validTeam.nom)
+        expect(team).to.not.be.null
+        expect(team).to.deep.equal(validTeam)
     })
 
     it("editTeam team don't exist", async () => {
@@ -130,7 +136,7 @@ describe('UtilisateurDAO', () => {
             await utilisateurDAO.editTeam(newUser.pseudo, 'equipe', validTeam.pokemons)
             expect.fail('Should have thrown an error')
         } catch (e) {
-            expect(e).to.equal("L'équipe n'existe pas.")
+            expect(e).to.equal("L'équipe n'existe pas")
         }
     })
 
@@ -195,8 +201,8 @@ describe('UtilisateurDAO', () => {
             equipes: [validTeam]
         })
         await utilisateurDAO.addUser(newUser)
-
-        const deleted = await utilisateurDAO.deleteTeam(newUser.pseudo, validTeam.nom)
-        expect(deleted).to.be.true
+        await utilisateurDAO.deleteTeam(newUser.pseudo, validTeam.nom)
+        const team = await utilisateurDAO.getTeam(newUser.pseudo, validTeam.nom)
+        expect(team).to.be.null
     })
 })

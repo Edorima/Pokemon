@@ -41,6 +41,17 @@ describe('Utilisateur Routes', () => {
             expect(response.body.token).to.be.a('string')
         })
 
+        it('should be not able to login with incorrect password', async () => {
+            const response = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'incorrect'})
+
+            expect(response.status).to.equal(401)
+            expect(response.body).to.deep.equal({
+                success: false, message: "Mot de passe incorrect"
+            })
+        })
+
         it('should not be able to login to unknown account', async () => {
             const response = await requestWithSupertest.post('/login')
                 .set('Content-type', 'application/json')
@@ -95,88 +106,186 @@ describe('Utilisateur Routes', () => {
         })
     })
 
-    const validTeam = {
-        nom: "equipe",
-        pokemons: {
-            pokemon1: {
-                id: 567,
-                nom: "Aéroptéryx",
-                nomNormalise: "aeropteryx",
-                sprites: {default: "default", shiny: "shiny"},
-                talents: {normaux: ["Défaitiste"], cache: null},
-                objet: null,
-                types: ["Roche", "Vol"],
-                chromatique: false,
-                capacites: {
-                    capacite1: {
-                        nom: "Météores", nomNormalise: "meteores",
-                        type: "Normal", pp: 20, id: 129
-                    },
-                    capacite2: null,
-                    capacite3: null,
-                    capacite4: null
-                }
-            },
-            pokemon2: null, pokemon3: null,
-            pokemon4: null, pokemon5: null,
-            pokemon6: null
+    describe('Authorization Routes', () => {
+        const validTeam = {
+            nom: "equipe",
+            pokemons: {
+                pokemon1: {
+                    id: 567,
+                    nom: "Aéroptéryx",
+                    nomNormalise: "aeropteryx",
+                    sprites: {default: "default", shiny: "shiny"},
+                    talents: {normaux: ["Défaitiste"], cache: null},
+                    objet: null,
+                    types: ["Roche", "Vol"],
+                    chromatique: false,
+                    capacites: {
+                        capacite1: {
+                            nom: "Météores", nomNormalise: "meteores",
+                            type: "Normal", pp: 20, id: 129
+                        },
+                        capacite2: null,
+                        capacite3: null,
+                        capacite4: null
+                    }
+                },
+                pokemon2: null, pokemon3: null,
+                pokemon4: null, pokemon5: null,
+                pokemon6: null
+            }
         }
-    }
 
-    describe('• POST /profil', () => {
-        it('should create a team', async () => {
+        let token
+
+        beforeEach(async () => {
             const loginResponse = await requestWithSupertest.post('/login')
                 .set('Content-type', 'application/json')
                 .send({pseudo: 'OutGame', motDePasse: 'test123'})
 
-            const response = await requestWithSupertest.post('/profil')
-                .set('Content-type', 'application/json')
-                .set('Authorization', `Bearer ${loginResponse.body.token}`)
-                .send(validTeam)
+            token = loginResponse.body.token
+        })
 
-            expect(response.status).to.equal(201)
-            expect(response.body).to.deep.equal({
-                success: true, message: 'Équipe créée'
+        describe('• POST /profil', () => {
+            it('should create a team', async () => {
+                const response = await requestWithSupertest.post('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send(validTeam)
+
+                expect(response.status).to.equal(201)
+                expect(response.body).to.deep.equal({
+                    success: true, message: 'Équipe créée'
+                })
+            })
+
+            it('should not create a team when already existing', async () => {
+                const response = await requestWithSupertest.post('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send(validTeam)
+
+                expect(response.status).to.equal(409)
+                expect(response.body).to.deep.equal({
+                    success: false, message: "L'équipe existe déjà"
+                })
+            })
+
+            it('should not create a team when invalid', async () => {
+                const response = await requestWithSupertest.post('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({...validTeam, nom: null})
+
+                expect(response.status).to.equal(400)
+                expect(response.body).to.deep.equal({
+                    success: false, message: 'Équipe invalide'
+                })
             })
         })
 
-        it('should not create a team when already existing', async () => {
-            const loginResponse = await requestWithSupertest.post('/login')
-                .set('Content-type', 'application/json')
-                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+        describe('• PUT /profil', () => {
+            it('should be able to modify a team', async () => {
+                validTeam.pokemons.pokemon1.chromatique = true
+                validTeam.pokemons.pokemon1.capacites.capacite2 = {
+                    id: 17,
+                    nom: "Cru-Ailes",
+                    nomNormalise: "cru-ailes",
+                    type: "Vol",
+                    pp: 35
+                }
 
-            const response = await requestWithSupertest.post('/profil')
-                .set('Content-type', 'application/json')
-                .set('Authorization', `Bearer ${loginResponse.body.token}`)
-                .send(validTeam)
+                const response = await requestWithSupertest.put('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({
+                        nomActuel: validTeam.nom,
+                        pokemons: validTeam.pokemons,
+                        nouveauNom: validTeam.nom
+                    })
 
-            expect(response.status).to.equal(409)
-            expect(response.body).to.deep.equal({
-                success: false, message: 'Équipe déjà existante'
+                expect(response.status).to.equal(204)
+                expect(response.body).to.be.empty
+            })
+
+            it('should not fail to modify a team with no changes', async () => {
+                const response = await requestWithSupertest.put('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({
+                        nomActuel: validTeam.nom,
+                        pokemons: validTeam.pokemons,
+                        nouveauNom: validTeam.nom
+                    })
+
+                expect(response.status).to.equal(200)
+                expect(response.body).to.deep.equal({
+                    success: true, message: 'Aucune mise à jour effectuée'
+                })
+            })
+
+            it("should fail to modify a team that doesn't exist", async () => {
+                const response = await requestWithSupertest.put('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({
+                        nomActuel: 'doesnotexist',
+                        pokemons: validTeam.pokemons,
+                        nouveauNom: 'doesnotexist'
+                    })
+
+                expect(response.status).to.equal(404)
+                expect(response.body).to.deep.equal({
+                    success: false, message: "L'équipe n'existe pas"
+                })
+            })
+
+            it("should fail to modify a team with invalid pokemons", async () => {
+                const invalidPkms = {
+                    ...validTeam.pokemons,
+                    pokemon1: {
+                        ...validTeam.pokemons.pokemon1,
+                        types: ['t1', 't2', 't3']
+                    }
+                }
+
+                const response = await requestWithSupertest.put('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({
+                        nomActuel: validTeam.nom,
+                        pokemons: invalidPkms,
+                        nouveauNom: validTeam.nom
+                    })
+
+                expect(response.status).to.equal(400)
+                expect(response.body).to.deep.equal({
+                    success: false, message: 'Pokemons invalide'
+                })
             })
         })
 
-        it('should not create a team when invalid', async () => {
-            const loginResponse = await requestWithSupertest.post('/login')
-                .set('Content-type', 'application/json')
-                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+        describe('• DELETE /profil', () => {
+            it('should be able to delete a team', async () => {
+                const response = await requestWithSupertest.delete('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({nomEquipe: validTeam.nom})
 
-            const response = await requestWithSupertest.post('/profil')
-                .set('Content-type', 'application/json')
-                .set('Authorization', `Bearer ${loginResponse.body.token}`)
-                .send({...validTeam, nom: null})
+                expect(response.status).to.equal(204)
+                expect(response.body).to.be.empty
+            })
 
-            expect(response.status).to.equal(400)
-            expect(response.body).to.deep.equal({
-                success: false, message: 'Équipe invalide'
+            it("should fail to delete a team that doesn't exist", async () => {
+                const response = await requestWithSupertest.delete('/profil')
+                    .set('Content-type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`)
+                    .send({nomEquipe: 'doesnotexist'})
+
+                expect(response.status).to.equal(404)
+                expect(response.body).to.deep.equal({
+                    success: false, message: "L'équipe n'existe pas"
+                })
             })
         })
-    })
-
-    describe('• PUT /profil', () => {
-        // TODO
-    })
-    describe('• DELETE /profil', () => {
-        // TODO
     })
 })

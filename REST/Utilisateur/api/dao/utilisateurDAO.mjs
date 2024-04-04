@@ -63,22 +63,20 @@ const utilisateurDAO = {
      * Ajoute une équipe à la liste des équipes d'un utilisateur.
      * @param pseudo {string} - Le pseudo de l'utilisateur.
      * @param equipe {Equipe} - L'équipe à ajouter.
-     * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est ajoutée, false si l'équipe existe déjà.
+     * @return {Promise<void>} - Promesse résolvant en true si l'équipe est ajoutée, false si l'équipe existe déjà.
      */
     addTeam: async (pseudo, equipe) => {
         // Recherche l'utilisateur par son pseudo
         const utilisateur = await utilisateurDAO.getUser(pseudo)
 
         if (!utilisateur.ajouterEquipe(equipe))
-            return false
+            throw "L'équipe existe déjà"
 
-        // Ajoute l'équipe au tableau d'équipes de l'utilisateur
+        // Met à jour les équipes de l'utilisateur
         await UtilisateurModel.updateOne(
             { pseudo: pseudo },
             { $set: {equipes: utilisateur.equipes} }
         ).exec()
-
-        return true // L'équipe a été ajoutée avec succès
     },
 
     /**
@@ -100,9 +98,9 @@ const utilisateurDAO = {
 
         // Si l'équipe n'a pas été modifié on renvoie faux.
         if (!utilisateur.modifierEquipe(nomActuel, pokemons, nouveauNom))
-            throw "L'équipe n'existe pas."
+            throw "L'équipe n'existe pas"
 
-        // Sinon on la met à jour dans la base de données.
+        // Met à jour les équipes de l'utilisateur
         const result = await UtilisateurModel.updateOne(
             { pseudo: pseudo },
             {$set: {equipes: utilisateur.equipes}}
@@ -116,17 +114,19 @@ const utilisateurDAO = {
      * Supprime une équipe spécifique d'un utilisateur.
      * @param pseudo {string} - Le pseudo de l'utilisateur.
      * @param nomEquipe {string} - Le nom de l'équipe à supprimer.
-     * @return {Promise<boolean>} - Promesse résolvant en true si l'équipe est supprimée, false sinon.
+     * @return {Promise<void>} - Promesse résolvant en true si l'équipe est supprimée, false sinon.
      */
     deleteTeam: async (pseudo, nomEquipe) => {
-        // Exécute la mise à jour pour retirer l'équipe du tableau 'equipes' de l'utilisateur
-        const result = await UtilisateurModel.updateOne(
-            { pseudo: pseudo },
-            { $pull: { equipes: { nom: nomEquipe } } } // Utilise $pull pour retirer l'équipe
-        ).exec()
+        const user = await utilisateurDAO.getUser(pseudo)
 
-        // Vérifie si la mise à jour a affecté exactement un document
-        return result.modifiedCount === 1
+        if (!user.supprimerEquipe(nomEquipe))
+            throw "L'équipe n'existe pas"
+
+        // Met à jour les équipes de l'utilisateur
+        await UtilisateurModel.updateOne(
+            { pseudo: pseudo },
+            {$set: {equipes: user.equipes}}
+        ).exec()
     }
 }
 

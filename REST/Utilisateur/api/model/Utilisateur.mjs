@@ -84,4 +84,13 @@ export default class Utilisateur {
         this.equipes[equipeIndex].pokemons = pokemons
         return true
     }
+
+    supprimerEquipe(nomEquipe) {
+        const equipeIndex = this.equipes.findIndex(e => e.nom === nomEquipe)
+        if (equipeIndex === -1)
+            return false
+
+        this.equipes.splice(equipeIndex, 1)
+        return true
+    }
 }

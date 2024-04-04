@@ -37,9 +37,9 @@ async function validateUserToken(req, res, next) {
 router.route('/register').post(async (req, res) => {
     try {
         const utilisateur = await utilisateurController.addUser(req.body)
-        res.status(201).send({ success: true, token: signPayload(utilisateur.pseudo) })
+        res.status(201).send({success: true, token: signPayload(utilisateur.pseudo)})
     } catch (e) {
-        res.status(400).json({ success: false, message: e })
+        res.status(400).json({success: false, message: e})
     }
 })
 
@@ -49,11 +49,11 @@ router.route('/login').post(async (req, res) => {
 
     const utilisateur = await utilisateurController.getUser(pseudo)
     if (!utilisateur)
-        return res.status(404).send({ success: false, message: "L'utilisateur n'existe pas" })
+        return res.status(404).send({success: false, message: "L'utilisateur n'existe pas"})
 
     const mdpValide = await bcrypt.compare(motDePasse, utilisateur.motDePasse)
     if (!mdpValide)
-        return res.status(401).send({ success: false, message: "Mot de passe incorrect" })
+        return res.status(401).send({success: false, message: "Mot de passe incorrect"})
 
     res.status(200).send({ success: true, token: signPayload(pseudo) })
 })
@@ -66,14 +66,15 @@ router.route('/profil')
     })
     .post(validateUserToken, async (req, res) => {
         try {
-            const added = await utilisateurController.addTeam(req.user.pseudo, req.body)
-            added ? res.status(201).send(
-                {success: true, message: 'Équipe créée'}
-            ) : res.status(409).send({
-                success: false, message: "Équipe déjà existante"
-            })
+            await utilisateurController.addTeam(req.user.pseudo, req.body)
+            res.status(201).send({success: true, message: 'Équipe créée'})
         } catch (e) {
-            res.status(400).send({success: false, message: e})
+            if (e ===  "L'équipe existe déjà")
+                res.status(409).send({success: false, message: e})
+            else
+                res.status(400).send({
+                    success: false, message: 'Équipe invalide'
+                })
         }
     })
     .put(validateUserToken, async (req, res) => {
@@ -84,14 +85,31 @@ router.route('/profil')
                 req.body.pokemons,
                 req.body.nouveauNom
             )
-            updated ? res.status(200).send() : res.status(204).send({message: 'Aucune mise à jour effectuée'})
+
+            if (updated)
+                res.status(204).send()
+            else
+                res.status(200).send(
+                    {success: true, message: 'Aucune mise à jour effectuée'}
+                )
         } catch (e) {
-            res.status(404).send({message: e})
+            if (e === "L'équipe n'existe pas")
+                res.status(404).send(
+                    {success: false, message: e}
+                )
+            else
+                res.status(400).send({
+                    success: false, message: 'Pokemons invalide'
+                })
         }
     })
     .delete(validateUserToken, async (req, res) => {
-        const deleted = await utilisateurController.deleteTeam(req.user.pseudo, req.body.nomEquipe)
-        deleted ? res.status(200).send() : res.status(204).send({message: 'Aucune suppression effectuée'})
+        try {
+            await utilisateurController.deleteTeam(req.user.pseudo, req.body.nomEquipe)
+            res.status(204).send()
+        } catch (e) {
+            res.status(404).send({success: false, message: e})
+        }
     })
 
 export default router
