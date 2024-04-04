@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Objet from "../model/Objet.mjs"
+import ObjetCategorie from "../model/ObjetCategorie.mjs"
 
 const objetSchema = new mongoose.Schema({
     nom: {type: String, required: true},
@@ -8,8 +8,8 @@ const objetSchema = new mongoose.Schema({
     description: String,
     sprite: String,
     categorie: {
-        id: {type: Number, enum: Array.from(Objet.validCategories.keys())},
-        nom: {type: String, enum: Array.from(Objet.validCategories.values())}
+        id: {type: Number, enum: Array.from(ObjetCategorie.validCategories.keys())},
+        nom: {type: String, enum: Array.from(ObjetCategorie.validCategories.values())}
     }
 }, {versionKey: false})
 

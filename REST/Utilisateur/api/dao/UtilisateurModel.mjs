@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
-import {validTypes} from "../model/Utilisateur.mjs"
+import CapacitePokemon from "../model/CapacitePokemon.mjs"
+import PokemonEquipe from "../model/PokemonEquipe.mjs"
 
 const capaciteSchema = new mongoose.Schema({
     id: {type: Number, min: 1},
     nom: String,
     nomNormalise: String,
-    type: {type: String, enum: validTypes},
+    type: {type: String, enum: CapacitePokemon.validTypes},
     pp: {type: Number, min: 1}
 }, { _id: false })
 
@@ -27,7 +28,7 @@ const pokemonSchema = new mongoose.Schema({
         normaux: [String],
         cache: {type: String}
     },
-    types: {type: [String], enum: validTypes},
+    types: {type: [String], enum: PokemonEquipe.validTypes},
     chromatique: Boolean,
     objet: objetSchema,
     capacites: {

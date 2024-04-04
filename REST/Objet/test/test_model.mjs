@@ -36,20 +36,33 @@ describe('Objet Model', () => {
         expectErrorOnItemCreate('nomNormalise', '', "'nomNormalise' must be a not empty string")
     })
 
+    it("should fail to create an Item when 'description' is not a string", () => {
+        expectErrorOnItemCreate('description', 1, "'description' must be a string")
+    })
+
+    it("should fail to create an Item when 'sprite' is not a string nor null", () => {
+        expectErrorOnItemCreate('sprite', {}, "'sprite' must be a string or null")
+    })
+
     it('should fail to create an Item when category is invalid', () => {
-        const categorieErrorMessage = "'categorie' must be an object with valid 'id' and 'nom'"
+        expectErrorOnItemCreate(
+            'categorie',
+            null,
+            "'categorie' must be an object"
+        )
+
         expectErrorOnItemCreate(
             'categorie',
             {id: 1, nom: 'Categorie invalide'},
-            categorieErrorMessage
+            "'id' or/and 'nom' must be valid"
         )
     })
 
     it('should be fine to create a valid Item', () => {
         try {
             new Objet(validItem)
-        } catch {
-            expect.fail("Should have not thrown an error")
+        } catch(e) {
+            expect.fail(`Should have not thrown an error. Error: ${e.message}`)
         }
     })
 })

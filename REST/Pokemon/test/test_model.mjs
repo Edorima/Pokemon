@@ -56,13 +56,10 @@ describe("Pokemon Model", () => {
         }
     }
 
-    const idErrorMessage = "Id must be an integer greater or equal to 1"
-    it('should fail to create a Pokemon whose id is not an integer', () => {
-        expectErrorOnPkmCreate('id', NaN, idErrorMessage)
-    })
-
-    it('should fail to create a Pokemon whose id is 0', () => {
+    it('should fail to create a Pokemon whose id is invalid', () => {
+        const idErrorMessage = "Id must be an integer greater or equal to 1"
         expectErrorOnPkmCreate('id', 0, idErrorMessage)
+        expectErrorOnPkmCreate('id', NaN, idErrorMessage)
     })
 
     it("should fail to create a Pokemon when 'nom' is an empty string", () => {
@@ -77,15 +74,58 @@ describe("Pokemon Model", () => {
         expectErrorOnPkmCreate('nomNormalise', '', "'nomNormalise' must be a not empty string")
     })
 
+    it("should fail to create a Pokemon when 'description' is not a string", () => {
+        const descriptionErrorMessage = "'description' must be a string"
+        expectErrorOnPkmCreate('description', null, descriptionErrorMessage)
+        expectErrorOnPkmCreate('description', {}, descriptionErrorMessage)
+    })
+
     it("should fail to create a Pokemon when 'poids' is invalid", () => {
         const poidsErrorMessage = "Weight must be a number between 0.1 and 999.9"
         expectErrorOnPkmCreate('poids', 0, poidsErrorMessage)
         expectErrorOnPkmCreate('poids', 1000, poidsErrorMessage)
     })
 
+    it("should fail to create a Pokemon when 'sprites' is invalid", () => {
+        const spritesErrorMessage = "'sprites' must be an object"
+        expectErrorOnPkmCreate('sprites', null, spritesErrorMessage)
+        expectErrorOnPkmCreate('sprites', '', spritesErrorMessage)
+
+        expectErrorOnPkmCreate('sprites',
+            {default: null},
+            "'default' must be a string"
+        )
+        expectErrorOnPkmCreate('sprites',
+            {default: 'default', shiny: null},
+            "'shiny' must be a string"
+        )
+    })
+
     it("should fail to create a Pokemon when 'taille' is invalid", () => {
         const tailleErrorMessage = "Height must be a number greater or equal to 0.1"
         expectErrorOnPkmCreate('taille', 0, tailleErrorMessage)
+    })
+
+    it("should fail to create a Pokemon when 'talents' is invalid", () => {
+        const talentsErrorMessage = "'talents' must be an object"
+        expectErrorOnPkmCreate('talents', null, talentsErrorMessage)
+        expectErrorOnPkmCreate('talents', '', talentsErrorMessage)
+
+        expectErrorOnPkmCreate(
+            'talents',
+            {normaux: ['talent', 1]},
+            "'normaux' must be an array of strings"
+        )
+
+        expectErrorOnPkmCreate(
+            'talents',
+            {normaux: [], cache: 1},
+            "'cache' must be a string or null"
+        )
+    })
+
+    it("should fail to create a Pokemon when 'stats' is not an object", () => {
+        expectErrorOnPkmCreate('stats', null, "'stats' must be an object")
     })
 
     it('should fail to create a Pokemon when a stat is not between 1 and 255', () => {
@@ -95,7 +135,6 @@ describe("Pokemon Model", () => {
             expectErrorOnPkmCreate('stats', {...validPokemon.stats, [key]: 0}, statsErrorMessage)
             expectErrorOnPkmCreate('stats', {...validPokemon.stats, [key]: 256}, statsErrorMessage)
         }
-        expectErrorOnPkmCreate('stats', null, statsErrorMessage)
     })
 
     it('should fail to create a Pokemon with an invalid generation', ()  => {
@@ -111,11 +150,24 @@ describe("Pokemon Model", () => {
         expectErrorOnPkmCreate('types', ['Ombre'], typesErrorMessage)
     })
 
+    it("should fail to create a Pokemon with an invalid moves array", () => {
+        const capacitesErrorMessage = "'capacites' must be an array of numbers"
+        expectErrorOnPkmCreate('capacites', null, capacitesErrorMessage)
+        expectErrorOnPkmCreate('capacites', [1, 'test', 3], capacitesErrorMessage)
+    })
+
+    it("should fail to create a Pokemon when 'espece' is not a string", () => {
+        const especeErrorMessage = "'espece' must be a string"
+        expectErrorOnPkmCreate('espece', null, especeErrorMessage)
+        expectErrorOnPkmCreate('espece', {}, especeErrorMessage)
+        expectErrorOnPkmCreate('espece', 10, especeErrorMessage)
+    })
+
     it('should be fine to create a valid Pokemon', () => {
         try {
             new Pokemon(validPokemon)
-        } catch {
-            expect.fail("Should have not thrown an error")
+        } catch(e) {
+            expect.fail(`Should have not thrown an error. Error: ${e.message}`)
         }
     })
 })

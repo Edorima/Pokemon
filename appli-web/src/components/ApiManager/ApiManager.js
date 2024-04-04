@@ -192,7 +192,7 @@ const ApiManager = {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({equipe: equipe})
+            body: JSON.stringify(equipe)
         })
     },
 

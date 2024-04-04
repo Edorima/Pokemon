@@ -54,6 +54,14 @@ describe("Capacité Model", () => {
         expectErrorOnMoveCreate('nomNormalise', '', "'nomNormalise' must be a not empty string")
     })
 
+    it("should fail to create a Move when description is not a string", () => {
+        expectErrorOnMoveCreate(
+            'description',
+            null,
+            "'description' must be a string"
+        )
+    })
+
     it('should fail to create a Move with invalid PP', () => {
         const ppErrorMessage = "PP must be an integer greater or equal to 1"
         expectErrorOnMoveCreate('pp', 0, ppErrorMessage)
@@ -68,8 +76,8 @@ describe("Capacité Model", () => {
     it('should be fine to create a Move with a null precision', () => {
         try {
             new Capacite({...validMove, precision: null})
-        } catch {
-            expect.fail("Should have not thrown an error")
+        } catch(e) {
+            expect.fail(`Should have not thrown an error. Error: ${e.message}`)
         }
     })
 
@@ -81,14 +89,22 @@ describe("Capacité Model", () => {
     it('should be fine to create a Move with a null power', () => {
         try {
             new Capacite({...validMove, puissance: null})
-        } catch {
-            expect.fail("Should have not thrown an error")
+        } catch(e) {
+            expect.fail(`Should have not thrown an error. Error: ${e.message}`)
         }
     })
 
     it('should fail to create a Move with an invalid type', () => {
         const typeErrorMessage = "Type must be a valid one"
         expectErrorOnMoveCreate('type', 'Ombre', typeErrorMessage)
+    })
+
+    it("should fail to create a Move when 'pokemons' is not an array of strings", () => {
+        expectErrorOnMoveCreate(
+            'pokemons',
+            [1, 'test'],
+            "'pokemons' must be an array of strings"
+        )
     })
 
     it('should fail to create a Move with an invalid category', () => {
@@ -99,8 +115,8 @@ describe("Capacité Model", () => {
     it('should be fine to create a valid Move', () => {
         try {
             new Capacite(validMove)
-        } catch {
-            expect.fail("Should have not thrown an error")
+        } catch(e) {
+            expect.fail(`Should have not thrown an error. Error: ${e.message}`)
         }
     })
 })

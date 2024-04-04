@@ -20,7 +20,11 @@ const server = app.listen(serverPort, () =>
 console.log(`ENV : ${env}`)
 
 if (env === 'TEST') {
-    // TODO TRAVAIL EN MEMOIRE
+    const {MongoMemoryServer}  = await import('mongodb-memory-server')
+    const mongoServer = await MongoMemoryServer.create()
+    const uri = mongoServer.getUri();
+    await mongoose.connect(uri)
+    console.log(`Mongo on memory ${uri}`)
 } else {
     const uri = mongoURL + '/' + mongoDB
     await mongoose.connect(uri)

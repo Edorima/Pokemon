@@ -45,6 +45,9 @@ export default class Capacite {
         if (!Capacite.isNameValid(obj.nomNormalise))
             throw new Error("'nomNormalise' must be a not empty string")
 
+        if (obj.description === null || typeof obj.description !== 'string')
+            throw new Error("'description' must be a string")
+
         if (!Capacite.isValidPP(obj.pp))
             throw new Error("PP must be an integer greater or equal to 1")
 
@@ -56,6 +59,9 @@ export default class Capacite {
 
         if (!Capacite.isValidType(obj.type))
             throw new Error("Type must be a valid one")
+
+        if (!Array.isArray(obj.pokemons) || obj.pokemons.some(pkm => typeof pkm !== 'string'))
+            throw new Error("'pokemons' must be an array of strings")
 
         if (!Capacite.isValidCategory(obj.categorie))
             throw new Error("Category must be a valid one.")
@@ -91,7 +97,7 @@ export default class Capacite {
      * @return {boolean}
      */
     static isNameValid(value) {
-        return typeof value === 'string' && value.length !== 0
+        return value && typeof value === 'string'
     }
 
     /**
@@ -136,7 +142,7 @@ export default class Capacite {
      * @return {boolean}
      */
     static isValidType(value) {
-        return Capacite.validTypes.includes(value)
+        return this.validTypes.includes(value)
     }
 
     /**
@@ -146,6 +152,6 @@ export default class Capacite {
      * @return {boolean}
      */
     static isValidCategory(value) {
-        return Capacite.moveCategories.includes(value)
+        return this.moveCategories.includes(value)
     }
 }

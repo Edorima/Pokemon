@@ -9,19 +9,168 @@ const requestWithSupertest = supertest(server)
 //Utilise l'environnement de TEST du serveur
 describe('Utilisateur Routes', () => {
     describe('• POST /register', () => {
-        // TODO
+        it('should be able to create an account', async () => {
+            const response = await requestWithSupertest.post('/register')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            expect(response.status).to.equal(201)
+            expect(response.body.success).to.be.true
+            expect(response.body.token).to.be.a('string')
+        })
+
+        it('should fail to create an account, bad data', async () => {
+            const response = await requestWithSupertest.post('/register')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame'})
+
+            expect(response.status).to.equal(400)
+            expect(response.body.success).to.be.false
+            expect(response.body.message).to.equal("Utilisateur invalide")
+        })
     })
 
     describe('• POST /login', () => {
-        // TODO
+        it('should be able to login', async () => {
+            const response = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            expect(response.status).to.equal(200)
+            expect(response.body.success).to.be.true
+            expect(response.body.token).to.be.a('string')
+        })
+
+        it('should not be able to login to unknown account', async () => {
+            const response = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'Unknown', motDePasse: 'password'})
+
+            expect(response.status).to.equal(404)
+            expect(response.body.success).to.be.false
+            expect(response.body).to.deep.equal({
+                success: false, message: "L'utilisateur n'existe pas"
+            })
+        })
     })
 
     describe('• GET /profil', () => {
-        // TODO
+        it('should get the profil', async () => {
+            const loginResponse = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            const response = await requestWithSupertest.get('/profil')
+                .set('Content-type', 'application/json')
+                .set('Authorization', `Bearer ${loginResponse.body.token}`)
+                .send()
+
+            expect(response.status).to.equal(200)
+            expect(response.body).to.deep.equal({
+                pseudo: 'OutGame', equipes: [], equipePrefere: null
+            })
+        })
+
+        it('should not get the profil if token is missing', async () => {
+            const response = await requestWithSupertest.get('/profil')
+                .set('Content-type', 'application/json')
+                .send()
+
+            expect(response.status).to.equal(401)
+            expect(response.body).to.deep.equal({
+                success: false, message: 'Token manquant'
+            })
+        })
+
+        it('should not get the profil if token is invalid', async () => {
+            const response = await requestWithSupertest.get('/profil')
+                .set('Content-type', 'application/json')
+                .set('Authorization', 'Bearer tokenInvalide')
+                .send()
+
+            expect(response.status).to.equal(401)
+            expect(response.body).to.deep.equal({
+                success: false, message: 'Token invalide'
+            })
+        })
     })
 
+    const validTeam = {
+        nom: "equipe",
+        pokemons: {
+            pokemon1: {
+                id: 567,
+                nom: "Aéroptéryx",
+                nomNormalise: "aeropteryx",
+                sprites: {default: "default", shiny: "shiny"},
+                talents: {normaux: ["Défaitiste"], cache: null},
+                objet: null,
+                types: ["Roche", "Vol"],
+                chromatique: false,
+                capacites: {
+                    capacite1: {
+                        nom: "Météores", nomNormalise: "meteores",
+                        type: "Normal", pp: 20, id: 129
+                    },
+                    capacite2: null,
+                    capacite3: null,
+                    capacite4: null
+                }
+            },
+            pokemon2: null, pokemon3: null,
+            pokemon4: null, pokemon5: null,
+            pokemon6: null
+        }
+    }
+
     describe('• POST /profil', () => {
-        // TODO
+        it('should create a team', async () => {
+            const loginResponse = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            const response = await requestWithSupertest.post('/profil')
+                .set('Content-type', 'application/json')
+                .set('Authorization', `Bearer ${loginResponse.body.token}`)
+                .send(validTeam)
+
+            expect(response.status).to.equal(201)
+            expect(response.body).to.deep.equal({
+                success: true, message: 'Équipe créée'
+            })
+        })
+
+        it('should not create a team when already existing', async () => {
+            const loginResponse = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            const response = await requestWithSupertest.post('/profil')
+                .set('Content-type', 'application/json')
+                .set('Authorization', `Bearer ${loginResponse.body.token}`)
+                .send(validTeam)
+
+            expect(response.status).to.equal(409)
+            expect(response.body).to.deep.equal({
+                success: false, message: 'Équipe déjà existante'
+            })
+        })
+
+        it('should not create a team when invalid', async () => {
+            const loginResponse = await requestWithSupertest.post('/login')
+                .set('Content-type', 'application/json')
+                .send({pseudo: 'OutGame', motDePasse: 'test123'})
+
+            const response = await requestWithSupertest.post('/profil')
+                .set('Content-type', 'application/json')
+                .set('Authorization', `Bearer ${loginResponse.body.token}`)
+                .send({...validTeam, nom: null})
+
+            expect(response.status).to.equal(400)
+            expect(response.body).to.deep.equal({
+                success: false, message: 'Équipe invalide'
+            })
+        })
     })
 
     describe('• PUT /profil', () => {
