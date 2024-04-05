@@ -1,10 +1,11 @@
-package com.example.androidspoonacular
+package com.example.androidspoonacular.activities
 
 import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidspoonacular.R
 
 class RecipeActivity : AppCompatActivity() {
     private lateinit var recipeImage: ImageView

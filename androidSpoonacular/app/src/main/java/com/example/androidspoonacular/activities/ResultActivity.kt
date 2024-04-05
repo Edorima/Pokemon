@@ -1,4 +1,4 @@
-package com.example.androidspoonacular
+package com.example.androidspoonacular.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidspoonacular.ApiSpoonacular
+import com.example.androidspoonacular.R
+import com.example.androidspoonacular.Result
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +21,7 @@ class ResultActivity : AppCompatActivity() {
 
         var tab : Array<Result> = arrayOf()
         // Récupération des données
-        ApiSpoonacular.requestSpoonRecipes ({ rootResponse ->
+        ApiSpoonacular.requestSpoonRecipes({ rootResponse ->
             // Vérifier que la réponse n'est pas null
             if (rootResponse != null && rootResponse.results.isNotEmpty()) {
 
