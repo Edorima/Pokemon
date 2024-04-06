@@ -96,7 +96,7 @@ export default function DataPage({
     }, [searchTerm, ...additionalStates])
 
     return (
-        <div id={wrapperId}>
+        <div id={wrapperId} className="dataWrapper">
             <h1>{pageTitle}</h1>
 
             <div id="recherche">
