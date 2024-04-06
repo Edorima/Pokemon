@@ -1,11 +1,17 @@
 package com.example.androidspoonacular.activities
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidspoonacular.ApiSpoonacular
+import com.example.androidspoonacular.DetailRecipe
 import com.example.androidspoonacular.R
+import com.bumptech.glide.Glide
 
 class RecipeActivity : AppCompatActivity() {
     private lateinit var recipeImage: ImageView
@@ -26,10 +32,22 @@ class RecipeActivity : AppCompatActivity() {
         isVege = findViewById(R.id.veggieCheckBox)
         recipeContent = findViewById(R.id.recipeContent)
 
-        val title = intent.getStringExtra("title")
-        val image = intent.getIntExtra("image", 0)
+        val id = intent.getIntExtra("id", 0)
+        var recipe: DetailRecipe
+        ApiSpoonacular.detailRequestRecipe({ detailRecipe ->
+            // Vérifier que la réponse n'est pas null
+            if (detailRecipe != null) {
 
-        recipeTitle.text = title
-        recipeImage.setImageResource(image)
+                Log.d("Resultat reçu", "ResultActivity")
+                recipeTitle.text = detailRecipe.title
+                Glide.with(this).load(detailRecipe.image).into(recipeImage)
+
+            } else {
+                // cas où aucune recette n'a été trouvée
+                Toast.makeText(this, "Aucune recette trouvée", Toast.LENGTH_SHORT).show()
+            }
+        }, this, id)
+
+
     }
 }
