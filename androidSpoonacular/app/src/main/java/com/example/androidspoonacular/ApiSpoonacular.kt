@@ -10,7 +10,7 @@ import kotlinx.serialization.json.Json
 
 class ApiSpoonacular {
     companion object {
-        private const val BASE_URL = "https://api.spoonacular.com/"
+        private const val BASE_URL = "https://api.spoonacular.com"
         private const val KEY = "bcefedbe027d455cbefea35dda1a9fdc"
         //bcefedbe027d455cbefea35dda1a9fdc
         //2980f9e49c1b48e39cc29ca9fce9180b
@@ -43,6 +43,26 @@ class ApiSpoonacular {
                     callback(null) // Appeler le callback avec null en cas d'erreur
                 })
             queue.add(stringRequest)
+        }
+
+        fun detailRequestRecipe(callback: (DetailRecipe?) -> Unit, context: Context, number: Int){
+            val queue = Volley.newRequestQueue(context)
+            val url = "$BASE_URL/recipes/$number/information?&apiKey=$KEY"
+            val stringRequest = StringRequest(
+                Request.Method.GET, url,
+                { response ->
+                    // Gérer la réponse de la requête ici
+                    val json = Json { ignoreUnknownKeys = true }
+                    val detailRecipe = json.decodeFromString<DetailRecipe>(response)
+                    callback(detailRecipe) // Appeler le callback avec la réponse
+                }, { error ->
+                    // Gérer les erreurs de la requête ici
+                    Log.e("API Error", error.toString())
+                    callback(null) // Appeler le callback avec null en cas d'erreur
+                })
+
+            queue.add(stringRequest)
+
         }
     }
 }

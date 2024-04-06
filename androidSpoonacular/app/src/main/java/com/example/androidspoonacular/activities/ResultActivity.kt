@@ -44,13 +44,12 @@ class ResultActivity : AppCompatActivity() {
         val buttonReturn = findViewById<Button>(R.id.retour_list)
         listViewRecipes.setOnItemClickListener { _, _, position, _ ->
             // Récupérer les infos de l'élément cliqué
-            val title = tab[position].title
-            val image = tab[position].image
+            val id = tab[position].id
 
             // Envoyé ces infos sur la page recette
             val intent = Intent(this, RecipeActivity::class.java)
-            intent.putExtra("title", title)
-            intent.putExtra("image", image)
+            intent.putExtra("id", id)
+
             startActivity(intent)
         }
         buttonReturn.setOnClickListener {
