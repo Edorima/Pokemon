@@ -68,16 +68,16 @@ export default function EditEquipeCard({
         setEditingTeam(null)
     }
 
-    /** @return {string} */
+    /** @return string */
     const saveMessage = () => {
         if (!nom)
             return 'Le nom ne peut pas être vide.'
 
-        if (nomsEquipeFiltre().includes(nom))
-            return "Le nom de l'équipe est déjà pris."
-
         if (nom.length > 32)
             return "Le nom de l'équipe ne doit pas faire plus de 32 caractères."
+
+        if (nomsEquipeFiltre().includes(nom))
+            return "Le nom de l'équipe est déjà pris."
 
         const message = 'Vous devez choisir au moins un Pokémon ' +
             'et au moins une capacité pour chacun de vos ' +

@@ -5,7 +5,6 @@ import ApiManager from "../../ApiManager/ApiManager"
 function PokemonTypes({types}) {
     return (
         <div className="pokemon-types">
-
             {types.map((type) =>
                 <img
                     key={type}
@@ -22,6 +21,7 @@ export default function PokemonCard({pokemon}) {
     const [capacites, setCapacites] = useState([])
     const [ouvert, setOuvert] = useState(false)
     const toggleElement = async () => {
+        // On s'assure de récupérer les données qu'une seule fois
         if (capacites.length === 0)
             ApiManager.getMovesByPokemon(pokemon.id)
                 .then(response => response.json())
