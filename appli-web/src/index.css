@@ -70,75 +70,74 @@ a[type=button], button {
   padding-right: 12px;
 }
 
-#capaciteWrapper , #objetsWrapper , #pokedexWrapper {
+.dataWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
   gap: 32px;
+}
 
-  h1 {
-    font-weight: normal;
-    font-size: 40px;
-    margin: 16px 0 0;
-  }
+.dataWrapper h1 {
+  font-weight: normal;
+  font-size: 40px;
+  margin: 16px 0 0;
+}
 
-  .common-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background-color: white;
-    border-radius: 20px;
-    padding: 16px;
-    width: 1250px;
-  }
+.dataWrapper .common-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 16px;
+  width: 1250px;
+}
 
-  .list{
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
-    background-color: #DBDBDB;
-    border-radius: 20px;
-    gap: 32px;
-  }
+.dataWrapper .list {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background-color: #DBDBDB;
+  border-radius: 20px;
+  gap: 32px;
+}
 
-  .card-display{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background-color: white;
-    border-radius: 20px;
-    width: 100%;
-  }
+.dataWrapper .card-display {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+}
 
-  .card-display button {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: white;
-    background-color: #C20808;
-    white-space: nowrap;
-    border-radius: 20px;
-    padding: 12px 16px;
-    border: none;
-    font-size: 18px;
+.dataWrapper .card-display button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  background-color: #C20808;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 12px 16px;
+  border: none;
+  font-size: 18px;
 
-    img {
-      transition: all 0.5s ease;
-      &.rotated {
-        transform: rotate(-180deg);
-      }
-    }
-  }
-
-  .card-display button:hover {
+  &:hover {
     background-color: #EE1515;
   }
 
-  .common-name{
-    font-size: 24px;
-    white-space: nowrap;
-    font-weight: bold;
-
+  img {
+    transition: all 0.5s ease;
+    &.rotated {
+      transform: rotate(-180deg);
+    }
   }
+}
+
+.dataWrapper .common-name {
+  font-size: 24px;
+  white-space: nowrap;
+  font-weight: bold;
 }

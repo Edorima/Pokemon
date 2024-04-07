@@ -9,8 +9,8 @@ const router = express.Router()
 
 /**
  * Permet de signer un pseudo et d'en renvoyer un token.
- * @param pseudo {string}
- * @returns {string}
+ * @param pseudo {string} - Le pseudo à signer
+ * @returns {string} - Un token de validation
  */
 function signPayload(pseudo) {
     return jwt.sign(
