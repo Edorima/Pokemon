@@ -8,5 +8,7 @@ data class DetailRecipe(
     val image : String,
     val imageType : String,
     val readyInMinutes: Int,
-    val summary: String
+    val summary: String,
+    val vegan: Boolean,
+    val vegetarian: Boolean
 )

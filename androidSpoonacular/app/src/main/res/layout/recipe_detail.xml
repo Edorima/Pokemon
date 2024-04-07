@@ -8,24 +8,33 @@
 
     <ImageView
         android:id="@+id/recipeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/recipeName"
-        android:layout_width="wrap_content"
+        android:layout_width="198dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:text="Recipe Name"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/preparationText"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
         android:id="@+id/preparationText"
@@ -35,34 +44,40 @@
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/recipeImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toTopOf="@+id/recipeImage" />
+        app:layout_constraintTop_toBottomOf="@+id/recipeName"
+        app:layout_constraintVertical_bias="0.428" />
 
     <CheckBox
         android:id="@+id/veganCheckBox"
         android:layout_width="77dp"
         android:layout_height="33dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="21dp"
         android:text="Vegan"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toBottomOf="@+id/preparationText"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        android:enabled="false"/>
 
     <CheckBox
         android:id="@+id/veggieCheckBox"
         android:layout_width="104dp"
         android:layout_height="34dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Végétarien"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toBottomOf="@+id/preparationText"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        android:enabled="false"/>
 
     <TextView
         android:id="@+id/recipeText"

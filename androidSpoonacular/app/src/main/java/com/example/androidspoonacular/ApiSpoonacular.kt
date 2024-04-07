@@ -18,6 +18,7 @@ class ApiSpoonacular {
         var type = ""
         var diet = ""
         var number = 1
+        var query = ""
 
         fun requestSpoonRecipes(callback: (RootReponse?) -> Unit, context: Context) {
             val queue = Volley.newRequestQueue(context)
@@ -26,9 +27,11 @@ class ApiSpoonacular {
 
             val dietURL = if (diet == "All") "" else "&diet=$diet"
 
+            val queryURL = if (diet == "") "" else "&query=$query"
+
             val numberURL = "&number=$number"
 
-            val url = "$BASE_URL/recipes/complexSearch?$typeURL$dietURL$numberURL&apiKey=$KEY"
+            val url = "$BASE_URL/recipes/complexSearch?$typeURL$dietURL$numberURL$queryURL&apiKey=$KEY"
             println(url)
 
             val stringRequest = StringRequest(

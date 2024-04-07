@@ -1,12 +1,15 @@
 package com.example.androidspoonacular.activities
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidspoonacular.ApiSpoonacular
 import com.example.androidspoonacular.DetailRecipe
@@ -21,6 +24,7 @@ class RecipeActivity : AppCompatActivity() {
     private lateinit var isVege: CheckBox
     private  lateinit var recipeContent: TextView
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recipe_detail)
@@ -41,6 +45,10 @@ class RecipeActivity : AppCompatActivity() {
                 Log.d("Resultat reçu", "ResultActivity")
                 recipeTitle.text = detailRecipe.title
                 Glide.with(this).load(detailRecipe.image).into(recipeImage)
+                isVegan.isChecked = detailRecipe.vegan
+                isVege.isChecked = detailRecipe.vegetarian
+                val formattedText = Html.fromHtml(detailRecipe.summary, Html.FROM_HTML_MODE_LEGACY)
+                recipeContent.text = formattedText
 
             } else {
                 // cas où aucune recette n'a été trouvée
