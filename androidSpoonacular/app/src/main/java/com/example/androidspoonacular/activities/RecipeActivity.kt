@@ -5,7 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
-import android.widget.ArrayAdapter
+
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.androidspoonacular.ApiSpoonacular
 import com.example.androidspoonacular.DetailRecipe
 import com.example.androidspoonacular.R
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
 
 class RecipeActivity : AppCompatActivity() {
@@ -73,7 +73,7 @@ class RecipeActivity : AppCompatActivity() {
                         recipe = detailRecipe
                         // Mise à jour de l'UI avec les détails de la recette
                         recipeTitle.text = detailRecipe.title
-                        Glide.with(this).load(detailRecipe.image).into(recipeImage)
+                        Picasso.get().load(detailRecipe.image).into(recipeImage)
                         isVegan.isChecked = detailRecipe.vegan
                         isVege.isChecked = detailRecipe.vegetarian
                         val formattedText = Html.fromHtml(detailRecipe.summary, Html.FROM_HTML_MODE_LEGACY)
@@ -88,7 +88,7 @@ class RecipeActivity : AppCompatActivity() {
                 // Vous pouvez mettre à jour l'UI avec les données existantes ici
                 Log.d("coucou", "")
                 recipeTitle.text = recipe!!.title
-                Glide.with(this).load(recipe!!.image).into(recipeImage)
+                Picasso.get().load(recipe!!.image).into(recipeImage)
                 isVegan.isChecked = recipe!!.vegan
                 isVege.isChecked = recipe!!.vegetarian
                 val formattedText = Html.fromHtml(recipe!!.summary, Html.FROM_HTML_MODE_LEGACY)
