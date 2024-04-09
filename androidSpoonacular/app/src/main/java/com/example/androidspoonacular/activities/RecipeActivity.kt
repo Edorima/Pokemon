@@ -85,7 +85,7 @@ class RecipeActivity : AppCompatActivity() {
                 }, this, id)
             } else {
                 // Si la variable recipe n'est pas nulle, cela signifie que nous avons déjà les données de la recette
-                // Vous pouvez mettre à jour l'UI avec les données existantes ici
+
                 Log.d("coucou", "")
                 recipeTitle.text = recipe!!.title
                 Picasso.get().load(recipe!!.image).into(recipeImage)
