@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">androidSpoonacular</string>
-    <string name="recherche">Recherche</string>
-    <string name="type_de_cuisine">Type de cuisine</string>
-    <string name="regime_alimentaire">Régime alimentaire</string>
-</resources>
